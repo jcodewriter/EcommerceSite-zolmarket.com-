@@ -1,0 +1,190 @@
+/*Mona editing*/
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.item-box {
+    position: relative;
+    margin: 0 0 10px;
+    text-align: center;
+}
+.item-box img {
+    width: 100%;
+    max-width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.item-box h4 {
+    font-weight: 600;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    color: #000000;
+    font-size: 12px ;
+    background: #e9ecef;
+    padding: 10px;
+    bottom: -12px;
+}
+
+img.img-fluid.lazyloaded {
+    margin-bottom: 0px;
+}
+
+/*footer*/
+.mobile-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    
+    
+    background-color: #f5f5f5;
+}
+
+.mobile-footer.is_web {
+    height: 60px;
+    padding: 15px 0;
+}
+
+.mobile-footer.is_mobile {
+    height: 85px;
+    padding: 6px 0;
+}
+  .mobile-footer a {
+    text-decoration: none;
+    color: black;
+    padding: 14px 0;
+    position:relative;
+  }
+
+  .mobile-footer .fa {
+    font-size: 18px;
+  }
+
+  .mobile-footer a span {
+      font-size: 14px;
+  }
+.mobile-footer a .mobile-footer-font {
+    font-size: 12px;
+}
+/* Profile info */
+.rightprofile {
+    padding-top: 25px;
+    }
+
+li.breadcrumb-menu{
+    color: #777;
+    padding-left: 20px;
+  }
+i.logout-member{
+    float: center;
+}
+
+/*Mobile options*/
+.mobile-category-list a {
+    position: relative;
+}
+
+.mobile-category-list a,
+.mobile-category-list a:active,
+.mobile-category-list a:hover {
+    text-decoration: none;
+}
+
+.mobile-category-list li a i {
+    font-size: 22px;
+}
+
+.mobile-category-list li a .fa-angle-right {
+    position: absolute;
+    right: 5px;
+}
+
+.modal.fade.show
+{
+    z-index: 99999999;
+}
+
+.modal-backdrop.show{
+    z-index: 99999998;
+}
+/* Css Plugin bootstrap miration */ 
+
+/*\
+ * Restore Bootstrap 3 "hidden" utility classes.
+\*/
+/* Breakpoint XS */
+@media (max-width: 575px)
+{
+    .hidden-xs-down, .hidden-sm-down, .hidden-md-down, .hidden-lg-down, .hidden-xl-down, 
+    .hidden-xs-up, 
+    .hidden-unless-sm, .hidden-unless-md, .hidden-unless-lg, .hidden-unless-xl
+    {
+        display: none !important;
+    }
+    .modal-backdrop.show{
+        z-index: 1;
+    }
+    .swal-overlay--show-modal{
+        z-index: 99999999;
+    }
+
+}
+
+/* Breakpoint SM */
+@media (min-width: 576px) and (max-width: 767px)
+{
+    .hidden-sm-down, .hidden-md-down, .hidden-lg-down, .hidden-xl-down, 
+    .hidden-xs-up, .hidden-sm-up, 
+    .hidden-unless-xs, .hidden-unless-md, .hidden-unless-lg, .hidden-unless-xl
+    {
+        display: none !important;
+    }
+    .modal-backdrop.show{
+        z-index: 1;
+    }
+    .swal-overlay--show-modal{
+        z-index: 99999999;
+    }
+}
+
+/* Breakpoint MD */
+@media (min-width: 768px) and (max-width: 991px)
+{
+    .hidden-md-down, .hidden-lg-down, .hidden-xl-down, 
+    .hidden-xs-up, .hidden-sm-up, .hidden-md-up, 
+    .hidden-unless-xs, .hidden-unless-sm, .hidden-unless-lg, .hidden-unless-xl
+    {
+        display: none !important;
+    } 
+    .modal-backdrop.show{
+        z-index: 1;
+    }
+    .swal-overlay--show-modal{
+        z-index: 99999999;
+    }
+}
+
+/* Breakpoint LG */
+@media (min-width: 992px) and (max-width: 1199px)
+{
+    .hidden-lg-down, .hidden-xl-down, 
+    .hidden-xs-up, .hidden-sm-up, .hidden-md-up, .hidden-lg-up, 
+    .hidden-unless-xs, .hidden-unless-sm, .hidden-unless-md, .hidden-unless-xl
+    {
+        display: none !important;
+    } 
+}
+
+/* Breakpoint XL */
+@media (min-width: 1200px)
+{
+    .hidden-xl-down, 
+    .hidden-xs-up, .hidden-sm-up, .hidden-md-up, .hidden-lg-up, .hidden-xl-up, 
+    .hidden-unless-xs, .hidden-unless-sm, .hidden-unless-md, .hidden-unless-lg
+    {
+        display: none !important;
+    } 
+}
