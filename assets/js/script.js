@@ -185,7 +185,6 @@ function app_suggest_show() {
 $("#imgUploader").change(function () { readURL(this); });
 
 $(document).ready(function () {
-    // $("html, body").animate({scrollTop: 0}, 700);
     if (localStorage.getItem("app-suggest") == null && (window.location.pathname == '/' || window.location.pathname == '/ar/') && $(window).width() < 900) {
         app_suggest_show()
     }
@@ -194,7 +193,9 @@ $(document).ready(function () {
         if (localStorage.getItem("app-suggest") == null) {
             if (scroll >= 80 && $(this).width() < 769) {
                 $(".mobile-menu").addClass("header-fixed-top");
-                $(".top-search-bar").addClass("search-bar-fixed-top");
+                if (window.location.pathname == '/' || window.location.pathname == '/ar/') {
+                    $(".top-search-bar").addClass("search-bar-fixed-top");
+                }
             } else {
                 $(".mobile-menu").removeClass('header-fixed-top');
                 $(".top-search-bar").removeClass('search-bar-fixed-top');
@@ -202,26 +203,15 @@ $(document).ready(function () {
         }else {
             if (scroll >= 10 && $(this).width() < 769) {
                 $(".mobile-menu").addClass("header-fixed-top");
-                $(".top-search-bar").addClass("search-bar-fixed-top");
+                if (window.location.pathname == '/' || window.location.pathname == '/ar/') {
+                    $(".top-search-bar").addClass("search-bar-fixed-top");
+                }
             } else {
                 $(".mobile-menu").removeClass('header-fixed-top');
                 $(".top-search-bar").removeClass('search-bar-fixed-top');
             }
         }
     });
-    //     if ((window.location.pathname == '/' || window.location.pathname == '/ar/') && $(window).width() < 900) {
-    //         $(window).scroll(function () {
-    //             var scroll = $(window).scrollTop();
-    //             if ($(this).width() < 769) {
-    //                 $(".mobile-menu").addClass("header-fixed-top");
-    //                 $(".top-search-bar").addClass("search-bar-fixed-top");
-    //             } else {
-    //                 $(".mobile-menu").removeClass('header-fixed-top');
-    //                 $(".top-search-bar").removeClass('search-bar-fixed-top');
-    //             }
-    //         });
-    //     }
-    // }
 
     $('.deep-linked').click(function () {
         localStorage.setItem("app-suggest", (new Date()).valueOf());
@@ -961,9 +951,9 @@ $(document).ready(function () {
     });
 
     $('.has-search-product').blur(function () {
-        // $('.clearable-content').html('');
-        // $('.clearable-content').css('display', 'none');
-        // $('html,body').removeClass('disable-body-scroll');
+        $('.clearable-content').html('');
+        $('.clearable-content').css('display', 'none');
+        $('html,body').removeClass('disable-body-scroll');
     });
 
 

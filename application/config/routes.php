@@ -391,7 +391,7 @@ foreach ($languages as $language) {
         $route[$key . '/category/(:any)/(:any)'] = 'product_controller/subcategory/$1/$2';
         $route[$key . '/category/(:any)/(:any)/(:any)'] = 'product_controller/third_category/$1/$2/$3';
         /* popup category routes */
-        $route[$key . '/category/(.*)'] = 'product_controller/category/$1';
+        $route[$key . '/popup-category/(.*)'] = 'product_controller/popup_category/$1';
 
         $route[$key . '/messages'] = 'message_controller/messages';
         $route[$key . '/messages/conversation/(:num)'] = 'message_controller/conversation/$1';
