@@ -17,9 +17,9 @@ if ($idiom == 2) {
 <?php
 foreach ($items['items'] as $item) :
 ?>
-	<li class="nav-item text-left">
+	<li class="nav-item text-left" style="padding: 15px 0;">
 		<?php if ($items['type'] == 'input') : ?>
-			<label onclick=" $('input[name=<?php echo $_POST['type'] ?>]').val('<?= $item->field_option ?>').trigger('change'); $('span[name=<?php echo $_POST['type'] ?>]').text('<?= $item->field_option ?>'); $('.ajax-filter-menu').find('.navCatDownMobile.nav-mobile').slice(1,10).remove()" class="nav-link p-0">
+			<label onclick=" $('input[name=<?php echo $_POST['type'] ?>]').val('<?= $item->field_option ?>').trigger('change'); $('span[name=<?php echo $_POST['type'] ?>]').text('<?= $item->field_option ?>'); $('.ajax-filter-menu').find('.navCatDownMobile.nav-mobile').slice(1,10).remove();$('html,body').removeClass('disable-body-scroll');" class="nav-link p-0" style="margin: 0 !important">
 			<?php elseif ($items['type'] == 'select') : ?>
 				<label onclick=" $('select[name=field_<?php echo $item->field_id ?>]').val('<?= $item->common_id ?>');  $('span[name=field_<?php echo $item->field_id ?>]').text('<?= $item->field_option ?>')" class="nav-link p-0 remove-menu">
 				<?php endif; ?>

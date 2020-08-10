@@ -1548,13 +1548,32 @@ class Product_controller extends Home_Core_Controller
         }else {
             $data['page_param'] = false;
         }
-        // print_r($data); exit; 
-        $data['category'] = $this->category_model->get_full_category($category_id);
-        $data['subcategory'] = $this->category_model->get_subcategories_by_parent_id($category_id);
+        
+        if ($category_id)
+            $data['category'] = $this->category_model->get_full_category($category_id);
+        else {
+            $obj = new stdClass();
+            $obj->name = trans("all");
+            $obj->description = "";
+            $obj->keywords = "";
+            $data['category'] = $obj;
+        }
+        // print_r($data['category']); exit;
+        
+        if ($category_id)
+            $data['subcategory'] = $this->category_model->get_subcategories_by_parent_id($category_id);
+        else    
+            $data['subcategory'] = [];
+
         $data['title'] = !empty($data["category"]->title_meta_tag) ? $data["category"]->title_meta_tag : $data["category"]->name;
         $data['description'] = $data["category"]->description;
         $data['keywords'] = $data["category"]->keywords;
-        $data['custom_filters'] = $this->settings_model->get_custom_product_conditions($category_id);
+        
+        if ($category_id)
+            $data['custom_filters'] = $this->settings_model->get_custom_product_conditions($category_id);
+        else    
+            $data['custom_filters'] = [];
+
         $data['url'] = $product_url;
 
         if ($this->general_settings->default_product_location != 0) {
@@ -1563,8 +1582,16 @@ class Product_controller extends Home_Core_Controller
         } else {
             $data["is_hkm_one_country"] = false;
         }
-        $top_parent_category_id = top_parent_category_id($category_id);
-        $data['form_settings'] = $this->settings_model->get_form_settings($top_parent_category_id);
+        
+        if ($category_id) {
+            $top_parent_category_id = top_parent_category_id($category_id);
+            $data['form_settings'] = $this->settings_model->get_form_settings($top_parent_category_id);
+        } else {
+            $obj = new stdClass();
+            $obj->price = 1;
+            $obj->product_conditions = 0;
+            $data['form_settings'] = $obj;
+        }
 
         $this->load->view('partials/_header_mobile', $data);
         $this->load->view('product/_product_mobile_filters', $data);

@@ -70,7 +70,8 @@
 					onclick="$('input[name=<?= $nexttype ?>]').prop('disabled', true) 
 							 $('input[name=<?=$currenttype?>]').prop('disabled', true)
 							 $('.ajax-filter-menu').find('.navCatDownMobile.nav-mobile').slice(1,10).remove()
-							 $('.location-name').text(`<?= $currenttype == 'state'?trans('all_states_cities'):$_POST['other_text'].','.trans('all_cities')?>`)"
+							 $('.location-name').text(`<?= $currenttype == 'state'?trans('all_states_cities'):$_POST['other_text'].','.trans('all_cities')?>`)
+							 $('html,body').removeClass('disable-body-scroll')"
 							 data-text="<?= $_POST['text']?>" class="nav-link" >
                     <div class="link-icon">
                         <i class="fa fa-th-large float-none fa-fw fa-lg" aria-hidden="true" style="color:#fd7e14;"></i>
@@ -99,7 +100,8 @@
 						onclick="$('input[name=<?= $nexttype ?>]').val(-1)
 						$('input[name=<?=$currenttype?>]').val(<?=$item->id?>)
 						$('.ajax-filter-menu').find('.navCatDownMobile.nav-mobile').slice(1,10).remove()
-						$('.location-name').text(`<?= $_POST['other_text'].','.$item->name?>`)"
+						$('.location-name').text(`<?= $_POST['other_text'].','.$item->name?>`)
+						$('html,body').removeClass('disable-body-scroll')"
 						data-text="<?= $item->name?>"
 						class="nav-link p-0">
 				<?php endif; ?>

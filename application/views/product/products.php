@@ -332,7 +332,7 @@ if ($page != 'product') {
                         <i class="fas fa-angle-down align-self-center"></i>
                     </a>
                 <?php else : ?>
-                    <a href="javascript:void(0)" class='filter-btn text-truncate d-flex'>
+                    <a href="<?php echo lang_base_url(); ?>filter/0" class='filter-btn text-truncate d-flex'>
                         <i class="fa fa-sliders  fa-lg align-self-center mr-1 ml-1" aria-hidden="true"></i>
                         <span class="titre  m-0 flex-fill h-100 text-truncate  text-center"><?= trans('filter') ?></span>
                         <i class="fas fa-angle-down align-self-center"></i>
