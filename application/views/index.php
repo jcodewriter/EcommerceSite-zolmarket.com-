@@ -6,7 +6,7 @@
     <div style="padding: 5px;">
         <div class="clearable-parent">
             <div style="white-space: nowrap;color: #b0b3b6;font-size: 12px;font-weight: bold;">
-                <button class=" has-menu" header-text="<?php echo trans('state');?>" type="button" data-ajax="<?php echo $general_settings->default_product_location;?>" data-type="<?= $is_hkm_one_country ? ('state') : ('country') ?>" data-url="search_location">
+                <button class=" has-menu" header-text="<?php echo trans('all_states');?>" type="button" data-ajax="<?php echo $general_settings->default_product_location;?>" data-type="<?= $is_hkm_one_country ? ('state') : ('country') ?>" data-url="search_location">
                     <i class="fas fa-map-marker-alt" style="font-size: 16px;"></i>
                     <span class="home-location-text"><?php echo trans('all_sudan'); ?></span>
                 </button>

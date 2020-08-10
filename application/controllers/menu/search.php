@@ -29,7 +29,7 @@
 		foreach ($items['categories'] as $category):
 			?>
 			<li class="nav-item ">
-				<a href="<?=  htmlspecialchars(generate_category_url($category) . $querystring) ?>"  class="nav-link p-0">
+				<div href="<?=  htmlspecialchars(generate_category_url($category) . $querystring) ?>"  class="nav-link p-0 search-link">
 					    <div class="link-icon">
     						<?php if (!empty($category->icon)): ?>
     							<img src="<?php echo get_category_image_url($category, 'icon'); ?>" alt=""
@@ -44,7 +44,7 @@
 						<div class="link-action">
 							<i class="icon-arrow-left"></i>
 						</div>
-				</a>
+				</div>
 			</li>
 		<?php
 		endforeach;

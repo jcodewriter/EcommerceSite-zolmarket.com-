@@ -16,10 +16,10 @@ if ($page != 'product') {
 ?>
 
 <style>
-    .mobile-header {
+    .mobile-search-header {
         width: 100%;
         height: 66px !important;
-        display: block;
+        display: none;
         background-color: #f5f5f5;
         border-bottom: 1px solid #9e9e9e63;
         position: fixed !important;
@@ -32,10 +32,15 @@ if ($page != 'product') {
             padding-top: 0;
         }
     }
+    @media (max-width: 992px) {
+        .mobile-search-header {
+            display: block;
+        }
+    }
 </style>
 
 
-<div class="top-search-bar mobile-search-form mobile-header">
+<div class="top-search-bar mobile-search-form mobile-search-header">
     <div class="mobile-header-bar">
         <?php
         $placeholder = trans("search");

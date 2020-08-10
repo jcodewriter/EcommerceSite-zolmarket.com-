@@ -256,6 +256,22 @@ $(document).ready(function () {
         });
     })
 
+    $(document).on("click", '.search-link', function(event) { 
+        let href = $(this).attr("href");
+        let countryId = $("select[name=country]").val()
+        if (countryId){
+            href += "?country="+countryId
+            let stateId = $("select[name=state]").val()
+            if (stateId){
+                href += "&state="+stateId
+                let cityId = $("select[name=city]").val()
+                if (cityId)
+                    href += "&city="+cityId
+            }
+        }
+        window.location.href = href
+    });
+
     $("[name=category-link]").click(function () {
         let link = $(this).attr("category-link");
         let visible = $(this).attr("show-product");
@@ -951,9 +967,9 @@ $(document).ready(function () {
     });
 
     $('.has-search-product').blur(function () {
-        $('.clearable-content').html('');
-        $('.clearable-content').css('display', 'none');
-        $('html,body').removeClass('disable-body-scroll');
+        // $('.clearable-content').html('');
+        // $('.clearable-content').css('display', 'none');
+        // $('html,body').removeClass('disable-body-scroll');
     });
 
 

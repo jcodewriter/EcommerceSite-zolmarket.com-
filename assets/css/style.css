@@ -10810,6 +10810,11 @@ h4.col-md-12.title {
     align-items: center;
 }
 
+.search-link {
+    display: flex;
+    align-items: center;
+}
+
 .clearable-content a div{
     flex-direction: column;
     flex-grow: 0;
