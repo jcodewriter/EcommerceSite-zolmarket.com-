@@ -19,7 +19,7 @@ foreach ($items['items'] as $item) :
 ?>
 	<li class="nav-item text-left">
 		<?php if ($items['type'] == 'input') : ?>
-			<label onclick=" $('input[name=<?php echo $_POST['type'] ?>]').val('<?= $item->field_option ?>').trigger('change'); $('span[name=<?php echo $_POST['type'] ?>]').text('<?= $item->field_option ?>'); $('.ajax-filter-menu').find('.navCatDownMobile.nav-mobile').slice(2,10).remove()" class="nav-link p-0">
+			<label onclick=" $('input[name=<?php echo $_POST['type'] ?>]').val('<?= $item->field_option ?>').trigger('change'); $('span[name=<?php echo $_POST['type'] ?>]').text('<?= $item->field_option ?>'); $('.ajax-filter-menu').find('.navCatDownMobile.nav-mobile').slice(1,10).remove()" class="nav-link p-0">
 			<?php elseif ($items['type'] == 'select') : ?>
 				<label onclick=" $('select[name=field_<?php echo $item->field_id ?>]').val('<?= $item->common_id ?>');  $('span[name=field_<?php echo $item->field_id ?>]').text('<?= $item->field_option ?>')" class="nav-link p-0 remove-menu">
 				<?php endif; ?>
