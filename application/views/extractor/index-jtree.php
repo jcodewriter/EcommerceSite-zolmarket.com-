@@ -21,6 +21,10 @@
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 	<style>
+		.jstree-anchor-text {
+			display: inline-block;
+		}
+
 		#custom-fields-options-table thead tr {
 
 		}
@@ -278,15 +282,16 @@
 	};
 
 	const xTreeCategories_old = {
-		text: "root",
+		text: 'root',
 		expanded: true,
 		xid: null,
 		iconUrl: iconUrl,
 		items: []
 	};
 	const xTreeCategories = {
+		text: "<span class='jstree-anchor-text'>root</span>",
 		id: "root",
-		text: "root", // node text
+		name: "root",
 		state: {
 			opened: true,  // is the node open
 			disabled: false,  // is the node disabled
@@ -307,25 +312,33 @@
 
 			for (let i = 0; i < classNameParts.length; i++) {
 
-				let cat = pointer.children.find(c => c.text == classNameParts[i]);
+				let cat = pointer.children.find(c => c.name == classNameParts[i]);
 				if (cat == undefined) {
+					let name = classNameParts[i];
+					let txt = `<span class='jstree-anchor-text'>${classNameParts[i]}</span>`;
+
 					pointer.children.push({
-						text: classNameParts[i],
+						text: txt,
+						name: name,
 						id: classParts[i],
 						state: {
-							opened: false,  // is the node open
+							opened: true,  // is the node open
 							disabled: false,  // is the node disabled
 							selected: false, // is the node selected
 						},
 						children: []  // array of strings or objects
 					});
 				}
-				pointer = pointer.children.find(c => c.text == classNameParts[i]);
+				pointer = pointer.children.find(c => c.name == classNameParts[i]);
 			}
 
 
 		});
 	}
+
+	$(document).on('click', '.jstree-anchor-text', function (event) {
+		event.stopPropagation();
+	})
 
 	function prepareCategoriesForTree_old() {
 		data___categories.forEach(function (category, index) {
@@ -566,12 +579,14 @@
 	});
 
 
-	$(document).on('click', '#add-category-modal .save', function (event) {
+	$(document).on('click', '#add-category-modal .add-to-selected-categories', function (event) {
 		$modal = $('#add-category-modal');
-		$.notify('categories saved.', 'success');
-		selectedCategories = getSelectCategories().filter(c => c != "root");
-		$('.panel-categories .panel-heading').html(`<span>Categories <span class='text-danger h5'>(${selectedCategories.length} selected)</span></span>`);
-		$modal.modal('hide');
+		$('.msg', $modal).text('categories added.').removeClass('hidden').show().delay(1000).fadeOut('slow');
+		selectedCategories = getSelectCategories().filter(c => c != "root").reverse();
+		refreshSelectedCategoriesCounter();
+
+		// $modal.modal('hide');
+		bindSelectedCategoriesTable();
 	});
 	$(document).on('click', '#edit-option-modal .save', function (event) {
 		$modal = $('#edit-option-modal');
@@ -917,15 +932,16 @@
 	let selectedCategories = [];
 
 	function bindSelectedCategoriesTable() {
-		$('[data-target="#selected-categories-modal"]').text(`Show categories (${selectedCategories.length})`);
+		//$('[data-target="#selected-categories-modal"]').text(`Show categories (${selectedCategories.length})`);
 		$tbody = $('#add-category-modal table tbody').empty();
 
-		selectedCategories.forEach(function (category, index) {
+		selectedCategories.forEach(function (catId, index) {
+			let cat = data___categories.find(c => c.id == catId)
 			$tbody.append(`<tr>
 						<td>${index + 1}</td>
-						<td>${category.text}</td>
+						<td>${cat.classname}</td>
 						<td>
-							<button class="btn btn-xs btn-danger" onclick="removeCategoryFromSelectedArray('${category.id}')">
+							<button class="btn btn-xs btn-danger" onclick="removeCategoryFromSelectedArray('${cat.id}')">
 								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 							</button>
 						</td>
@@ -934,11 +950,17 @@
 	}
 
 	function removeCategoryFromSelectedArray(catId) {
-		let index = selectedCategories.findIndex(c => c.id == catId);
+		let index = selectedCategories.findIndex(c => c == catId);
 		if (index > -1) {
 			selectedCategories.splice(index, 1);
+			// $jsTree.jstree(true).deselect_node(catId, true);
+			$jsTree.jstree(true).uncheck_all();
+			selectedCategories.forEach(c => $jsTree.jstree(true).select_node(c, true, true));
+
 		}
+		refreshSelectedCategoriesCounter();
 		bindSelectedCategoriesTable();
+
 	}
 
 	$(document).on('click', '#add-category-modal .add', function (event) {
@@ -1186,22 +1208,39 @@
 		prepareCategoriesForTree();
 		$jsTree = $('#categories-tree-view').jstree({
 			'core': {
-				'data': xTreeCategories
+				'data': xTreeCategories,
+				'force_text': false,
 			},
 			'checkbox': {
 				three_state: true
 			},
 			"plugins": ["checkbox"]
-		});
+		}).on('select_node.jstree', function (e, data) {
+
+			data.instance.toggle_node(data.node);
+		})/*.delegate(".jstree-open>a", "click.jstree", function(event, data){
+
+			// $jsTree._reference(this).close_node(this,false,false);
+		}).delegate(".jstree-closed>a", "click.jstree", function(event, data){
+			// $jsTree._reference(this).open_node(this,false,false);
+		}).on("click.jstree", function(e) {debugger;
+			this.toggle_node(e.target);
+		})*/
 	});
 
 	function getSelectCategories() {
 		let selected = $jsTree.jstree().get_selected();
 		let undetermined = $jsTree.jstree().get_undetermined();
 
-		return selected ? selected.concat(undetermined) : [];
+		return selected;
 
 	}
+
+	function refreshSelectedCategoriesCounter() {
+		$('.panel-categories .panel-heading').html(`<span>Categories <span class='text-danger h5'>(${selectedCategories.length} selected)</span></span>`);
+	}
+
+
 </script>
 </body>
 </html>

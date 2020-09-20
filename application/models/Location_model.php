@@ -271,7 +271,12 @@ class Location_model extends CI_Model
     //get states by country
     public function get_states_by_country($country_id)
     {
-        $this->db->select('id, name, country_id, is_capital');
+        if ($this->selected_lang->id == 1){
+            $field = "name";
+        }else{
+            $field = "ar_name";
+        }
+        $this->db->select('id, '.$field.' as name, country_id, is_capital');
         $this->db->where('states.country_id', $country_id);
         $this->db->order_by('states.name');
         $query = $this->db->get('states');

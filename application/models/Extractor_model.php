@@ -56,15 +56,10 @@ class Extractor_model extends CI_Model
 
 
 	//add field
-	public function add_field($field_type)
+	public function add_field($data)
 	{
-		$data = array(
-			'row_width' => 'full',
-			'is_required' => 0,
-			'status' => 0,
+		$data += array(
 			'field_order' => 1,
-			'is_product_filter' => 0,
-			'field_type' => $field_type
 		);
 		//generate filter key
 		$field_name = $this->input->post('name_lang_' . $this->selected_lang->id, true);
@@ -151,11 +146,7 @@ class Extractor_model extends CI_Model
 
 	public function get_custom_fields($where=[])
 	{
-		$query = $this->db->get('custom_fields');
-		if(!empty($where)){
-			$this->db->where($where);
-		}
-		$custom_fields = $query->result();
+		$custom_fields = $this->db->get_where('custom_fields', $where)->result();
 
 		foreach ($custom_fields as &$row) {
 
@@ -166,7 +157,5 @@ class Extractor_model extends CI_Model
 		return $custom_fields;
 
 	}
-
-
 
 }

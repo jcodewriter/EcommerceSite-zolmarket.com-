@@ -13,14 +13,14 @@
                 </a>
             </div>
         </div>
-        <div class="col-sm-6" style="width: 55% !important">
+        <div class="col-sm-6" style="width: 55% !important; padding-left: 0 !important">
             <div class="row-custom item-details">
                 <?php if(is_arabic($product->title)):?>
-                    <p class="text-truncate" style="text-align:left">
+                    <p class="text-truncate" style="text-align:left;text-overflow: clip !important;">
                         <a href="<?php echo generate_product_url($product); ?>"><?php echo html_escape($product->title); ?></a>
                     </p>
                 <?php else:?>    
-                    <p class="text-truncate" style="text-align:left;direction:rtl">
+                    <p class="text-truncate" style="text-align:left;direction:rtl;text-overflow: clip !important;">
                         <a href="<?php echo generate_product_url($product); ?>"><?php echo html_escape($product->title); ?></a>
                     </p>
                 <?php endif;?>
@@ -29,13 +29,13 @@
                     <span class="badge badge-dark badge-promoted"><?php echo trans("promoted"); ?>&nbsp;&nbsp;&nbsp;(<?php echo date_difference($product->promote_end_date, date('Y-m-d H:i:s')) . " " . trans("days_left"); ?>)</span>
                 <?php endif; ?>
                 <?php if(is_arabic(get_shop_name_product($product))):?>
-                    <p class="product-user text-truncate" style="text-align:left">
+                    <p class="product-user text-truncate" style="text-align:left;text-overflow: clip !important;">
                         <a href="<?php echo lang_base_url() . "profile" . '/' . html_escape($product->user_slug); ?>">
                             <?php echo get_shop_name_product($product); ?>
                         </a>
                     </p>
                 <?php else:?>    
-                    <p class="product-user text-truncate" style="text-align:left;direction:rtl">
+                    <p class="product-user text-truncate" style="text-align:left;direction:rtl;text-overflow: clip !important;">
                         <a href="<?php echo lang_base_url() . "profile" . '/' . html_escape($product->user_slug); ?>">
                             <?php echo get_shop_name_product($product); ?>
                         </a>
@@ -74,15 +74,15 @@
     <div class="row m-t1-10 m-t-5">
         <div class="col-12">
             <?php if (!$product->is_promoted && $promoted_products_enabled == 1): ?>
-                <a href="<?php echo lang_base_url() . "promote-product/pricing/" . $product->id; ?>?type=exist" style="float:none;margin-right:0px" class="btn btn-sm btn-outline-gray btn-profile-option"><i class="icon-plus"></i>&nbsp;<?php echo trans("promote"); ?></a>
+                <a href="<?php echo lang_base_url() . "promote-product/pricing/" . $product->id; ?>?type=exist" style="float:none;margin-right:0px" class="btn btn-sm btn-outline-gray btn-profile-option blue-font"><i class="icon-plus" style="margin-right: 0px !important;"></i>&nbsp;<?php echo trans("promote"); ?></a>
             <?php endif; ?>
             <?php if ($product->is_sold == 1): ?>
-                <a href="javascript:void(0)" style="float:none;margin-right:0px" class="btn btn-sm btn-outline-gray btn-profile-option" onclick="set_product_as_sold(<?php echo $product->id; ?>);"><i class="icon-price-tag"></i>&nbsp;<?php echo trans("set_as_unsold"); ?></a>
+                <a href="javascript:void(0)" style="float:none;margin-right:0px" class="btn btn-sm btn-outline-gray btn-profile-option blue-font" onclick="set_product_as_sold(<?php echo $product->id; ?>);"><i class="icon-price-tag" style="margin-right: 0px !important;"></i>&nbsp;<?php echo trans("set_as_unsold"); ?></a>
             <?php else: ?>
-                <a href="javascript:void(0)" style="float:none;margin-right:0px" class="btn btn-sm btn-outline-gray btn-profile-option" onclick="set_product_as_sold(<?php echo $product->id; ?>);"><i class="icon-price-tag"></i>&nbsp;<?php echo trans("set_as_sold"); ?></a>
+                <a href="javascript:void(0)" style="float:none;margin-right:0px" class="btn btn-sm btn-outline-gray btn-profile-option blue-font" onclick="set_product_as_sold(<?php echo $product->id; ?>);"><i class="icon-price-tag" style="margin-right: 0px !important;"></i>&nbsp;<?php echo trans("set_as_sold"); ?></a>
             <?php endif; ?>
-            <a href="<?php echo lang_base_url() . "sell-now/edit-product/" . $product->id; ?>" style="float:none;margin-right:0px" class="btn btn-sm btn-outline-gray btn-profile-option"><i class="icon-edit"></i>&nbsp;<?php echo trans("edit"); ?></a>
-            <a href="javascript:void(0)" style="float:none;margin-right:0px" class="btn btn-sm btn-outline-gray btn-profile-option" onclick="delete_product(<?php echo $product->id; ?>,'<?php echo trans("confirm_product"); ?>');"><i class="icon-trash"></i>&nbsp;<?php echo trans("delete"); ?></a>
+            <a href="<?php echo lang_base_url() . "sell-now/edit-product/" . $product->id; ?>" style="float:none;margin-right:0px" class="btn btn-sm btn-outline-gray btn-profile-option blue-font"><i class="icon-edit" style="margin-right: 0px !important;"></i>&nbsp;<?php echo trans("edit"); ?></a>
+            <a href="javascript:void(0)" style="float:none;margin-right:0px" class="btn btn-sm btn-outline-gray btn-profile-option blue-font" onclick="delete_product(<?php echo $product->id; ?>,'<?php echo trans("confirm_product"); ?>');"><i class="icon-trash" style="margin-right: 0px !important;"></i>&nbsp;<?php echo trans("delete"); ?></a>
         </div>    
     </div>
 </div>

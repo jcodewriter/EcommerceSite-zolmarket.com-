@@ -1,34 +1,40 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-if(file_exists(FCPATH . 'vendor/autoload.php')) {
-	include FCPATH . 'vendor/autoload.php';
-}
-
 class Extractor_controller extends CI_Controller
 {
 	const EN_LANG_ID = 1;
 	const AR_LANG_ID = 2;
-
+	const USERNAME = 'admin';
+	const PASSWORD = '$2y$10$lqsbNE0H2ezQiZbcMM4XmurQHqPZiSU8SDgn5o8uW79Gi.zE1JBKG';
 	public function __construct()
 	{
-		parent::__construct();
-		if (!isset($_SERVER['PHP_AUTH_USER']) || $_SERVER['PHP_AUTH_USER'] != 'admin' || $_SERVER['PHP_AUTH_PW'] != '3332135605') {
+		parent::__construct();		
+		if (!isset($_SERVER['PHP_AUTH_USER']) || $_SERVER['PHP_AUTH_USER'] != self::USERNAME || !password_verify($_SERVER['PHP_AUTH_PW'],self::PASSWORD)) {
 			header('WWW-Authenticate: Basic realm="MyProject"');
 			header('HTTP/1.0 401 Unauthorized');
 			die('Access Denied');
 		}
-		$this->load->model('Extractor_model', 'extractor_model');
+		if (!property_exists($this, 'selected_lang')) {
+
+			$selected_lang = new stdClass();
+			$selected_lang->id = 1;
+
+			$this->selected_lang = $selected_lang;
+		}	
+		$this->load->model('extractor_model');
 	}
 
 	public function index()
 	{
+		$this->load->model('category_model');
 		$data = [];
-		$this->load->view('extractor/index.php', $data);
+		$data['categories']= $this->category_model->get_all_categories();
+		
+		$this->load->view('extractor/index-jtree.php', $data);
 
 
 	}
-
-	public function add_custom_field()
+	public function save()
 	{
 		if (($errors = $this->validate()) !== TRUE) {
 			$this->json_response([
@@ -40,10 +46,15 @@ class Extractor_controller extends CI_Controller
 		if ($this->input->server('REQUEST_METHOD') !== 'POST' || !$this->input->is_ajax_request()) {
 			die('Invalid Request');
 		}
+		$this->load->model('field_model');
 		$custom_field_id = null;
 		if ($this->input->post('export_action') === 'create') {
 
 			$custom_field_id = $this->create_custom_field();
+
+//			if ($this->field_model->add_remove_custom_field_filters($custom_field_id)) {
+//
+//			}
 
 		} elseif ($this->input->post('export_action') === 'merge') {
 
@@ -51,14 +62,17 @@ class Extractor_controller extends CI_Controller
 		}
 
 
-
-
 		$options_ar = explode('|', $this->input->post('options_ar'));
 		$options_en = explode('|', $this->input->post('options_en'));
 
-
 		$this->add_custom_fields_options($custom_field_id, self::AR_LANG_ID, $options_ar, $options_en);
 
+		$categories = explode('|', $this->input->post('categories'));
+		foreach ($categories as $category) {
+			if(is_numeric($category)){
+				$this->field_model->add_category_to_field($custom_field_id, $category);
+			}
+		}
 		$this->json_response([
 			'status' => 'success',
 			'data' => []
@@ -75,7 +89,9 @@ class Extractor_controller extends CI_Controller
 			->_display();
 		exit;
 	}
-	private function merge_custom_field(){
+
+	private function merge_custom_field()
+	{
 		$fields = $this->extractor_model->get_custom_fields([
 			'id' => $this->input->post('merge_with')
 		]);
@@ -88,10 +104,13 @@ class Extractor_controller extends CI_Controller
 		}
 		return $fields[0]->id;
 	}
-	private function create_custom_field(){
+
+	private function create_custom_field()
+	{
 		//add_custom_fields_lang
-		$field_type = $this->input->post('field_type');
-		$custom_field_id = $this->extractor_model->add_field($field_type);
+		$custom_field_data = $this->input->post(['row_width', 'is_required', 'status', 'field_type', 'is_product_filter']);
+
+		$custom_field_id = $this->extractor_model->add_field($custom_field_data);
 
 		#english
 		$custom_fields_lang_data_en = [
@@ -138,11 +157,13 @@ class Extractor_controller extends CI_Controller
 
 		$this->form_validation->set_rules('options_ar', 'Arabic options', 'required|callback_options_len_check');
 		$this->form_validation->set_rules('options_en', 'English options', 'required');
-		$this->form_validation->set_rules('export_action', 'export_action', 'required|in_list[create,merge]');
-
 
 		if ($this->input->post('export_action') === 'create') {
-
+			$this->form_validation->set_rules('row_width', 'Row Width', 'required|in_list[half,full]');
+			$this->form_validation->set_rules('status', 'Status', 'required|in_list[1,0]');
+			$this->form_validation->set_rules('is_required', 'Required', 'required|in_list[1,0]');
+			$this->form_validation->set_rules('is_product_filter', 'Product Filter', 'required|in_list[1,0]');
+			$this->form_validation->set_rules('field_type', 'Type', 'required|in_list[text,textarea,number,checkbox,radio_button,dropdown,popup,date]');
 			$this->form_validation->set_rules('name_lang_1', 'Field Name (English)', 'required');
 			$this->form_validation->set_rules('name_lang_2', 'Field Name (العربية)', 'required');
 

@@ -61,7 +61,7 @@
             </div>
              <?php if ($general_settings->user_reviews == 1): ?>
                 <div class="row-custom only_on_mobile">
-                    <p class="p-last-seen" style="position: absolute;bottom: -8px;right: 5px;">
+                    <p class="p-last-seen" style="position: absolute;bottom: -8px;right: 5px;top:7px">
                         <span class="last-seen <?php echo (is_user_online($user->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i> <?php echo trans("last_seen"); ?>&nbsp;<?php echo time_ago($user->last_seen); ?></span>
                     </p>
                 </div>
@@ -106,7 +106,7 @@
                             <a href="javascript:void(0)" id="show_phone_number"><?php echo trans("show"); ?></a>
                             <a href="tel:<?php echo html_escape($user->phone_number); ?>" id="phone_number" class="display-none"><?php echo html_escape($user->phone_number); ?></a>
                         </span>
-                         <span class="info only_on_mobile" style="position: absolute;right: -8px;text-align: right;top: 1px;">
+                         <span class="info only_on_mobile" style="position: absolute;right: -8px;text-align: right;top: 31px;">
                             <i class="icon-phone" style="margin-right: 0!important;"></i>
                             <a href="javascript:void(0)" id="show_phone_number2"><?php echo trans("show"); ?></a>
                             <a href="tel:<?php echo html_escape($user->phone_number); ?>" id="phone_number2" class="display-none"><?php echo html_escape($user->phone_number); ?></a>

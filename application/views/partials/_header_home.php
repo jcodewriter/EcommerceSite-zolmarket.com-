@@ -92,6 +92,7 @@ if ($language->id == $site_lang->id):?>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
 
     <?php echo $general_settings->head_code; ?>

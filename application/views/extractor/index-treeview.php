@@ -10,9 +10,6 @@
 	<!-- Bootstrap -->
 	<link href="<?php echo base_url() ?>assets/css/bootstrap-3.3.7.min.css" rel="stylesheet">
 	<link href="<?php echo base_url() ?>assets/css/shieldui-all.min.css" rel="stylesheet"/>
-	<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/jstree/themes/default/style.min.css"
-	"/>
-
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -132,7 +129,7 @@
 								<div class="checkbox">
 									<label>
 										<input type="checkbox" id="is_product_filter" name="is_product_filter"
-											   value="1" checked>
+											   value="1">
 									</label>
 								</div>
 							</div>
@@ -262,7 +259,7 @@
 <?php $this->load->view('extractor/modals') ?>
 <script src="<?php echo base_url() ?>assets/js/jquery-3.3.1.min.js"></script>
 <script src="<?php echo base_url() ?>assets/js/bootstrap-3.3.7.min.js"></script>
-<script src="<?php echo base_url() ?>assets/js/jstree.js"></script>
+<script src="<?php echo base_url() ?>assets/js/shieldui-all.min.js"></script>
 <script src="<?php echo base_url() ?>assets/js/jquery.blockUI.js"></script>
 <script src="<?php echo base_url() ?>assets/js/notify.min.js"></script>
 <script type="text/javascript">
@@ -277,57 +274,15 @@
 		subs: []
 	};
 
-	const xTreeCategories_old = {
+	const xTreeCategories = {
 		text: "root",
 		expanded: true,
 		xid: null,
 		iconUrl: iconUrl,
 		items: []
 	};
-	const xTreeCategories = {
-		id: "root",
-		text: "root", // node text
-		state: {
-			opened: true,  // is the node open
-			disabled: false,  // is the node disabled
-			selected: false, // is the node selected
-		},
-		children: []  // array of strings or objects
-	}
 
 	function prepareCategoriesForTree() {
-		data___categories.forEach(function (category, index) {
-
-			let classNameParts = category.classname.split('/').filter(x => x != '');
-			let classParts = category.class.split('.').filter(x => x != '').map(x => parseInt(x));
-
-
-			let pointer = xTreeCategories;
-
-
-			for (let i = 0; i < classNameParts.length; i++) {
-
-				let cat = pointer.children.find(c => c.text == classNameParts[i]);
-				if (cat == undefined) {
-					pointer.children.push({
-						text: classNameParts[i],
-						id: classParts[i],
-						state: {
-							opened: false,  // is the node open
-							disabled: false,  // is the node disabled
-							selected: false, // is the node selected
-						},
-						children: []  // array of strings or objects
-					});
-				}
-				pointer = pointer.children.find(c => c.text == classNameParts[i]);
-			}
-
-
-		});
-	}
-
-	function prepareCategoriesForTree_old() {
 		data___categories.forEach(function (category, index) {
 
 			let classNameParts = category.classname.split('/').filter(x => x != '');
@@ -442,10 +397,10 @@
 		let $select = generateSelectInAddCategoryModal();
 		cat.subs.forEach(function (category, index) {
 			let $option = $('<option />')
-					.val(category.id)
-					.data('category', category)
-					.data('level', level)
-					.text(category.name);
+				.val(category.id)
+				.data('category', category)
+				.data('level', level)
+				.text(category.name);
 
 			$select.append($option);
 
@@ -489,8 +444,8 @@
 		};
 
 		$.when(
-				$.ajax('https://www.alsoug.com/category-form/' + catId),
-				$.ajax('https://www.alsoug.com/en/category-form/' + catId)
+			$.ajax('https://www.alsoug.com/category-form/' + catId),
+			$.ajax('https://www.alsoug.com/en/category-form/' + catId)
 		).done(function (arResp, enResp) {
 			var arData = arResp[0];
 			var enData = enResp[0];
@@ -516,10 +471,10 @@
 				})
 				arData.data.forEach(function (customFiled, index) {
 					$('<option />')
-							.val(index)
-							.attr('data-id', customFiled.id)
-							.attr('data-has-dependency', customFiled.has_dependency)
-							.text(customFiled.display_name).appendTo('#custom-fields')
+						.val(index)
+						.attr('data-id', customFiled.id)
+						.attr('data-has-dependency', customFiled.has_dependency)
+						.text(customFiled.display_name).appendTo('#custom-fields')
 
 				});
 
@@ -568,10 +523,9 @@
 
 	$(document).on('click', '#add-category-modal .save', function (event) {
 		$modal = $('#add-category-modal');
-		$.notify('categories saved.', 'success');
-		selectedCategories = getSelectCategories().filter(c => c != "root");
+		$('.msg', $modal).text('data saved.').show().delay(1000).fadeOut('slow');
+		selectedCategories = getSelectCategories();
 		$('.panel-categories .panel-heading').html(`<span>Categories <span class='text-danger h5'>(${selectedCategories.length} selected)</span></span>`);
-		$modal.modal('hide');
 	});
 	$(document).on('click', '#edit-option-modal .save', function (event) {
 		$modal = $('#edit-option-modal');
@@ -880,11 +834,11 @@
 			}
 
 			$('<option />')
-					.attr('data-parent-id', customFieldId)
-					.attr('data-for-path', forPath)
-					.attr('data-ar-parent-value', arOption)
-					.attr('data-en-parent-value', enOption)
-					.text(arOption).appendTo('#custom-fields-dependency');
+				.attr('data-parent-id', customFieldId)
+				.attr('data-for-path', forPath)
+				.attr('data-ar-parent-value', arOption)
+				.attr('data-en-parent-value', enOption)
+				.text(arOption).appendTo('#custom-fields-dependency');
 		}
 
 		$('#custom-fields-dependency').trigger('change');
@@ -905,14 +859,14 @@
 		currentPath.dependency = $(this).find('option:selected').data('forPath');
 
 		$.when($.ajax(`https://www.alsoug.com/field-dependencies?parent_id=${parentId}&parent_value=${arParentValue}`),
-				$.ajax(`https://www.alsoug.com/en/field-dependencies?parent_id=${parentId}&parent_value=${enParentValue}`))
-				.done(function (arResp, enResp) {
-					let arCustomField = arResp[0].data[0];
-					let enCustomField = enResp[0].data[0];
+			$.ajax(`https://www.alsoug.com/en/field-dependencies?parent_id=${parentId}&parent_value=${enParentValue}`))
+			.done(function (arResp, enResp) {
+				let arCustomField = arResp[0].data[0];
+				let enCustomField = enResp[0].data[0];
 
-					fillCustomFieldOptionsTable(arCustomField, enCustomField)
+				fillCustomFieldOptionsTable(arCustomField, enCustomField)
 
-				});
+			});
 	});
 	let selectedCategories = [];
 
@@ -1066,15 +1020,15 @@
 
 	function init() {
 		$.when($.ajax('https://www.alsoug.com/adverts/get-search'),
-				$.ajax('https://www.alsoug.com/en/adverts/get-search'))
-				.done(function (arResp, enResp) {
-					cities.ar = arResp[0].data.cities;
-					cities.en = enResp[0].data.cities;
-					//parse categories
-					categories.ar = arResp[0].data.categories.data;
+			$.ajax('https://www.alsoug.com/en/adverts/get-search'))
+			.done(function (arResp, enResp) {
+				cities.ar = arResp[0].data.cities;
+				cities.en = enResp[0].data.cities;
+				//parse categories
+				categories.ar = arResp[0].data.categories.data;
 
-					bindCategories(categories.ar, '#category');
-				});
+				bindCategories(categories.ar, '#category');
+			});
 	}
 
 	function bindCategories(categories, element) {
@@ -1082,10 +1036,10 @@
 		categories.forEach(function (category, index) {
 
 			$('<option />')
-					.val(category.id)
-					.attr('data-has-dependency', category.has_dependency || false)
-					.text(category.category_name)
-					.appendTo(element);
+				.val(category.id)
+				.attr('data-has-dependency', category.has_dependency || false)
+				.text(category.category_name)
+				.appendTo(element);
 		});
 		$(element).trigger('change');
 	}
@@ -1169,37 +1123,81 @@
 					let name = xcustomField.langs[0].name;
 
 					$option.text(name)
-							.val(xcustomField.id)
-							.appendTo('#current-custom-fields');
+						.val(xcustomField.id)
+						.appendTo('#current-custom-fields');
 				})
 			}
 
 		});
 	}
 
-	let $jsTree = null;
+	let $categoriesTreeView = null;
 	$(document).ready(function () {
 		init();
 		bindCurrentCustomField();
 		$('input[type=radio][name=export_action]#create').prop('checked', true).trigger('change')
 
 		prepareCategoriesForTree();
-		$jsTree = $('#categories-tree-view').jstree({
-			'core': {
-				'data': xTreeCategories
+		$categoriesTreeView = $("#categories-tree-view").shieldTreeView({
+			checkboxes: {
+				enabled: true,
+				children: true,
+				// enableLabelClick: false,
 			},
-			'checkbox': {
-				three_state: true
+
+			events: {
+				check: function (event) {
+					let checkedCats = getSelectCategories();
+					$('#add-category-modal-label span').text(` ( ${checkedCats.length} selected )`);
+
+					let el = event.element;
+					if (event.checked == true) {
+						let parent = $categoriesTreeView.swidget("TreeView").getParent(el);
+
+						if (parent && parent.length > 0) {
+							let isCheckedParent = $categoriesTreeView.swidget("TreeView").checked(parent);
+							if (!isCheckedParent) {
+
+								$categoriesTreeView.swidget("TreeView").updateIndetermined();
+							}
+						}
+					}
+
+				},
+				init: function () {
+					debugger;
+				}
 			},
-			"plugins": ["checkbox"]
+			dataSource: {
+				data: xTreeCategories.items
+			}
 		});
+		setTimeout(function () {
+			let treeWidget = $categoriesTreeView.swidget("TreeView");
+			treeWidget.element.find('li').each((index, el) => {
+				let $el = $(el)
+				let hasChildren = treeWidget.hasChildren($el);
+
+
+				if (hasChildren) {
+					treeWidget._collapse($el);
+				}
+			});
+		}, 1000);
+
+
 	});
 
 	function getSelectCategories() {
-		let selected = $jsTree.jstree().get_selected();
-		let undetermined = $jsTree.jstree().get_undetermined();
+		let selected = [];
+		$("#categories-tree-view").swidget("TreeView").element.find("li").filter(function () {
+			return $("#categories-tree-view").swidget("TreeView").checked($(this));
+		}).each(function () {
+			let id = $("#categories-tree-view").swidget("TreeView").getItem($(this)).xid
+			selected.push(id);
+		});
 
-		return selected ? selected.concat(undetermined) : [];
+		return selected;
 
 	}
 </script>

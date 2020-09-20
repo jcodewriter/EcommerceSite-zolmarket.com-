@@ -185,7 +185,7 @@ $route['link-category/(.*)'] = 'product_controller/link_category/$1';
 // new 101 => extractor
 
 $route['extractor']['GET'] = 'extractor_controller/index';
-$route['extractor/add_custom_field']['POST'] = 'extractor_controller/add_custom_field';
+$route['extractor/save']['POST'] = 'extractor_controller/save';
 $route['extractor/get_custom_fields']['GET'] = 'extractor_controller/get_custom_fields';
 
 
@@ -345,6 +345,7 @@ foreach ($languages as $language) {
         //profile routes
         $route[$key . '/account/(:any)'] = 'profile_controller/profile/$1';
         $route[$key . '/profile/(:any)'] = 'profile_controller/account/$1';
+        $route[$key . '/product/(:any)'] = 'profile_controller/product/$1';
         $route[$key . '/favorites/(:any)'] = 'profile_controller/favorites/$1';
         $route[$key . '/favorites'] = 'home_controller/guest_favorites/$1';
         $route[$key . '/followers/(:any)'] = 'profile_controller/followers/$1';
@@ -443,12 +444,13 @@ foreach ($languages as $language) {
         $route[$key . '/request-quote'] = 'bidding_controller/request_quote';
         $route[$key . '/quote-requests'] = 'bidding_controller/quote_requests';
         $route[$key . '/sent-quote-requests']['GET'] = 'bidding_controller/sent_quote_requests';
-
+// new
+        $route[$key . '/location'] = 'home_controller/location';
+        
         $route[$key . '/images/(.*)'] = 'home_controller/images/$1';
         $route[$key . '/(:any)'] = 'home_controller/any/$1';
         
-        // new
-        $route[$key . '/location'] = 'home_controller/location';
+        
     }
 }
 

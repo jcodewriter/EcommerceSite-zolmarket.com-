@@ -268,6 +268,11 @@ img {
     color: #fff !important
 }
 
+.blue-font{
+    font-weight: 600;
+    color: #0d82ff !important;
+}
+
 .alert-dismissible .close {
     padding: 10px 20px
 }
@@ -2200,12 +2205,12 @@ img {
 
 .product-item-horizontal .item-meta .item-favorites {
     float: left;
-    margin-left: 30px
+    margin-left: 5px
 }
 
 .product-item-horizontal .item-meta .item-comments {
     float: left;
-    margin-left: 30px
+    margin-left: 5px
 }
 
 .product-item .badge-promoted {
@@ -10219,7 +10224,9 @@ form select.error {
     .bn-md {
         display: none
     }
-
+    .page_title_hidden_on_mobile {
+        display: none !important;
+    }
     .bn-sm {
         display: block
     }
@@ -10247,10 +10254,13 @@ form select.error {
         height: 130px
     }
     
-  .profile-details .right{
+    .profile-details .right{
         width:100%;
     }
     
+    .product-item .img-product {
+        height: 145px;
+    }
 }
 
 @media (max-width: 410px) {
@@ -10916,4 +10926,22 @@ h4.col-md-12.title {
 .home-location-text{
     font-size: 12px;
     font-weight: bold;
+}
+.profile-tab-item {
+    display: flex;
+    align-items: center;
+}
+.profile-tab-item .profile-tab-icon {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    background: #28aae8;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.profile-tab-item .profile-tab-icon span{
+    color: #fff;
 }
