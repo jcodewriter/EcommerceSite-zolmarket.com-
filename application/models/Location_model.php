@@ -278,7 +278,7 @@ class Location_model extends CI_Model
         }
         $this->db->select('id, '.$field.' as name, country_id, is_capital');
         $this->db->where('states.country_id', $country_id);
-        $this->db->order_by('states.name');
+        $this->db->order_by('states.order_by');
         $query = $this->db->get('states');
         return $query->result();
     }
@@ -453,7 +453,7 @@ class Location_model extends CI_Model
         }
         $this->db->select('id, '.$filed.' as name, state_id, is_default');
         $this->db->where('cities.state_id', $state_id);
-        $this->db->order_by('cities.name');
+        $this->db->order_by('cities.order_by');
         $query = $this->db->get('cities');
         return $query->result();
     }
