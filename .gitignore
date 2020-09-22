@@ -3,3 +3,4 @@
 /application/session
 /uploads
 
+*.log

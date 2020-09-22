@@ -433,10 +433,12 @@ foreach ($languages as $language) {
         $route[$key . '/order/(:num)'] = 'order_controller/order/$1';
         /*sales*/
         $route[$key . '/sales'] = 'order_controller/sales';
+        $route[$key . '/sales/active-sales'] = 'order_controller/active_sales';
         $route[$key . '/sales/completed-sales'] = 'order_controller/completed_sales';
         $route[$key . '/sale/(:num)'] = 'order_controller/sale/$1';
         /*earnings*/
         $route[$key . '/earnings'] = 'earnings_controller/earnings';
+        $route[$key . '/earnings/earnings'] = 'earnings_controller/earnings';
         $route[$key . '/set-payout-account'] = 'earnings_controller/set_payout_account';
         $route[$key . '/payouts'] = 'earnings_controller/payouts';
 
@@ -444,13 +446,11 @@ foreach ($languages as $language) {
         $route[$key . '/request-quote'] = 'bidding_controller/request_quote';
         $route[$key . '/quote-requests'] = 'bidding_controller/quote_requests';
         $route[$key . '/sent-quote-requests']['GET'] = 'bidding_controller/sent_quote_requests';
-// new
+        // new
         $route[$key . '/location'] = 'home_controller/location';
-        
+
         $route[$key . '/images/(.*)'] = 'home_controller/images/$1';
         $route[$key . '/(:any)'] = 'home_controller/any/$1';
-        
-        
     }
 }
 

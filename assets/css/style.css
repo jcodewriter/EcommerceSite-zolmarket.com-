@@ -10945,3 +10945,7 @@ h4.col-md-12.title {
 .profile-tab-item .profile-tab-icon span{
     color: #fff;
 }
+
+.profile-tab-item span.hidden-sm-up:last-of-type {
+    margin-top: 1px;
+}

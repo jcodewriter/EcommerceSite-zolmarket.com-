@@ -238,7 +238,7 @@
                 <li class="nav-item <?php echo ($active_tab == 'logout') ? 'active' : ''; ?>">
                     <a class="nav-link" href="<?php echo lang_base_url(); ?>logout" class="logout">
                         <div class="profile-tab-item">
-                            <div class="profile-tab-icon">
+                            <div class="profile-tab-icon" style="background: #dc3545 !important">
                                 <span class="material-icons">power_settings_new</span>
                             </div>
                             <span style="flex-grow: 1"><?php echo trans("logout"); ?></span>
