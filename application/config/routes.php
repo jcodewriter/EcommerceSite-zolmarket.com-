@@ -357,7 +357,7 @@ foreach ($languages as $language) {
         $route[$key . '/profile/reviews/(:any)'] = 'profile_controller/account_reviews/$1';
         $route[$key . '/profile/options/(:any)'] = 'profile_controller/account_options/$1';
         /*settings*/
-        $route[$key . '/settings'] = 'profile_controller/update_profile';
+        $route[$key . '/settings'] = 'profile_controller/settings';
         $route[$key . '/settings/update-profile'] = 'profile_controller/update_profile';
         $route[$key . '/settings/shop-settings'] = 'profile_controller/shop_settings';
         $route[$key . '/settings/contact-informations'] = 'profile_controller/contact_informations';
@@ -437,14 +437,15 @@ foreach ($languages as $language) {
         $route[$key . '/sales/completed-sales'] = 'order_controller/completed_sales';
         $route[$key . '/sale/(:num)'] = 'order_controller/sale/$1';
         /*earnings*/
-        $route[$key . '/earnings'] = 'earnings_controller/earnings';
+        $route[$key . '/earnings'] = 'earnings_controller/earning';
         $route[$key . '/earnings/earnings'] = 'earnings_controller/earnings';
         $route[$key . '/set-payout-account'] = 'earnings_controller/set_payout_account';
         $route[$key . '/payouts'] = 'earnings_controller/payouts';
 
         /*bidding*/
         $route[$key . '/request-quote'] = 'bidding_controller/request_quote';
-        $route[$key . '/quote-requests'] = 'bidding_controller/quote_requests';
+        $route[$key . '/quote-requests'] = 'bidding_controller/quote_request';
+        $route[$key . '/quote-requests/quote-requests']['GET'] = 'bidding_controller/quote_requests';
         $route[$key . '/sent-quote-requests']['GET'] = 'bidding_controller/sent_quote_requests';
         // new
         $route[$key . '/location'] = 'home_controller/location';
