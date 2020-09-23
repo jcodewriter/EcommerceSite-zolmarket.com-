@@ -745,7 +745,9 @@ class Product_controller extends Home_Core_Controller
 			$this->load->view('partials/_footer');
 		}
     }
-
+    /**
+     * Popup Category
+     */
     public function popup_category()
     {
         $slug = @end(func_get_args());
@@ -785,155 +787,12 @@ class Product_controller extends Home_Core_Controller
                 $data['description'] = $this->settings->site_description;
                 $data['keywords'] = $this->settings->keywords;
 
-                $this->load->view('partials/_header_mobile', $data);
+                $this->load->view('partials/_header_category', $data);
                 $this->load->view('product/_popup_category', $data);
-                $this->load->view('partials/_footer');
+                $this->load->view('partials/_footer_category');
             }
         }
     }
-
-    // public function popup_category()
-    // {
-    //     $slug = @end(func_get_args());
-    //     $valide = true;
-    //     $category = $this->category_model->get_category_by_slug($slug);
-    //     if ($slug != "all") {
-    //         if (empty($category) || $category == null) {
-    //             $this->error_404();
-    //             $valide  = false;
-    //         }
-    //     } else {
-    //         $category = new StdClass();
-    //         $category->id = 0;
-    //     }
-    //     if ($valide) {
-    //         if ($this->general_settings->default_product_location != 0) {
-    //             $data["is_hkm_one_country"] = true;
-    //             $data["is_hkm_one_country_value"] = $this->general_settings->default_product_location;
-    //         } else {
-    //             $data["is_hkm_one_country"] = false;
-    //         }
-
-    //         $data["parent_categories"] = $this->category_model->get_all_parent_categories($category->id);
-    //         if (!empty($data["parent_categories"])) {
-    //             $endcat = end($data["parent_categories"]);
-    //             $subcats = get_allsubcategories_by_parent_id($endcat->id);
-    //             $subcats[] = $endcat->id;
-    //         }
-    //         $data["page"] = 'category';
-    //         $data["category"] = end($data["parent_categories"]);
-    //         $data["parent_category"] = prev($data["parent_categories"]);
-    //         if (empty($data["parent_categories"]))
-    //             $data["subcategories"] = $this->category_model->get_subcategories_by_parent_id(0);
-    //         else
-    //             $data["subcategories"] = $this->category_model->get_subcategories_by_parent_id($data["category"]->id);
-
-    //         $mds_link_session = $this->session->userdata('mds_link_session');
-    //         $mds_link_type_session = $this->session->userdata('mds_link_type_session');
-    //         if ($this->is_mobile) {
-    //             $data['Platform'] = 'Mobile';
-    //         } else {
-    //             $data['Platform'] = 'Browser';
-    //         }
-    //         if (!$mds_link_session && $this->is_mobile) {
-    //             $data['title'] = $this->settings->homepage_title;
-    //             $data['description'] = $this->settings->site_description;
-    //             $data['keywords'] = $this->settings->keywords;
-
-    //             $this->load->view('partials/_header_mobile', $data);
-    //             if ($mds_link_type_session == "location") {
-    //                 $mds_location_type_session = $this->session->userdata('mds_location_type_session');
-    //                 $mds_location_data_session = $this->session->userdata('mds_location_data_session');
-
-    //                 if ($this->general_settings->default_product_location != 0) {
-    //                     if (end($mds_location_type_session) == "state") {
-    //                         $data["locations"] =  get_states_by_country($this->default_location_id);
-    //                         $data["location_type"] = "city";
-    //                     } else if (end($mds_location_type_session) == "city") {
-    //                         $data["locations"] =  get_cities_by_state(end($mds_location_data_session));
-    //                     }
-    //                 } else {
-    //                     if (end($mds_location_type_session) == "country") {
-    //                         $data["locations"] =  get_countries();
-    //                         $data["location_type"] = "state";
-    //                     } else if (end($mds_location_type_session) == "state") {
-    //                         $data["locations"] =  get_states_by_country(end($mds_location_data_session));
-    //                         $data["location_type"] = "city";
-    //                     } else if (end($mds_location_type_session) == "city") {
-    //                         $data["locations"] =  get_cities_by_state(end($mds_location_data_session));
-    //                     }
-    //                 }
-    //                 // print_r($data); exit;
-    //                 $this->load->view('product/_popup_location', $data);
-    //             } else {
-    //                 $this->load->view('product/_popup_category', $data);
-    //             }
-    //             $this->load->view('partials/_footer');
-    //         } else {
-
-    //             $data['title'] = !empty($data["category"]->title_meta_tag) ? $data["category"]->title_meta_tag : $data["category"]->name;
-    //             $data['description'] = $data["category"]->description;
-    //             $data['keywords'] = $data["category"]->keywords;
-    //             //get paginated posts
-    //             $link = lang_base_url() . 'category/' . $data["category"]->slug;
-    //             $pagination = $this->paginate($link, $this->product_model->get_paginated_filtered_products_count($subcats), $this->product_per_page);
-    //             $data['products'] = $this->product_model->get_paginated_filtered_products($subcats, $pagination['per_page'], $pagination['offset']);
-
-    //             $data["site_settings"] = get_site_settings();
-    //             $data['show_location_filter'] = false;
-
-    //             $data["categories"] = $this->category_model->get_categories_all();
-    //             if ($data["is_hkm_one_country"])
-    //                 $data["states"] =  get_states_by_country($this->default_location_id);
-    //             else if ($this->input->get("country", true) != null) {
-    //                 $country = clean_number($this->input->get("country", true));
-    //                 $data["states"] =  get_states_by_country($country);
-    //             } else {
-
-    //                 $data["states"] =  get_states_by_country($this->location_model->default_country());
-    //             }
-    //             $capitalstate = array_filter($data["states"], function ($item) {
-    //                 return $item->is_capital;
-    //             });
-    //             $capitalstate = reset($capitalstate);
-    //             $data["capital_state"] = $capitalstate;
-    //             if ($capitalstate) {
-    //                 $data["cities"] = get_cities_by_state($capitalstate->id);
-    //             } else {
-    //                 $data["cities"] = array();
-    //             }
-
-    //             $state = clean_number($this->input->get("state", true));
-
-    //             if ($state)
-    //                 $data["cities"] =  get_cities_by_state($state);
-
-    //             $capitalcity = array_filter($data["cities"], function ($item) {
-    //                 return $item->is_default;
-    //             });
-    //             $capitalcity = reset($capitalcity);
-    //             $data["capital_city"] = $capitalcity;
-
-    //             if (!empty($data['products'])) {
-    //                 foreach ($data['products'] as $item) {
-    //                     if ($item->product_type == 'physical') {
-    //                         $data['show_location_filter'] = true;
-    //                         break;
-    //                     }
-    //                 }
-    //             } else {
-    //                 $data['show_location_filter'] = true;
-    //             }
-
-    //             $_SESSION['page'] = 0;
-
-    //             $this->load->view('partials/_header_mobile', $data);
-    //             $this->load->view('product/products', $data);
-    //             $this->load->view('partials/_footer');
-    //         }
-    //     }
-    // }
-
     /**
      * Delete Product
      */

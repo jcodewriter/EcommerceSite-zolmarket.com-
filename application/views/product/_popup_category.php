@@ -18,7 +18,7 @@
 <!-- Wrapper -->
 <div id="wrapper">
 	<div class="container">
-		<div class="row">
+		<div class="row" style="margin-bottom: 100px">
 			<div id="content" class="col-12">
                 <div class="nav-mobile-inner">
                     <ul class="navbar-nav mobile-search-form">
