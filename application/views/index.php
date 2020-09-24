@@ -165,10 +165,14 @@
                     <p class="title-exp"><?php echo trans("latest_products_exp"); ?></p>
                     <div class="row row-product">
                         <!--print products-->
-                        <?php foreach ($latest_products as $product) : ?>
+                        <?php foreach ($latest_products as $product) :
+                            if ($this->is_mobile):?>
                             <!-- <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-product pr-1 pl-1"> -->
-                            <?php $this->load->view('product/_product_item', ['product' => $product, 'promoted_badge' => false]); ?>
+                            <?php $this->load->view('product/_product_item_th_list', ['product' => $product, 'promoted_badge' => false]); ?>
                             <!-- </div> -->
+                            <?php else: ?>
+                                <?php $this->load->view('product/_product_item', ['product' => $product, 'promoted_badge' => false]); ?>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     </div>
 

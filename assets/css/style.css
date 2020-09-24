@@ -1965,7 +1965,7 @@ img {
     max-width: 100%;
     float: left;
     position: relative;
-    margin-bottom: 30px
+    padding-bottom: 30px
 }
 
 .product-item:hover .item-favorite-button {
@@ -9368,7 +9368,7 @@ form select.error {
     }
 
     .product-item {
-        margin-bottom: 25px
+        padding-bottom: 25px
     }
 
     #footer .footer-top {
@@ -10024,7 +10024,7 @@ form select.error {
         color:#f86923!important;
     }
     .product-item{
-        margin:10px 0;
+        padding:10px 0;
     }
     .btn_remove_imgghkkm{
         position: absolute;
@@ -10618,7 +10618,11 @@ span.n-user.span-warp-text {
     width: 220px !important;
 }
 .product-item-th-list {
-    margin: 10px 0 !important;
+    padding: 10px 0 !important;
+    border-bottom: 1px solid #0000001a;
+}
+.col-product:last-child .product-item-th-list {
+    border-bottom: 0;
 }
 .product-item-th-list-text {
     padding: 0 10px !important;

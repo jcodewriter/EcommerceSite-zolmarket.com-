@@ -66,7 +66,7 @@
         endforeach;
     endif; ?>
     <!-- Icons -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/font-awesome/all.css" />
 
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/font-awesome/font-awesome.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/font-icons/css/font-icons.min.css" />

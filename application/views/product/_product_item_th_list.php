@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 ?>
-<div class="col-12 col-product pr-2 pl-2" style="border-bottom: 1px solid #0000001a">
+<div class="col-12 col-product pr-2 pl-2">
     <div class="product-item product-item-th-list" style="display: flex">
         <div class="row-custom product-item-th-list-image">
             <a href="<?php echo lang_base_url() . $product->slug; ?>" name="ads_link">

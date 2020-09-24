@@ -13,7 +13,7 @@ but if not have  subcategory it will be like  link when click concerne url
     <?php
     foreach ($parent_categories as $category): ?>
         <!--         --><?php // var_dump($category->id);exit();?>
-        <div class="col-6 col-md-4 col-lg-3 col-xl-2 col-product pl-1 pr-1">
+        <!-- <div class="col-6 col-md-4 col-lg-3 col-xl-3 col-product pl-1 pr-1"> -->
              <?php $hasmenu = count(get_subcategories_by_parent_id($category->id)) > 0; ?>
             <div class="item-box">
                 <?php if(!$hasmenu): ?>
@@ -35,7 +35,7 @@ but if not have  subcategory it will be like  link when click concerne url
                 </a>
             <?php endif; ?>
             </div>
-        </div>
+        <!-- </div> -->
 <?php endforeach; ?>
 </div>
 
