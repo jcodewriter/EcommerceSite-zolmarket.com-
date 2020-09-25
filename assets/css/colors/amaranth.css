@@ -169,3 +169,6 @@ a:hover, a:focus, a:active {
     border-color: #e91e63;
     background-color: #e91e63;
 }
+.item-box{
+    border: 1px solid #e91e63;
+}
