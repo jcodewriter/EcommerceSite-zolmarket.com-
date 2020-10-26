@@ -32,6 +32,7 @@ if ($page != 'product') {
             padding-top: 0;
         }
     }
+
     @media (max-width: 992px) {
         .mobile-search-header {
             display: block;
@@ -109,7 +110,7 @@ if ($page != 'product') {
 
         $state_id = $this->input->get('state', true);
         $city_id = $this->input->get('city', true);
-        $filter_location = get_location_input($country_id, $state_id, $city_id);
+        $filter_location = get_location_input($country_id, $state_id, 0);
 
         ?>
 
@@ -296,16 +297,15 @@ if ($page != 'product') {
         <div class="row hidden-md-up filtermenu">
             <div class="col-4 p-1">
                 <!-- aaa -->
-                <a class="filter-btn text-truncate d-flex" href="<?php echo $this->general_settings->default_product_location ? lang_base_url()."location?country=".$this->general_settings->default_product_location."&state=0&current_url=".current_url() : "location?country=0&current_url=".current_url(); ?>">
+                <a class="filter-btn text-truncate d-flex" href="<?php echo $this->general_settings->default_product_location ? lang_base_url() . "location?country=" . $this->general_settings->default_product_location . "&state=0&current_url=" . current_url() : "location?country=0&current_url=" . current_url(); ?>">
                     <i class="fa fa-map-marker  fa-lg align-self-center mr-1 ml-1" aria-hidden="true"></i>
                     <?php if (empty($filter_location)) : ?>
-                        <span class="titre m-0 flex-fill  text-truncate text-center h-100">
+                        <span class="titre m-0 flex-fill  text-truncate text-left h-100">
                             <?= $is_hkm_one_country ? '' : ($capital_country ? $capital_country->name : (trans('country') . ' , ')) ?>
-                            <?= $capital_state ? $capital_state->name : trans('state') . ' , ' ?>
-                            <?= $capital_city ? $capital_city->name : trans('city') . '' ?>
+                            <?= $capital_state ? $capital_state->name : trans('state') . ' ' ?>
                         </span>
                     <?php else : ?>
-                        <span class="titre m-0 flex-fill  text-truncate text-center h-100"><?= $filter_location ?></span>
+                        <span class="titre m-0 flex-fill  text-truncate text-left h-100"><?= $filter_location ?></span>
                     <?php endif; ?>
                     <i class="fas fa-angle-down align-self-center"></i>
                 </a>
@@ -342,20 +342,29 @@ if ($page != 'product') {
         </div>
         <hr>
 
+        <div class="row hidden-md-up">
+            <div class="col-12 col-lg-12">
+                <div class="location-scroll-wrapper">
+                    <?php if (sizeof($cities) > 0) : ?>
+                        <?php foreach ($cities as $row) : ?>
+                            <?php if ($city_id == $row->id) : ?>
+                                <div class="location-scroll-item btn-block" location_id="<?php echo $row->id; ?>" target="city"><?php echo $row->name; ?></div>
+                            <?php else : ?>
+                                <div class="location-scroll-item" location_id="<?php echo $row->id; ?>" target="city"><?php echo $row->name; ?></div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                        <?php else :
+                        if (!$state_id) : ?>
 
-        <div class="row">
-            <?php if (count($subcategories) == 0) : ?>
-                <div class="col-12 col-lg-12 sidebar-products">
-                    <div class="hidden-sm-down ">
-                        <?php
-                        if ($Platform == 'Browser') :
-                            $this->load->view('product/_product_filters');
-                        endif;
-                        ?>
-                    </div>
+                            <?php foreach ($states as $row) : ?>
+                                <div class="location-scroll-item" location_id="<?php echo $row->id; ?>" target="state"><?php echo $row->name; ?></div>
+                        <?php endforeach;
+                        endif; ?>
+                    <?php endif; ?>
                 </div>
-            <?php endif; ?>
-
+            </div>
+        </div>
+        <div class="row">
             <div class="col-12 col-lg-12">
                 <div class="filter-reset-tag-container">
                     <?php $filters = get_filters_query_string_array();
@@ -412,14 +421,14 @@ if ($page != 'product') {
                         </div>
                     <?php endif;
 
-                    if (!empty($filter_location)) : ?>
+                    if (!empty(get_location_input($country_id, 0, $city_id))) : ?>
                         <div class="filter-reset-tag">
                             <div class="left">
                                 <a href="<?php echo remove_filter_from_query_string('location'); ?>"><i class="icon-close"></i></a>
                             </div>
                             <div class="right">
                                 <span class="reset-tag-title"><?php echo trans("location"); ?></span>
-                                <span><?php echo $filter_location; ?></span>
+                                <span class="rest-tag-value"><?php echo get_location_input($country_id, 0, $city_id); ?></span>
                             </div>
                         </div>
                     <?php endif; ?>
@@ -650,6 +659,17 @@ if ($page != 'product') {
         var id = $(this).attr("desktop-image-id");
         view_method(id);
     });
+
+    $(".location-scroll-item").on("click", function() {
+        let location_id = $(this).attr("location_id")
+        let target = $(this).attr("target")
+        if (target == "state") {
+            $("select[name=state]").val(location_id)
+        } else {
+            $("select[name=city]").val(location_id)
+        }
+        $("#searchbutton").trigger("click")
+    })
 </script>
 <?php if ($Platform == 'Mobile') : ?>
     <script>

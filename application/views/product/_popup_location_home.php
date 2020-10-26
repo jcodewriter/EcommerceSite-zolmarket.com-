@@ -16,8 +16,6 @@
                 <?php else:?>
                     <a href="location?country=0" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?></a>
                 <?php endif;?>
-            <?php elseif(@$location_type == "city"): ?>
-                <a href="location?country=<?php echo $country;?>" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?></a>
             <?php endif; ?>
         </div>
         <div class="mobile-header-title">
@@ -25,8 +23,6 @@
                 <span class="text-white textcat-header text-center"><?php echo trans("country"); ?></span>
             <?php elseif(@$location_type == "state"): ?>
                 <span class="text-white textcat-header text-center"><?php echo trans("state"); ?></span>
-            <?php elseif(@$location_type == "city"): ?>
-                <span class="text-white textcat-header text-center"><?php echo trans("city"); ?></span>
             <?php endif; ?>
         </div>
         <div class="mobilde-header-cart">
@@ -60,21 +56,12 @@
                         </li>
                         <?php foreach ($locations as $item):?>
                             <li class="nav-item" style="border-bottom: 1px solid #e9ecef;">
-                                <?php if ($location_type == "city"): ?>
+                                <?php if ($location_type == "state"): ?>
                                     <?php if (sizeof($urls) > 4):?>
-                                        <a href="<?php echo $current_url;?>?country=<?php echo $country;?>&state=<?php echo $state;?>&city=<?php echo $item->id;?>" class="nav-link" style="display: table;width: 100%;height: 60px;">
+                                        <a href="<?php echo $current_url;?>?country=<?php echo $country;?>&state=<?php echo $item->id;?>" class="nav-link" style="display: table;width: 100%;height: 60px;">
                                     <?php else:?>
-                                        <a href="products?country=<?php echo $country;?>&state=<?php echo $state;?>&city=<?php echo $item->id;?>" class="nav-link" style="display: table;width: 100%;height: 60px;">
+                                        <a href="products?country=<?php echo $country;?>&state=<?php echo $item->id;?>" class="nav-link" style="display: table;width: 100%;height: 60px;">
                                     <?php endif;?>
-                                        <div class="link-icon" style="display: table-cell;vertical-align: middle">
-                                            <span class="titre" style="padding-left: 10px;"><?php echo $item->name?></span>
-                                        </div>
-                                        <div style="display: table-cell;vertical-align: middle;text-align:right">
-                                            <i class="icon-arrow-right"></i>
-                                        </div>
-                                    </a>
-                                <?php else:?>
-                                    <a href="location?country=<?php echo $location_type == "country"?$item->id:$country;?>&state=<?php echo $location_type == "state"?$item->id:$state;?>" class="nav-link" style="display: table;width: 100%;height: 60px;">
                                         <div class="link-icon" style="display: table-cell;vertical-align: middle">
                                             <span class="titre" style="padding-left: 10px;"><?php echo $item->name?></span>
                                         </div>

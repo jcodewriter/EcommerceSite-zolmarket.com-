@@ -519,19 +519,31 @@ class Location_model extends CI_Model
         if (!empty($country_id)) {
             $country = $this->get_country($country_id);
             if (!empty($country)) {
-                $str = $country->name;
+                if ($this->selected_lang->id == 1){
+                    $str = $country->name;
+                }else{
+                    $str = $country->ar_name;
+                }
             }
         }
         if (!empty($state_id)) {
             $state = $this->get_state($state_id);
             if (!empty($state)) {
-                $str = $state->name . ', ' . $str;
+                if ($this->selected_lang->id == 1){
+                    $str = $state->name . ', ' . $str;
+                }else{
+                    $str = $state->ar_name . ', ' . $str;
+                }
             }
         }
         if (!empty($city_id)) {
             $city = $this->get_city($city_id);
             if (!empty($city)) {
-                $str = $city->name . ', ' . $str;
+                if ($this->selected_lang->id == 1){
+                    $str = $city->name . ', ' . $str;
+                }else{
+                    $str = $city->ar_name . ', ' . $str;
+                }
             }
         }
         return $str;
