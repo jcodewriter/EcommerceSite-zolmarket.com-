@@ -25,6 +25,7 @@ class Bidding_controller extends Home_Core_Controller
 		}
 		$this->load->model('bidding_model');
 		$this->rows_per_page = 15;
+		$this->selected_btn = "f-btn-account";
 	}
 
 	/**

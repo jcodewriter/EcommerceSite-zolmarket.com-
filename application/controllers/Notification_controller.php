@@ -14,6 +14,7 @@ class Notification_controller extends Home_Core_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->selected_btn = "f-btn-notification";
     }
 
     /**

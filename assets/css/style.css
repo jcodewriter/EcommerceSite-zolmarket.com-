@@ -871,7 +871,7 @@ img {
     font-size: 13px;
     font-weight: 600;
     display: inline-block;
-    font-size: 11px;
+    font-size: 11px !important;
     background-color: #ff0000;
     border-radius: 50%;
     height: 18px;
@@ -981,16 +981,17 @@ img {
 .mobile-footer a .notification {
     position: absolute !important;
     display: inline-block;
-    font-size: 13px;
+    font-size: 11px !important;
     background-color: #ff0000;
     border-radius: 50%;
-    top: -50px;
-    left: 5px;
+    top: -5px;
+    left: 3px;
     height: 18px;
     width: 18px;
     text-align: center;
     color: #fff;
-    font-weight: 600
+    font-weight: 600;
+    line-height: 19px;
 }
 
 .nav-item-cart a .lbl-cart {
@@ -10975,3 +10976,35 @@ h4.col-md-12.title {
     margin-right: 2px;
     color: #28a745;
 }
+
+.f-btn-icon{
+    margin: 0 auto;
+}
+
+.f-btn-icon svg {
+    height: 22px;
+    fill: #555
+}
+
+.f-btn-text {
+    color: #555;
+    font-size: 13px !important;
+    font-weight: 600;
+}
+
+.f-btn-selected .f-btn-icon svg {
+    fill: #007bff;
+}
+
+.f-btn-selected .f-btn-text {
+    color: #007bff;
+}
+
+.f-btn-show{
+    display: initial;
+}
+
+.f-btn-hidden{
+    display: none;
+}
+

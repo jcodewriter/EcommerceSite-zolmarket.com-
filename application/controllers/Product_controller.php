@@ -135,6 +135,7 @@ class Product_controller extends Home_Core_Controller
     public function add_product()
     {
         //check auth
+        $this->selected_btn = "f-btn-add";
         if (!auth_check()) {
             redirect(lang_base_url());
         }
@@ -186,6 +187,7 @@ class Product_controller extends Home_Core_Controller
      */
     public function add_product_post()
     {
+        $this->selected_btn = "f-btn-add";
         $post = $this->input->post();
         if (!$post['custom_id'] && !end($post['second_parent_id']))
             redirect(lang_base_url() . 'sell-now');
@@ -223,6 +225,7 @@ class Product_controller extends Home_Core_Controller
      */
     public function edit_draft($id)
     {
+        $this->selected_btn = "f-btn-add";
         //check auth
         if (!auth_check()) {
             redirect(lang_base_url());
@@ -263,6 +266,7 @@ class Product_controller extends Home_Core_Controller
      */
     public function edit_product($id)
     {
+        $this->selected_btn = "f-btn-add";
         //check auth
         if (!auth_check()) {
             redirect(lang_base_url());
@@ -306,6 +310,7 @@ class Product_controller extends Home_Core_Controller
      */
     public function edit_product_post()
     {
+        $this->selected_btn = "f-btn-add";
         //check auth
         if (!auth_check()) {
             redirect(lang_base_url());
@@ -364,6 +369,7 @@ class Product_controller extends Home_Core_Controller
     public function edit_product_details($id)
     {
 
+        $this->selected_btn = "f-btn-add";
         //check auth
         if (!auth_check()) {
             redirect(lang_base_url());
@@ -450,6 +456,7 @@ class Product_controller extends Home_Core_Controller
      */
     public function edit_product_details_post()
     {
+        $this->selected_btn = "f-btn-add";
         //check auth
         if (!auth_check()) {
             redirect(lang_base_url());
@@ -512,6 +519,7 @@ class Product_controller extends Home_Core_Controller
 
     public function add_product_success($product_id)
     {
+        $this->selected_btn = "f-btn-add";
         $data['title'] = trans("confirm_your_email");
         $data['description'] = trans("confirm_your_email") . " - " . $this->app_name;
         $data['keywords'] = trans("confirm_your_email") . "," . $this->app_name;
@@ -750,6 +758,7 @@ class Product_controller extends Home_Core_Controller
      */
     public function popup_category()
     {
+        $this->selected_btn = "f-btn-home";
         $slug = @end(func_get_args());
         $valide = true;
         $category = $this->category_model->get_category_by_slug($slug);

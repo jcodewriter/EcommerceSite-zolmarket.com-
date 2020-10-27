@@ -158,6 +158,8 @@ class Home_Core_Controller extends Core_Controller
         $global_data['footer_quick_links'] = $this->page_model->get_quick_links();
         $global_data['footer_information_links'] = $this->page_model->get_information_links();
 
+        $this->selected_btn = "f-btn-home";
+
         //recaptcha status
         $global_data['recaptcha_status'] = true;
         if (empty($this->general_settings->recaptcha_site_key) || empty($this->general_settings->recaptcha_secret_key)) {

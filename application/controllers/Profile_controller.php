@@ -8,6 +8,7 @@ class Profile_controller extends Home_Core_Controller
     {
         parent::__construct();
         $this->pagination_per_page = 15;
+        $this->selected_btn = "f-btn-account";
     }
 
     /**

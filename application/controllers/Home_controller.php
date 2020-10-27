@@ -10,7 +10,7 @@ class Home_controller extends Home_Core_Controller
         $this->blog_paginate_per_page = 12;
         $this->promoted_products_limit = $this->general_settings->index_promoted_products_count;
     }
-
+    
     /**
      * Index
      */
@@ -661,7 +661,7 @@ class Home_controller extends Home_Core_Controller
         $this->load->view('errors/error_404');
         $this->load->view('partials/_footer');
     }
-    
+
     public function location()
     {
         $country_id = clean_number($this->input->get("country", true));
@@ -670,7 +670,7 @@ class Home_controller extends Home_Core_Controller
         $current_url = $this->input->get("current_url", true);
         if ($current_url)
             $this->session->set_userdata('mds_current_url_session', $current_url);
-        
+
         $data['title'] = $this->settings->homepage_title;
         $data['description'] = $this->settings->site_description;
         $data['keywords'] = $this->settings->keywords;

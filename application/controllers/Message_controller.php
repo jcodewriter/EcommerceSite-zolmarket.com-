@@ -10,6 +10,7 @@ class Message_controller extends Home_Core_Controller
         if (!auth_check()) {
             redirect(lang_base_url());
         }
+        $this->selected_btn = "f-btn-message";
     }
 
     /**

@@ -38,7 +38,7 @@ if ((custom_path[3] == "sell-now" && custom_path[4] == "edit-product") && $(wind
 }
 if ((window.location.pathname.indexOf("/conversation/") == 9 || window.location.pathname.indexOf("/conversation/") == 12) && $(window).width() < 900) {
     $('.mobile-menu').hide();
-    $('#wrapper').css({"padding-top": "80px"});
+    $('#wrapper').css({ "padding-top": "80px" });
     $('#wrapper').css({ "padding-bottom": "80px" });
     $("#footer").hide();
     $('.scrollup').hide();
@@ -185,6 +185,9 @@ function app_suggest_show() {
 $("#imgUploader").change(function () { readURL(this); });
 
 $(document).ready(function () {
+    var selectedBtn = window.localStorage.getItem("selectedBtn")
+    $(`.${selectedBtn}`).find("svg").css({ fill: '#007bff' })
+    $(`.${selectedBtn}`).find("span.f-btn-text").css({ color: '#007bff' })
     if (localStorage.getItem("app-suggest") == null && (window.location.pathname == '/' || window.location.pathname == '/ar/') && $(window).width() < 900) {
         app_suggest_show()
     }
@@ -200,7 +203,7 @@ $(document).ready(function () {
                 $(".mobile-menu").removeClass('header-fixed-top');
                 $(".top-search-bar").removeClass('search-bar-fixed-top');
             }
-        }else {
+        } else {
             if (scroll >= 10 && $(this).width() < 769) {
                 $(".mobile-menu").addClass("header-fixed-top");
                 if (window.location.pathname == '/' || window.location.pathname == '/ar/') {
@@ -256,17 +259,17 @@ $(document).ready(function () {
         });
     })
 
-    $(document).on("click", '.search-link', function(event) { 
+    $(document).on("click", '.search-link', function (event) {
         let href = $(this).attr("href");
         let countryId = $("select[name=country]").val()
-        if (countryId){
-            href += "?country="+countryId
+        if (countryId) {
+            href += "?country=" + countryId
             let stateId = $("select[name=state]").val()
-            if (stateId){
-                href += "&state="+stateId
+            if (stateId) {
+                href += "&state=" + stateId
                 let cityId = $("select[name=city]").val()
                 if (cityId)
-                    href += "&city="+cityId
+                    href += "&city=" + cityId
             }
         }
         window.location.href = href
@@ -559,6 +562,20 @@ $(document).ready(function () {
         $('.btn_imogi').show();
     });
 
+    $(document).on('click', '.f-btn', function (e) {
+        $(".f-btn").find("svg").css({ fill: '#555' })
+        $(".f-btn").find("svg.fill").css({display: 'none'})
+        $(".f-btn").find("svg.outline").css({display: 'initial'})
+        $(".f-btn").find("span.f-btn-text").css({ color: '#555' })
+        $(this).find("svg.fill").css({ display: 'initial' })
+        $(this).find("svg.outline").css({ display: 'none' })
+        $(this).find("svg").css({ fill: '#007bff' })
+        $(this).find("span.f-btn-text").css({ color: '#007bff' })
+    })
+
+
+
+
     // send image in chat : descktop ******************************
     $(document).on('click', '#btn_sendd_imagee', function (e) {
 
@@ -706,7 +723,7 @@ $(document).ready(function () {
     $(document).on('click', '.btn-back-mobile-nav', function () {
         var back = $(this).data('back');
         var id = $(this).data('ajax');
-        var text = $(this).data('text');        
+        var text = $(this).data('text');
         var type = $(this).data('type');
         var url = $(this).data('url');
         var queryv = $(this).data('query');
@@ -976,7 +993,7 @@ $(document).ready(function () {
     var timeoutsearchproduct;
     $('.has-search-product').on('input', function () {
         var winPoint = $(this)
-        setTimeout(function(){
+        setTimeout(function () {
             var url = winPoint.data('url');
             var text = winPoint.text().trim();
             var queryv = winPoint.data('query');
@@ -1018,14 +1035,14 @@ $(document).ready(function () {
 
 /*
 $(function () {
-	$(".search-results-location").niceScroll({ cursorcolor: "#c2c2c2" });
-	$(".slider-custom-scrollbar").niceScroll({ cursorcolor: "transparent", cursorborder: '0' });
-	$(".filter-custom-scrollbar").niceScroll({ cursorcolor: "#c2c2c2", autohidemode: false });
-	$(".messages-sidebar").niceScroll({ cursorcolor: "#c2c2c2", autohidemode: false });
+    $(".search-results-location").niceScroll({ cursorcolor: "#c2c2c2" });
+    $(".slider-custom-scrollbar").niceScroll({ cursorcolor: "transparent", cursorborder: '0' });
+    $(".filter-custom-scrollbar").niceScroll({ cursorcolor: "#c2c2c2", autohidemode: false });
+    $(".messages-sidebar").niceScroll({ cursorcolor: "#c2c2c2", autohidemode: false });
 });
 if ($('.message-custom-scrollbar').length > 0) {
-	$(".message-custom-scrollbar").niceScroll({ cursorcolor: "#c2c2c2", autohidemode: false });
-	$(".message-custom-scrollbar").scrollTop($('.message-custom-scrollbar').get(0).scrollHeight, -1);
+    $(".message-custom-scrollbar").niceScroll({ cursorcolor: "#c2c2c2", autohidemode: false });
+    $(".message-custom-scrollbar").scrollTop($('.message-custom-scrollbar').get(0).scrollHeight, -1);
 }
 */
 
@@ -2887,18 +2904,18 @@ $(document).ready(function () {
         });*/
         if (is_hkm_one_country) {
             if ($('select[name=state]').val() == '') {
-                $('select[name=country]').prop("disabled", true)    
-                $('select[name=state]').prop("disabled", true)    
+                $('select[name=country]').prop("disabled", true)
+                $('select[name=state]').prop("disabled", true)
             }
             if ($('select[name=city]').val() == '')
-                $('select[name=city]').prop("disabled", true)    
-        }else {
+                $('select[name=city]').prop("disabled", true)
+        } else {
             if ($('select[name=country]').val() == '')
                 $('select[name=country]').prop("disabled", true)
             if ($('select[name=state]').val() == '')
-                $('select[name=state]').prop("disabled", true)    
+                $('select[name=state]').prop("disabled", true)
             if ($('select[name=city]').val() == '')
-                $('select[name=city]').prop("disabled", true)     
+                $('select[name=city]').prop("disabled", true)
         }
         this.form.submit();
         return false;

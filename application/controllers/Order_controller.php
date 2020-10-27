@@ -15,6 +15,7 @@ class Order_controller extends Home_Core_Controller
         $this->order_per_page = 15;
         $this->earnings_per_page = 15;
         $this->user_id = user()->id;
+        $this->selected_btn = "f-btn-account";
     }
 
     /**
