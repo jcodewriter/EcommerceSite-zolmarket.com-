@@ -138,7 +138,7 @@ div#moreSubCatogries.collapse.show {
         z-index: 1;
     }
     .mobile-menu {
-        display: none;
+        display: table;
         height: 60px;
     }
     .mobile-header-item-logo {

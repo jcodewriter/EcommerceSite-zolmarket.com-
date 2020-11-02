@@ -108,24 +108,26 @@
 </head>
 
 <body>
-    <?php if($this->is_webview == "web"):?>
-        <div id="app-suggest" class="deep-linked" style="display: none;">
-            <div href="" class="app-close">
-                <i class="fa fa-times" style="background: #dee2e6;border-radius: 50%;padding: 2px 3px;"></i>
+    <?php if ($this->is_webview == "web") : ?>
+        <?php if (isset($is_mobile_header) && !isset($_COOKIE['is_app_suggest'])) : ?>
+            <div id="app-suggest" class="deep-linked">
+                <div href="" class="app-close">
+                    <i class="fa fa-times" style="background: #dee2e6;border-radius: 50%;padding: 2px 3px;"></i>
+                </div>
+                <a href="<?php echo $this->is_AndroidOS ? 'https://play.google.com/store/apps/details?id=com.app.zolmarket&hl=en_US' : 'https://apps.apple.com/se/app/zolmarket/id1493982231?l=en'; ?>" class="app-icon">
+                    <img src="<?php echo base_url(); ?>assets/img/230x0w.png" alt="payments" class="img-fluid" style="height: 50px;">
+                </a>
+                <div href="" class="app-details">
+                    <h6 style="font-weight: 700;font-size: .8125rem;color: #030a17;margin-bottom:0 !important"><?php echo trans("za"); ?></h6>
+                    <span style="color: #ffa500"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span>
+                    <div style="color: #999;font-size: .675rem;"><?php echo trans("za_description"); ?></div>
+                </div>
+                <div class="app-download" style="width: 115px;">
+                    <a href="<?php echo $this->is_AndroidOS ? 'https://play.google.com/store/apps/details?id=com.app.zolmarket&hl=en_US' : 'https://apps.apple.com/se/app/zolmarket/id1493982231?l=en'; ?>" class="btn btn-primary" style="color:#fff;font-size: .75rem;"><span><?php echo trans("download_app"); ?></span></a>
+                </div>
             </div>
-            <a href="<?php echo $this->is_AndroidOS ? 'https://play.google.com/store/apps/details?id=com.app.zolmarket&hl=en_US' : 'https://apps.apple.com/se/app/zolmarket/id1493982231?l=en'; ?>" class="app-icon">
-                <img src="<?php echo base_url(); ?>assets/img/230x0w.png" alt="payments" class="img-fluid" style="height: 50px;">
-            </a>
-            <div href="" class="app-details">
-                <h6 style="font-weight: 700;font-size: .8125rem;color: #030a17;margin-bottom:0 !important"><?php echo trans("za"); ?></h6>
-                <span style="color: #ffa500"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span>
-                <div style="color: #999;font-size: .675rem;"><?php echo trans("za_description"); ?></div>
-            </div>
-            <div class="app-download" style="width: 115px;">
-                <a href="<?php echo $this->is_AndroidOS ? 'https://play.google.com/store/apps/details?id=com.app.zolmarket&hl=en_US' : 'https://apps.apple.com/se/app/zolmarket/id1493982231?l=en'; ?>" class="btn btn-primary" style="color:#fff;font-size: .75rem;"><span><?php echo trans("download_app"); ?></span></a>
-            </div>
-        </div>
-    <?php endif;?>
+        <?php endif; ?>
+    <?php endif; ?>
     <header id="header">
         <div class="main-menu">
             <div class="container-fluid">
@@ -324,59 +326,61 @@
                 </div>
             </div>
         </div>
-        <div class="mobile-menu">
-            <div class="mobile-header-item mobile-header-item-logo  pl-3">
-                <a href="<?php echo lang_base_url(); ?>" class="mobile-logo"><img src="<?php echo get_logo($general_settings); ?>" alt="logo"></a>
-            </div>
-            <div class="mobile-header-item mobile-header-item-logo text-right">
+        <?php if (isset($is_mobile_header)) : ?>
+            <div class="mobile-menu">
+                <div class="mobile-header-item mobile-header-item-logo  pl-2">
+                    <a href="<?php echo lang_base_url(); ?>" class="mobile-logo"><img src="<?php echo get_logo($general_settings); ?>" alt="logo"></a>
+                </div>
+                <div class="mobile-header-item mobile-header-item-logo text-right">
 
-                <?php if ($this->auth_check) : ?>
-                    <div class="d-inline-block mr-3 text-center">
-                        <!-- <div class="cart-link-mobile header-cart"> -->
-                        <a class="cart-link-mobile header-cart" href="<?php echo lang_base_url(); ?>cart">
-                            <span>
+                    <?php if ($this->auth_check) : ?>
+                        <div class="d-inline-block mr-3 text-center">
+                            <!-- <div class="cart-link-mobile header-cart"> -->
+                            <a class="cart-link-mobile header-cart" href="<?php echo lang_base_url(); ?>cart">
+                                <span>
+                                    <i class="fa icon-cart"></i>
+                                </span>
+                                <?php $cart_product_count = get_cart_product_count();
+                                if ($cart_product_count > 0) : ?>
+                                    <span class="notification" style="top:2px;left:12px;font-size:13px;"><?php echo $cart_product_count; ?></span>
+                                <?php endif; ?>
+                            </a>
+                            <!-- </div> -->
+                        </div>
+                    <?php else : ?>
+                        <div class="d-inline-block mr-3 text-center">
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal" class="cart-link-mobile header-cart">
                                 <i class="fa icon-cart"></i>
-                            </span>
-                            <?php $cart_product_count = get_cart_product_count();
-                            if ($cart_product_count > 0) : ?>
-                                <span class="notification" style="top:2px;left:12px;font-size:13px;"><?php echo $cart_product_count; ?></span>
-                            <?php endif; ?>
-                        </a>
-                        <!-- </div> -->
-                    </div>
-                <?php else : ?>
-                    <div class="d-inline-block mr-3 text-center">
-                        <a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal" class="cart-link-mobile header-cart">
-                            <i class="fa icon-cart"></i>
-                        </a>
-                    </div>
-                <?php endif; ?>
+                            </a>
+                        </div>
+                    <?php endif; ?>
 
-                <?php if ($this->auth_check) : ?>
-                    <div class="cart-icon-mobile d-inline-block mr-2 text-center">
-                        <a href="<?php echo lang_base_url() . 'favorites/' . $this->auth_user->slug; ?>" class="cart-link-mobile">
-                            <i class="icon-heart-o fa-lg"></i>
-                        </a>
-                    </div>
-                <?php else : ?>
-                    <div class="cart-icon-mobile d-inline-block mr-2 text-center">
-                        <a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal" class="cart-link-mobile">
-                            <i class="icon-heart-o fa-lg"></i>
-                        </a>
-                    </div>
-                <?php endif; ?>
+                    <?php if ($this->auth_check) : ?>
+                        <div class="cart-icon-mobile d-inline-block mr-2 text-center">
+                            <a href="<?php echo lang_base_url() . 'favorites/' . $this->auth_user->slug; ?>" class="cart-link-mobile">
+                                <i class="icon-heart-o fa-lg"></i>
+                            </a>
+                        </div>
+                    <?php else : ?>
+                        <div class="cart-icon-mobile d-inline-block mr-2 text-center">
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal" class="cart-link-mobile">
+                                <i class="icon-heart-o fa-lg"></i>
+                            </a>
+                        </div>
+                    <?php endif; ?>
 
-                <div class="btn-sell-now-mobile-container d-inline-block mr-3 text-center">
-                    <?php if (is_multi_vendor_active()) :
-                        if ($this->auth_check) : ?>
-                            <a href="<?php echo lang_base_url(); ?>sell-now" class="btn btn-md btn-custom btn-sell-now-mobile"><?php echo trans("sell_now"); ?></a>
-                        <?php else : ?>
-                            <a href="javascript:void(0)" class="btn btn-sm btn-custom btn-sell-now-mobile" data-toggle="modal" data-target="#loginModal"><?php echo trans("sell_now"); ?></a>
-                    <?php endif;
-                    endif; ?>
+                    <div class="btn-sell-now-mobile-container d-inline-block mr-2 text-center">
+                        <?php if (is_multi_vendor_active()) :
+                            if ($this->auth_check) : ?>
+                                <a href="<?php echo lang_base_url(); ?>sell-now" class="btn btn-md btn-custom btn-sell-now-mobile"><?php echo trans("sell_now"); ?></a>
+                            <?php else : ?>
+                                <a href="javascript:void(0)" class="btn btn-sm btn-custom btn-sell-now-mobile" data-toggle="modal" data-target="#loginModal"><?php echo trans("sell_now"); ?></a>
+                        <?php endif;
+                        endif; ?>
+                    </div>
                 </div>
             </div>
-        </div>
+        <?php endif; ?>
     </header>
 
     <!--include mobile menu-->

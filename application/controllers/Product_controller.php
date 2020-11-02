@@ -589,7 +589,7 @@ class Product_controller extends Home_Core_Controller
         $_SESSION['page'] = 0;
 
 
-        $this->load->view('partials/_header_mobile', $data);
+        $this->load->view('partials/_header', $data);
         $this->load->view('product/products', $data);
         $this->load->view('partials/_footer');
     }
@@ -748,7 +748,7 @@ class Product_controller extends Home_Core_Controller
 				$data['show_location_filter'] = true;
 			}
 
-			$this->load->view('partials/_header_mobile', $data);
+			$this->load->view('partials/_header', $data);
 			$this->load->view('product/products', $data);
 			$this->load->view('partials/_footer');
 		}
@@ -796,7 +796,7 @@ class Product_controller extends Home_Core_Controller
                 $data['description'] = $this->settings->site_description;
                 $data['keywords'] = $this->settings->keywords;
 
-                $this->load->view('partials/_header_category', $data);
+                $this->load->view('partials/_header', $data);
                 $this->load->view('product/_popup_category', $data);
                 $this->load->view('partials/_footer_category');
             }
@@ -1461,7 +1461,7 @@ class Product_controller extends Home_Core_Controller
             $data['form_settings'] = $obj;
         }
 
-        $this->load->view('partials/_header_mobile', $data);
+        $this->load->view('partials/_header', $data);
         $this->load->view('product/_product_mobile_filters', $data);
         $this->load->view('partials/_footer_mobile');
     }

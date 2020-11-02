@@ -121,7 +121,7 @@ class Profile_controller extends Home_Core_Controller
         $pagination = $this->paginate(generate_profile_url($data["user"]), $this->product_model->get_user_products_count($data["user"]->slug), $this->pagination_per_page);
         $data['products'] = $this->product_model->get_paginated_user_products($data["user"]->slug, $pagination['per_page'], $pagination['offset']);
 
-        $this->load->view('partials/_header_mobile', $data);
+        $this->load->view('partials/_header', $data);
         $this->load->view('profile/product', $data);
         $this->load->view('partials/_footer');
     }
@@ -151,7 +151,7 @@ class Profile_controller extends Home_Core_Controller
         $pagination = $this->paginate(generate_profile_url($data["user"]), $this->product_model->get_user_products_count($data["user"]->slug), $this->pagination_per_page);
         $data['products'] = $this->product_model->get_paginated_user_products($data["user"]->slug, $pagination['per_page'], $pagination['offset']);
 
-        $this->load->view('partials/_header_mobile', $data);
+        $this->load->view('partials/_header', $data);
         $this->load->view('profile/account', $data);
         $this->load->view('partials/_footer');
     }
@@ -195,7 +195,7 @@ class Profile_controller extends Home_Core_Controller
         $data['mreview_count'] = $this->user_review_model->get_review_count($data["user"]->id);
         $data['mreviews'] = $this->user_review_model->get_limited_reviews($data["user"]->id, 5);
         $data['mreview_limit'] = 5;
-        $this->load->view('partials/_header_mobile', $data);
+        $this->load->view('partials/_header', $data);
         $this->load->view('profile/pending_products', $data);
         $this->load->view('partials/_footer');
     }
@@ -226,7 +226,7 @@ class Profile_controller extends Home_Core_Controller
         $data['products'] = $this->product_model->get_paginated_user_drafts($data["user"]->id, $pagination['per_page'], $pagination['offset']);
         $data["user_session"] = get_user_session();
 
-        $this->load->view('partials/_header_mobile', $data);
+        $this->load->view('partials/_header', $data);
         $this->load->view('profile/drafts', $data);
         $this->load->view('partials/_footer');
     }
@@ -273,7 +273,7 @@ class Profile_controller extends Home_Core_Controller
         $data['mreview_count'] = $this->user_review_model->get_review_count($data["user"]->id);
         $data['mreviews'] = $this->user_review_model->get_limited_reviews($data["user"]->id, 5);
         $data['mreview_limit'] = 5;
-        $this->load->view('partials/_header_mobile', $data);
+        $this->load->view('partials/_header', $data);
         $this->load->view('profile/downloads', $data);
         $this->load->view('partials/_footer');
     }
@@ -316,7 +316,7 @@ class Profile_controller extends Home_Core_Controller
         $data['mreview_count'] = $this->user_review_model->get_review_count($data["user"]->id);
         $data['mreviews'] = $this->user_review_model->get_limited_reviews($data["user"]->id, 5);
         $data['mreview_limit'] = 5;
-        $this->load->view('partials/_header_mobile', $data);
+        $this->load->view('partials/_header', $data);
         $this->load->view('profile/pending_products', $data);
         $this->load->view('partials/_footer');
     }
@@ -341,7 +341,7 @@ class Profile_controller extends Home_Core_Controller
         $data["user_session"] = get_user_session();
 
         
-        $this->load->view('partials/_header_mobile', $data);
+        $this->load->view('partials/_header', $data);
         $this->load->view('profile/favorites', $data);
         $this->load->view('partials/_footer');
     }
@@ -367,7 +367,7 @@ class Profile_controller extends Home_Core_Controller
         $data["active_tab"] = "followers";
         $data["followers"] = $this->profile_model->get_followers($data["user"]->id);
 
-        $this->load->view('partials/_header_mobile', $data);
+        $this->load->view('partials/_header', $data);
         $this->load->view('profile/followers', $data);
         $this->load->view('partials/_footer');
     }
@@ -390,7 +390,7 @@ class Profile_controller extends Home_Core_Controller
         $data["active_tab"] = "following";
         $data["following_users"] = $this->profile_model->get_following_users($data["user"]->id);
 
-        $this->load->view('partials/_header_mobile', $data);
+        $this->load->view('partials/_header', $data);
         $this->load->view('profile/following', $data);
         $this->load->view('partials/_footer');
     }
@@ -427,7 +427,7 @@ class Profile_controller extends Home_Core_Controller
         $data['reviews'] = $this->user_review_model->get_limited_reviews($data["user"]->id, 5);
         $data['review_limit'] = 5;
 
-        $this->load->view('partials/_header_mobile', $data);
+        $this->load->view('partials/_header', $data);
         $this->load->view('profile/reviews', $data);
         $this->load->view('partials/_footer');
     }
@@ -451,7 +451,7 @@ class Profile_controller extends Home_Core_Controller
         $data["products"] = $this->product_model->get_user_favorited_products($data["user"]->id);
         $data["user_session"] = get_user_session();
 
-        $this->load->view('partials/_header_mobile', $data);
+        $this->load->view('partials/_header', $data);
         $this->load->view('account/favorites', $data);
         $this->load->view('partials/_footer');
     }
@@ -472,7 +472,7 @@ class Profile_controller extends Home_Core_Controller
         $data["active_tab"] = "followers";
         $data["followers"] = $this->profile_model->get_followers($data["user"]->id);
 
-        $this->load->view('partials/_header_mobile', $data);
+        $this->load->view('partials/_header', $data);
         $this->load->view('account/followers', $data);
         $this->load->view('partials/_footer');
     }
@@ -493,7 +493,7 @@ class Profile_controller extends Home_Core_Controller
         $data["active_tab"] = "following";
         $data["following_users"] = $this->profile_model->get_following_users($data["user"]->id);
 
-        $this->load->view('partials/_header_mobile', $data);
+        $this->load->view('partials/_header', $data);
         $this->load->view('account/following', $data);
         $this->load->view('partials/_footer');
     }
@@ -526,7 +526,7 @@ class Profile_controller extends Home_Core_Controller
         $data['reviews'] = $this->user_review_model->get_limited_reviews($data["user"]->id, 5);
         $data['review_limit'] = 5;
 
-        $this->load->view('partials/_header_mobile', $data);
+        $this->load->view('partials/_header', $data);
         $this->load->view('account/reviews', $data);
         $this->load->view('partials/_footer');
     }
@@ -560,7 +560,7 @@ class Profile_controller extends Home_Core_Controller
             $data['state_button'] = $this->location_model->get_state_button_string($data['user']);
         }
 
-        $this->load->view('partials/_header_mobile', $data);
+        $this->load->view('partials/_header', $data);
         $this->load->view('settings/settings', $data);
         $this->load->view('partials/_footer');
     }
@@ -594,7 +594,7 @@ class Profile_controller extends Home_Core_Controller
             $data['state_button'] = $this->location_model->get_state_button_string($data['user']);
         }
 
-        $this->load->view('partials/_header_mobile', $data);
+        $this->load->view('partials/_header', $data);
         $this->load->view('settings/update_profile', $data);
         $this->load->view('partials/_footer');
     }
@@ -690,7 +690,7 @@ class Profile_controller extends Home_Core_Controller
         }
         $data["active_tab"] = "shop_settings";
         $data["user_session"] = get_user_session();
-        $this->load->view('partials/_header_mobile', $data);
+        $this->load->view('partials/_header', $data);
         $this->load->view('settings/shop_settings', $data);
         $this->load->view('partials/_footer');
     }
@@ -745,7 +745,7 @@ class Profile_controller extends Home_Core_Controller
             $data['state_button'] = $this->location_model->get_state_button_string($data['user']);
         }
 
-        $this->load->view('partials/_header_mobile', $data);
+        $this->load->view('partials/_header', $data);
         $this->load->view('settings/contact_informations', $data);
         $this->load->view('partials/_footer');
     }
@@ -787,7 +787,7 @@ class Profile_controller extends Home_Core_Controller
         $data["active_tab"] = "shipping_address";
         $data["countries"] = $this->location_model->get_countries();
         $data["user_session"] = get_user_session();
-        $this->load->view('partials/_header_mobile', $data);
+        $this->load->view('partials/_header', $data);
         $this->load->view('settings/shipping_address', $data);
         $this->load->view('partials/_footer');
     }
@@ -829,7 +829,7 @@ class Profile_controller extends Home_Core_Controller
         }
         $data["active_tab"] = "social_media";
         $data["user_session"] = get_user_session();
-        $this->load->view('partials/_header_mobile', $data);
+        $this->load->view('partials/_header', $data);
         $this->load->view('settings/social_media', $data);
         $this->load->view('partials/_footer');
     }
@@ -871,7 +871,7 @@ class Profile_controller extends Home_Core_Controller
         }
         $data["active_tab"] = "change_password";
 
-        $this->load->view('partials/_header_mobile', $data);
+        $this->load->view('partials/_header', $data);
         $this->load->view('settings/change_password', $data);
         $this->load->view('partials/_footer');
     }

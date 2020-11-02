@@ -3,12 +3,13 @@
 <div class="top-search-bar mobile-search-form">
     <?php
     $placeholder = trans("search"); ?>
-    <div style="padding: 5px;">
+    <div style="padding: 5px 8px;">
         <div class="clearable-parent">
             <div style="white-space: nowrap;color: #b0b3b6;font-size: 12px;font-weight: bold;">
                 <button class=" has-menu" header-text="<?php echo trans('all_states');?>" type="button" data-ajax="<?php echo $general_settings->default_product_location;?>" data-type="<?= $is_hkm_one_country ? ('state') : ('country') ?>" data-url="search_location">
                     <i class="fas fa-map-marker-alt" style="font-size: 16px;"></i>
                     <span class="home-location-text"><?php echo trans('all_sudan'); ?></span>
+                    <i class="fas fa-chevron-down"></i>
                 </button>
             </div>
             <input id="form-search" type="text" oninput="this.form.search.value = this.value" form="formsearchzolmarket" placeholder="<?php echo html_escape($placeholder); ?>" autocomplete="off" maxlength="300" data-window="SearchWindowFilter" class="has-search-product home-search-location" pattern=".*\S+.*" data-url="menu_search">

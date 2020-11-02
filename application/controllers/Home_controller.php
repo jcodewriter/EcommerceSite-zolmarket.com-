@@ -10,7 +10,7 @@ class Home_controller extends Home_Core_Controller
         $this->blog_paginate_per_page = 12;
         $this->promoted_products_limit = $this->general_settings->index_promoted_products_count;
     }
-    
+
     /**
      * Index
      */
@@ -19,6 +19,7 @@ class Home_controller extends Home_Core_Controller
         $data['title'] = $this->settings->homepage_title;
         $data['description'] = $this->settings->site_description;
         $data['keywords'] = $this->settings->keywords;
+        $data['is_mobile_header'] = true;
 
         if ($this->general_settings->default_product_location != 0) {
             $data["is_hkm_one_country"] = true;
@@ -258,7 +259,7 @@ class Home_controller extends Home_Core_Controller
 
             $this->load->model('upload_model');
             // print_r($data); exit;
-            $this->load->view('partials/_header_mobile', $data);
+            $this->load->view('partials/_header', $data);
             $this->load->view('product/details/product', $data);
             $this->load->view('partials/_footer');
             //increase hit

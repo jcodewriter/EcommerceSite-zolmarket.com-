@@ -10649,6 +10649,9 @@ span.n-user.span-warp-text {
         border-radius: 5px;
         border: 1px solid #e9ecef;
     }
+    #footer {
+        margin-top: 10px;
+    }
 }
 .cat-header div {
     display: table-cell;
@@ -10786,8 +10789,9 @@ h4.col-md-12.title {
     display: table;
     width: 100%;
     height: 46px;
-    background-color: #eff0f1;
+    background-color: #ffffff;
     border-radius: 5px;
+    border: 1px solid #b0b3b6;
 }
 .popup-location-menu{
     display: table-cell;
@@ -10801,12 +10805,17 @@ h4.col-md-12.title {
 .home-search-location {
     width: 100%;
     height: 46px;
-    background: #eff0f1;
+    /* background: #eff0f1; */
     border: 0;
     outline: 0;
     text-align: right;
     color: #555
 }
+
+.clearable-parent button {
+    background: #fff;
+}
+
 .clearable-parent div{
     display: table-cell;
     /* width: 40px; */

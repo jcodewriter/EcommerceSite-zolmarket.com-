@@ -204,26 +204,7 @@
             <div style="max-width: 20%; width: 20%">
                 <a href="<?php echo lang_base_url(); ?>" class="f-btn <?php echo $this->selected_btn == "f-btn-home" ? "f-btn-selected" : ""; ?>" name="f-btn-home">
                     <div class="f-btn-icon">
-                        <svg version="1.1" class="<?php echo $this->selected_btn == "f-btn-home" ? "f-btn-show" : "f-btn-hidden"; ?> fill" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 477.867 477.867" style="enable-background:new 0 0 477.867 477.867;" xml:space="preserve">
-                            <g>
-                                <path d="M341.333,204.425c-30.466,22.376-71.934,22.376-102.4,0c-30.466,22.376-71.934,22.376-102.4,0
-			c-30.172,23.257-72.228,23.257-102.4,0c0,0.137,0,0.239,0,0.375v221.867c0,28.277,22.923,51.2,51.2,51.2h85.333V290.133
-			c0-9.426,7.641-17.067,17.067-17.067h102.4c9.426,0,17.067,7.641,17.067,17.067v187.733h85.333c28.277,0,51.2-22.923,51.2-51.2
-            V204.8c0-0.137,0-0.239,0-0.375C413.562,227.682,371.505,227.682,341.333,204.425z" />
-                            </g>
-                            <g>
-                                <path d="M34.133,136.533c0,28.277,22.923,51.2,51.2,51.2c14.759-0.009,28.774-6.483,38.349-17.715
-			c6.679-7.097,17.848-7.437,24.945-0.757c0.26,0.245,0.513,0.497,0.757,0.757c18.976,21.18,51.529,22.965,72.709,3.989
-			c1.402-1.256,2.733-2.587,3.989-3.989c6.679-7.097,17.848-7.437,24.945-0.757c0.26,0.245,0.513,0.497,0.757,0.757
-			c18.977,21.18,51.529,22.965,72.709,3.989c1.401-1.256,2.733-2.587,3.989-3.989c6.679-7.097,17.848-7.437,24.945-0.757
-            c0.26,0.245,0.513,0.497,0.757,0.757c9.575,11.232,23.589,17.706,38.349,17.715c28.277,0,51.2-22.923,51.2-51.2H34.133z" />
-                            </g>
-                            <path d="M51.2,0c-7.349-0.002-13.874,4.701-16.196,11.674L4.762,102.4h114.705V0H51.2z" />
-                            <rect x="153.6" y="0" width="68.267" height="102.4" />
-                            <path d="M442.863,11.674C440.541,4.701,434.016-0.002,426.667,0H358.4v102.4h114.705L442.863,11.674z" />
-                            <rect x="256" y="0" width="68.267" height="102.4" />
-                        </svg>
-                        <svg version="1.1" class="<?php echo $this->selected_btn == "f-btn-home" ? "f-btn-hidden" : "f-btn-show"; ?> outline" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 477.867 477.867" style="enable-background:new 0 0 477.867 477.867;" xml:space="preserve">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 477.867 477.867" style="enable-background:new 0 0 477.867 477.867;" xml:space="preserve">
                             <path d="M476.996,114.074l-34.133-102.4C440.541,4.701,434.016-0.002,426.667,0H51.2c-7.349-0.002-13.874,4.701-16.196,11.674
 			L0.87,114.074c-0.526,1.594-0.82,3.255-0.87,4.932c0,0.171,0,0.29,0,0.461v17.067c0.062,26.74,12.707,51.892,34.133,67.891
 			c0,0.137,0,0.239,0,0.375v221.867c0,28.277,22.923,51.2,51.2,51.2h307.2c28.277,0,51.2-22.923,51.2-51.2V204.8
@@ -249,10 +230,7 @@
                 <div style="max-width: 20%; width: 20%">
                     <a href="<?php echo lang_base_url(); ?>messages" class="f-btn <?php echo $this->selected_btn == "f-btn-message" ? "f-btn-selected" : ""; ?>" name="f-btn-message">
                         <div class="f-btn-icon">
-                            <svg aria-hidden="true" class="<?php echo $this->selected_btn == "f-btn-message" ? "f-btn-show" : "f-btn-hidden"; ?> fill" focusable="false" data-prefix="fas" data-icon="comment-dots" class="svg-inline--fa fa-comment-dots fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                <path d="M256 32C114.6 32 0 125.1 0 240c0 49.6 21.4 95 57 130.7C44.5 421.1 2.7 466 2.2 466.5c-2.2 2.3-2.8 5.7-1.5 8.7S4.8 480 8 480c66.3 0 116-31.8 140.6-51.4 32.7 12.3 69 19.4 107.4 19.4 141.4 0 256-93.1 256-208S397.4 32 256 32zM128 272c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128 0c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128 0c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"></path>
-                            </svg>
-                            <svg aria-hidden="true" class="<?php echo $this->selected_btn == "f-btn-message" ? "f-btn-hidden" : "f-btn-show"; ?> outline" focusable="false" data-prefix="far" data-icon="comment-dots" class="svg-inline--fa fa-comment-dots fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="comment-dots" class="svg-inline--fa fa-comment-dots fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                 <path d="M144 208c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm112 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm112 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zM256 32C114.6 32 0 125.1 0 240c0 47.6 19.9 91.2 52.9 126.3C38 405.7 7 439.1 6.5 439.5c-6.6 7-8.4 17.2-4.6 26S14.4 480 24 480c61.5 0 110-25.7 139.1-46.3C192 442.8 223.2 448 256 448c141.4 0 256-93.1 256-208S397.4 32 256 32zm0 368c-26.7 0-53.1-4.1-78.4-12.1l-22.7-7.2-19.5 13.8c-14.3 10.1-33.9 21.4-57.5 29 7.3-12.1 14.4-25.7 19.9-40.2l10.6-28.1-20.6-21.8C69.7 314.1 48 282.2 48 240c0-88.2 93.3-160 208-160s208 71.8 208 160-93.3 160-208 160z"></path>
                             </svg>
                         </div>
@@ -266,10 +244,7 @@
                 <div style="max-width: 20%; width: 20%">
                     <a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal" class="f-btn <?php echo $this->selected_btn == "f-btn-message" ? "f-btn-selected" : ""; ?>" name="f-btn-message">
                         <div class="f-btn-icon">
-                            <svg aria-hidden="true" class="<?php echo $this->selected_btn == "f-btn-message" ? "f-btn-show" : "f-btn-hidden"; ?> fill" focusable="false" data-prefix="fas" data-icon="comment-dots" class="svg-inline--fa fa-comment-dots fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                <path d="M256 32C114.6 32 0 125.1 0 240c0 49.6 21.4 95 57 130.7C44.5 421.1 2.7 466 2.2 466.5c-2.2 2.3-2.8 5.7-1.5 8.7S4.8 480 8 480c66.3 0 116-31.8 140.6-51.4 32.7 12.3 69 19.4 107.4 19.4 141.4 0 256-93.1 256-208S397.4 32 256 32zM128 272c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128 0c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128 0c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"></path>
-                            </svg>
-                            <svg aria-hidden="true" class="<?php echo $this->selected_btn == "f-btn-message" ? "f-btn-hidden" : "f-btn-show"; ?> outline" focusable="false" data-prefix="far" data-icon="comment-dots" class="svg-inline--fa fa-comment-dots fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="comment-dots" class="svg-inline--fa fa-comment-dots fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                 <path d="M144 208c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm112 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm112 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zM256 32C114.6 32 0 125.1 0 240c0 47.6 19.9 91.2 52.9 126.3C38 405.7 7 439.1 6.5 439.5c-6.6 7-8.4 17.2-4.6 26S14.4 480 24 480c61.5 0 110-25.7 139.1-46.3C192 442.8 223.2 448 256 448c141.4 0 256-93.1 256-208S397.4 32 256 32zm0 368c-26.7 0-53.1-4.1-78.4-12.1l-22.7-7.2-19.5 13.8c-14.3 10.1-33.9 21.4-57.5 29 7.3-12.1 14.4-25.7 19.9-40.2l10.6-28.1-20.6-21.8C69.7 314.1 48 282.2 48 240c0-88.2 93.3-160 208-160s208 71.8 208 160-93.3 160-208 160z"></path>
                             </svg>
                         </div>
@@ -282,9 +257,20 @@
                 <div style="max-width: 20%; width: 20%">
                     <a href="<?php echo lang_base_url(); ?>sell-now" class="f-btn <?php echo $this->selected_btn == "f-btn-add" ? "f-btn-selected" : ""; ?>" name="f-btn-add">
                         <div class="f-btn-icon">
-                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 185 185" style="enable-background:new 0 0 185 185;" xml:space="preserve">
-                                <path d="M15,60.46H0V0h60.46v15H15V60.46z M170,170h-45.46v15H185v-60.46h-15V170z M124.54,15H170v45.46h15V0h-60.46V15z M15,124.54
-	                                H0V185h60.46v-15H15V124.54z M138.906,85H100V46.093H85V85H46.094v15H85v38.907h15V100h38.906V85z" />
+                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 214.2 214.2" style="enable-background:new 0 0 214.2 214.2;" xml:space="preserve">
+                                <path d="M194.39,55.534h-39.024l-8.733-32.756c-0.463-1.735-2.036-2.944-3.833-2.944H71.4c-1.797,0-3.37,1.209-3.833,2.944
+				l-8.733,32.756H19.81C8.886,55.534,0,64.425,0,75.355v99.19c0,10.929,8.886,19.821,19.81,19.821h174.58
+				c10.924,0,19.81-8.892,19.81-19.822v-99.19C214.2,64.425,205.314,55.534,194.39,55.534z M194.39,186.434H19.81
+				c-6.548,0-11.877-5.332-11.877-11.889v-99.19c0-6.557,5.328-11.888,11.877-11.888h42.07c1.797,0,3.37-1.209,3.833-2.944
+				l8.733-32.756h65.307l8.733,32.756c0.463,1.735,2.035,2.944,3.833,2.944h42.07c6.548,0,11.877,5.332,11.877,11.888v99.19h0.001
+				C206.267,181.102,200.939,186.434,194.39,186.434z" />
+                                <rect x="83.3" y="35.701" width="47.6" height="7.933" />
+                                <path d="M107.1,71.401c-28.435,0-51.567,23.132-51.567,51.567s23.132,51.567,51.567,51.567c28.435,0,51.567-23.132,51.567-51.567
+				S135.535,71.401,107.1,71.401z M107.1,166.6c-24.059,0-43.633-19.574-43.633-43.633c0-24.059,19.574-43.634,43.633-43.634
+				c24.059,0,43.633,19.574,43.633,43.633S131.159,166.6,107.1,166.6z" />
+                                <path d="M130.9,119h-19.833V99.167c0-2.19-1.776-3.967-3.967-3.967c-2.19,0-3.967,1.776-3.967,3.967V119H83.3
+				c-2.19,0-3.967,1.776-3.967,3.967c0,2.191,1.776,3.967,3.967,3.967h19.833v19.833c0,2.19,1.776,3.967,3.967,3.967
+				c2.19,0,3.967-1.776,3.967-3.967v-19.833H130.9c2.19,0,3.967-1.776,3.967-3.967C134.867,120.776,133.09,119,130.9,119z" />
                             </svg>
                         </div>
                         <span class="f-btn-text"><?php echo trans("post"); ?></span>
@@ -294,9 +280,20 @@
                 <div style="max-width: 20%; width: 20%">
                     <a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal" class="f-btn <?php echo $this->selected_btn == "f-btn-add" ? "f-btn-selected" : ""; ?>" name="f-btn-add">
                         <div class="f-btn-icon">
-                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 185 185" style="enable-background:new 0 0 185 185;" xml:space="preserve">
-                                <path d="M15,60.46H0V0h60.46v15H15V60.46z M170,170h-45.46v15H185v-60.46h-15V170z M124.54,15H170v45.46h15V0h-60.46V15z M15,124.54
-	                                H0V185h60.46v-15H15V124.54z M138.906,85H100V46.093H85V85H46.094v15H85v38.907h15V100h38.906V85z" />
+                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 214.2 214.2" style="enable-background:new 0 0 214.2 214.2;" xml:space="preserve">
+                                <path d="M194.39,55.534h-39.024l-8.733-32.756c-0.463-1.735-2.036-2.944-3.833-2.944H71.4c-1.797,0-3.37,1.209-3.833,2.944
+				l-8.733,32.756H19.81C8.886,55.534,0,64.425,0,75.355v99.19c0,10.929,8.886,19.821,19.81,19.821h174.58
+				c10.924,0,19.81-8.892,19.81-19.822v-99.19C214.2,64.425,205.314,55.534,194.39,55.534z M194.39,186.434H19.81
+				c-6.548,0-11.877-5.332-11.877-11.889v-99.19c0-6.557,5.328-11.888,11.877-11.888h42.07c1.797,0,3.37-1.209,3.833-2.944
+				l8.733-32.756h65.307l8.733,32.756c0.463,1.735,2.035,2.944,3.833,2.944h42.07c6.548,0,11.877,5.332,11.877,11.888v99.19h0.001
+				C206.267,181.102,200.939,186.434,194.39,186.434z" />
+                                <rect x="83.3" y="35.701" width="47.6" height="7.933" />
+                                <path d="M107.1,71.401c-28.435,0-51.567,23.132-51.567,51.567s23.132,51.567,51.567,51.567c28.435,0,51.567-23.132,51.567-51.567
+				S135.535,71.401,107.1,71.401z M107.1,166.6c-24.059,0-43.633-19.574-43.633-43.633c0-24.059,19.574-43.634,43.633-43.634
+				c24.059,0,43.633,19.574,43.633,43.633S131.159,166.6,107.1,166.6z" />
+                                <path d="M130.9,119h-19.833V99.167c0-2.19-1.776-3.967-3.967-3.967c-2.19,0-3.967,1.776-3.967,3.967V119H83.3
+				c-2.19,0-3.967,1.776-3.967,3.967c0,2.191,1.776,3.967,3.967,3.967h19.833v19.833c0,2.19,1.776,3.967,3.967,3.967
+				c2.19,0,3.967-1.776,3.967-3.967v-19.833H130.9c2.19,0,3.967-1.776,3.967-3.967C134.867,120.776,133.09,119,130.9,119z" />
                             </svg>
                         </div>
                         <span class="f-btn-text"><?php echo trans("post"); ?></span>
@@ -308,16 +305,7 @@
                 <div style="max-width: 20%; width: 20%">
                     <a href="<?php echo lang_base_url(); ?>notifications" class="f-btn <?php echo $this->selected_btn == "f-btn-notification" ? "f-btn-selected" : ""; ?>" name="f-btn-notification">
                         <div class="f-btn-icon">
-                            <svg version="1.1" class="<?php echo $this->selected_btn == "f-btn-notification" ? "f-btn-show" : "f-btn-hidden"; ?> fill" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 479.536 479.536" style="enable-background:new 0 0 479.536 479.536;" xml:space="preserve">
-                                <path d="M475.804,336.286c-0.5-2.7-1.1-5.5-2-8.2c-8.6-24-33.2-38.4-58.3-34.1c-8.3,1.3-16.1-4.4-17.4-12.7l-12.6-80.8
-                c-10.5-68.5-60-124.6-126.6-143.4c-6.1-37.1-41-62.2-78.1-56.2c-36.6,6-61.7,40.2-56.4,76.9c-57.4,36.3-87.8,103.3-77.1,170.5
-                l13.6,86.1c1.2,8.3-4.4,16.1-12.7,17.4c-25.2,3.6-44.2,24.8-45.1,50.3c-0.3,28.3,22.4,51.4,50.7,51.7c0.2,0,0.4,0,0.5,0
-                c2.7,0,5.3-0.2,8-0.6l52.5-8.3c18.3,32.6,59.5,44.3,92.2,26c17.2-9.7,29.4-26.3,33.3-45.7l192.9-30.4
-                C461.104,390.386,480.204,364.186,475.804,336.286z M173.704,445.486c-7.2,0-14.3-2.3-20.1-6.6l47.8-7.5
-                C195.004,440.286,184.704,445.486,173.704,445.486z M219.704,51.386c-6.4-0.2-12.7,0-19.1,0.5c-6.7,0.6-13.3,1.7-19.9,3.1
-                c-1.4,0.3-2.8,0.7-4.2,1c-5.4,1.3-10.6,2.7-15.8,4.5c-0.5,0.1-1.1,0.2-1.6,0.4c3.6-12.9,14.4-22.5,27.6-24.5
-                c1.8-0.3,3.6-0.4,5.4-0.4c11.4,0.1,22.1,5.8,28.4,15.4H219.704z" /></svg>
-                            <svg version="1.1" class="<?php echo $this->selected_btn == "f-btn-notification" ? "f-btn-hidden" : "f-btn-show"; ?> outline" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 479.619 479.619" style="enable-background:new 0 0 479.619 479.619;" xml:space="preserve">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 479.619 479.619" style="enable-background:new 0 0 479.619 479.619;" xml:space="preserve">
                                 <path d="M475.855,336.376c-0.441-2.809-1.116-5.577-2.017-8.275c-8.621-23.991-33.203-38.346-58.334-34.065
 			c-8.313,1.309-16.114-4.368-17.425-12.681l-12.646-80.913c-10.379-68.459-59.835-124.522-126.464-143.36
 			c-6.06-37.088-41.038-62.242-78.127-56.182c-36.598,5.98-61.669,40.163-56.376,76.867
@@ -348,16 +336,7 @@
                 <div style="max-width: 20%; width: 20%">
                     <a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal" class="f-btn <?php echo $this->selected_btn == "f-btn-notification" ? "f-btn-selected" : ""; ?>" name="f-btn-notification">
                         <div class="f-btn-icon">
-                            <svg version="1.1" class="<?php echo $this->selected_btn == "f-btn-notification" ? "" : "f-btn-hidden"; ?> fill" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 479.536 479.536" style="enable-background:new 0 0 479.536 479.536;" xml:space="preserve">
-                                <path d="M475.804,336.286c-0.5-2.7-1.1-5.5-2-8.2c-8.6-24-33.2-38.4-58.3-34.1c-8.3,1.3-16.1-4.4-17.4-12.7l-12.6-80.8
-                c-10.5-68.5-60-124.6-126.6-143.4c-6.1-37.1-41-62.2-78.1-56.2c-36.6,6-61.7,40.2-56.4,76.9c-57.4,36.3-87.8,103.3-77.1,170.5
-                l13.6,86.1c1.2,8.3-4.4,16.1-12.7,17.4c-25.2,3.6-44.2,24.8-45.1,50.3c-0.3,28.3,22.4,51.4,50.7,51.7c0.2,0,0.4,0,0.5,0
-                c2.7,0,5.3-0.2,8-0.6l52.5-8.3c18.3,32.6,59.5,44.3,92.2,26c17.2-9.7,29.4-26.3,33.3-45.7l192.9-30.4
-                C461.104,390.386,480.204,364.186,475.804,336.286z M173.704,445.486c-7.2,0-14.3-2.3-20.1-6.6l47.8-7.5
-                C195.004,440.286,184.704,445.486,173.704,445.486z M219.704,51.386c-6.4-0.2-12.7,0-19.1,0.5c-6.7,0.6-13.3,1.7-19.9,3.1
-                c-1.4,0.3-2.8,0.7-4.2,1c-5.4,1.3-10.6,2.7-15.8,4.5c-0.5,0.1-1.1,0.2-1.6,0.4c3.6-12.9,14.4-22.5,27.6-24.5
-                c1.8-0.3,3.6-0.4,5.4-0.4c11.4,0.1,22.1,5.8,28.4,15.4H219.704z" /></svg>
-                            <svg version="1.1" class="<?php echo $this->selected_btn == "f-btn-notification" ? "f-btn-hidden" : ""; ?> outline" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 479.619 479.619" style="enable-background:new 0 0 479.619 479.619;" xml:space="preserve">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 479.619 479.619" style="enable-background:new 0 0 479.619 479.619;" xml:space="preserve">
                                 <path d="M475.855,336.376c-0.441-2.809-1.116-5.577-2.017-8.275c-8.621-23.991-33.203-38.346-58.334-34.065
 			c-8.313,1.309-16.114-4.368-17.425-12.681l-12.646-80.913c-10.379-68.459-59.835-124.522-126.464-143.36
 			c-6.06-37.088-41.038-62.242-78.127-56.182c-36.598,5.98-61.669,40.163-56.376,76.867
@@ -600,6 +579,7 @@ $this->session->unset_userdata('mds_send_email_to_user'); ?>
     var lang_base_url = '<?php echo lang_base_url(); ?>';
     var thousands_separator = '<?php echo $this->thousands_separator; ?>';
     var lang_folder = '<?php echo $this->selected_lang->folder_name; ?>';
+    var lang_id = '<?php echo $this->selected_lang->id; ?>';
     var fb_app_id = '<?php echo $this->general_settings->facebook_app_id; ?>';
     var csfr_token_name = '<?php echo $this->security->get_csrf_token_name(); ?>';
     var csfr_cookie_name = '<?php echo $this->config->item('csrf_cookie_name'); ?>';

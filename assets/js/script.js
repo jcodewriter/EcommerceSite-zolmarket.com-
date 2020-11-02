@@ -11,9 +11,9 @@ if ($(window).width() < 900) {
     // $('.scrollup').html('<img src="https://www.zolmarket.com/uploads/profile/ezdze4554754444444441247_chat-removebg-preview.png" style="width: 45px;">');
 }
 var back_bubttin_search = false;
-if ((window.location.pathname == "/" || window.location.pathname == "/ar/") && $(window).width() < 900) {
-    $(".mobile-menu").css("display", "table")
-}
+// if ((window.location.pathname == "/" || window.location.pathname == "/ar/" || window.location.pathname == "/se/") && $(window).width() < 900) {
+//     $(".mobile-menu").css("display", "table")
+// }
 if ((window.location.pathname == "/messages" || window.location.pathname == "/messages/" || window.location.pathname.indexOf("/messages") == 3) && $(window).width() < 900) {
     $('.mobile-menu').hide();
     // $('#wrapper').css({"padding-top": "90px"});
@@ -188,17 +188,15 @@ $(document).ready(function () {
     var selectedBtn = window.localStorage.getItem("selectedBtn")
     $(`.${selectedBtn}`).find("svg").css({ fill: '#007bff' })
     $(`.${selectedBtn}`).find("span.f-btn-text").css({ color: '#007bff' })
-    if (localStorage.getItem("app-suggest") == null && (window.location.pathname == '/' || window.location.pathname == '/ar/') && $(window).width() < 900) {
-        app_suggest_show()
-    }
+
     $(window).scroll(function () {
         var scroll = $(window).scrollTop();
-        if (localStorage.getItem("app-suggest") == null) {
+        if (!document.cookie.split('; ').find(row => row.startsWith('is_app_suggest'))) {
             if (scroll >= 80 && $(this).width() < 769) {
                 $(".mobile-menu").addClass("header-fixed-top");
-                if (window.location.pathname == '/' || window.location.pathname == '/ar/') {
-                    $(".top-search-bar").addClass("search-bar-fixed-top");
-                }
+                // if (window.location.pathname == '/' || window.location.pathname == '/ar/') {
+                $(".top-search-bar").addClass("search-bar-fixed-top");
+                // }
             } else {
                 $(".mobile-menu").removeClass('header-fixed-top');
                 $(".top-search-bar").removeClass('search-bar-fixed-top');
@@ -206,9 +204,9 @@ $(document).ready(function () {
         } else {
             if (scroll >= 10 && $(this).width() < 769) {
                 $(".mobile-menu").addClass("header-fixed-top");
-                if (window.location.pathname == '/' || window.location.pathname == '/ar/') {
-                    $(".top-search-bar").addClass("search-bar-fixed-top");
-                }
+                // if (window.location.pathname == '/' || window.location.pathname == '/ar/') {
+                $(".top-search-bar").addClass("search-bar-fixed-top");
+                // }
             } else {
                 $(".mobile-menu").removeClass('header-fixed-top');
                 $(".top-search-bar").removeClass('search-bar-fixed-top');
@@ -217,11 +215,12 @@ $(document).ready(function () {
     });
 
     $('.deep-linked').click(function () {
-        localStorage.setItem("app-suggest", (new Date()).valueOf());
+        document.cookie = "is_app_suggest=1"
         app_suggest_hide();
     })
 
     $('.app-close').click(function () {
+        document.cookie = "is_app_suggest=1"
         app_suggest_hide();
     })
 
@@ -564,11 +563,7 @@ $(document).ready(function () {
 
     $(document).on('click', '.f-btn', function (e) {
         $(".f-btn").find("svg").css({ fill: '#555' })
-        $(".f-btn").find("svg.fill").css({display: 'none'})
-        $(".f-btn").find("svg.outline").css({display: 'initial'})
         $(".f-btn").find("span.f-btn-text").css({ color: '#555' })
-        $(this).find("svg.fill").css({ display: 'initial' })
-        $(this).find("svg.outline").css({ display: 'none' })
         $(this).find("svg").css({ fill: '#007bff' })
         $(this).find("span.f-btn-text").css({ color: '#007bff' })
     })
@@ -1213,12 +1208,7 @@ $(document).ready(function () {
         form[0].classList.add('was-validated');
     });
 
-    // language hkm  */
-    if (window.location.pathname.indexOf("/ar") == 0) {
-        set_site_language(2);
-    } else {
-        set_site_language(1);
-    }
+    set_site_language(lang_id)
 });
 
 //send activation email

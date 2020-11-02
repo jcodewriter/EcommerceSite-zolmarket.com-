@@ -9,7 +9,7 @@ but if not have  subcategory it will be like  link when click concerne url
  */
  ?>
 
-<div class="row">
+<div class="row" style="padding: 0 5px">
     <?php
     foreach ($parent_categories as $category): ?>
         <!--         --><?php // var_dump($category->id);exit();?>
