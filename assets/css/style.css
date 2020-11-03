@@ -10753,8 +10753,13 @@ h4.col-md-12.title {
     width: 100%;
     padding-right: 18px;
 }
+@media (max-width: 767px){
+    .deep-linked{
+        display: table !important;
+    }
+}
 .deep-linked {
-    display: table;
+    display: none;
     /* padding-top: 75px; */
     /* position: fixed; */
     height: 70px;
