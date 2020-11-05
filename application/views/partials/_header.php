@@ -115,7 +115,7 @@
                     <i class="fa fa-times" style="background: #dee2e6;border-radius: 50%;padding: 2px 3px;"></i>
                 </div>
                 <a href="<?php echo $this->is_AndroidOS ? 'https://play.google.com/store/apps/details?id=com.app.zolmarket&hl=en_US' : 'https://apps.apple.com/se/app/zolmarket/id1493982231?l=en'; ?>" class="app-icon">
-                    <img src="<?php echo base_url(); ?>assets/img/230x0w.png" alt="payments" class="img-fluid" style="height: 50px;">
+                    <img src="<?php echo get_favicon($general_settings); ?>" alt="payments" class="img-fluid" style="height: 50px;">
                 </a>
                 <div href="" class="app-details">
                     <h6 style="font-weight: 700;font-size: .8125rem;color: #030a17;margin-bottom:0 !important"><?php echo trans("za"); ?></h6>
@@ -329,10 +329,35 @@
         <?php if (isset($is_mobile_header)) : ?>
             <div class="mobile-menu">
                 <div class="mobile-header-item mobile-header-item-logo  pl-2">
+
                     <a href="<?php echo lang_base_url(); ?>" class="mobile-logo"><img src="<?php echo get_logo($general_settings); ?>" alt="logo"></a>
                 </div>
                 <div class="mobile-header-item mobile-header-item-logo text-right">
+                    <div class="d-inline-block mr-2">
+                        <?php if ($general_settings->multilingual_system == 1 && count($languages) > 1) : ?>
+                            <div class="dropdown language-dropdown">
+                                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-language" style="margin-right: 2px;"></i>
+                                    <?php echo html_escape(ucfirst($selected_lang->short_form)); ?>&nbsp;<span class="icon-arrow-down"></span>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <?php foreach ($languages as $language) :
+                                        $lang_url = base_url() . $language->short_form . "/";
+                                        if ($language->id == $this->general_settings->site_lang) {
+                                            $lang_url = base_url();
+                                        } ?>
+                                        <a href="<?php echo $lang_url; ?>" class="<?php echo ($language->id == $selected_lang->id) ? 'selected' : ''; ?> " class="dropdown-item">
+                                            <?php echo $language->name; ?>
+                                        </a>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
 
+                        <?php endif; ?>
+                    </div>
+                    <div class="d-inline-block mr-3">
+                        <a href="<?php echo lang_base_url(); ?>contact" style="font-size: 18px"><i class="icon-mail"></i></a>
+                    </div>
                     <?php if ($this->auth_check) : ?>
                         <div class="d-inline-block mr-3 text-center">
                             <!-- <div class="cart-link-mobile header-cart"> -->

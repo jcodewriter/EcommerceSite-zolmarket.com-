@@ -23,6 +23,7 @@ class Product_controller extends Home_Core_Controller
      */
     public function start_selling()
     {
+        $this->selected_btn = "f-btn-add";
         //check auth
         if (!auth_check()) {
             redirect(lang_base_url());
@@ -65,6 +66,7 @@ class Product_controller extends Home_Core_Controller
      */
     public function start_selling_post()
     {
+        $this->selected_btn = "f-btn-add";
         //check auth
         if (!auth_check()) {
             redirect(lang_base_url());
@@ -125,6 +127,7 @@ class Product_controller extends Home_Core_Controller
 
     public function add_post()
     {
+        $this->selected_btn = "f-btn-add";
         $this->auth_model->is_approval();
         redirect(lang_base_url() . '/sell-now');
     }

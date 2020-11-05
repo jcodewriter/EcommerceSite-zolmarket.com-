@@ -551,7 +551,7 @@ class Category_model extends CI_Model
         $this->db->where('categories_lang.lang_id', $lang_id);
         $query = $this->db->get('categories_lang');
         $row = $query->row();
-        return $row->main_slug;
+        return @$row->main_slug;
     }
     
     

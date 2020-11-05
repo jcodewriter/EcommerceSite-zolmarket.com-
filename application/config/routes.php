@@ -182,11 +182,6 @@ $route['location'] = 'home_controller/location';
 
 $route['link-category/(.*)'] = 'product_controller/link_category/$1';
 
-// new 101 => extractor
-
-$route['extractor']['GET'] = 'extractor_controller/index';
-$route['extractor/save']['POST'] = 'extractor_controller/save';
-$route['extractor/get_custom_fields']['GET'] = 'extractor_controller/get_custom_fields';
 
 
 /*

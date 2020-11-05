@@ -39,7 +39,7 @@ class Profile_controller extends Home_Core_Controller
 
 
         //set pagination
-        // $pagination = $this->paginate(generate_profile_url($data["user"]), $this->product_model->get_user_products_count($data["user"]->slug), $this->pagination_per_page);
+        $pagination = $this->paginate(generate_profile_url($data["user"]), $this->product_model->get_user_products_count($data["user"]->slug), $this->pagination_per_page);
         $data['products'] = $this->product_model->get_paginated_user_products($data["user"]->slug, 60, 0);
         // $data['mproducts'] = $this->product_model->get_paginated_user_products($data["user"]->slug, '1000000000000000000', '0');
         // $data['mpending_products'] = $this->product_model->get_paginated_user_pending_products($data["user"]->id, '1000000000000000000', '0');

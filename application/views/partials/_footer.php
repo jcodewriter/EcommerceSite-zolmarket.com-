@@ -235,6 +235,7 @@
                             </svg>
                         </div>
                         <span class="f-btn-text"><?php echo trans("chat"); ?></span>
+                        <span class="span-message-count" style="position:absolute;left:8px;top:-5px">5</span>
                         <?php if ($unread_message_count > 0) : ?>
                             <span class="span-message-count" style="position:absolute;left:8px;top:-5px"><?php echo $unread_message_count; ?></span>
                         <?php endif; ?>
@@ -326,6 +327,7 @@
 			C443.075,343.541,442.493,348.857,439.824,353.207z" /></svg>
                         </div>
                         <span class="f-btn-text"><?php echo trans("notification"); ?></span>
+                        <span class="notification">3</span>
                         <?php $notification_count = get_notification_count();
                         if ($notification_count > 0) : ?>
                             <span class="notification"><?php echo $notification_count; ?></span>
