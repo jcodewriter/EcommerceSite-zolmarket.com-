@@ -1037,4 +1037,6 @@ $lang["all_states"] = "All states";
 $lang["all_cities"] = "All cities";
 $lang["all_states_cities"] = "All states and cities";
 $lang["all_sudan"] = "All Sudan";
+$lang["add_from_ads_result_page"] = "Add from Ads Result Page";
+$lang["remove_from_ads_result_page"] = "Remove from Ads Result Page";
 ?>

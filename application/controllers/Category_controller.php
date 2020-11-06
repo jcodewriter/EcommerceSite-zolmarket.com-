@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Category_controller extends Admin_Core_Controller
 {
@@ -10,23 +10,23 @@ class Category_controller extends Admin_Core_Controller
         if (!is_admin()) {
             redirect(admin_url() . 'login');
         }
-		if ($this->input->is_ajax_request()) {
-			$lang_base_url = $this->input->post('lang_base_url', true);
-			if (!empty($lang_base_url)) {
-				$lang_base_url = substr($lang_base_url, 0, -1);
-				$lang_segments = explode('/', $lang_base_url);
-				$lang_segment = end($lang_segments);
-				$this->lang_base_url = $lang_base_url . "/";
-				foreach ($this->languages as $lang) {
-					if ($lang_segment == $lang->short_form) {
-						if ($this->general_settings->multilingual_system == 1):
+        if ($this->input->is_ajax_request()) {
+            $lang_base_url = $this->input->post('lang_base_url', true);
+            if (!empty($lang_base_url)) {
+                $lang_base_url = substr($lang_base_url, 0, -1);
+                $lang_segments = explode('/', $lang_base_url);
+                $lang_segment = end($lang_segments);
+                $this->lang_base_url = $lang_base_url . "/";
+                foreach ($this->languages as $lang) {
+                    if ($lang_segment == $lang->short_form) {
+                        if ($this->general_settings->multilingual_system == 1) :
 
-							$this->selected_lang = $lang;
-						endif;
-					}
-				}
-			}
-		}
+                            $this->selected_lang = $lang;
+                        endif;
+                    }
+                }
+            }
+        }
     }
 
 
@@ -92,9 +92,9 @@ class Category_controller extends Admin_Core_Controller
         $data['admin_settings'] = get_admin_settings();
         //get category
         $data['category'] = $this->category_model->get_category($id);
-		$data["product_categories"] = $this->category_model->get_all_parent_categories($id);
-		$data['parent_categories'] = $this->category_model->get_parent_categories();
-//        print_r(  $data['c_parents'][1]); exit();
+        $data["product_categories"] = $this->category_model->get_all_parent_categories($id);
+        $data['parent_categories'] = $this->category_model->get_parent_categories();
+        //        print_r(  $data['c_parents'][1]); exit();
 
         $this->load->view('admin/includes/_header', $data);
         $this->load->view('admin/category/update_category', $data);
@@ -148,7 +148,7 @@ class Category_controller extends Admin_Core_Controller
     public function get_categories_by_lang()
     {
         $lang_id = $this->input->post('lang_id', true);
-        if (!empty($lang_id)):
+        if (!empty($lang_id)) :
             $categories = $this->category_model->get_categories_by_lang($lang_id);
             foreach ($categories as $item) {
                 echo '<option value="' . $item->id . '">' . $item->name . '</option>';
@@ -255,11 +255,11 @@ class Category_controller extends Admin_Core_Controller
         $data['title'] = trans("custom_fields");
         $data['fields'] = $this->field_model->get_fields();
         $data['admin_settings'] = get_admin_settings();
-	  
-	   	/* hkm  */
-		$this->load->model('Categoryofcustomfields_model');
-	    $data['ct_cs_fields'] = $this->Categoryofcustomfields_model->get_category_of_custom_fields();
-		
+
+        /* hkm  */
+        $this->load->model('Categoryofcustomfields_model');
+        $data['ct_cs_fields'] = $this->Categoryofcustomfields_model->get_category_of_custom_fields();
+
         $this->load->view('admin/includes/_header', $data);
         $this->load->view('admin/category/custom_fields', $data);
         $this->load->view('admin/includes/_footer');
@@ -285,6 +285,20 @@ class Category_controller extends Admin_Core_Controller
     {
         $id = $this->input->post('id', true);
         if ($this->field_model->add_remove_custom_field_filters($id)) {
+            $this->session->set_flashdata('success', trans("msg_updated"));
+        } else {
+            $this->session->set_flashdata('error', trans("msg_error"));
+        }
+        redirect($this->agent->referrer());
+    }
+
+    /**
+     * Add Remove Ads Result Page
+     */
+    public function add_remove_ads_result_page_post()
+    {
+        $id = $this->input->post('id', true);
+        if ($this->field_model->add_remove_ads_result_page($id)) {
             $this->session->set_flashdata('success', trans("msg_updated"));
         } else {
             $this->session->set_flashdata('error', trans("msg_error"));

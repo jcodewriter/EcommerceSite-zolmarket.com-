@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Field_model extends CI_Model
 {
@@ -449,6 +449,26 @@ class Field_model extends CI_Model
         }
     }
 
+    //add remove ads result page
+    public function add_remove_ads_result_page($field_id)
+    {
+        $field_id = clean_number($field_id);
+        $field = $this->get_field($field_id);
+        if (!empty($field)) {
+            if ($field->is_ads_result_page == 1) {
+                $data = array(
+                    "is_ads_result_page" => 0
+                );
+            } else {
+                $data = array(
+                    "is_ads_result_page" => 1
+                );
+            }
+            $this->db->where('id', $field->id);
+            return $this->db->update('custom_fields', $data);
+        }
+    }
+
     //delete field options
     public function delete_field_options($field_id)
     {
@@ -515,5 +535,4 @@ class Field_model extends CI_Model
         }
         return false;
     }
-
 }
