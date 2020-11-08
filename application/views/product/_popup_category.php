@@ -30,7 +30,7 @@
                             <?php endif;?>
                                 <div class="link-icon" style="display: table-cell;vertical-align: middle">
                                     <i class="fa fa-th-large float-none fa-fw fa-lg" aria-hidden="true" style="width: 45px;color:#fd7e14;text-align: left;margin-left:10px"></i>
-                                    <span class="titre"><?php echo trans('all')?></span>
+                                    <span class="titre" style="font-weight:600"><?php echo trans('all')?></span>
                                 </div>
                                 <div style="display: table-cell;vertical-align: middle;text-align:right">
                                     <i class="icon-arrow-right"></i>
@@ -46,7 +46,7 @@
                                 <?php endif;?>    
                                     <div class="link-icon" style="display: table-cell;vertical-align: middle">
                                         <img src="<?php echo get_category_image_url($item, 'icon'); ?>" alt="" style="height: 50px;width:50px;">
-                                        <span class="titre" style="padding-left: 10px;"><?php echo $item->name?></span>
+                                        <span class="titre" style="padding-left: 10px;font-weight:600"><?php echo $item->name?></span>
                                     </div>
                                     <div style="display: table-cell;vertical-align: middle;text-align:right">
                                         <i class="icon-arrow-right"></i>
