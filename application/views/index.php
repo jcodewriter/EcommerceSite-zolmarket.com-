@@ -13,7 +13,7 @@
                 </button>
             </div>
             <input id="form-search" type="text" oninput="this.form.search.value = this.value" form="formsearchzolmarket" placeholder="<?php echo html_escape($placeholder); ?>" autocomplete="off" maxlength="300" data-window="SearchWindowFilter" class="has-search-product home-search-location" pattern=".*\S+.*" data-url="menu_search">
-            <div><button onclick="this.form.submit();" form="formsearchzolmarket" class="icon-search" style="color: #404040"></button></div>
+            <div><button onclick="this.form.submit();" form="formsearchzolmarket" class="icon-search" style="color: #b0b3b6"></button></div>
         </div>
     </div>
     <div class="clearable-content">
