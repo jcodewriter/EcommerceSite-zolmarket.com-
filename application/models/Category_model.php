@@ -708,6 +708,29 @@ class Category_model extends CI_Model
         return $data;
     }
 
+    public function ads_result_custom_field_data($id) {
+        $select = "SELECT t0.category_id, t1.id, t1.field_type, t1.product_filter_key, t2.name FROM custom_fields_category AS t0
+                    JOIN custom_fields AS t1 ON t1.is_ads_result_page = 1 AND t0.category_id = $id AND t0.field_id = t1.id
+                    JOIN custom_fields_lang AS t2 ON t1.id = t2.field_id AND t2.lang_id = ".$this->selected_lang->id;
+        $query = $this->db->query($select);
+        $rows = $query->result();
+        $data = [];
+        foreach ($rows as $key => $row){
+            $data[$key]["id"] = $row->id;
+            $data[$key]["name"] = $row->name;
+            $data[$key]["field_type"] = $row->field_type;
+            $data[$key]["category_id"] = $row->category_id;
+            $data[$key]["product_filter_key"] = $row->product_filter_key;
+            
+            $this->db->where("field_id", $row->id);
+            $this->db->where("lang_id", $this->selected_lang->id);
+            $query = $this->db->get("custom_fields_options");
+            $r_array = $query->result_array();
+            $data[$key]["data"] = $r_array;
+        }
+        return $data;
+    }
+
     public function get_filter_items($param) {
         $select = "select *from custom_fields_options where $param and lang_id = ".$this->selected_lang->id;
         $query = $this->db->query($select);

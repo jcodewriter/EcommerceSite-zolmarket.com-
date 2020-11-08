@@ -60,7 +60,7 @@
                                                 <div class="ads_result_page" style="margin-top: 5px">
                                                     <?php echo form_open_multipart('category_controller/add_remove_ads_result_page_post'); ?>
                                                     <input type="hidden" name="id" value="<?php echo $item->id; ?>">
-                                                    <?php if ($item->field_type == 'checkbox' || $item->field_type == 'radio_button' || $item->field_type == 'dropdown' || $item->field_type == 'popup') :
+                                                    <?php if ($item->field_type == 'dropdown' || $item->field_type == 'popup') :
                                                         if ($item->is_ads_result_page == 1) : ?>
                                                             <button class="btn btn-sm btn-danger"><i class="fa fa-times"></i>&nbsp;<?php echo trans('remove_from_ads_result_page'); ?></button>
                                                         <?php else : ?>

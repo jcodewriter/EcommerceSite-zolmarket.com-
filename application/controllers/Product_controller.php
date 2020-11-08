@@ -686,7 +686,7 @@ class Product_controller extends Home_Core_Controller
                  $data["is_hkm_one_country"] = false;
             }
             
-
+            $data["custom_field_data"] = $this->category_model->ads_result_custom_field_data($category->id);
             $data["parent_categories"] = $this->category_model->get_all_parent_categories($category->id);
 			$endcat = end($data["parent_categories"]);
 			$subcats = get_allsubcategories_by_parent_id($endcat->id);

@@ -63,7 +63,7 @@ if ($page != 'product') {
                 <input type="text" oninput="this.form.search.value = this.value" form="form-product-filters" autocomplete="off" maxlength="300" data-url="menu_search" data-query="<?= htmlspecialchars($query_string) ?>" pattern=".*\S+.*" data-window="SearchWindowFilter" class="has-search-product" value="<?php echo (!empty($filter_search)) ? $filter_search : ''; ?>" placeholder="<?php echo html_escape($placeholder); ?>" style="padding-top:10px">
             </div>
             <div class="mobile-search-submit">
-                <button type="submit" form="form-product-filters" class="icon-search"></button>
+                <button type="submit" form="form-product-filters" class="icon-search" style="background-color: #fff;"></button>
             </div>
         </div>
     </div>
@@ -152,7 +152,7 @@ if ($page != 'product') {
                             <span class="span_icon">
                                 <i class="fas fa-flag"></i>
                             </span>
-                            <select name="country">
+                            <select id="select_country" name="country">
                                 <option value=""><?php echo trans("countries_all"); ?></option>
                                 <?php foreach ($countries as $row) { ?>
                                     <?php $country = $this->input->get('country') ?>
@@ -179,7 +179,7 @@ if ($page != 'product') {
                             <span class="span_icon">
                                 <i class="fas fa-map-marker-alt"></i>
                             </span>
-                            <select name="state">
+                            <select id="select_state" name="state">
                                 <option value=""><?php echo trans("states_all"); ?></option>
                                 <?php foreach ($states as $row) {
                                     if (($state_id) != null) :
@@ -200,7 +200,7 @@ if ($page != 'product') {
                             <span class="span_icon">
                                 <i class="fas fa-street-view"></i>
                             </span>
-                            <select name="city">
+                            <select id="select_city" name="city">
                                 <option value=""><?php echo trans("cities_all"); ?></option>
                                 <?php foreach ($cities as $row) {
                                     if (($city_id) != null) :
@@ -342,32 +342,61 @@ if ($page != 'product') {
         </div>
         <hr>
 
-        <div class="row hidden-md-up">
+        <div class="row">
             <div class="col-12 col-lg-12">
-                <div class="location-scroll-wrapper">
-                    <?php if (sizeof($cities) > 0) : ?>
+                <?php if (sizeof($cities) > 0) : ?>
+                    <span class="ads_filter_name"><?php echo trans("all_cities") ?></div>span
+                    <div class="location-scroll-wrapper">
                         <?php foreach ($cities as $row) : ?>
                             <?php if ($city_id == $row->id) : ?>
-                                <div class="location-scroll-item btn-block" location_id="<?php echo $row->id; ?>" target="city"><?php echo $row->name; ?></div>
+                                <div class="location-scroll-item btn-block" data_id="<?php echo $row->id; ?>" data_target="select_city" data_submit_type="click"><?php echo $row->name; ?></div>
                             <?php else : ?>
-                                <div class="location-scroll-item" location_id="<?php echo $row->id; ?>" target="city"><?php echo $row->name; ?></div>
+                                <div class="location-scroll-item" data_id="<?php echo $row->id; ?>" data_target="select_city" data_submit_type="click"><?php echo $row->name; ?></div>
                             <?php endif; ?>
                         <?php endforeach; ?>
-                        <?php else :
-                        if (!$state_id) : ?>
-
+                    </div>
+                    <?php else :
+                    if (!$state_id) : ?>
+                        <span class="ads_filter_name"><?php echo trans("all_states") ?></span>
+                        <div class="location-scroll-wrapper">
                             <?php foreach ($states as $row) : ?>
-                                <div class="location-scroll-item" location_id="<?php echo $row->id; ?>" target="state"><?php echo $row->name; ?></div>
-                        <?php endforeach;
-                        endif; ?>
+                                <div class="location-scroll-item" data_id="<?php echo $row->id; ?>" data_target="select_state" data_submit_type="click"><?php echo $row->name; ?></div>
+                            <?php endforeach; ?>
+                        </div>
                     <?php endif; ?>
-                </div>
+                <?php endif; ?>
+            </div>
+            <div class="col-12 col-lg-12">
+                <?php
+                $filters = get_filters_query_string_array();
+                foreach ($custom_field_data as $row) :
+                    $custom_data = $row["data"]; ?>
+                    <span class="ads_filter_name"><?php echo $row["name"]; ?></span>
+                    <div class="location-scroll-wrapper">
+                        <?php foreach ($custom_data as $custom_data_row) :
+                            if (array_key_exists($row["product_filter_key"], $filters) && array_search($custom_data_row["field_option"], $filters)) : ?>
+                                <div class="location-scroll-item btn-block" data_id="<?php echo $custom_data_row["field_option"]; ?>" data_target="select_<?php echo $row["product_filter_key"]; ?>" data_submit_type="change"><?php echo $custom_data_row["field_option"]; ?></div>
+                            <?php else : ?>
+                                <div class="location-scroll-item" data_id="<?php echo $custom_data_row["field_option"]; ?>" data_target="select_<?php echo $row["product_filter_key"]; ?>" data_submit_type="change"><?php echo $custom_data_row["field_option"]; ?></div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
         <div class="row">
+            <?php if (count($subcategories) == 0) : ?>
+                <div class="col-12 col-lg-12 sidebar-products">
+                    <div class="hidden-sm-down ">
+                        <?php $this->load->view('product/_product_filters');
+                        ?>
+                    </div>
+                </div>
+            <?php endif; ?>
             <div class="col-12 col-lg-12">
                 <div class="filter-reset-tag-container">
                     <?php $filters = get_filters_query_string_array();
+                    $custom_filters = get_custom_product_conditions($endcat->id);
                     if (!empty($filters)) :
                         foreach ($filters as $key => $value) :
                             if (!empty($value) && $key != 'sort' && $key != 'condition' && $key != 'country' && $key != 'state' && $key != 'city' && $key != 'p_min' && $key != 'p_max' && $key != 'page') : ?>
@@ -376,7 +405,13 @@ if ($page != 'product') {
                                         <a href="<?php echo remove_filter_from_query_string($key); ?>"><i class="icon-close"></i></a>
                                     </div>
                                     <div class="right">
-                                        <span class="reset-tag-title"><?php echo get_filter_name_by_key($key); ?></span>
+                                        <span class="reset-tag-title">
+                                            <?php foreach ($custom_filters as $row) :
+                                                if ($key == $row->product_filter_key) :
+                                                    echo $row->name;
+                                                endif;
+                                            endforeach; ?>
+                                        </span>
                                         <span><?php echo html_escape($value); ?></span>
                                     </div>
                                 </div>
@@ -661,15 +696,28 @@ if ($page != 'product') {
     });
 
     $(".location-scroll-item").on("click", function() {
-        let location_id = $(this).attr("location_id")
-        let target = $(this).attr("target")
-        if (target == "state") {
-            $("select[name=state]").val(location_id)
-        } else {
-            $("select[name=city]").val(location_id)
+        let data_id = $(this).attr("data_id");
+        let data_target = $(this).attr("data_target");
+        let data_submit_type = $(this).attr("data_submit_type");
+        if (data_submit_type == "click") {
+            $(`#${data_target}`).val(data_id);
+            $("#searchbutton").trigger("click");
+        } else if (data_submit_type == "change") {
+            $(`#${data_target}`).val(data_id);
+            $(`#${data_target}`).trigger("onchange");
         }
-        $("#searchbutton").trigger("click")
     })
+
+    // $(".location-scroll-item").on("click", function() {
+    //     let location_id = $(this).attr("location_id")
+    //     let target = $(this).attr("target")
+    //     if (target == "state") {
+    //         $("select[name=state]").val(location_id)
+    //     } else {
+    //         $("select[name=city]").val(location_id)
+    //     }
+    //     $("#searchbutton").trigger("click")
+    // })
 </script>
 <?php if ($Platform == 'Mobile') : ?>
     <script>

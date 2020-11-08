@@ -74,7 +74,7 @@ if ($page != 'product') {
 						<ul class="filter-list filter-custom-scrollbar">
 						<?php $options = get_custom_field_options_by_lang($custom_filter->id, $this->selected_lang->id);?>
 							<div class="selectdiv" style="width:85%">
-								<select id="<?php echo $custom_filter->product_filter_key; ?>" name="<?php echo $custom_filter->product_filter_key; ?>" class="form-control" onchange="this.form.submit()">
+								<select id="select_<?php echo $custom_filter->product_filter_key; ?>" name="<?php echo $custom_filter->product_filter_key; ?>" class="form-control" onchange="this.form.submit()">
 								<?php $get_option_value = get_filter_query_string_key_value($custom_filter->product_filter_key);?>
 									<option value=""><?php echo trans('select_option'); ?></option>
 									<?php if (!empty($options)):
