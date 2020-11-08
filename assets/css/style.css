@@ -10971,6 +10971,10 @@ h4.col-md-12.title {
     margin-top: 1px;
 }
 
+.profile-tab-item span{
+    font-weight: 600;
+}
+
 .location-scroll-wrapper{
     display: flex;
     overflow: scroll;
