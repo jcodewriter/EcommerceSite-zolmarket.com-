@@ -47,6 +47,7 @@ body,button,.navCatDownMobile .nav-link {
     display: table-cell;
     margin-left: -12px;
     vertical-align: middle;
+    font-weight: 600;
 }
 
 .navCatDownMobile .nav-link .link-icon {

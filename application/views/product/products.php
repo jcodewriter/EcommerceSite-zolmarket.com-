@@ -345,7 +345,7 @@ if ($page != 'product') {
         <div class="row">
             <div class="col-12 col-lg-12">
                 <?php if (sizeof($cities) > 0) : ?>
-                    <span class="ads_filter_name"><?php echo trans("all_cities") ?></div>span
+                    <span class="ads_filter_name"><?php echo trans("all_cities") ?></span>
                     <div class="location-scroll-wrapper">
                         <?php foreach ($cities as $row) : ?>
                             <?php if ($city_id == $row->id) : ?>
@@ -395,6 +395,17 @@ if ($page != 'product') {
             <?php endif; ?>
             <div class="col-12 col-lg-12">
                 <div class="filter-reset-tag-container">
+                    <?php if (!empty(get_location_input($country_id, 0, $city_id))) : ?>
+                        <div class="filter-reset-tag">
+                            <div class="left">
+                                <a href="<?php echo remove_filter_from_query_string('location'); ?>"><i class="icon-close"></i></a>
+                            </div>
+                            <div class="right">
+                                <span class="reset-tag-title"><?php echo trans("location"); ?></span>
+                                <span class="rest-tag-value"><?php echo get_location_input($country_id, 0, $city_id); ?></span>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                     <?php $filters = get_filters_query_string_array();
                     $custom_filters = get_custom_product_conditions($endcat->id);
                     if (!empty($filters)) :
@@ -454,19 +465,9 @@ if ($page != 'product') {
                                 </span>
                             </div>
                         </div>
-                    <?php endif;
-
-                    if (!empty(get_location_input($country_id, 0, $city_id))) : ?>
-                        <div class="filter-reset-tag">
-                            <div class="left">
-                                <a href="<?php echo remove_filter_from_query_string('location'); ?>"><i class="icon-close"></i></a>
-                            </div>
-                            <div class="right">
-                                <span class="reset-tag-title"><?php echo trans("location"); ?></span>
-                                <span class="rest-tag-value"><?php echo get_location_input($country_id, 0, $city_id); ?></span>
-                            </div>
-                        </div>
                     <?php endif; ?>
+
+
                 </div>
             </div>
         </div>
