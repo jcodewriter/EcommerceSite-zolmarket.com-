@@ -707,7 +707,7 @@ class Category_model extends CI_Model
         }
         return $data;
     }
-
+    
     public function ads_result_custom_field_data($id) {
         $select = "SELECT t0.category_id, t1.id, t1.field_type, t1.product_filter_key, t2.name FROM custom_fields_category AS t0
                     JOIN custom_fields AS t1 ON t1.is_ads_result_page = 1 AND t0.category_id = $id AND t0.field_id = t1.id

@@ -385,14 +385,14 @@ if ($page != 'product') {
             </div>
         </div>
         <div class="row">
-            <?php if (count($subcategories) == 0) : ?>
+            
                 <div class="col-12 col-lg-12 sidebar-products">
                     <div class="hidden-sm-down ">
                         <?php $this->load->view('product/_product_filters');
                         ?>
                     </div>
                 </div>
-            <?php endif; ?>
+            
             <div class="col-12 col-lg-12">
                 <div class="filter-reset-tag-container">
                     <?php if (!empty(get_location_input($country_id, 0, $city_id))) : ?>
@@ -465,9 +465,7 @@ if ($page != 'product') {
                                 </span>
                             </div>
                         </div>
-                    <?php endif; ?>
-
-
+                    <?php endif;?>
                 </div>
             </div>
         </div>

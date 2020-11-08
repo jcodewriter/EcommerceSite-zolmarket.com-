@@ -1,6 +1,7 @@
 
 /application/cache
 /application/session
+/application/language
 /uploads
 
 *.log

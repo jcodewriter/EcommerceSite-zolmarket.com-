@@ -10796,7 +10796,7 @@ h4.col-md-12.title {
     height: 46px;
     background-color: #ffffff;
     border-radius: 5px;
-    border: 1px solid #b0b3b6;
+    border: 2px solid #404040;
 }
 .popup-location-menu{
     display: table-cell;
@@ -10830,7 +10830,8 @@ h4.col-md-12.title {
 }
 .clearable-parent div button{
     border: 0;
-    color: #b0b3b6;
+    color: #fff;
+    background-color: transparent;
 }
 /* .clearable-parent:hover{
     box-shadow: 0 0 3px #28aae8;
@@ -10951,11 +10952,11 @@ h4.col-md-12.title {
     display: flex;
     align-items: center;
 }
+
 .profile-tab-item .profile-tab-icon {
     display: flex;
     width: 40px;
     height: 40px;
-    background: #28aae8;
     border-radius: 5px;
     align-items: center;
     justify-content: center;

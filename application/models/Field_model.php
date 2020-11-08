@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Field_model extends CI_Model
 {
@@ -448,7 +448,7 @@ class Field_model extends CI_Model
             return $this->db->update('custom_fields', $data);
         }
     }
-
+    
     //add remove ads result page
     public function add_remove_ads_result_page($field_id)
     {
@@ -535,4 +535,5 @@ class Field_model extends CI_Model
         }
         return false;
     }
+
 }

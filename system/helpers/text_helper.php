@@ -100,10 +100,10 @@ if ( ! function_exists('character_limiter'))
 		{
 			return $str;
 		}
-		
+
 		// a bit complicated, but faster than preg_replace with \s+
 		$str = preg_replace('/ {2,}/', ' ', str_replace(array("\r", "\n", "\t", "\v", "\f"), ' ', $str));
-		
+
 		if (mb_strlen($str) <= $n)
 		{
 			return $str;

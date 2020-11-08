@@ -329,16 +329,16 @@
         <?php if (isset($is_mobile_header)) : ?>
             <div class="mobile-menu">
                 <div class="mobile-header-item mobile-header-item-logo  pl-2">
-
                     <a href="<?php echo lang_base_url(); ?>" class="mobile-logo"><img src="<?php echo get_logo($general_settings); ?>" alt="logo"></a>
                 </div>
                 <div class="mobile-header-item mobile-header-item-logo text-right">
-                    <div class="d-inline-block mr-2">
+
+                    <div class="d-inline-block mr-1">
                         <?php if ($general_settings->multilingual_system == 1 && count($languages) > 1) : ?>
                             <div class="dropdown language-dropdown">
                                 <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                                    <i class="icon-language" style="margin-right: 2px;"></i>
-                                    <?php echo html_escape(ucfirst($selected_lang->short_form)); ?>&nbsp;<span class="icon-arrow-down"></span>
+                                    <i class="icon-language" style="margin-right: 1px;"></i>
+                                    <?php echo html_escape(ucfirst($selected_lang->short_form)); ?><span class="icon-arrow-down"></span>
                                 </button>
                                 <div class="dropdown-menu">
                                     <?php foreach ($languages as $language) :
@@ -355,11 +355,11 @@
 
                         <?php endif; ?>
                     </div>
-                    <div class="d-inline-block mr-3">
+                    <div class="d-inline-block mr-2">
                         <a href="<?php echo lang_base_url(); ?>contact" style="font-size: 18px"><i class="icon-mail"></i></a>
                     </div>
                     <?php if ($this->auth_check) : ?>
-                        <div class="d-inline-block mr-3 text-center">
+                        <div class="d-inline-block mr-2 text-center">
                             <!-- <div class="cart-link-mobile header-cart"> -->
                             <a class="cart-link-mobile header-cart" href="<?php echo lang_base_url(); ?>cart">
                                 <span>
@@ -373,7 +373,7 @@
                             <!-- </div> -->
                         </div>
                     <?php else : ?>
-                        <div class="d-inline-block mr-3 text-center">
+                        <div class="d-inline-block mr-2 text-center">
                             <a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal" class="cart-link-mobile header-cart">
                                 <i class="fa icon-cart"></i>
                             </a>
