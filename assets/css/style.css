@@ -3653,8 +3653,8 @@ img {
     max-width: 100%;
     margin-bottom: 30px;
     background-color: #fff;
-    border-radius: 3px;
-    border: 1px solid #edf4f9;
+    border-radius: 5px;
+    border: 2px solid #999;
     background-color: #fff
 }
 
