@@ -67,7 +67,7 @@
                                 <path d="M117.5,165h-101c-8.822,0-16,7.178-16,16v101c0,8.822,7.178,16,16,16h101c8.822,0,16-7.178,16-16V181 C133.5,172.178,126.322,165,117.5,165z" />
                                 <path d="M281.5,165h-101c-8.822,0-16,7.178-16,16v101c0,8.822,7.178,16,16,16h101c8.822,0,16-7.178,16-16V181 C297.5,172.178,290.322,165,281.5,165z" />
                             </svg>
-                            <span name="field_<?php echo $custom_field->id; ?>" class="titre flex-fill text-truncate text-left special-cagetory"><?php echo $custom_field->name; ?></span>
+                            <span name="field_<?php echo $custom_field->id; ?>" class="flex-fill text-truncate text-left special-cagetory"><?php echo $custom_field->name; ?></span>
                             <i class="icon-arrow-right"></i>
                         </button>
                     </div>
