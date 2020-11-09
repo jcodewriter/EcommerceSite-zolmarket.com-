@@ -925,9 +925,14 @@ $(document).ready(function () {
                     } else if (jsonData[i].field_type == 'popup') {
                         html += `<div class="mobile-filter-list">
                                     <div class="mobile_selectdiv" style="width: 100%">
-                                        <button class="filter-btn text-truncate has-menu d-flex" type="button" data-ajax="0" data-type="${jsonData[i].product_filter_key}" data-query="field_id=${jsonData[i].id}&input" data-url="mobile_filter" style="height:50px;padding: 0 10px 0 10px" >
-                                            <img src="https://image.flaticon.com/icons/svg/95/95090.svg" class="align-self-center mr-1 ml-1" alt="Menu" style="width: 15px; filter:invert(47%) sepia(1%) saturate(8%) hue-rotate(87deg) brightness(119%) contrast(119%);">
-                                            <div class="titre  m-0 flex-fill  h-100 text-truncate  text-left special-cagetory" style="padding-left:5px">
+                                        <button class="filter-btn text-truncate has-menu d-flex mobile-popup__button" type="button" data-ajax="0" data-type="${jsonData[i].product_filter_key}" data-query="field_id=${jsonData[i].id}&input" data-url="mobile_filter">
+                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 298 298" style="width: 18px" xml:space="preserve">
+                                                <path d="M117.5,0h-101c-8.822,0-16,7.178-16,16v101c0,8.822,7.178,16,16,16h101c8.822,0,16-7.178,16-16V16 C133.5,7.178,126.322,0,117.5,0z" />
+                                                <path d="M281.5,0h-101c-8.822,0-16,7.178-16,16v101c0,8.822,7.178,16,16,16h101c8.822,0,16-7.178,16-16V16 C297.5,7.178,290.322,0,281.5,0z" />
+                                                <path d="M117.5,165h-101c-8.822,0-16,7.178-16,16v101c0,8.822,7.178,16,16,16h101c8.822,0,16-7.178,16-16V181 C133.5,172.178,126.322,165,117.5,165z" />
+                                                <path d="M281.5,165h-101c-8.822,0-16,7.178-16,16v101c0,8.822,7.178,16,16,16h101c8.822,0,16-7.178,16-16V181 C297.5,172.178,290.322,165,281.5,165z" />
+                                            </svg>
+                                            <div class="flex-fill text-truncate text-left special-cagetory">
                                                 <span name="${jsonData[i].product_filter_key}">${jsonData[i].name}</span>
                                             </div>
                                             <i class="icon-arrow-right"></i>

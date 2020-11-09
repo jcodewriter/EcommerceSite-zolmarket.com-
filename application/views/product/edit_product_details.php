@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
 <?php
 $back_url = lang_base_url() . "sell-now/edit-product/" . $product->id;
@@ -7,32 +7,32 @@ if ($product->is_draft == 1) {
 }
 ?>
 
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/file-uploader/css/jquery.dm-uploader.min.css"/>
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/file-uploader/css/styles.css"/>
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/file-uploader/css/jquery.dm-uploader.min.css" />
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/file-uploader/css/styles.css" />
 <script src="<?php echo base_url(); ?>assets/vendor/file-uploader/js/jquery.dm-uploader.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/vendor/file-uploader/js/demo-ui.js"></script>
 <script type="text/javascript">
     history.pushState(null, null, '<?php echo $_SERVER["REQUEST_URI"]; ?>');
-    window.addEventListener('popstate', function (event) {
+    window.addEventListener('popstate', function(event) {
         window.location.assign('<?php echo $back_url; ?>');
     });
 </script>
 
 <div class="hkm_messages_navCatDownMobile">
-	<div class="cat-header">
+    <div class="cat-header">
         <div class="mobile-header-back">
-            <a href="javascript:history.go(-1)" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?>  </a>
+            <a href="javascript:history.go(-1)" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?> </a>
         </div>
         <div class="mobile-header-title">
-            <?php if ($product->is_draft == 1): ?>
-                <span  class="text-white textcat-header text-center"><?php echo trans("sell_now"); ?></span>
-            <?php else: ?>
-                <span  class="text-white textcat-header text-center"><?php echo trans("edit_product"); ?></span>
+            <?php if ($product->is_draft == 1) : ?>
+                <span class="text-white textcat-header text-center"><?php echo trans("sell_now"); ?></span>
+            <?php else : ?>
+                <span class="text-white textcat-header text-center"><?php echo trans("edit_product"); ?></span>
             <?php endif; ?>
         </div>
         <div class="mobilde-header-cart">
         </div>
-	</div>  
+    </div>
 </div>
 <!-- Wrapper -->
 <div id="wrapper">
@@ -42,9 +42,9 @@ if ($product->is_draft == 1) {
                 <nav class="nav-breadcrumb" aria-label="breadcrumb">
                     <ol class="breadcrumb"></ol>
                 </nav>
-                <?php if ($product->is_draft == 1): ?>
+                <?php if ($product->is_draft == 1) : ?>
                     <h1 class="page-title page-title-product page_title_hidden_on_mobile"><?php echo trans("sell_now"); ?></h1>
-                <?php else: ?>
+                <?php else : ?>
                     <h1 class="page-title page-title-product page_title_hidden_on_mobile"><?php echo trans("edit_product"); ?></h1>
                 <?php endif; ?>
                 <div class="form-add-product">
@@ -59,7 +59,7 @@ if ($product->is_draft == 1) {
                             <div class="row">
                                 <div class="col-12">
 
-                                    <?php if ($product->product_type == 'digital'): ?>
+                                    <?php if ($product->product_type == 'digital') : ?>
                                         <div class="row-custom m-b-30">
                                             <div class="row">
                                                 <div class="col-12">
@@ -75,7 +75,7 @@ if ($product->is_draft == 1) {
                                     <?php echo form_open('product_controller/edit_product_details_post', ['id' => 'form_validate', 'class' => 'validate_price', 'class' => 'validate_terms', 'onkeypress' => "return event.keyCode != 13;"]); ?>
                                     <input type="hidden" name="id" value="<?php echo $product->id; ?>">
 
-                                    <?php if ($product->product_type == 'digital'): ?>
+                                    <?php if ($product->product_type == 'digital') : ?>
                                         <?php $this->load->view("product/license/_license_keys", ['product' => $product, 'license_keys' => $license_keys]); ?>
                                         <div class="form-box">
                                             <div class="form-box-head">
@@ -90,24 +90,24 @@ if ($product->is_draft == 1) {
                                         </div>
                                     <?php endif; ?>
 
-                                    <?php if (!empty($custom_field_array) || ($form_settings->product_conditions == 1 && $product->product_type == 'physical') || ($form_settings->quantity == 1) && $product->product_type == 'physical'): ?>
+                                    <?php if (!empty($custom_field_array) || ($form_settings->product_conditions == 1 && $product->product_type == 'physical') || ($form_settings->quantity == 1) && $product->product_type == 'physical') : ?>
                                         <div class="form-box">
                                             <div class="form-box-head">
                                                 <h4 class="title"><?php echo trans("details"); ?></h4>
                                             </div>
                                             <div class="form-box-body">
-                                                <?php if ($product->product_type == 'physical'): ?>
+                                                <?php if ($product->product_type == 'physical') : ?>
                                                     <div class="form-group">
                                                         <div class="row">
                                                             <?php if ($form_settings->product_conditions == 1) : ?>
                                                                 <div class="col-12 col-sm-6 m-b-sm-15">
                                                                     <label class="control-label"><?php echo trans('condition'); ?></label>
                                                                     <?php $product_conditions = get_grouped_product_conditions();
-                                                                    if (!empty($product_conditions)): ?>
+                                                                    if (!empty($product_conditions)) : ?>
                                                                         <div class="selectdiv">
                                                                             <select name="product_condition" class="form-control" <?php echo ($form_settings->product_conditions_required == 1) ? 'required' : ''; ?>>
                                                                                 <option value=""><?php echo trans('select_option'); ?></option>
-                                                                                <?php foreach ($product_conditions as $option):
+                                                                                <?php foreach ($product_conditions as $option) :
                                                                                     $product_condition = get_product_condition_by_lang($option->common_id, $selected_lang->id); ?>
                                                                                     <option value="<?php echo $product_condition->option_key; ?>" <?php echo ($product->product_condition == $product_condition->option_key) ? 'selected' : ''; ?>><?php echo $product_condition->option_label; ?></option>
                                                                                 <?php endforeach; ?>
@@ -137,7 +137,7 @@ if ($product->is_draft == 1) {
                                         </div>
                                     <?php endif; ?>
 
-                                    <?php if ($product->listing_type == 'sell_on_site' && $form_settings->price == 1): ?>
+                                    <?php if ($product->listing_type == 'sell_on_site' && $form_settings->price == 1) : ?>
                                         <div class="form-box">
                                             <div class="form-box-head">
                                                 <h4 class="title"><?php echo trans('price'); ?></h4>
@@ -168,7 +168,7 @@ if ($product->is_draft == 1) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <?php if ($product->product_type == 'digital'): ?>
+                                                <?php if ($product->product_type == 'digital') : ?>
                                                     <div class="form-group">
                                                         <div class="custom-control custom-checkbox">
                                                             <input type="checkbox" class="custom-control-input" name="is_free_product" id="checkbox_free_product" <?php echo ($product->is_free_product == 1) ? 'checked' : ''; ?>>
@@ -176,7 +176,7 @@ if ($product->is_draft == 1) {
                                                         </div>
                                                     </div>
                                                     <script>
-                                                        $(document).on('click', '#checkbox_free_product', function () {
+                                                        $(document).on('click', '#checkbox_free_product', function() {
                                                             if ($(this).is(':checked')) {
                                                                 $('#price_input_container').hide();
                                                             } else {
@@ -184,19 +184,20 @@ if ($product->is_draft == 1) {
                                                             }
                                                         });
                                                     </script>
-                                                <?php if ($product->is_free_product == 1): ?>
-                                                    <style>
-                                                        #price_input_container {
-                                                            display: none;;
-                                                        }
-                                                    </style>
-                                                <?php endif; ?>
+                                                    <?php if ($product->is_free_product == 1) : ?>
+                                                        <style>
+                                                            #price_input_container {
+                                                                display: none;
+                                                                ;
+                                                            }
+                                                        </style>
+                                                    <?php endif; ?>
                                                 <?php endif; ?>
                                             </div>
                                         </div>
 
-                                    <?php elseif ($product->listing_type == 'ordinary_listing'):
-                                        if ($form_settings->price == 1): ?>
+                                        <?php elseif ($product->listing_type == 'ordinary_listing') :
+                                        if ($form_settings->price == 1) : ?>
                                             <div class="form-box">
                                                 <div class="form-box-head">
                                                     <h4 class="title"><?php echo trans('price'); ?></h4>
@@ -204,16 +205,16 @@ if ($product->is_draft == 1) {
                                                 <div class="form-box-body">
                                                     <div class="form-group">
                                                         <div class="row">
-                                                            <?php if ($this->payment_settings->allow_all_currencies_for_classied == 1): ?>
+                                                            <?php if ($this->payment_settings->allow_all_currencies_for_classied == 1) : ?>
                                                                 <div class="col-12 col-sm-4 m-b-sm-15">
                                                                     <div class="selectdiv">
                                                                         <select name="currency" class="form-control" required>
                                                                             <?php $currencies = get_currencies();
-                                                                            if (!empty($currencies)):
-                                                                                foreach ($currencies as $key => $value):
-                                                                                    if ($key == $product->currency):?>
+                                                                            if (!empty($currencies)) :
+                                                                                foreach ($currencies as $key => $value) :
+                                                                                    if ($key == $product->currency) : ?>
                                                                                         <option value="<?php echo $key; ?>" selected><?php echo $value["name"] . " (" . $value["hex"] . ")"; ?></option>
-                                                                                    <?php else: ?>
+                                                                                    <?php else : ?>
                                                                                         <option value="<?php echo $key; ?>"><?php echo $value["name"] . " (" . $value["hex"] . ")"; ?></option>
                                                                                     <?php endif; ?>
                                                                                 <?php endforeach; ?>
@@ -224,7 +225,7 @@ if ($product->is_draft == 1) {
                                                                 <div class="col-12 col-sm-4 m-b-sm-15">
                                                                     <input type="text" name="price" class="form-control form-input price-input validate-price-input" value="<?php echo ($product->price != 0) ? price_format_input($product->price) : ''; ?>" placeholder="<?php echo $this->input_initial_price; ?>" onpaste="return false;" maxlength="32" <?php echo ($form_settings->price_required == 1) ? 'required' : ''; ?>>
                                                                 </div>
-                                                            <?php else: ?>
+                                                            <?php else : ?>
                                                                 <div class="col-12 col-sm-6 m-b-sm-15">
                                                                     <div class="input-group">
                                                                         <div class="input-group-prepend">
@@ -240,11 +241,11 @@ if ($product->is_draft == 1) {
                                                 </div>
                                             </div>
                                         <?php endif; ?>
-                                    <?php elseif ($product->listing_type == 'bidding' || !$form_settings->price): ?>
+                                    <?php elseif ($product->listing_type == 'bidding' || !$form_settings->price) : ?>
                                         <input type="hidden" name="currency" value="<?php echo $payment_settings->default_product_currency; ?>">
                                     <?php endif; ?>
 
-                                    <?php if (($product->product_type == 'physical' && $form_settings->physical_demo_url == 1) || ($product->product_type == 'digital' && $form_settings->digital_demo_url == 1)): ?>
+                                    <?php if (($product->product_type == 'physical' && $form_settings->physical_demo_url == 1) || ($product->product_type == 'digital' && $form_settings->digital_demo_url == 1)) : ?>
                                         <div class="form-box">
                                             <div class="form-box-head">
                                                 <h4 class="title"><?php echo trans('demo_url'); ?></h4>
@@ -260,14 +261,14 @@ if ($product->is_draft == 1) {
 
                                     <div class="row-custom">
                                         <div class="row">
-                                            <?php if (($product->product_type == 'physical' && $form_settings->physical_video_preview == 1) || ($product->product_type == 'digital' && $form_settings->digital_video_preview == 1)): ?>
+                                            <?php if (($product->product_type == 'physical' && $form_settings->physical_video_preview == 1) || ($product->product_type == 'digital' && $form_settings->digital_video_preview == 1)) : ?>
                                                 <div class="col-12 col-sm-6 m-b-30">
                                                     <label class="control-label font-600"><?php echo trans("video_preview"); ?></label>
                                                     <small>(<?php echo trans("video_preview_exp"); ?>)</small>
                                                     <?php $this->load->view("product/_video_upload_box"); ?>
                                                 </div>
                                             <?php endif; ?>
-                                            <?php if (($product->product_type == 'physical' && $form_settings->physical_audio_preview == 1) || ($product->product_type == 'digital' && $form_settings->digital_audio_preview == 1)): ?>
+                                            <?php if (($product->product_type == 'physical' && $form_settings->physical_audio_preview == 1) || ($product->product_type == 'digital' && $form_settings->digital_audio_preview == 1)) : ?>
                                                 <div class="col-12 col-sm-6 m-b-30">
                                                     <label class="control-label font-600"><?php echo trans("audio_preview"); ?></label>
                                                     <small>(<?php echo trans("audio_preview_exp"); ?>)</small>
@@ -279,8 +280,8 @@ if ($product->is_draft == 1) {
                                         </div>
                                     </div>
 
-                                    <?php if ($product->listing_type == 'ordinary_listing'): ?>
-                                        <?php if ($form_settings->external_link == 1): ?>
+                                    <?php if ($product->listing_type == 'ordinary_listing') : ?>
+                                        <?php if ($form_settings->external_link == 1) : ?>
                                             <div class="form-box">
                                                 <div class="form-box-head">
                                                     <h4 class="title"><?php echo trans('external_link'); ?></h4>
@@ -295,7 +296,7 @@ if ($product->is_draft == 1) {
                                         <?php endif; ?>
                                     <?php endif; ?>
 
-                                    <?php if ($form_settings->variations == 1 && $product->product_type != 'digital'): ?>
+                                    <?php if ($form_settings->variations == 1 && $product->product_type != 'digital') : ?>
                                         <div class="form-box">
                                             <div class="form-box-head">
                                                 <h4 class="title"><?php echo trans('variations'); ?></h4>
@@ -322,7 +323,7 @@ if ($product->is_draft == 1) {
                                     <?php endif; ?>
 
 
-                                    <?php if ($form_settings->shipping == 1 && $product->product_type == 'physical'): ?>
+                                    <?php if ($form_settings->shipping == 1 && $product->product_type == 'physical') : ?>
                                         <div class="form-box">
                                             <div class="form-box-head">
                                                 <h4 class="title"><?php echo trans('shipping'); ?></h4>
@@ -331,13 +332,13 @@ if ($product->is_draft == 1) {
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <?php $shipping_options = get_grouped_shipping_options();
-                                                        if (!empty($shipping_options)): ?>
+                                                        if (!empty($shipping_options)) : ?>
                                                             <div class="col-12 col-sm-6 m-b-sm-15">
                                                                 <label class="control-label"><?php echo trans('shipping_cost'); ?></label>
                                                                 <div class="selectdiv">
                                                                     <select name="shipping_cost_type" class="form-control" onchange="if($(this).find(':selected').attr('data-shipping-cost')==1){$('.shipping-cost-container').show();}else{$('.shipping-cost-container').hide();}" <?php echo ($form_settings->shipping_required == 1) ? 'required' : ''; ?>>
                                                                         <option value=""><?php echo trans("select_option"); ?></option>
-                                                                        <?php foreach ($shipping_options as $option):
+                                                                        <?php foreach ($shipping_options as $option) :
                                                                             $shipping_option = get_shipping_option_by_lang($option->common_id, $selected_lang->id) ?>
                                                                             <option value="<?php echo $shipping_option->option_key; ?>" data-shipping-cost="<?php echo $shipping_option->shipping_cost; ?>" <?php echo ($product->shipping_cost_type == $shipping_option->option_key) ? 'selected' : ''; ?>><?php echo $shipping_option->option_label; ?></option>
                                                                         <?php endforeach; ?>
@@ -360,7 +361,7 @@ if ($product->is_draft == 1) {
                                                         <div class="col-12 col-sm-6 m-t-15 shipping-cost-container" style="<?php echo ($this->settings_model->is_shipping_option_require_cost($product->shipping_cost_type) == 1) ? 'display:block;' : ''; ?>">
                                                             <label class="control-label"><?php echo trans('shipping_cost'); ?></label>
                                                             <div class="input-group">
-                                                                <?php if ($this->payment_settings->default_product_currency != "all"): ?>
+                                                                <?php if ($this->payment_settings->default_product_currency != "all") : ?>
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text input-group-text-currency" id="basic-addon3"><?php echo get_currency($this->payment_settings->default_product_currency); ?></span>
                                                                     </div>
@@ -374,7 +375,7 @@ if ($product->is_draft == 1) {
                                         </div>
                                     <?php endif; ?>
 
-                                    <?php if ($form_settings->product_location == 1 && $product->product_type == 'physical'):
+                                    <?php if ($form_settings->product_location == 1 && $product->product_type == 'physical') :
                                         if ($product->country_id == 0) {
                                             // $country_id = $this->auth_user->country_id;
                                             // $state_id = $this->auth_user->state_id;
@@ -393,7 +394,7 @@ if ($product->is_draft == 1) {
                                             $address = $product->address;
                                             $zip_code = $product->zip_code;
                                         }
-                                        ?>
+                                    ?>
                                         <div class="form-box">
                                             <div class="form-box-head">
                                                 <h4 class="title"><?php echo trans('location'); ?></h4>
@@ -402,20 +403,20 @@ if ($product->is_draft == 1) {
                                                 <div class="form-group">
                                                     <div class="row hidden-row">
                                                         <div class="col-12 col-sm-4 m-b-15">
-                                                            <?php if ($general_settings->default_product_location == 0): ?>
+                                                            <?php if ($general_settings->default_product_location == 0) : ?>
                                                                 <div class="selectdiv" class="d-none">
                                                                     <select id="countries" name="country_id" class="form-control" onchange="get_states(this.value);" <?php echo ($form_settings->product_location_required == 1) ? 'required' : ''; ?>>
                                                                         <option value=""><?php echo trans('country'); ?></option>
-                                                                        <?php foreach ($countries as $item): ?>
+                                                                        <?php foreach ($countries as $item) : ?>
                                                                             <option value="<?php echo $item->id; ?>" <?php echo ($item->id == $country_id) ? 'selected' : ''; ?>><?php echo html_escape($item->name); ?></option>
                                                                         <?php endforeach; ?>
                                                                     </select>
                                                                 </div>
-                                                            <?php else: ?>
+                                                            <?php else : ?>
                                                                 <div class="selectdiv">
                                                                     <select id="countries" name="country_id" class="form-control" required>
-                                                                        <?php foreach ($countries as $item): ?>
-                                                                            <?php if ($item->id == $general_settings->default_product_location): ?>
+                                                                        <?php foreach ($countries as $item) : ?>
+                                                                            <?php if ($item->id == $general_settings->default_product_location) : ?>
                                                                                 <option value="<?php echo $item->id; ?>" selected><?php echo html_escape($item->name); ?></option>
                                                                             <?php endif; ?>
                                                                         <?php endforeach; ?>
@@ -428,10 +429,10 @@ if ($product->is_draft == 1) {
                                                                 <select id="states" name="state_id" class="form-control" onchange="get_cities(this.value);" <?php echo ($form_settings->product_location_required == 1) ? 'required' : ''; ?>>
                                                                     <option value=""><?php echo trans('state'); ?></option>
                                                                     <?php
-                                                                    if (!empty($states)):
-                                                                        foreach ($states as $item): ?>
+                                                                    if (!empty($states)) :
+                                                                        foreach ($states as $item) : ?>
                                                                             <option value="<?php echo $item->id; ?>" <?php echo ($item->id == $state_id) ? 'selected' : ''; ?>><?php echo html_escape($item->name); ?></option>
-                                                                        <?php endforeach;
+                                                                    <?php endforeach;
                                                                     endif; ?>
                                                                 </select>
                                                             </div>
@@ -441,47 +442,47 @@ if ($product->is_draft == 1) {
                                                                 <select id="cities" name="city_id" class="form-control" onchange="update_product_map();" <?php echo ($form_settings->product_location_required == 1) ? 'required' : ''; ?>>
                                                                     <option value=""><?php echo trans('city'); ?></option>
                                                                     <?php
-                                                                    if (!empty($cities)):
-                                                                        foreach ($cities as $item): ?>
+                                                                    if (!empty($cities)) :
+                                                                        foreach ($cities as $item) : ?>
                                                                             <option value="<?php echo $item->id; ?>" <?php echo ($item->id == $city_id) ? 'selected' : ''; ?>><?php echo html_escape($item->name); ?></option>
-                                                                        <?php endforeach;
+                                                                    <?php endforeach;
                                                                     endif; ?>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div id="mobile_listcategories" class="mobile_selectdiv" style="margin-bottom:15px;">
-                                                        <?php if ($general_settings->default_product_location == 0): ?>
+                                                        <?php if ($general_settings->default_product_location == 0) : ?>
                                                             <label class="control-label"><?php echo trans('country'); ?></label>
-                                                            <button class="filter-btn text-truncate has-menu d-flex" type="button" name="country" data-ajax="0" data-type="country_id" data-url="country_location" style="height:50px;padding: 0 10px 0 10px" >
-                                                        <?php endif; ?>
-                                                            <?php if ($general_settings->default_product_location == 0): ?>
-                                                                <i class="fa fa-map-marker  fa-lg align-self-center mr-1 ml-1" aria-hidden="true"></i>
-                                                                <?php if ($btn_string): ?>
-                                                                    <span class="titre  m-0 flex-fill  h-100 text-truncate  text-left special-cagetory" id="country_button" style="padding-left:5px"><?php echo html_escape($btn_string); ?></span> 
-                                                                <?php else: ?>
-                                                                    <span class="titre  m-0 flex-fill  h-100 text-truncate  text-left special-cagetory" id="country_button" style="padding-left:5px"><?php echo trans('country'); ?></span> 
-                                                                <?php endif; ?>
-                                                            
+                                                            <button class="filter-btn text-truncate has-menu d-flex mobile-popup__button" type="button" name="country" data-ajax="0" data-type="country_id" data-url="country_location">
                                                             <?php endif; ?>
-                                                            <?php if ($general_settings->default_product_location == 0): ?>
+                                                            <?php if ($general_settings->default_product_location == 0) : ?>
+                                                                <i class="fa fa-map-marker  fa-lg align-self-center mr-1 ml-1" aria-hidden="true"></i>
+                                                                <?php if ($btn_string) : ?>
+                                                                    <span class="flex-fill text-truncate text-left special-cagetory" id="country_button"><?php echo html_escape($btn_string); ?></span>
+                                                                <?php else : ?>
+                                                                    <span class="flex-fill text-truncate text-left special-cagetory" id="country_button"><?php echo trans('country'); ?></span>
+                                                                <?php endif; ?>
+
+                                                            <?php endif; ?>
+                                                            <?php if ($general_settings->default_product_location == 0) : ?>
                                                                 <i class="icon-arrow-right"></i>
                                                             <?php endif; ?>
-                                                        </button>
-                                                        <label class="control-label"><?php echo trans('state').' / ' .trans('city'); ?></label>
-                                                        <?php if ($general_settings->default_product_location == 0): ?>
-                                                            <button class="filter-btn text-truncate has-menu d-flex" type="button" name="state" data-ajax="0" data-type="state_id" data-url="custom_location" style="height:50px;padding: 0 10px 0 10px;" >
-                                                        <?php else: ?>
-                                                            <button class="filter-btn text-truncate has-menu d-flex" type="button" name="state" data-ajax="<?php echo $general_settings->default_product_location;?>" data-type="state_id" data-url="custom_location" style="height:50px;padding: 0 10px 0 10px;" >
-                                                        <?php endif; ?>
-                                                            <i class="fa fa-map-marker  fa-lg align-self-center mr-1 ml-1" aria-hidden="true"></i>
-                                                            <?php if ($state_button): ?>
-                                                                <span class="titre  m-0 flex-fill  h-100 text-truncate  text-left special-cagetory" id="city_button" style="padding-left:5px"><?php echo html_escape($state_button); ?></span> 
-                                                            <?php else: ?>
-                                                                <span class="titre  m-0 flex-fill  h-100 text-truncate  text-left special-cagetory" id="city_button" style="padding-left:5px"><?php echo trans('state').' / ' .trans('city'); ?></span> 
-                                                            <?php endif; ?>
-                                                            <i class="icon-arrow-right"></i>
-                                                        </button>
+                                                            </button>
+                                                            <label class="control-label"><?php echo trans('state') . ' / ' . trans('city'); ?></label>
+                                                            <?php if ($general_settings->default_product_location == 0) : ?>
+                                                                <button class="filter-btn text-truncate has-menu d-flex mobile-popup__button" type="button" name="state" data-ajax="0" data-type="state_id" data-url="custom_location">
+                                                                <?php else : ?>
+                                                                    <button class="filter-btn text-truncate has-menu d-flex mobile-popup__button" type="button" name="state" data-ajax="<?php echo $general_settings->default_product_location; ?>" data-type="state_id" data-url="custom_location">
+                                                                    <?php endif; ?>
+                                                                    <i class="fa fa-map-marker  fa-lg align-self-center mr-1 ml-1" aria-hidden="true"></i>
+                                                                    <?php if ($state_button) : ?>
+                                                                        <span class="flex-fill text-truncate text-left special-cagetory" id="city_button"><?php echo html_escape($state_button); ?></span>
+                                                                    <?php else : ?>
+                                                                        <span class="flex-fill text-truncate text-left special-cagetory" id="city_button"><?php echo trans('state') . ' / ' . trans('city'); ?></span>
+                                                                    <?php endif; ?>
+                                                                    <i class="icon-arrow-right"></i>
+                                                                    </button>
                                                     </div>
                                                     <!-- <input type="hidden" name="custom_id" class="form-control form-input" id="category_id" value="<?php echo $product->category_id; ?>"/>
                                                     <input type="hidden" name="custom_id" class="form-control form-input" id="category_id" value="<?php echo $product->category_id; ?>"/>
@@ -515,48 +516,46 @@ if ($product->is_draft == 1) {
                                     <?php endif; ?>
 
                                     <div class="form-group m-t-15" style="text-align: center">
-										<div class="custom-control custom-checkbox custom-control-validate-input">
-										    <?php if ($product->is_draft == 1): ?>
+                                        <div class="custom-control custom-checkbox custom-control-validate-input">
+                                            <?php if ($product->is_draft == 1) : ?>
                                                 <input type="checkbox" class="custom-control-input" name="terms_conditions" id="terms_conditions" value="1" required>
-                                            <?php else: ?>
+                                            <?php else : ?>
                                                 <input type="checkbox" class="custom-control-input" name="terms_conditions" id="terms_conditions" value="1" checked>
                                             <?php endif; ?>
-											<label for="terms_conditions" class="custom-control-label custom-check" style="font-size:13px; padding-top: 9px;">&nbsp;&nbsp;<?php echo trans("terms_conditions_exp"); ?>&nbsp;<a href="<?php echo lang_base_url(); ?>terms-conditions" class="link-terms" target="_blank"><strong><?php echo trans("terms_conditions"); ?></strong></a></label>
-										</div>
-									</div>
+                                            <label for="terms_conditions" class="custom-control-label custom-check" style="font-size:13px; padding-top: 9px;">&nbsp;&nbsp;<?php echo trans("terms_conditions_exp"); ?>&nbsp;<a href="<?php echo lang_base_url(); ?>terms-conditions" class="link-terms" target="_blank"><strong><?php echo trans("terms_conditions"); ?></strong></a></label>
+                                        </div>
+                                    </div>
 
                                     <div class="form-group m-t-15">
-                                        <?php if ($product->is_draft == 1): ?>
+                                        <?php if ($product->is_draft == 1) : ?>
                                             <a href="<?php echo lang_base_url(); ?>sell-now/<?php echo $product->id; ?>" class="btn btn-lg btn-custom float-left"><?php echo trans("back"); ?></a>
                                             <button type="submit" name="submit" value="submit" class="btn btn-lg btn-custom float-right"><?php echo trans("submit"); ?></button>
                                             <button type="submit" name="submit" value="save_as_draft" class="btn btn-lg btn-secondary color-white float-right m-r-10"><?php echo trans("save_as_draft"); ?></button>
-                                        <?php else: ?>
+                                        <?php else : ?>
                                             <a href="<?php echo lang_base_url(); ?>sell-now/edit-product/<?php echo $product->id; ?>" id="btn_tab_product_images" class="btn btn-lg btn-custom float-left"><?php echo trans("back"); ?></a>
                                             <button type="submit" name="submit" value="save_changes" class="btn btn-lg btn-custom float-right"><?php echo trans("save_changes"); ?></button>
                                         <?php endif; ?>
                                     </div>
                                     <div class="ajax-filter-menu">
-										<div class="navCatDownMobile nav-mobile" id="filter1" style="margin-left: 105%;">
-											<div class="form-group cat-header">
-												<a href="javascript:void(0)" data-back="normal" class="btn-back-mobile-nav"><i
-															class="icon-arrow-left"></i> <?= trans('back') ?></a>
-												<span href="javascript:void(0)"
-												class="text-white textcat-header text-center"><?= trans('filter') ?></span>
-											</div>
-											<div class="nav-mobile-inner">
-											</div>
-										</div>
-										<div class="navCatDownMobile nav-mobile" id=""
-											style="margin-left: 105%;top:58px;height: calc(100% - 58px - 60px);">
-											<div class="nav-mobile-inner">
-												<ul class="navbar-nav top-search-bar mobile-search-form">
+                                        <div class="navCatDownMobile nav-mobile" id="filter1" style="margin-left: 105%;">
+                                            <div class="form-group cat-header">
+                                                <a href="javascript:void(0)" data-back="normal" class="btn-back-mobile-nav"><i class="icon-arrow-left"></i> <?= trans('back') ?></a>
+                                                <span href="javascript:void(0)" class="text-white textcat-header text-center"><?= trans('filter') ?></span>
+                                            </div>
+                                            <div class="nav-mobile-inner">
+                                            </div>
+                                        </div>
+                                        <div class="navCatDownMobile nav-mobile" id="" style="margin-left: 105%;top:58px;height: calc(100% - 58px - 60px);">
+                                            <div class="nav-mobile-inner">
+                                                <ul class="navbar-nav top-search-bar mobile-search-form">
 
-												</ul>
-											</div>
-										</div>
+                                                </ul>
+                                            </div>
+                                        </div>
 
-									</div>
-                                    <?php echo form_close(); ?><!-- form end -->
+                                    </div>
+                                    <?php echo form_close(); ?>
+                                    <!-- form end -->
                                 </div>
                             </div>
                         </div>
@@ -579,21 +578,21 @@ if ($product->is_draft == 1) {
 <script src="<?php echo base_url(); ?>assets/vendor/plyr/plyr.polyfilled.min.js"></script>
 <script>
     const player = new Plyr('#player');
-    $(document).ajaxStop(function () {
+    $(document).ajaxStop(function() {
         const player = new Plyr('#player');
     });
     const audio_player = new Plyr('#audio_player');
-    $(document).ajaxStop(function () {
+    $(document).ajaxStop(function() {
         const player = new Plyr('#audio_player');
     });
 </script>
 
-<?php if ($product->listing_type == 'sell_on_site'): ?>
+<?php if ($product->listing_type == 'sell_on_site') : ?>
     <script>
         //calculate product earned value
         var thousands_separator = '<?php echo $this->thousands_separator; ?>';
         var commission_rate = '<?php echo $this->general_settings->commission_rate; ?>';
-        $(document).on("input keyup paste change", "#product_price_input", function () {
+        $(document).on("input keyup paste change", "#product_price_input", function() {
             var input_val = $(this).val();
             input_val = input_val.replace(',', '.');
             var price = parseFloat(input_val);
@@ -623,7 +622,8 @@ if ($product->is_draft == 1) {
             '<?php echo substr(trans("thursday"), 0, 3); ?>',
             '<?php echo substr(trans("friday"), 0, 3); ?>',
             '<?php echo substr(trans("saturday"), 0, 3); ?>',
-            '<?php echo substr(trans("sunday"), 0, 3); ?>'],
+            '<?php echo substr(trans("sunday"), 0, 3); ?>'
+        ],
         months: ['<?php echo trans("january"); ?>',
             '<?php echo trans("february"); ?>',
             '<?php echo trans("march"); ?>',
@@ -635,12 +635,14 @@ if ($product->is_draft == 1) {
             '<?php echo trans("september"); ?>',
             '<?php echo trans("october"); ?>',
             '<?php echo trans("november"); ?>',
-            '<?php echo trans("december"); ?>'],
+            '<?php echo trans("december"); ?>'
+        ],
         monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         today: "Today",
         clear: "Clear",
         format: "mm/dd/yyyy",
-        titleFormat: "MM yyyy", /* Leverages same syntax as 'format' */
+        titleFormat: "MM yyyy",
+        /* Leverages same syntax as 'format' */
         weekStart: 0
     };
 
@@ -648,18 +650,23 @@ if ($product->is_draft == 1) {
         language: 'en'
     });
 
-    $(document).ready(function(){
+    $(document).ready(function() {
         if ($(this).width() < 500) {
-            $("form").submit(function(e){
-                if (!$('#countries').val() || !$('#states').val()){
+            $("form").submit(function(e) {
+                if (!$('#countries').val() || !$('#states').val()) {
                     if (!$('#countries').val())
-                        $('button[name=country]').css({'border-width':'1px', 'border-color': 'rgba(220, 53, 69, 0.40)'})
+                        $('button[name=country]').css({
+                            'border-width': '1px',
+                            'border-color': 'rgba(220, 53, 69, 0.40)'
+                        })
                     if (!$('#states').val())
-                        $('button[name=state]').css({'border-width':'1px', 'border-color': 'rgba(220, 53, 69, 0.40)'})
+                        $('button[name=state]').css({
+                            'border-width': '1px',
+                            'border-color': 'rgba(220, 53, 69, 0.40)'
+                        })
                     e.preventDefault();
                 }
             })
         }
-	})
-
+    })
 </script>

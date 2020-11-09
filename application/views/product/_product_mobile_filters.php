@@ -43,15 +43,20 @@
 						<div class="col-md-12 filter-list-container">
 							<div class="mobile-filter-list">
 								<div class="mobile_selectdiv" style="width: 100%">
-									<button class="filter-btn text-truncate has-menu d-flex" type="button" data-ajax="0" data-type="" data-query="" data-url="filter_categories" style="height:50px;padding: 0 10px 0 10px">
-										<img src="https://image.flaticon.com/icons/svg/95/95090.svg" class="align-self-center mr-1 ml-1" alt="Menu" style="width: 15px; filter:invert(47%) sepia(1%) saturate(8%) hue-rotate(87deg) brightness(119%) contrast(119%);">
+									<button class="filter-btn text-truncate has-menu d-flex mobile-popup__button" type="button" data-ajax="0" data-type="" data-query="" data-url="filter_categories">
+										<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 298 298" style="width: 18px" xml:space="preserve">
+											<path d="M117.5,0h-101c-8.822,0-16,7.178-16,16v101c0,8.822,7.178,16,16,16h101c8.822,0,16-7.178,16-16V16 C133.5,7.178,126.322,0,117.5,0z" />
+											<path d="M281.5,0h-101c-8.822,0-16,7.178-16,16v101c0,8.822,7.178,16,16,16h101c8.822,0,16-7.178,16-16V16 C297.5,7.178,290.322,0,281.5,0z" />
+											<path d="M117.5,165h-101c-8.822,0-16,7.178-16,16v101c0,8.822,7.178,16,16,16h101c8.822,0,16-7.178,16-16V181 C133.5,172.178,126.322,165,117.5,165z" />
+											<path d="M281.5,165h-101c-8.822,0-16,7.178-16,16v101c0,8.822,7.178,16,16,16h101c8.822,0,16-7.178,16-16V181 C297.5,172.178,290.322,165,281.5,165z" />
+										</svg>
 										<?php if (!isset($category)) : ?>
-											<span class="titre  m-0 flex-fill  h-100 text-truncate  text-left catgegory-name"><?= trans('category') ?></span>
+											<span class="flex-fill text-truncate text-left catgegory-name"><?= trans('category') ?></span>
 										<?php else : ?>
 											<?php if (!empty($subcategory)) : ?>
-												<span class="titre  m-0 flex-fill  h-100 text-truncate  text-left catgegory-name"><?= trans('all').' '.htmlspecialchars($category->name) ?></span>
+												<span class="flex-fill text-truncate text-left catgegory-name"><?= trans('all') . ' ' . htmlspecialchars($category->name) ?></span>
 											<?php else : ?>
-												<span class="titre  m-0 flex-fill  h-100 text-truncate  text-left catgegory-name"><?= htmlspecialchars($category->name) ?></span>
+												<span class="flex-fill text-truncate text-left catgegory-name"><?= htmlspecialchars($category->name) ?></span>
 											<?php endif; ?>
 										<?php endif; ?>
 										<i class="icon-arrow-right"></i>
@@ -66,9 +71,9 @@
 						<div class="col-md-12 filter-list-container">
 							<div class="mobile-filter-list">
 								<div class="mobile_selectdiv" style="width: 100%">
-									<button class="filter-btn text-truncate has-menu d-flex" header-text="<?php echo $is_hkm_one_country ? trans('states') : trans('countries'); ?>" type="button" <?php if ($is_hkm_one_country) { ?> data-ajax="<?= $is_hkm_one_country_value ?>" <?php } ?> data-type="<?= $is_hkm_one_country ? ('state') : ('country') ?>" data-query="" data-url="filter_location" style="height:50px;padding: 0 10px 0 10px">
+									<button class="filter-btn text-truncate has-menu d-flex mobile-popup__button" header-text="<?php echo $is_hkm_one_country ? trans('states') : trans('countries'); ?>" type="button" <?php if ($is_hkm_one_country) { ?> data-ajax="<?= $is_hkm_one_country_value ?>" <?php } ?> data-type="<?= $is_hkm_one_country ? ('state') : ('country') ?>" data-query="" data-url="filter_location">
 										<i class="fa fa-map-marker  fa-lg align-self-center mr-1 ml-1" aria-hidden="true"></i>
-										<span class="titre m-0 flex-fill  text-truncate text-left h-100 location-name"><?= $filter_location ?></span>
+										<span class="flex-fill text-truncate text-left location-name"><?= $filter_location ?></span>
 										<i class="icon-arrow-right"></i>
 									</button>
 								</div>
@@ -108,10 +113,15 @@
 										<div class="col-md-12 filter-list-container">
 											<div class="mobile-filter-list">
 												<div class="mobile_selectdiv" style="width: 100%">
-													<button class="filter-btn text-truncate has-menu d-flex" type="button" data-ajax="0" data-type="<?php echo $custom_filter->product_filter_key; ?>" data-query="lang_id=<?php echo $this->selected_lang->id; ?> and field_id=<?php echo $custom_filter->id; ?>&input" data-url="mobile_filter" style="height:50px;padding: 0 10px 0 10px">
-														<img src="https://image.flaticon.com/icons/svg/95/95090.svg" class="align-self-center mr-1 ml-1" alt="Menu" style="width: 15px; filter:invert(47%) sepia(1%) saturate(8%) hue-rotate(87deg) brightness(119%) contrast(119%);">
-														<div class="titre  m-0 flex-fill  h-100 text-truncate  text-left special-cagetory" style="padding-left:5px">
-															<span name="<?php echo $custom_filter->product_filter_key;?>">
+													<button class="filter-btn text-truncate has-menu d-flex mobile-popup__button" type="button" data-ajax="0" data-type="<?php echo $custom_filter->product_filter_key; ?>" data-query="lang_id=<?php echo $this->selected_lang->id; ?> and field_id=<?php echo $custom_filter->id; ?>&input" data-url="mobile_filter">
+														<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 298 298" style="width: 18px" xml:space="preserve">
+															<path d="M117.5,0h-101c-8.822,0-16,7.178-16,16v101c0,8.822,7.178,16,16,16h101c8.822,0,16-7.178,16-16V16 C133.5,7.178,126.322,0,117.5,0z" />
+															<path d="M281.5,0h-101c-8.822,0-16,7.178-16,16v101c0,8.822,7.178,16,16,16h101c8.822,0,16-7.178,16-16V16 C297.5,7.178,290.322,0,281.5,0z" />
+															<path d="M117.5,165h-101c-8.822,0-16,7.178-16,16v101c0,8.822,7.178,16,16,16h101c8.822,0,16-7.178,16-16V181 C133.5,172.178,126.322,165,117.5,165z" />
+															<path d="M281.5,165h-101c-8.822,0-16,7.178-16,16v101c0,8.822,7.178,16,16,16h101c8.822,0,16-7.178,16-16V181 C297.5,172.178,290.322,165,281.5,165z" />
+														</svg>
+														<div class="flex-fill text-truncate text-left special-cagetory">
+															<span name="<?php echo $custom_filter->product_filter_key; ?>">
 																<?php echo @${$custom_filter->product_filter_key} ? @${$custom_filter->product_filter_key} : $custom_filter->name; ?>
 															</span>
 														</div>
