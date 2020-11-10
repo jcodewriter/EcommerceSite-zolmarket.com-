@@ -120,7 +120,7 @@
                 <div href="" class="app-details">
                     <h6 style="font-weight: 700;font-size: .8125rem;color: #030a17;margin-bottom:0 !important"><?php echo trans("za"); ?></h6>
                     <span style="color: #ffa500"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span>
-                    <div style="color: #999;font-size: .675rem;"><?php echo trans("za_description"); ?></div>
+                    <div style="color: #555;font-size: .675rem;"><?php echo trans("za_description"); ?></div>
                 </div>
                 <div class="app-download" style="width: 115px;">
                     <a href="<?php echo $this->is_AndroidOS ? 'https://play.google.com/store/apps/details?id=com.app.zolmarket&hl=en_US' : 'https://apps.apple.com/se/app/zolmarket/id1493982231?l=en'; ?>" class="btn btn-primary" style="color:#fff;font-size: .75rem;"><span><?php echo trans("download_app"); ?></span></a>
