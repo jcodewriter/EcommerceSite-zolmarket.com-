@@ -3392,7 +3392,12 @@ img {
 .product-content-details .details label {
     float: left;
     min-width: 120px;
-    margin-bottom: 0
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.product-content-details .details strong {
+    font-weight: 600;
 }
 
 .product-content-details .details span {
