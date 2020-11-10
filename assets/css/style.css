@@ -7677,7 +7677,8 @@ form select.error {
 .custom-control .custom-control-label {
     cursor: pointer !important;
     outline: none !important;
-    box-shadow: none !important
+    box-shadow: none !important;
+    font-weight: 600;
 }
 
 .custom-control-label::before,
@@ -9773,8 +9774,8 @@ form select.error {
     }
 
     .profile-tabs {
-        border-top: 1px solid #f5f5f5;
-        padding-top: 20px;
+        /* border-top: 1px solid #f5f5f5; */
+        /* padding-top: 20px; */
     }
 
     .profile-tabs .nav .nav-item {
@@ -9784,6 +9785,12 @@ form select.error {
 
     .profile-tabs .nav .active .nav-link {
         background-color: #fff;
+    }
+    
+    .setting__item-list{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .profile-tabs .nav .nav-item .nav-link:hover {

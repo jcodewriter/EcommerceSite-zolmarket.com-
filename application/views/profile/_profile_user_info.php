@@ -82,7 +82,7 @@
             <div class="row-custom user-contact" style="margin-bottom: 0;">
 
                 <?php if ($this->selected_lang->ckeditor_lang == 'ar'): ?>
-                    <span class="info"><?php echo trans("member_since"); ?>&nbsp;<?php echo helper_date_format($user->created_at); ?></span>
+                    <span class="info"><img src="<?php echo base_url().'assets/img/user_confirm.png'; ?>" alt="" /><?php echo trans("member_since"); ?>&nbsp;<?php echo helper_date_format($user->created_at); ?></span>
                     <?php if (!empty($user->phone_number) && $user->show_phone == 1): ?>
                         <span class="info"><i class="icon-phone"></i>
                         <a href="javascript:void(0)" id="show_phone_number"><?php echo trans("show"); ?></a>
@@ -96,7 +96,7 @@
                         <span class="info"><i class="icon-map-marker"></i><?php echo get_location($user); ?></span>
                     <?php endif; ?>
                 <?php else: ?>
-                    <span class="info"><?php echo trans("member_since"); ?>&nbsp;<?php echo helper_date_format($user->created_at); ?></span>
+                    <span class="info"><img src="<?php echo base_url().'assets/img/user_confirm.png'; ?>" alt="" /><?php echo trans("member_since"); ?>&nbsp;<?php echo helper_date_format($user->created_at); ?></span>
                     <?php if (!empty($user->email) && $user->show_email == 1): ?>
                         <span class="info"><i class="icon-envelope"></i><?php echo html_escape($user->email); ?></span>
                     <?php endif; ?>

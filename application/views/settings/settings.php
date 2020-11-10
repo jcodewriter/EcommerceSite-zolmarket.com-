@@ -39,7 +39,7 @@ if (auth_check()){
                     </ol>
                 </nav>
 
-                <h1 class="page-title"><?php echo trans("settings"); ?></h1>
+                <h1 class="page-title hidden-sm-down"><?php echo trans("settings"); ?></h1>
             </div>
         </div>
 
