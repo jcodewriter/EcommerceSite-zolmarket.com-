@@ -19,10 +19,10 @@
     padding: 0.5em;
 }
 .item-box img {
-    max-width: 100%;
-    height: 65px;
-    /* object-fit: contain;
-    object-position: center center; */
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    object-position: center center;
 }
 .item-box h4 {
     font-weight: 600;
