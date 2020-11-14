@@ -250,8 +250,11 @@ class Category_model extends CI_Model
         }
 
 
-        $this->update_subcategories_parent_slug($id, $data["slug"]);
 
+
+        $this->update_subcategories_parent_slug($id, $data["slug"]);
+        $data["category_ads_view"] = $this->input->post('category_ads_view', true);
+        $data["ads_category_view"] = $this->input->post('ads_category_view', true);
         $this->db->where('id', $id);
         return $this->db->update('categories', $data);
     }

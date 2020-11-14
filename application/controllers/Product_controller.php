@@ -663,15 +663,15 @@ class Product_controller extends Home_Core_Controller
     public function category()
     {
         $slug = @end(func_get_args());
-    	$valide = true;
+        $valide = true;
 
-		$category = $this->category_model->get_category_by_slug($slug);
-		if (empty($category) || $category == null) {
-			$this->error_404();
-			$valide  = false;
-		}
+        $category = $this->category_model->get_category_by_slug($slug);
+        if (empty($category) || $category == null) {
+            $this->error_404();
+            $valide  = false;
+        }
 
-    	if($valide) {
+        if ($valide) {
 
             if ($this->is_mobile) {
                 $data['Platform'] = 'Mobile';
@@ -680,43 +680,39 @@ class Product_controller extends Home_Core_Controller
             }
 
             if ($this->general_settings->default_product_location != 0) {
-               $data["is_hkm_one_country"] = true;
-               $data["is_hkm_one_country_value"] = $this->general_settings->default_product_location;
-            }else{
-                 $data["is_hkm_one_country"] = false;
+                $data["is_hkm_one_country"] = true;
+                $data["is_hkm_one_country_value"] = $this->general_settings->default_product_location;
+            } else {
+                $data["is_hkm_one_country"] = false;
             }
-            
+
             $data["custom_field_data"] = $this->category_model->ads_result_custom_field_data($category->id);
             $data["parent_categories"] = $this->category_model->get_all_parent_categories($category->id);
-			$endcat = end($data["parent_categories"]);
-			$subcats = get_allsubcategories_by_parent_id($endcat->id);
-			$subcats[] = $endcat->id;
-			$data["page"] = 'category';
-			$data["category"] = end($data["parent_categories"]);
-			$data["subcategories"] = $this->category_model->get_subcategories_by_parent_id($data["category"]->id);
-			$data['title'] = !empty($data["category"]->title_meta_tag) ? $data["category"]->title_meta_tag : $data["category"]->name;
-			$data['description'] = $data["category"]->description;
-			$data['keywords'] = $data["category"]->keywords;
-			//get paginated posts
-			$link = lang_base_url() . 'category/' . $data["category"]->slug;
-			$pagination = $this->paginate($link, $this->product_model->get_paginated_filtered_products_count($subcats), $this->product_per_page);
-			$data['products'] = $this->product_model->get_paginated_filtered_products($subcats, $pagination['per_page'], $pagination['offset']);
-			$data["site_settings"] = get_site_settings();
-			$data['show_location_filter'] = false;
-			
+            $endcat = end($data["parent_categories"]);
+            $subcats = get_allsubcategories_by_parent_id($endcat->id);
+            $subcats[] = $endcat->id;
+            $data["page"] = 'category';
+            $data["category"] = end($data["parent_categories"]);
+            $data["subcategories"] = $this->category_model->get_subcategories_by_parent_id($data["category"]->id);
+            $data['title'] = !empty($data["category"]->title_meta_tag) ? $data["category"]->title_meta_tag : $data["category"]->name;
+            $data['description'] = $data["category"]->description;
+            $data['keywords'] = $data["category"]->keywords;
+            //get paginated posts
+            $link = lang_base_url() . 'category/' . $data["category"]->slug;
+            $pagination = $this->paginate($link, $this->product_model->get_paginated_filtered_products_count($subcats), $this->product_per_page);
+            $data['products'] = $this->product_model->get_paginated_filtered_products($subcats, $pagination['per_page'], $pagination['offset']);
+            $data["site_settings"] = get_site_settings();
+            $data['show_location_filter'] = false;
+
             $data["categories"] = $this->category_model->get_categories_all();
-            if($data["is_hkm_one_country"])
+            if ($data["is_hkm_one_country"])
                 $data["states"] =  get_states_by_country($this->default_location_id);
-            else if($this->input->get("country", true) != null)
-            {
+            else if ($this->input->get("country", true) != null) {
                 $country = clean_number($this->input->get("country", true));
                 $data["states"] =  get_states_by_country($country);
-            }
-            else
-            {
+            } else {
 
                 $data["states"] =  get_states_by_country($this->location_model->default_country());
-
             }
             $capitalstate = array_filter($data["states"], function ($item) {
                 return $item->is_capital;
@@ -740,21 +736,21 @@ class Product_controller extends Home_Core_Controller
             $capitalcity = reset($capitalcity);
             $data["capital_city"] = $capitalcity;
 
-			if (!empty($data['products'])) {
-				foreach ($data['products'] as $item) {
-					if ($item->product_type == 'physical') {
-						$data['show_location_filter'] = true;
-						break;
-					}
-				}
-			} else {
-				$data['show_location_filter'] = true;
-			}
+            if (!empty($data['products'])) {
+                foreach ($data['products'] as $item) {
+                    if ($item->product_type == 'physical') {
+                        $data['show_location_filter'] = true;
+                        break;
+                    }
+                }
+            } else {
+                $data['show_location_filter'] = true;
+            }
 
-			$this->load->view('partials/_header', $data);
-			$this->load->view('product/products', $data);
-			$this->load->view('partials/_footer');
-		}
+            $this->load->view('partials/_header', $data);
+            $this->load->view('product/products', $data);
+            $this->load->view('partials/_footer');
+        }
     }
     /**
      * Popup Category
@@ -794,13 +790,19 @@ class Product_controller extends Home_Core_Controller
             } else {
                 $data['Platform'] = 'Browser';
             }
+
             if ($this->is_mobile) {
                 $data['title'] = $this->settings->homepage_title;
                 $data['description'] = $this->settings->site_description;
                 $data['keywords'] = $this->settings->keywords;
-
+                
                 $this->load->view('partials/_header', $data);
-                $this->load->view('product/_popup_category', $data);
+                if ($data["category"]->category_ads_view == '0')
+                    $this->load->view('product/_popup_category', $data);
+                else if ($data["category"]->category_ads_view == '1')
+                    $this->load->view('product/_popup_category_cell_two', $data);
+                else if ($data["category"]->category_ads_view == '2')
+                    $this->load->view('product/_popup_category_cell_three', $data);
                 $this->load->view('partials/_footer_category');
             }
         }
@@ -1416,10 +1418,10 @@ class Product_controller extends Home_Core_Controller
                 $data[$ret[0]] = $ret[1];
             }
             $data['page_param'] = true;
-        }else {
+        } else {
             $data['page_param'] = false;
         }
-        
+
         if ($category_id)
             $data['category'] = $this->category_model->get_full_category($category_id);
         else {
@@ -1430,19 +1432,19 @@ class Product_controller extends Home_Core_Controller
             $data['category'] = $obj;
         }
         // print_r($data['category']); exit;
-        
+
         if ($category_id)
             $data['subcategory'] = $this->category_model->get_subcategories_by_parent_id($category_id);
-        else    
+        else
             $data['subcategory'] = [];
 
         $data['title'] = !empty($data["category"]->title_meta_tag) ? $data["category"]->title_meta_tag : $data["category"]->name;
         $data['description'] = $data["category"]->description;
         $data['keywords'] = $data["category"]->keywords;
-        
+
         if ($category_id)
             $data['custom_filters'] = $this->settings_model->get_custom_product_conditions($category_id);
-        else    
+        else
             $data['custom_filters'] = [];
 
         $data['url'] = $product_url;
@@ -1453,7 +1455,7 @@ class Product_controller extends Home_Core_Controller
         } else {
             $data["is_hkm_one_country"] = false;
         }
-        
+
         if ($category_id) {
             $top_parent_category_id = top_parent_category_id($category_id);
             $data['form_settings'] = $this->settings_model->get_form_settings($top_parent_category_id);
