@@ -21,7 +21,7 @@
 .item-box img {
     width: 64px;
     height: 64px;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center center;
 }
 .item-box h4 {
