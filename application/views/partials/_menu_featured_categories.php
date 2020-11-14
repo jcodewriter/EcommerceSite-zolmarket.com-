@@ -19,18 +19,18 @@ but if not have  subcategory it will be like  link when click concerne url
                 <?php if(!$hasmenu): ?>
                 <a href="<?php echo generate_popup_category_url($category); ?>">
                     <img src="<?php echo $img_bg_product_small; ?>"
-                     data-src="<?php echo get_category_image_url($category, 'image_2'); ?>"
+                     data-src="<?php echo get_category_image_url($category, 'image_1'); ?>"
                       alt="<?php echo html_escape($category->name); ?>" class="lazyload img-fluid"
-                       onerror="this.src='<?php echo $img_bg_product_small; ?>'">
+                       onerror="this.src='<?php echo $img_bg_product_small; ?>'" width="420" height="312" />
                     <h4 ><?php echo html_escape($category->name); ?></h4>
                 </a>
                 <?php else: ?>
 
                 <a href="<?php echo generate_popup_category_url($category); ?>">
                     <img src="<?php echo $img_bg_product_small; ?>"
-                    data-src="<?php echo get_category_image_url($category, 'image_2'); ?>"
+                    data-src="<?php echo get_category_image_url($category, 'image_1'); ?>"
                      alt="<?php echo html_escape($category->name); ?>"
-                      class="lazyload img-fluid" onerror="this.src='<?php echo $img_bg_product_small; ?>'">
+                      class="lazyload img-fluid" onerror="this.src='<?php echo $img_bg_product_small; ?>'" width="420" height="312" />
                     <h4 ><?php echo html_escape($category->name); ?></h4>
                 </a>
             <?php endif; ?>
