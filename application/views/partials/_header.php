@@ -374,7 +374,7 @@
                         </div>
                     <?php else : ?>
                         <div class="d-inline-block mr-2 text-center">
-                            <a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal" class="cart-link-mobile header-cart">
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal" class="cart-link-mobile header-cart" redirect_url="cart">
                                 <i class="fa icon-cart"></i>
                             </a>
                         </div>
@@ -388,7 +388,7 @@
                         </div>
                     <?php else : ?>
                         <div class="cart-icon-mobile d-inline-block mr-2 text-center">
-                            <a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal" class="cart-link-mobile">
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal" class="cart-link-mobile" redirect_url="favorites">
                                 <i class="icon-heart-o fa-lg"></i>
                             </a>
                         </div>

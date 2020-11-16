@@ -16,6 +16,21 @@ class Home_controller extends Home_Core_Controller
      */
     public function index()
     {
+        if (auth_check()) {
+            // if (@$_COOKIE["redirect_url"] == "home" || !(@$_COOKIE["redirect_url"]))
+            if (@$_COOKIE["redirect_url"] == "messages")
+                redirect(lang_base_url() . "messages");
+            else if (@$_COOKIE["redirect_url"] == "sell-now")
+                redirect(lang_base_url() . "sell-now");
+            else if (@$_COOKIE["redirect_url"] == "notifications")
+                redirect(lang_base_url() . "notifications");
+            else if (@$_COOKIE["redirect_url"] == "account")
+                redirect(lang_base_url() . "account/" . $this->auth_user->slug);
+            else if (@$_COOKIE["redirect_url"] == "cart")
+                redirect(lang_base_url() . "cart");
+            else if (@$_COOKIE["redirect_url"] == "favorites")
+                redirect(lang_base_url() . "favorites/" . $this->auth_user->slug);
+        }
         $data['title'] = $this->settings->homepage_title;
         $data['description'] = $this->settings->site_description;
         $data['keywords'] = $this->settings->keywords;

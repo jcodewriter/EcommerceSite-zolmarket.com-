@@ -1213,6 +1213,14 @@ $(document).ready(function () {
     set_site_language(lang_id)
 });
 
+$(".cart-link-mobile").on("click", function () {
+    document.cookie = `redirect_url=${$(this).attr("redirect_url")}`;
+})
+
+$(".f-btn").on("click", function () {
+    document.cookie = `redirect_url=${$(this).attr("redirect_url")}`;
+})
+
 //send activation email
 function send_activation_email(id, token) {
     $('#result-login').empty();
