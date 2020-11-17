@@ -120,7 +120,7 @@
             </div>
 
         <?php if ($general_settings->user_reviews == 1): ?>
-                <div class="profile-rating only_on_mobile" style="position: absolute;top: 33px;left: 9px;">qqqq
+                <div class="profile-rating only_on_mobile" style="position: absolute;top: 31px;left: 9px;">
                     <?php $rew_count = get_user_review_count($user->id);
                     if ($rew_count > 0):?>
                         <!--stars-->
