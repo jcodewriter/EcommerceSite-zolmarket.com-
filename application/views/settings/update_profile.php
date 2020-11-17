@@ -46,6 +46,7 @@
                         <?php echo form_open_multipart("profile_controller/update_profile_post", ['id' => 'form_validate']); ?>
                         <div class="form-box-body">
                             <div class="form-group">
+                                <label class="control-label"><?php echo trans("upload_your_shop"); ?></label>
                                 <div class="upload-image-container">
                                     <div style="width: 100%; height: 180px;">
                                         <?php if ($this->auth_user->avatar) : ?>

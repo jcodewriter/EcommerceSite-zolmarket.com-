@@ -9306,7 +9306,7 @@ form select.error {
         display:none !important;
     }
     .row-profile-username{
-        margin-bottom: 10px;
+        margin-bottom: 25px;
     }
     .navCatDownMobile .textcat-header{
         margin-left: 10px !important;
@@ -10466,6 +10466,7 @@ form select.error {
 .upload-image-container {
     border: 1px dashed #404041;
     border-radius: 0;
+    position: relative;
 }
 
 .custom-check::before{
