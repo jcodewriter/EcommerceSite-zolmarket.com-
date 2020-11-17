@@ -12,7 +12,7 @@
 	</div>   
 </div>
 <!-- Wrapper -->
-<div id="wrapper" style="margin-top:20px !important">
+<div id="wrapper" style="padding-top: 0 !important;">
     <div class="container">
         <div class="auth-container">
             <div class="auth-box">

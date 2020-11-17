@@ -76,8 +76,10 @@ class Profile_model extends CI_Model
             'phone_number' => $this->input->post('phone_number', true),
             'show_email' => $this->input->post('show_email', true),
             'show_phone' => $this->input->post('show_phone', true),
-            'show_location' => $this->input->post('show_location', true)
+            'show_location' => $this->input->post('show_location', true),
+            'fullname' => $this->input->post('full_name', true)
         );
+
 
         if (empty($data['show_email'])) {
             $data['show_email'] = 0;

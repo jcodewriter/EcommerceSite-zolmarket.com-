@@ -35,6 +35,9 @@ class Product_controller extends Home_Core_Controller
         if ($this->general_settings->email_verification == 1 && user()->email_status != 1) {
             $this->session->set_flashdata('error', trans("msg_confirmed_required"));
             redirect(lang_base_url() . "settings/update-profile");
+        } else if ($this->general_settings->email_verification != 1) {
+            $this->session->set_flashdata('error', trans("msg_confirmed_required"));
+            redirect(lang_base_url() . "account" . $this->auth_user->slug);
         }
         $data['btn_string'] = '';
         $data['state_button'] = '';
@@ -80,6 +83,9 @@ class Product_controller extends Home_Core_Controller
             'state_id' => $this->input->post('state_id', true),
             'city_id' => $this->input->post('city_id', true),
             'phone_number' => $this->input->post('phone_number', true),
+            'address' => $this->input->post('address', true),
+            'zip_code' => $this->input->post('zip_code', true),
+            'fullname' => $this->input->post('fullname', true),
             'about_me' => $this->input->post('about_me', true)
         );
 
@@ -795,7 +801,7 @@ class Product_controller extends Home_Core_Controller
                 $data['title'] = $this->settings->homepage_title;
                 $data['description'] = $this->settings->site_description;
                 $data['keywords'] = $this->settings->keywords;
-                
+
                 $this->load->view('partials/_header', $data);
                 if ($data["category"]->category_ads_view == '0')
                     $this->load->view('product/_popup_category', $data);

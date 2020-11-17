@@ -289,7 +289,7 @@ class Location_model extends CI_Model
                     from states as t0
                     left join cities as t1 on t0.id = t1.state_id
                     where t0.country_id = '.$country_id.'
-                    group by t0.id order by t0.name';
+                    group by t0.id';
         $query = $this->db->query($select);
         return $query->result();
     }
