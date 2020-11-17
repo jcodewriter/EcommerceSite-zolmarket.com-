@@ -73,7 +73,7 @@ class Profile_model extends CI_Model
             'city_id' => $this->input->post('city_id', true),
             'address' => $this->input->post('address', true),
             'zip_code' => $this->input->post('zip_code', true),
-            'phone_number' => ltrim($this->input->post('phone_number', true), "+"),
+            'phone_number' => $this->input->post('phone_number', true),
             'show_email' => $this->input->post('show_email', true),
             'show_phone' => $this->input->post('show_phone', true),
             'show_location' => $this->input->post('show_location', true),

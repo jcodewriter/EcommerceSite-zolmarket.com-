@@ -329,6 +329,8 @@ img {
 
 .form-group .control-label {
     font-weight: 600;
+    margin-bottom: 2px !important;
+    position: relative;
 }
 
 .form-group .control-label-small {
@@ -10476,7 +10478,7 @@ form select.error {
 }
 
 .form-control:focus {
-    border-color: #999 !important;
+    border-color: #404041 !important;
 }
 .modal-preview-image {
     max-width: 780px;
