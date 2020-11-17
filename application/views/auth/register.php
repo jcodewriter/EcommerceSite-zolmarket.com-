@@ -36,19 +36,19 @@
                         <!-- include message block -->
                         <?php $this->load->view('partials/_messages'); ?>
                         <div class="form-group">
-                            <label for="password" style="color: #777;"><?php echo trans("username"); ?></label>
+                            <label for="password" style="font-weight: 600"><?php echo trans("username"); ?></label>
                             <input type="text" name="username" class="form-control auth-form-input" placeholder="<?php echo trans("username"); ?>" value="<?php echo old("username"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" required>
                         </div>
                         <div class="form-group">
-                            <label for="password" style="color: #777;"><?php echo trans("email_address"); ?></label>
+                            <label for="password" style="font-weight: 600"><?php echo trans("email_address"); ?></label>
                             <input type="email" name="email" class="form-control auth-form-input" placeholder="<?php echo trans("email_address"); ?>" value="<?php echo old("email"); ?>" required>
                         </div>
                         <div class="form-group">
-                            <label for="password" style="color: #777;"><?php echo trans("password"); ?></label>
+                            <label for="password" style="font-weight: 600"><?php echo trans("password"); ?></label>
                             <input type="password" name="password" class="form-control auth-form-input" placeholder="<?php echo trans("password"); ?>" value="<?php echo old("password"); ?>" required>
                         </div>
                         <div class="form-group">
-                            <label for="password" style="color: #777;"><?php echo trans("password_confirm"); ?></label>
+                            <label for="password" style="font-weight: 600"><?php echo trans("password_confirm"); ?></label>
                             <input type="password" name="confirm_password" class="form-control auth-form-input" placeholder="<?php echo trans("password_confirm"); ?>" required>
                         </div>
                         <div class="form-group m-t-5 m-b-20">

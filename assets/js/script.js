@@ -1214,11 +1214,11 @@ $(document).ready(function () {
 });
 
 $(".cart-link-mobile").on("click", function () {
-    document.cookie = `redirect_url=${$(this).attr("redirect_url")}`;
+    document.cookie = `redirect_url=${$(this).attr("redirect_url")}; expires=; path=/`;
 })
 
 $(".f-btn").on("click", function () {
-    document.cookie = `redirect_url=${$(this).attr("redirect_url")}`;
+    document.cookie = `redirect_url=${$(this).attr("redirect_url")}; expires=; path=/`;
 })
 
 //send activation email

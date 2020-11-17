@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Auth_controller extends Home_Core_Controller
 {
@@ -126,7 +126,6 @@ class Auth_controller extends Home_Core_Controller
             $this->session->set_userdata('g_login_referrer', $this->agent->referrer());
             header('Location: ' . $authUrl);
             exit();
-
         } elseif (empty($_GET['state']) || ($_GET['state'] !== $_SESSION['oauth2state'])) {
             // State is invalid, possible CSRF attack in progress
             unset($_SESSION['oauth2state']);
@@ -154,7 +153,6 @@ class Auth_controller extends Home_Core_Controller
                 } else {
                     redirect(base_url());
                 }
-
             } catch (Exception $e) {
                 // Failed to get user details
                 exit('Something went wrong: ' . $e->getMessage());
@@ -270,31 +268,37 @@ class Auth_controller extends Home_Core_Controller
             $user = $this->auth_model->register();
             if ($user) {
                 // language 
-                 $idiom = $this->session->userdata('modesy_selected_lang');
+                $idiom = $this->session->userdata('modesy_selected_lang');
                 //update slug
                 $this->auth_model->update_slug($user->id);
                 $this->auth_model->login_direct($user);
                 if ($this->general_settings->email_verification == 1) {
-                   
-                    if($idiom == 2){
+
+                    if ($idiom == 2) {
                         $this->config->set_item('language', 'العربية');
                         $this->lang->load('site', 'العربية');
                         $oops = $this->lang->line('msg_send_confirmation_email');
-                        $this->session->set_flashdata('success', $oops); 
-                    }else{
-                       $this->config->set_item('language', 'default');
+                        $this->session->set_flashdata('success', $oops);
+                    } else {
+                        $this->config->set_item('language', 'default');
                         $this->lang->load('site', 'default');
                         $oops = $this->lang->line('msg_send_confirmation_email');
-                        $this->session->set_flashdata('success', $oops); 
+                        $this->session->set_flashdata('success', $oops);
                     }
                 } else {
                     $this->session->set_flashdata('success', trans("msg_register_success"));
                 }
-                
+
                 if ($idiom == 2) {
-                    redirect(lang_base_url() . "settings");
-                }else{
-                    redirect(lang_base_url() . "settings");
+                    if ($this->general_settings->email_verification == 1)
+                        redirect(lang_base_url() . "settings/update-profile");
+                    else
+                        redirect(lang_base_url() . "account/" . $this->auth_user->slug);
+                } else {
+                    if ($this->general_settings->email_verification == 1)
+                        redirect(lang_base_url() . "settings/update-profile");
+                    else
+                        redirect(lang_base_url() . "account/" . $this->auth_user->slug);
                 }
             } else {
                 //error

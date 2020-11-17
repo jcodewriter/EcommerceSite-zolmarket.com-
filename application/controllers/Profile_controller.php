@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Profile_controller extends Home_Core_Controller
 {
@@ -16,8 +16,8 @@ class Profile_controller extends Home_Core_Controller
      */
     public function profile($slug)
     {
-        if(!auth_check() )
-            redirect(lang_base_url() . 'account/' . $slug );
+        if (!auth_check())
+            redirect(lang_base_url() . 'account/' . $slug);
         $slug = decode_slug($slug);
         $data["user"] = $this->auth_model->get_user_by_slug($slug);
 
@@ -25,8 +25,8 @@ class Profile_controller extends Home_Core_Controller
             redirect(lang_base_url());
         }
 
-        if(auth_check() && $data["user"]->id != $this->auth_user->id )
-            redirect(lang_base_url() . 'account/' . $slug );
+        if (auth_check() && $data["user"]->id != $this->auth_user->id)
+            redirect(lang_base_url() . 'account/' . $slug);
 
         $data['title'] = get_shop_name($data["user"]);
         $data['description'] = $data["user"]->username . " - " . $this->app_name;
@@ -54,14 +54,14 @@ class Profile_controller extends Home_Core_Controller
         // $data['mreview_count'] = $this->user_review_model->get_review_count($data["user"]->id);
         // $data['mreviews'] = $this->user_review_model->get_limited_reviews($data["user"]->id, 5);
         // $data['mreview_limit'] = 5;
-        
+
         // $data['orders'] = $this->order_model->get_paginated_orders(user()->id, 10000000000000, 0);
         // $data['compelte_orders'] = $this->order_model->get_paginated_completed_orders(user()->id, 10000000000000, 0);
         // $data['sales'] = $this->order_model->get_paginated_sales(user()->id, 10000000000000, 0);
         // $data['compelte_sales'] = $this->order_model->get_paginated_completed_sales(user()->id, 10000000000000,0);
         // $data['earnings'] = $this->earnings_model->get_paginated_earnings(user()->id, 10000000000000,0);
         // $data['payouts'] = $this->earnings_model->get_paginated_payouts(user()->id, 10000000000000,0);
-        
+
         // $data['site_settings'] = get_site_settings();
         // $data['user_payout'] = $this->earnings_model->get_user_payout_account(user()->id);
         // if (empty($this->session->flashdata('msg_payout'))) {
@@ -73,25 +73,25 @@ class Profile_controller extends Home_Core_Controller
         //         $this->session->set_flashdata('msg_payout', "swift");
         //     }
         // }
-        
-        	
-		// $this->load->model('bidding_model');
-		// if(is_bidding_system_active()){
+
+
+        // $this->load->model('bidding_model');
+        // if(is_bidding_system_active()){
         //     if (is_user_vendor()) {
-    	// 		$data['active_tab'] = "received_quote_requests";
-    	// 		$data['received_request_count'] = $this->bidding_model->get_received_quote_requests_count(user()->id);
-    	// 		$data['sent_request_count'] = $this->bidding_model->get_sent_quote_requests_count(user()->id);
-    	// 		//set pagination
-    	// 		$data['quote_requests'] = $this->bidding_model->get_received_quote_requests_paginated(user()->id, 10000000000000, 0);
-    
-    	// 	} else {
-    	// 		$data['active_tab'] = "sent_request_count";
-    	// 		$data['received_request_count'] = $this->bidding_model->get_received_quote_requests_count( user()->id);
-    	// 		$data['sent_request_count'] = $this->bidding_model->get_sent_quote_requests_count(user()->id);
-    	// 		//set pagination
-    	// 		$data['quote_requests'] = $this->bidding_model->get_sent_quote_requests_paginated(user()->id,10000000000000, 0);
-    	// 	}
-		// }
+        // 		$data['active_tab'] = "received_quote_requests";
+        // 		$data['received_request_count'] = $this->bidding_model->get_received_quote_requests_count(user()->id);
+        // 		$data['sent_request_count'] = $this->bidding_model->get_sent_quote_requests_count(user()->id);
+        // 		//set pagination
+        // 		$data['quote_requests'] = $this->bidding_model->get_received_quote_requests_paginated(user()->id, 10000000000000, 0);
+
+        // 	} else {
+        // 		$data['active_tab'] = "sent_request_count";
+        // 		$data['received_request_count'] = $this->bidding_model->get_received_quote_requests_count( user()->id);
+        // 		$data['sent_request_count'] = $this->bidding_model->get_sent_quote_requests_count(user()->id);
+        // 		//set pagination
+        // 		$data['quote_requests'] = $this->bidding_model->get_sent_quote_requests_paginated(user()->id,10000000000000, 0);
+        // 	}
+        // }
 
         $footer['is_exist'] = true;
         $this->load->view('partials/_header', $data);
@@ -170,7 +170,7 @@ class Profile_controller extends Home_Core_Controller
         }
         $data["user"] = user();
 
-        if((auth_check() && $data["user"]->id != $this->auth_user->id)) {
+        if ((auth_check() && $data["user"]->id != $this->auth_user->id)) {
             redirect(lang_base_url());
         }
         $data['title'] = trans("pending_products");
@@ -213,7 +213,7 @@ class Profile_controller extends Home_Core_Controller
         }
         $data["user"] = user();
 
-        if((auth_check() && $data["user"]->id != $this->auth_user->id)) {
+        if ((auth_check() && $data["user"]->id != $this->auth_user->id)) {
             redirect(lang_base_url());
         }
 
@@ -247,7 +247,7 @@ class Profile_controller extends Home_Core_Controller
         }
         $data["user"] = user();
 
-        if((auth_check() && $data["user"]->id != $this->auth_user->id)) {
+        if ((auth_check() && $data["user"]->id != $this->auth_user->id)) {
             redirect(lang_base_url());
         }
 
@@ -290,7 +290,7 @@ class Profile_controller extends Home_Core_Controller
             redirect(lang_base_url());
         }
         $data["user"] = user();
-        if((auth_check() && $data["user"]->id != $this->auth_user->id)) {
+        if ((auth_check() && $data["user"]->id != $this->auth_user->id)) {
             redirect(lang_base_url());
         }
         $data['title'] = trans("hidden_products");
@@ -340,7 +340,7 @@ class Profile_controller extends Home_Core_Controller
         $data["products"] = $this->product_model->get_user_favorited_products($data["user"]->id);
         $data["user_session"] = get_user_session();
 
-        
+
         $this->load->view('partials/_header', $data);
         $this->load->view('profile/favorites', $data);
         $this->load->view('partials/_footer');
@@ -357,8 +357,8 @@ class Profile_controller extends Home_Core_Controller
             redirect(lang_base_url());
         }
 
-        if(auth_check() && $data["user"]->id != $this->auth_user->id )
-            redirect(lang_base_url() . 'profile/followers/' . $slug );
+        if (auth_check() && $data["user"]->id != $this->auth_user->id)
+            redirect(lang_base_url() . 'profile/followers/' . $slug);
 
 
         $data['title'] = trans("followers");
@@ -413,8 +413,8 @@ class Profile_controller extends Home_Core_Controller
             redirect(lang_base_url());
         }
 
-        if(auth_check() && $data["user"]->id != $this->auth_user->id )
-            redirect(lang_base_url() . 'profile/reviews/' . $slug );
+        if (auth_check() && $data["user"]->id != $this->auth_user->id)
+            redirect(lang_base_url() . 'profile/reviews/' . $slug);
 
 
         $data['title'] = trans("reviews");
@@ -531,7 +531,7 @@ class Profile_controller extends Home_Core_Controller
         $this->load->view('partials/_footer');
     }
 
-     /**
+    /**
      * Update Profile
      */
     public function settings()
@@ -555,7 +555,7 @@ class Profile_controller extends Home_Core_Controller
         $data["countries"] = $this->location_model->get_countries();
         $data["states"] = $this->location_model->get_states_by_country($data["user"]->country_id);
         $data["cities"] = $this->location_model->get_cities_by_state($data["user"]->state_id);
-        if ($data['user']->country_id){
+        if ($data['user']->country_id) {
             $data['btn_string'] = $this->location_model->get_btn_string($data['user']);
             $data['state_button'] = $this->location_model->get_state_button_string($data['user']);
         }
@@ -589,7 +589,7 @@ class Profile_controller extends Home_Core_Controller
         $data["countries"] = $this->location_model->get_countries();
         $data["states"] = $this->location_model->get_states_by_country($data["user"]->country_id);
         $data["cities"] = $this->location_model->get_cities_by_state($data["user"]->state_id);
-        if ($data['user']->country_id){
+        if ($data['user']->country_id) {
             $data['btn_string'] = $this->location_model->get_btn_string($data['user']);
             $data['state_button'] = $this->location_model->get_state_button_string($data['user']);
         }
@@ -736,11 +736,14 @@ class Profile_controller extends Home_Core_Controller
         }
         $data["active_tab"] = "contact_informations";
         $data["countries"] = $this->location_model->get_countries();
-        $data["states"] = $this->location_model->get_states_by_country($data["user"]->country_id);
+        if ($data["user"]->country_id)
+            $data["states"] = $this->location_model->get_states_by_country($data["user"]->country_id);
+        else
+            $data["states"] = $this->location_model->get_states_by_country($this->general_settings->default_product_location);
         $data["cities"] = $this->location_model->get_cities_by_state($data["user"]->state_id);
         $data["user_session"] = get_user_session();
-        
-        if ($data['user']->country_id){
+
+        if ($data['user']->country_id) {
             $data['btn_string'] = $this->location_model->get_btn_string($data['user']);
             $data['state_button'] = $this->location_model->get_state_button_string($data['user']);
         }

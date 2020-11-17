@@ -122,14 +122,14 @@
 													<div class="form-box-body">
 
 														<div class="form-group">
-															<label class="control-label"><?php echo trans("shop_name"); ?> : <span style="color: red;margin-left: 5px;margin-top: 1px;position: absolute;font-size: 16px;">*</span></label>
+															<label class="control-label"><?php echo trans("shop_name"); ?> : <span style="color: red;font-size: 16px;">*</span></label>
 															<input type="text" name="shop_name" class="form-control form-input" value="<?php echo $this->auth_user->username; ?>" placeholder="<?php echo trans("shop_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" required>
 														</div>
 
 														<div class="form-group">
 															<div class="row">
 																<div class="col-12 col-sm-6 m-b-15">
-																	<label class="control-label"><?php echo trans("upload_your_shop"); ?> : <span style="color: red;margin-left: 5px;margin-top: 1px;position: absolute;font-size: 16px;">*</span></label>
+																	<label class="control-label"><?php echo trans("upload_your_shop"); ?> : <span style="color: red;font-size: 16px;">*</span></label>
 																	<div class="upload-image-container">
 																		<div style="width: 100%; height: 150px;">
 																			<?php if ($this->auth_user->avatar) : ?>
@@ -154,7 +154,7 @@
 														</div>
 
 														<div class="form-group">
-															<label class="control-label"><?php echo trans("full_name"); ?> : <span style="color: red;margin-left: 5px;margin-top: 1px;position: absolute;font-size: 16px;">*</span></label>
+															<label class="control-label"><?php echo trans("full_name"); ?> : <span style="color: red;font-size: 16px;">*</span></label>
 															<input type="text" name="fullname" class="form-control form-input" value="<?php echo $this->auth_user->fullname; ?>" placeholder="<?php echo trans("full_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" required>
 														</div>
 
@@ -235,14 +235,14 @@
 																		<i class="icon-arrow-right"></i>
 																	<?php endif; ?>
 																	</button>
-																	<label class="control-label"><?php echo trans('all_states') . " / " . trans('city'); ?> : <span style="color: red;margin-left: 5px;margin-top: 1px;position: absolute;font-size: 16px;">*</span></label>
+																	<label class="control-label"><?php echo trans('all_states') . " / " . trans('city'); ?> : <span style="color: red;font-size: 16px;">*</span></label>
 																	<?php if ($general_settings->default_product_location == 0) : ?>
 																		<button class="filter-btn text-truncate has-menu d-flex mobile-popup__button" type="button" name="state" data-ajax="0" data-type="state_id" data-url="custom_location">
 																		<?php else : ?>
 																			<button class="filter-btn text-truncate has-menu d-flex mobile-popup__button" type="button" name="state" data-ajax="<?php echo $general_settings->default_product_location; ?>" data-type="state_id" data-url="custom_location">
 																			<?php endif; ?>
 																			<i class="fa fa-map-marker  fa-lg align-self-center mr-1 ml-1" aria-hidden="true"></i>
-																			<?php if ($state_button) : ?>
+																			<?php if (@$state_button) : ?>
 																				<span class="flex-fill text-truncate text-left special-cagetory" id="city_button"><?php echo html_escape($state_button); ?></span>
 																			<?php else : ?>
 																				<span class="flex-fill text-truncate text-left special-cagetory" id="city_button"><?php echo trans('all_states') . ' / ' . trans('city'); ?></span>
@@ -255,16 +255,16 @@
 														<div class="form-group">
 															<div class="row">
 																<div class="col-12 col-sm-4 m-b-15">
-																	<label class="control-label"><?php echo trans("phone_number"); ?> : <span style="color: red;margin-left: 5px;margin-top: 1px;position: absolute;font-size: 16px;">*</span></label>
-																	<input type="text" id="intl_phone_number" name="phone_number" class="form-control form-input" value="<?php echo html_escape($this->auth_user->phone_number); ?>" placeholder="<?php echo trans("phone_number"); ?>" required>
+																	<label class="control-label"><?php echo trans("phone_number"); ?> : <span style="color: red;font-size: 16px;">*</span></label>
+																	<input type="text" id="intl_phone_number" name="phone_number" class="form-control form-input" value="+<?php echo html_escape($this->auth_user->phone_number); ?>" placeholder="<?php echo trans("phone_number"); ?>" required>
 																</div>
 																<div class="col-12 col-sm-4 m-b-15">
-																	<label class="control-label">Street Address : <span style="color: red;margin-left: 5px;margin-top: 1px;position: absolute;font-size: 16px;">*</span></label>
-																	<input type="text" id="address" name="address" class="form-control form-input" value="<?php echo html_escape($this->auth_user->phone_number); ?>" placeholder="Street Address" required>
+																	<label class="control-label">Street Address : <span style="color: red;font-size: 16px;">*</span></label>
+																	<input type="text" id="address" name="address" class="form-control form-input" value="<?php echo html_escape($this->auth_user->address); ?>" placeholder="Street Address" required>
 																</div>
 																<div class="col-12 col-sm-4">
-																	<label class="control-label">Zip Code : <span style="color: red;margin-left: 5px;margin-top: 1px;position: absolute;font-size: 16px;">*</span> </label>
-																	<input type="text" id="zip_code" name="zip_code" class="form-control form-input" value="<?php echo html_escape($this->auth_user->phone_number); ?>" placeholder="Zip Code" required>
+																	<label class="control-label">Zip Code : <span style="color: red;font-size: 16px;">*</span> </label>
+																	<input type="text" id="zip_code" name="zip_code" class="form-control form-input" value="<?php echo html_escape($this->auth_user->zip_code); ?>" placeholder="Zip Code" required>
 																</div>
 															</div>
 														</div>

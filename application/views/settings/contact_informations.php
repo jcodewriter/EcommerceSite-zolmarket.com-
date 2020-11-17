@@ -53,7 +53,7 @@
                                         <select id="countries" name="country_id" class="form-control" onchange="get_states(this.value);">
                                             <option value=""><?php echo trans('country'); ?></option>
                                             <?php foreach ($countries as $item) : ?>
-                                                <option value="<?php echo $item->id; ?>" <?php echo ($item->id == $user->country_id) ? 'selected' : ''; ?>><?php echo html_escape($item->name); ?></option>
+                                                <option value="<?php echo $item->id; ?>" <?php echo ($item->id == $general_settings->default_product_location) ? 'selected' : ''; ?>><?php echo html_escape($item->name); ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
@@ -110,7 +110,7 @@
                                             <button class="filter-btn text-truncate has-menu d-flex mobile-popup__button" type="button" name="state" data-ajax="<?php echo $general_settings->default_product_location; ?>" data-type="state_id" data-url="custom_location">
                                             <?php endif; ?>
                                             <i class="fa fa-map-marker  fa-lg align-self-center mr-1 ml-1" aria-hidden="true"></i>
-                                            <?php if ($state_button) : ?>
+                                            <?php if (@$state_button) : ?>
                                                 <span class="flex-fill text-truncate text-left special-cagetory" id="city_button"><?php echo html_escape($state_button); ?></span>
                                             <?php else : ?>
                                                 <span class="flex-fill text-truncate text-left special-cagetory" id="city_button"><?php echo trans('state') . ' / ' . trans('city'); ?></span>
@@ -138,7 +138,7 @@
 
                         <div class="form-group">
                             <label class="control-label"><?php echo trans("phone_number"); ?></label>
-                            <input type="text" id="intl_phone_number" name="phone_number" class="form-control form-input" value="<?php echo html_escape($user->phone_number); ?>" placeholder="<?php echo trans("phone_number"); ?>">
+                            <input type="text" id="intl_phone_number" name="phone_number" class="form-control form-input" value="+<?php echo html_escape($user->phone_number); ?>" placeholder="<?php echo trans("phone_number"); ?>">
                         </div>
                         <div class="form-group m-t-15">
                             <div class="custom-control custom-checkbox">

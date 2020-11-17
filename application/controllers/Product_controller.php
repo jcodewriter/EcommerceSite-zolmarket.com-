@@ -37,8 +37,9 @@ class Product_controller extends Home_Core_Controller
             redirect(lang_base_url() . "settings/update-profile");
         } else if ($this->general_settings->email_verification != 1) {
             $this->session->set_flashdata('error', trans("msg_confirmed_required"));
-            redirect(lang_base_url() . "account" . $this->auth_user->slug);
+            redirect(lang_base_url() . "account/" . $this->auth_user->slug);
         }
+
         $data['btn_string'] = '';
         $data['state_button'] = '';
         $data['title'] = trans("start_selling");
@@ -803,12 +804,16 @@ class Product_controller extends Home_Core_Controller
                 $data['keywords'] = $this->settings->keywords;
 
                 $this->load->view('partials/_header', $data);
-                if ($data["category"]->category_ads_view == '0')
+                if ($data["category"]) {
+                    if ($data["category"]->category_ads_view == '0')
+                        $this->load->view('product/_popup_category', $data);
+                    else if ($data["category"]->category_ads_view == '1')
+                        $this->load->view('product/_popup_category_cell_two', $data);
+                    else if ($data["category"]->category_ads_view == '2')
+                        $this->load->view('product/_popup_category_cell_three', $data);
+                } else {
                     $this->load->view('product/_popup_category', $data);
-                else if ($data["category"]->category_ads_view == '1')
-                    $this->load->view('product/_popup_category_cell_two', $data);
-                else if ($data["category"]->category_ads_view == '2')
-                    $this->load->view('product/_popup_category_cell_three', $data);
+                }
                 $this->load->view('partials/_footer_category');
             }
         }
