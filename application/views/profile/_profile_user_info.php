@@ -106,7 +106,7 @@
                             <a href="javascript:void(0)" id="show_phone_number"><?php echo trans("show"); ?></a>
                             <a href="tel:<?php echo html_escape($user->phone_number); ?>" id="phone_number" class="display-none"><?php echo html_escape($user->phone_number); ?></a>
                         </span>
-                         <span class="info only_on_mobile" style="position: absolute;right: -8px;text-align: right;top: 31px;">
+                         <span class="info only_on_mobile" style="position: absolute;right: -8px;text-align: right;top: 27px;">
                             <i class="icon-phone" style="margin-right: 0!important;"></i>
                             <a href="javascript:void(0)" id="show_phone_number2"><?php echo trans("show"); ?></a>
                             <a href="tel:<?php echo html_escape($user->phone_number); ?>" id="phone_number2" class="display-none"><?php echo html_escape($user->phone_number); ?></a>
@@ -120,7 +120,7 @@
             </div>
 
         <?php if ($general_settings->user_reviews == 1): ?>
-                <div class="profile-rating only_on_mobile" style="position: absolute;top: 33px;left: 9px;">
+                <div class="profile-rating only_on_mobile" style="position: absolute;top: 95px;right: 4px;">
                     <?php $rew_count = get_user_review_count($user->id);
                     if ($rew_count > 0):?>
                         <!--stars-->
