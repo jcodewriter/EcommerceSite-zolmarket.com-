@@ -1442,43 +1442,47 @@ class Product_controller extends Home_Core_Controller
             $obj->keywords = "";
             $data['category'] = $obj;
         }
-        // print_r($data['category']); exit;
 
-        if ($category_id)
-            $data['subcategory'] = $this->category_model->get_subcategories_by_parent_id($category_id);
-        else
-            $data['subcategory'] = [];
+        if ($data['category']) {
 
-        $data['title'] = !empty($data["category"]->title_meta_tag) ? $data["category"]->title_meta_tag : $data["category"]->name;
-        $data['description'] = $data["category"]->description;
-        $data['keywords'] = $data["category"]->keywords;
+            if ($category_id)
+                $data['subcategory'] = $this->category_model->get_subcategories_by_parent_id($category_id);
+            else
+                $data['subcategory'] = [];
 
-        if ($category_id)
-            $data['custom_filters'] = $this->settings_model->get_custom_product_conditions($category_id);
-        else
-            $data['custom_filters'] = [];
+            $data['title'] = !empty($data["category"]->title_meta_tag) ? $data["category"]->title_meta_tag : @$data["category"]->name;
+            $data['description'] = @$data["category"]->description;
+            $data['keywords'] = @$data["category"]->keywords;
 
-        $data['url'] = $product_url;
+            if ($category_id)
+                $data['custom_filters'] = $this->settings_model->get_custom_product_conditions($category_id);
+            else
+                $data['custom_filters'] = [];
 
-        if ($this->general_settings->default_product_location != 0) {
-            $data["is_hkm_one_country"] = true;
-            $data["is_hkm_one_country_value"] = $this->general_settings->default_product_location;
+            $data['url'] = $product_url;
+
+            if ($this->general_settings->default_product_location != 0) {
+                $data["is_hkm_one_country"] = true;
+                $data["is_hkm_one_country_value"] = $this->general_settings->default_product_location;
+            } else {
+                $data["is_hkm_one_country"] = false;
+            }
+
+            if ($category_id) {
+                $top_parent_category_id = top_parent_category_id($category_id);
+                $data['form_settings'] = $this->settings_model->get_form_settings($top_parent_category_id);
+            } else {
+                $obj = new stdClass();
+                $obj->price = 1;
+                $obj->product_conditions = 0;
+                $data['form_settings'] = $obj;
+            }
+
+            $this->load->view('partials/_header', $data);
+            $this->load->view('product/_product_mobile_filters', $data);
+            $this->load->view('partials/_footer_mobile');
         } else {
-            $data["is_hkm_one_country"] = false;
+            redirect(lang_base_url());
         }
-
-        if ($category_id) {
-            $top_parent_category_id = top_parent_category_id($category_id);
-            $data['form_settings'] = $this->settings_model->get_form_settings($top_parent_category_id);
-        } else {
-            $obj = new stdClass();
-            $obj->price = 1;
-            $obj->product_conditions = 0;
-            $data['form_settings'] = $obj;
-        }
-
-        $this->load->view('partials/_header', $data);
-        $this->load->view('product/_product_mobile_filters', $data);
-        $this->load->view('partials/_footer_mobile');
     }
 }

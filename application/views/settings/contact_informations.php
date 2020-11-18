@@ -86,7 +86,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="mobile_listcategories" class="mobile_selectdiv m-b-20">
+                                <div id="mobile_listcategories" class="mobile_selectdiv m-b-15">
                                     <?php if ($general_settings->default_product_location == 0) : ?>
                                         <button class="filter-btn text-truncate has-menu d-flex mobile-popup__button" type="button" name="country" data-ajax="0" data-type="country_id" data-url="country_location">
                                         <?php endif; ?>
@@ -121,11 +121,13 @@
                                 <!-- HIHIHIHI -->
 
                                 <div class="row">
-                                    <div class="col-12 col-sm-6 m-b-20">
+                                    <div class="col-12 col-sm-6 m-b-15">
+                                        <label class="control-label"><?php echo trans("address"); ?></label>
                                         <input type="text" name="address" class="form-control form-input" value="<?php echo html_escape($user->address); ?>" placeholder="<?php echo trans("address") ?>">
                                     </div>
 
                                     <div class="col-12 col-sm-3">
+                                        <label class="control-label"><?php echo trans("zip_code"); ?></label>
                                         <input type="text" name="zip_code" class="form-control form-input" value="<?php echo html_escape($user->zip_code); ?>" placeholder="<?php echo trans("zip_code") ?>">
                                     </div>
                                 </div>

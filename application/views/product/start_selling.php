@@ -13,7 +13,7 @@
 </div>
 <br><br>
 <!-- Wrapper -->
-<div id="wrapper">
+<div id="wrapper" style="padding-top: 30px !important;">
 	<div class="container">
 		<div class="row">
 			<div id="content" class="col-12">
@@ -252,18 +252,18 @@
 															</div>
 														</div>
 
-														<div class="form-group">
+														<div class="form-group" style="margin-bottom: 0 !important;">
 															<div class="row">
 																<div class="col-12 col-sm-4 m-b-15">
 																	<label class="control-label"><?php echo trans("phone_number"); ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
-																	<input type="text" id="intl_phone_number" name="phone_number" class="form-control form-input" value="<?php echo $this->auth_user->phone_number? html_escape($this->auth_user->phone_number): "+249"; ?>" placeholder="<?php echo trans("phone_number"); ?>" required>
+																	<input type="text" id="intl_phone_number" name="phone_number" class="form-control form-input" value="<?php echo $this->auth_user->phone_number ? html_escape($this->auth_user->phone_number) : "+249"; ?>" placeholder="<?php echo trans("phone_number"); ?>" required>
 																</div>
 																<div class="col-12 col-sm-4 m-b-15">
-																	<label class="control-label">Street Address : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
+																	<label class="control-label"><?php echo trans("address") ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
 																	<input type="text" id="address" name="address" class="form-control form-input" value="<?php echo html_escape($this->auth_user->address); ?>" placeholder="Street Address" required>
 																</div>
 																<div class="col-12 col-sm-4">
-																	<label class="control-label">Zip Code : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i> </label>
+																	<label class="control-label"><?php echo trans("zip_code"); ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i> </label>
 																	<input type="text" id="zip_code" name="zip_code" class="form-control form-input" value="<?php echo html_escape($this->auth_user->zip_code); ?>" placeholder="Zip Code" required>
 																</div>
 															</div>
@@ -271,7 +271,7 @@
 													</div>
 												</div>
 
-												<div class="form-group m-t-15" style="text-align: center">
+												<div class="form-group" style="text-align: center">
 													<div class="custom-control custom-checkbox custom-control-validate-input">
 														<input type="checkbox" class="custom-control-input" name="terms_conditions" id="terms_conditions" value="1" required>
 														<label for="terms_conditions" class="custom-control-label custom-check" style="font-size:13px; padding-top: 9px;">&nbsp;&nbsp;<?php echo trans("terms_conditions_exp"); ?>&nbsp;<a href="<?php echo lang_base_url(); ?>terms-conditions" class="link-terms" target="_blank"><strong><?php echo trans("terms_conditions"); ?></strong></a></label>
