@@ -35,9 +35,6 @@ class Product_controller extends Home_Core_Controller
         if ($this->general_settings->email_verification == 1 && user()->email_status != 1) {
             $this->session->set_flashdata('error', trans("msg_confirmed_required"));
             redirect(lang_base_url() . "settings/update-profile");
-        } else if ($this->general_settings->email_verification != 1) {
-            $this->session->set_flashdata('error', trans("msg_confirmed_required"));
-            redirect(lang_base_url() . "account/" . $this->auth_user->slug);
         }
 
         $data['btn_string'] = '';
