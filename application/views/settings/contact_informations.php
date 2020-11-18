@@ -44,7 +44,7 @@
                         <?php $this->load->view('partials/_messages'); ?>
 
                         <?php echo form_open("profile_controller/contact_informations_post", ['id' => 'form_validate']); ?>
-                        <div class="form-box-body">
+                        <div class="form-box-body-other">
                             <div class="form-group">
                                 <label class="control-label"><?php echo trans('location'); ?></label>
                                 <div class="row hidden-row">

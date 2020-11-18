@@ -119,7 +119,7 @@
 													<div class="form-box-head text-center">
 														<h4 class="title title-start-selling-box"><?php echo trans('tell_us_about_shop'); ?></h4>
 													</div>
-													<div class="form-box-body">
+													<div class="form-box-body-other">
 
 														<div class="form-group">
 															<label class="control-label"><?php echo trans("shop_name"); ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>

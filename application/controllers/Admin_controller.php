@@ -425,7 +425,6 @@ class Admin_controller extends Admin_Core_Controller
 
         $data['settings'] = $this->settings_model->get_settings($data["current_lang_id"]);
         $data['languages'] = $this->language_model->get_languages();
-
         $this->load->view('admin/includes/_header', $data);
         $this->load->view('admin/seo_tools', $data);
         $this->load->view('admin/includes/_footer');

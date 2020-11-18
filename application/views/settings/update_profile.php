@@ -44,7 +44,7 @@
                         <?php $this->load->view('partials/_messages'); ?>
 
                         <?php echo form_open_multipart("profile_controller/update_profile_post", ['id' => 'form_validate']); ?>
-                        <div class="form-box-body">
+                        <div class="form-box-body-other">
                             <div class="form-group">
                                 <label class="control-label"><?php echo trans("upload_your_shop"); ?></label>
                                 <div class="upload-image-container">

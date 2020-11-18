@@ -44,7 +44,7 @@
                         <?php $this->load->view('partials/_messages'); ?>
 
                         <?php echo form_open("profile_controller/shipping_address_post", ['id' => 'form_validate']); ?>
-                        <div class="form-box-body">
+                        <div class="form-box-body-other">
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-12 col-md-6 m-b-sm-15">

@@ -3692,7 +3692,18 @@ img {
     position: relative;
     float: left;
     max-width: 100%;
-    padding: 15px
+    padding: 15px;
+    border: 2px solid #888;
+    border-radius: 4px;
+}
+
+.form-box-body-other{
+    display: block;
+    width: 100%;
+    position: relative;
+    float: left;
+    max-width: 100%;
+    padding: 15px;
 }
 
 /*product variations*/

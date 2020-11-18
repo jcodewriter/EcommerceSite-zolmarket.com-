@@ -43,7 +43,7 @@
                         <?php $this->load->view('partials/_messages'); ?>
 
                         <?php echo form_open_multipart("profile_controller/change_password_post", ['id' => 'form_validate']); ?>
-                        <div class="form-box-body">
+                        <div class="form-box-body-other">
                             <?php if (!empty($user->password)) : ?>
                                 <div class="form-group">
                                     <label class="control-label"><?php echo trans("old_password"); ?></label>
