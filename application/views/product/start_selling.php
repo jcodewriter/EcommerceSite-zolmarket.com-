@@ -430,6 +430,7 @@
 						})
 					if ($('#imgadshoww').attr('class') != 'valid') {
 						$('.upload-image-container').css('border-color', '#dc354566');
+						$("html, body").animate({ scrollTop: 250 }, 700);
 					}
 					e.preventDefault();
 				}
