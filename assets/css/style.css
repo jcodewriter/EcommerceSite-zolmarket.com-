@@ -11137,3 +11137,6 @@ h4.col-md-12.title {
     box-shadow: 0px 2px 17px -15px rgba(0,0,0,0.8);
     min-height: 100px;
 }
+.input-group input{
+    border-color: #ced4da !important;
+}

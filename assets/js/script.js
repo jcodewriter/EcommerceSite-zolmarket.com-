@@ -971,6 +971,10 @@ $(document).ready(function () {
             }
         });
         $('.special-cagetory').text(category_name)
+        $('.filter-btn').css({
+            'border-width': '1px',
+            'border-color': '#404041'
+        })
         $('#category_id').val(category_id)
     })
 

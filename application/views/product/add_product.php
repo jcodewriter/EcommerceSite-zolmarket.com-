@@ -293,6 +293,11 @@
 						'border-color': 'rgba(220, 53, 69, 0.40)'
 					})
 					e.preventDefault();
+				} else {
+					$('.filter-btn').css({
+						'border-width': '1px',
+						'border-color': '#404041'
+					})
 				}
 			})
 		}

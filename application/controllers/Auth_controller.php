@@ -293,12 +293,12 @@ class Auth_controller extends Home_Core_Controller
                     if ($this->general_settings->email_verification == 1)
                         redirect(lang_base_url() . "settings/update-profile");
                     else
-                        redirect(lang_base_url() . "account/" . $this->auth_user->slug);
+                        redirect(lang_base_url() . "account/" . user()->slug);
                 } else {
                     if ($this->general_settings->email_verification == 1)
                         redirect(lang_base_url() . "settings/update-profile");
                     else
-                        redirect(lang_base_url() . "account/" . $this->auth_user->slug);
+                        redirect(lang_base_url() . "account/" . user()->slug);
                 }
             } else {
                 //error

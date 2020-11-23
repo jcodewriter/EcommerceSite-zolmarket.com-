@@ -138,7 +138,7 @@
 																				<img src="<?php echo get_product_image(0, "small"); ?>" alt="<?php echo $this->auth_user->username; ?>" id="imgadshoww" style="width:100%;height: 100%;border-radius: 5px;">
 																			<?php endif; ?>
 																		</div>
-																		<div style="position: absolute; top: 40px; right: 10px">
+																		<div style="position: absolute; top: 10px; right: 0">
 																			<a class='btn btn-md btn-secondary btn-file-upload' style="background-color: #495057d1;">
 																				<span><i class="far fa-image"></i><?php echo trans('select_image'); ?></span>
 																				<input type="file" name="file" id="imgUploader" size="40" accept=".png, .jpg, .jpeg, .gif" onchange="$('#upload-file-info').html($(this).val().replace(/.*[\/\\]/, ''));$('.upload-image-container').css('border-color', '#999');$('#imgadshoww').addClass('valid')">

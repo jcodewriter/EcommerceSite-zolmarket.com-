@@ -139,7 +139,7 @@ class Message_model extends CI_Model
         $this->db->where('conversation_id', $conversation_id);
         $this->db->where('dlt_by_recived', 0);
         $this->db->where('dlt_by_sender', 0);
-        $this->db->where('deleted_user_id', 0);
+        // $this->db->where('deleted_user_id', 0);
         $query = $this->db->get('conversation_messages');
         return $query->result();
     }
@@ -262,10 +262,10 @@ class Message_model extends CI_Model
 
             //delete conversation if does not have messages
             $messages = $this->get_messages($conversation->id);
-            if (empty($messages)) {
-                $this->db->where('id', $conversation->id);
-                $this->db->delete('conversations');
-            }
+            // if (empty($messages)) {
+            //     $this->db->where('id', $conversation->id);
+            //     $this->db->delete('conversations');
+            // }
         }
     }
     

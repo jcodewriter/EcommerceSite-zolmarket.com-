@@ -42,7 +42,6 @@ if ($idiom == 2) {
 	<?php foreach ($categories as $category) :?>
 		<li class="nav-item text-left">
 			<?php $hassub = has_subcategories_by_parent_id($category->id); ?>
-
 			<a href="<?= htmlspecialchars('javascript:void(0)') ?>" <?php if ($hassub) : ?> data-type="<?= $type ?>" data-query="<?= htmlspecialchars($querystring) ?>" data-ajax="<?= $category->id ?>" data-url="special_categories" <?php endif; ?> class="nav-link p-0 <?= $hassub ? 'has-menu' : 'remove-menu' ?>" category_id="<?= $category->id ?>" category_name="<?php echo html_escape($category->name); ?>">
 				<div class="link-icon">
 					<?php if (!empty($category->icon)) : ?>
