@@ -454,7 +454,7 @@ if ($product->is_draft == 1) {
                                                     <div id="mobile_listcategories" class="mobile_selectdiv" style="margin-bottom:15px;">
                                                         <?php if ($general_settings->default_product_location == 0) : ?>
                                                             <label class="control-label"><?php echo trans('country'); ?></label>
-                                                            <button class="filter-btn text-truncate has-menu d-flex mobile-popup__button" type="button" name="country" data-ajax="0" data-type="country_id" data-url="country_location">
+                                                            <button class="filter-btn text-truncate has-menu d-flex mobile-popup__button country-btn" type="button" name="country" data-ajax="0" data-type="country_id" data-url="country_location">
                                                             <?php endif; ?>
                                                             <?php if ($general_settings->default_product_location == 0) : ?>
                                                                 <i class="fa fa-map-marker  fa-lg align-self-center mr-1 ml-1" aria-hidden="true"></i>
@@ -471,7 +471,7 @@ if ($product->is_draft == 1) {
                                                             </button>
                                                             <label class="control-label"><?php echo trans('state') . ' / ' . trans('city'); ?></label>
                                                             <?php if ($general_settings->default_product_location == 0) : ?>
-                                                                <button class="filter-btn text-truncate has-menu d-flex mobile-popup__button" type="button" name="state" data-ajax="0" data-type="state_id" data-url="custom_location">
+                                                                <button class="filter-btn text-truncate has-menu d-flex mobile-popup__button state__city-btn" type="button" name="state" data-ajax="0" data-type="state_id" data-url="custom_location">
                                                                 <?php else : ?>
                                                                     <button class="filter-btn text-truncate has-menu d-flex mobile-popup__button" type="button" name="state" data-ajax="<?php echo $general_settings->default_product_location; ?>" data-type="state_id" data-url="custom_location">
                                                                     <?php endif; ?>

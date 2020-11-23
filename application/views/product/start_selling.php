@@ -219,7 +219,7 @@
 															<div id="mobile_listcategories" class="mobile_selectdiv">
 																<?php if ($general_settings->default_product_location == 0) : ?>
 																	<label class="control-label"><?php echo trans('country'); ?></label>
-																	<button class="filter-btn text-truncate has-menu d-flex mobile-popup__button m-b-15" type="button" name="country" data-ajax="0" data-type="country_id" data-url="country_location">
+																	<button class="filter-btn text-truncate has-menu d-flex mobile-popup__button m-b-15 country-btn" type="button" name="country" data-ajax="0" data-type="country_id" data-url="country_location">
 																	<?php endif; ?>
 
 																	<?php if ($general_settings->default_product_location == 0) : ?>
@@ -237,9 +237,9 @@
 																	</button>
 																	<label class="control-label"><?php echo trans('all_states') . " / " . trans('city'); ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
 																	<?php if ($general_settings->default_product_location == 0) : ?>
-																		<button class="filter-btn text-truncate has-menu d-flex mobile-popup__button" type="button" name="state" data-ajax="0" data-type="state_id" data-url="custom_location">
+																		<button class="filter-btn text-truncate has-menu d-flex mobile-popup__button state__city-btn" type="button" name="state" data-ajax="0" data-type="state_id" data-url="custom_location">
 																		<?php else : ?>
-																			<button class="filter-btn text-truncate has-menu d-flex mobile-popup__button" type="button" name="state" data-ajax="<?php echo $general_settings->default_product_location; ?>" data-type="state_id" data-url="custom_location">
+																			<button class="filter-btn text-truncate has-menu d-flex mobile-popup__button state__city-btn" type="button" name="state" data-ajax="<?php echo $general_settings->default_product_location; ?>" data-type="state_id" data-url="custom_location">
 																			<?php endif; ?>
 																			<i class="fa fa-map-marker  fa-lg align-self-center mr-1 ml-1" aria-hidden="true"></i>
 																			<?php if (@$state_button) : ?>
