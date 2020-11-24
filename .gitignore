@@ -3,5 +3,5 @@
 /application/cache
 /application/session
 /uploads
-
+*.xml
 *.log
