@@ -1,15 +1,15 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <div class="hkm_messages_navCatDownMobile">
-	<div class="cat-header">
+    <div class="cat-header">
         <div class="mobile-header-back">
-            <a href="<?php echo lang_base_url();?>" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?>  </a>
+            <a href="<?php echo lang_base_url(); ?>" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?> </a>
         </div>
         <div class="mobile-header-title">
-            <span  class="text-white textcat-header text-center"><?php echo trans("register"); ?></span>
+            <span class="text-white textcat-header text-center"><?php echo trans("register"); ?></span>
         </div>
         <div class="mobilde-header-cart">
         </div>
-	</div>   
+    </div>
 </div>
 <!-- Wrapper -->
 <div id="wrapper" style="padding-top: 0 !important;">
@@ -22,8 +22,10 @@
                         <!-- form start -->
                         <?php
                         if ($recaptcha_status) {
-                            echo form_open('auth_controller/register_post', ['id' => 'form_validate', 'class' => 'validate_terms',
-                            'onsubmit' => "var serializedData = $(this).serializeArray();var recaptcha = ''; $.each(serializedData, function (i, field) { if (field.name == 'g-recaptcha-response') {recaptcha = field.value;}});if (recaptcha.length < 5) { $('.g-recaptcha>div').addClass('is-invalid');return false;} else { $('.g-recaptcha>div').removeClass('is-invalid');}"]);
+                            echo form_open('auth_controller/register_post', [
+                                'id' => 'form_validate', 'class' => 'validate_terms',
+                                'onsubmit' => "var serializedData = $(this).serializeArray();var recaptcha = ''; $.each(serializedData, function (i, field) { if (field.name == 'g-recaptcha-response') {recaptcha = field.value;}});if (recaptcha.length < 5) { $('.g-recaptcha>div').addClass('is-invalid');return false;} else { $('.g-recaptcha>div').removeClass('is-invalid');}"
+                            ]);
                         } else {
                             echo form_open('auth_controller/register_post', ['id' => 'form_validate', 'class' => 'validate_terms']);
                         }
@@ -36,16 +38,24 @@
                         <!-- include message block -->
                         <?php $this->load->view('partials/_messages'); ?>
                         <div class="form-group">
-                            <label for="password" style="font-weight: 600"><?php echo trans("username"); ?></label>
-                            <input type="text" name="username" class="form-control auth-form-input" placeholder="<?php echo trans("username"); ?>" value="<?php echo old("username"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" required>
+                            <div class="d-flex justify-content-between" style="width: 100%">
+                                <div style="width: 48%;">
+                                    <label for="password" style="font-weight: 600"><?php echo trans("first_name"); ?></label>
+                                    <input autocomplete="off" type="text" name="firstname" class="form-control auth-form-input" placeholder="<?php echo trans("first_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" required>
+                                </div>
+                                <div style="width: 48%;">
+                                    <label for="password" style="font-weight: 600"><?php echo trans("last_name"); ?></label>
+                                    <input autocomplete="off" type="text" name="lastname" class="form-control auth-form-input" placeholder="<?php echo trans("last_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" required>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="password" style="font-weight: 600"><?php echo trans("email_address"); ?></label>
-                            <input type="email" name="email" class="form-control auth-form-input" placeholder="<?php echo trans("email_address"); ?>" value="<?php echo old("email"); ?>" required>
+                            <input autocomplete="off" type="email" name="email" class="form-control auth-form-input" placeholder="<?php echo trans("email_address"); ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="password" style="font-weight: 600"><?php echo trans("password"); ?></label>
-                            <input type="password" name="password" class="form-control auth-form-input" placeholder="<?php echo trans("password"); ?>" value="<?php echo old("password"); ?>" required>
+                            <input type="password" name="password" class="form-control auth-form-input" placeholder="<?php echo trans("password"); ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="password" style="font-weight: 600"><?php echo trans("password_confirm"); ?></label>
@@ -57,7 +67,7 @@
                                 <label for="checkbox_terms" class="custom-control-label"><?php echo trans("terms_conditions_exp"); ?>&nbsp;<a href="<?php echo lang_base_url(); ?>terms-conditions" class="link-terms" target="_blank"><strong><?php echo trans("terms_conditions"); ?></strong></a></label>
                             </div>
                         </div>
-                        <?php if ($recaptcha_status): ?>
+                        <?php if ($recaptcha_status) : ?>
                             <div class="recaptcha-cnt">
                                 <?php generate_recaptcha(); ?>
                             </div>

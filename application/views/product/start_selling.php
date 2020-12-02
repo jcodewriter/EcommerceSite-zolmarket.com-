@@ -115,15 +115,41 @@
 												<?php echo form_open_multipart('product_controller/start_selling_post', ['id' => 'form_validate', 'class' => 'validate_terms', 'name' => 'start_selling', 'onkeypress' => "return event.keyCode != 13;"]); ?>
 												<input type="hidden" name="id" value="<?php echo $this->auth_user->id; ?>">
 
-												<div class="form-box" style="margin-bottom: 0 !important">
+												<div class="form-box" style="margin-bottom: 0 !im Gportant">
 													<div class="form-box-head text-center">
 														<h4 class="title title-start-selling-box"><?php echo trans('tell_us_about_shop'); ?></h4>
 													</div>
 													<div class="form-box-body-other">
+														<div class="form-group" style="text-align: center">
+															<div class="d-flex justify-content-between" style="width: 100%;">
+																<div class="custom-control custom-checkbox" style="width: 49%; text-align: right; padding-right: 5px;">
+																	<input type="radio" class="custom-control-input" name="is_private" id="private_chk" onclick="onClickCustomCheckBox({name: 'private'})" value="1" <?php echo $this->auth_user->is_private ? "checked" : ""; ?>>
+																	<label for="private_chk" class="custom-control-label custom-check" style="font-size:13px; padding-top: 5px;">&nbsp;&nbsp;<strong>Private</strong></a></label>
+
+																</div>
+																<div class="custom-control custom-checkbox" style="width: 49%; text-align: left; padding-left: 35px">
+																	<input type="radio" class="custom-control-input" name="is_private" id="company_chk" onclick="onClickCustomCheckBox({name: 'company'})" value="0" <?php echo $this->auth_user->is_private ? "" : "checked"; ?>>
+																	<label for="company_chk" class="custom-control-label custom-check" style="font-size:13px; padding-top: 5px;">&nbsp;&nbsp;<strong>Company</strong></a></label>
+																</div>
+															</div>
+														</div>
 
 														<div class="form-group">
-															<label class="control-label"><?php echo trans("shop_name"); ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
-															<input type="text" name="shop_name" class="form-control form-input" value="<?php echo $this->auth_user->username; ?>" placeholder="<?php echo trans("shop_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" required>
+															<div class="d-flex justify-content-between" style="width: 100%;">
+																<div style="width: 49%;">
+																	<label class="control-label"><?php echo trans("first_name"); ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
+																	<input type="text" name="firstname" class="form-control form-input" value="<?php echo $this->auth_user->firstname; ?>" placeholder="<?php echo trans("first_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" required>
+																</div>
+																<div style="width: 49%;">
+																	<label class="control-label"><?php echo trans("last_name"); ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
+																	<input type="text" name="lastname" class="form-control form-input" value="<?php echo $this->auth_user->lastname; ?>" placeholder="<?php echo trans("last_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" required>
+																</div>
+															</div>
+														</div>
+
+														<div class="form-group company_name_group" style="display: <?php echo $this->auth_user->is_private ? 'none' : ''; ?>">
+															<label class="control-label"><?php echo trans("company_name"); ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
+															<input type="text" name="shop_name" class="form-control form-input" value="<?php echo $this->auth_user->shop_name; ?>" placeholder="<?php echo trans("company_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" required>
 														</div>
 
 														<div class="form-group">
@@ -151,11 +177,6 @@
 																	<textarea name="about_me" class="form-control form-textarea" placeholder="<?php echo trans("shop_description"); ?>"><?php echo old('about_me'); ?></textarea>
 																</div>
 															</div>
-														</div>
-
-														<div class="form-group">
-															<label class="control-label"><?php echo trans("full_name"); ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
-															<input type="text" name="fullname" class="form-control form-input" value="<?php echo $this->auth_user->fullname; ?>" placeholder="<?php echo trans("full_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" required>
 														</div>
 
 														<div class="form-group">
@@ -274,7 +295,7 @@
 												<div class="form-group" style="text-align: center">
 													<div class="custom-control custom-checkbox custom-control-validate-input">
 														<input type="checkbox" class="custom-control-input" name="terms_conditions" id="terms_conditions" value="1" required>
-														<label for="terms_conditions" class="custom-control-label custom-check" style="font-size:13px; padding-top: 9px;">&nbsp;&nbsp;<?php echo trans("terms_conditions_exp"); ?>&nbsp;<a href="<?php echo lang_base_url(); ?>terms-conditions" class="link-terms" target="_blank"><strong><?php echo trans("terms_conditions"); ?></strong></a></label>
+														<label for="terms_conditions" class="custom-control-label custom-check" style="font-size:13px; padding-top: 5px;">&nbsp;&nbsp;<?php echo trans("terms_conditions_exp"); ?>&nbsp;<a href="<?php echo lang_base_url(); ?>terms-conditions" class="link-terms" target="_blank"><strong><?php echo trans("terms_conditions"); ?></strong></a></label>
 													</div>
 												</div>
 												<div class="form-group m-t-15" style="text-align: center">
@@ -430,7 +451,9 @@
 						})
 					if ($('#imgadshoww').attr('class') != 'valid') {
 						$('.upload-image-container').css('border-color', '#dc354566');
-						$("html, body").animate({ scrollTop: 250 }, 700);
+						$("html, body").animate({
+							scrollTop: 250
+						}, 700);
 					}
 					e.preventDefault();
 				}
@@ -458,4 +481,16 @@
 			$(this).css('border-color', '#404041');
 		})
 	});
+
+	function onClickCustomCheckBox(e) {
+		if (e.name == "private") {
+			$(".company_name_group").css({
+				display: "none"
+			})
+		} else if (e.name == "company") {
+			$(".company_name_group").css({
+				display: "block"
+			})
+		}
+	}
 </script>

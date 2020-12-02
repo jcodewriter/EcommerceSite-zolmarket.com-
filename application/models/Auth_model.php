@@ -1,13 +1,19 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Auth_model extends CI_Model
 {
     //input values
     public function input_values()
     {
+
+        $firstname = remove_special_characters($this->input->post('firstname', true));
+        $lastname = remove_special_characters($this->input->post('lastname', true));
+
         $data = array(
-            'username' => remove_special_characters($this->input->post('username', true)),
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'username' => $firstname . '_' . $lastname,
             'email' => $this->input->post('email', true),
             'password' => $this->input->post('password', true)
         );
@@ -179,7 +185,10 @@ class Auth_model extends CI_Model
         $this->load->library('bcrypt');
 
         $data = $this->auth_model->input_values();
-        $data['username'] = $data['username'];
+        // print_r($data); exit;
+        $data['firstname'] = $data['firstname'];
+        $data['lastname'] = $data['lastname'];
+        $data['username'] = $data['firstname'] . '_' . $data['lastname'];
         //secure password
         $data['password'] = $this->bcrypt->hash_password($data['password']);
         $data['user_type'] = "registered";
@@ -204,8 +213,9 @@ class Auth_model extends CI_Model
         }
     }
 
-    public function is_approval(){
-        $data = ['is_approval'=>2];
+    public function is_approval()
+    {
+        $data = ['is_approval' => 2];
         $this->db->where('id', user()->id);
         $this->db->update('users', $data);
     }
@@ -243,7 +253,6 @@ class Auth_model extends CI_Model
             );
             $this->db->where('id', $id);
             $this->db->update('users', $data);
-
         } else {
             if ($this->check_is_slug_unique($user->slug, $id) == true) {
                 $data = array(
@@ -289,7 +298,7 @@ class Auth_model extends CI_Model
         $user = $this->get_user($id);
         if (!empty($user)) {
             // $select = "select *from comments where user_id = ".$id;
-            
+
             $this->db->where('id', $id);
             return $this->db->delete('users');
         }
@@ -308,7 +317,7 @@ class Auth_model extends CI_Model
                 $data['is_active_shop_request'] = 0;
             }
             $result = $this->db->update('users', $data);
-            if (!$this->general_settings->vendor_verification_system){
+            if (!$this->general_settings->vendor_verification_system) {
                 if ($this->general_settings->email_option_store_added) {
                     $email_data = array(
                         'subject' => trans("add_post_exp"),
@@ -362,7 +371,7 @@ class Auth_model extends CI_Model
                     $this->load->model("email_model");
                     $this->email_model->send_email($email_data);
                 }
-            }    
+            }
             return $result;
         }
     }
@@ -669,7 +678,7 @@ class Auth_model extends CI_Model
 
         return false;
     }
-    
+
     //decline User
     public function decline_user($id)
     {
@@ -680,14 +689,14 @@ class Auth_model extends CI_Model
             $data = array();
             if ($user->is_active_shop_request == 0) {
                 $data['is_active_shop_request'] = 2;
-                if ($user->role == 'vendor'){
+                if ($user->role == 'vendor') {
                     $data['is_approval'] = 0;
                 }
                 $this->notification_model->admin(1, $id, $this->auth_user->id);
             }
             if ($user->is_active_shop_request == 2) {
                 $data['is_active_shop_request'] = 0;
-                if ($user->country_id){
+                if ($user->country_id) {
                     $data['is_approval'] = 2;
                 }
                 $this->notification_model->admin(2, $id, $this->auth_user->id);
@@ -695,16 +704,16 @@ class Auth_model extends CI_Model
 
             $this->db->where('id', $id);
             $result = $this->db->update('users', $data);
-            
+
             $receiver = $this->get_user($id);
             if ($this->general_settings->email_option_store_added) {
                 $email_data = array(
-                    'subject' => !$receiver->is_active_shop_request?trans("add_post_exp"):trans("your_shop_email_closed"),
+                    'subject' => !$receiver->is_active_shop_request ? trans("add_post_exp") : trans("your_shop_email_closed"),
                     'to' => $receiver->email,
-                    'icon_image' => !$receiver->is_active_shop_request?"assets/img/success.png":"assets/img/decline.png",
+                    'icon_image' => !$receiver->is_active_shop_request ? "assets/img/success.png" : "assets/img/decline.png",
                     'shop_image' => $receiver->avatar,
                     'shop_name' => $receiver->username,
-                    'slug' => !$receiver->is_active_shop_request?"add-post":"contact",
+                    'slug' => !$receiver->is_active_shop_request ? "add-post" : "contact",
                     'template_path' => "email/email_new_shop"
                 );
                 $this->load->model("email_model");
@@ -734,12 +743,12 @@ class Auth_model extends CI_Model
             }
             $this->db->where('id', $id);
             $result = $this->db->update('users', $data);
-            
+
             $receiver = $this->get_user($id);
             if ($this->general_settings->email_option_store_added && $receiver->role == "vendor") {
                 $email_data = array(
                     'subject' => trans("add_post_exp"),
-                    'icon_image' =>"assets/img/success.png",
+                    'icon_image' => "assets/img/success.png",
                     'to' => $receiver->email,
                     'shop_image' => $receiver->avatar,
                     'shop_name' => $receiver->username,
@@ -754,8 +763,9 @@ class Auth_model extends CI_Model
 
         return false;
     }
-    
-    public function set_vendor_verification_system(){
+
+    public function set_vendor_verification_system()
+    {
         $data = [
             'is_active_shop_request' => 0,
             'role' => 'vendor',
@@ -765,6 +775,4 @@ class Auth_model extends CI_Model
         $this->db->where('role', 'member');
         return $this->db->update('users', $data);
     }
-
-    
 }

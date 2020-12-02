@@ -239,7 +239,9 @@ class Auth_controller extends Home_Core_Controller
         }
 
         //validate inputs
-        $this->form_validation->set_rules('username', trans("username"), 'required|xss_clean|min_length[4]|max_length[100]');
+        // $this->form_validation->set_rules('username', trans("username"), 'required|xss_clean|min_length[4]|max_length[100]');
+        $this->form_validation->set_rules('firstname', trans("first_name"), 'required');
+        $this->form_validation->set_rules('lastname', trans("last_name"), 'required');
         $this->form_validation->set_rules('email', trans("email_address"), 'required|xss_clean|max_length[200]');
         $this->form_validation->set_rules('password', trans("password"), 'required|xss_clean|min_length[4]|max_length[50]');
         $this->form_validation->set_rules('confirm_password', trans("password_confirm"), 'required|xss_clean|matches[password]');
@@ -250,7 +252,11 @@ class Auth_controller extends Home_Core_Controller
             redirect($this->agent->referrer());
         } else {
             $email = $this->input->post('email', true);
-            $username = $this->input->post('username', true);
+            $firstname = $this->input->post('firstname', true);
+            $lastname = $this->input->post('lastname', true);
+            $username = $firstname.'_'.$lastname;
+            // print_r($username); exit;
+            // $username = $this->input->post('username', true);
 
             //is email unique
             if (!$this->auth_model->is_unique_email($email)) {
@@ -258,7 +264,7 @@ class Auth_controller extends Home_Core_Controller
                 $this->session->set_flashdata('error', trans("msg_email_unique_error"));
                 redirect($this->agent->referrer());
             }
-            //is username unique
+            // is username unique
             if (!$this->auth_model->is_unique_username($username)) {
                 $this->session->set_flashdata('form_data', $this->auth_model->input_values());
                 $this->session->set_flashdata('error', trans("msg_username_unique_error"));

@@ -1,9 +1,9 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <!--profile page tabs-->
 <div class="profile-tabs hidden-sm-down">
     <ul class="nav">
-        <?php if (is_multi_vendor_active()): ?>
-            <?php if ($user->role == 'admin' || $user->role == 'vendor'): ?>
+        <?php if (is_multi_vendor_active()) : ?>
+            <?php if ($user->role == 'admin' || $user->role == 'vendor') : ?>
                 <li class="nav-item <?php echo ($active_tab == 'products') ? 'active' : ''; ?>">
                     <a class="nav-link" href="<?php echo lang_base_url() . "profile/" . $user->slug; ?>">
                         <span><?php echo trans("products"); ?></span>
@@ -11,7 +11,7 @@
                     </a>
                 </li>
             <?php endif; ?>
-            <?php if ($this->auth_check && $this->auth_user->id == $user->id && ($user->role == 'admin' || $user->role == 'vendor')): ?>
+            <?php if ($this->auth_check && $this->auth_user->id == $user->id && ($user->role == 'admin' || $user->role == 'vendor')) : ?>
                 <li class="nav-item <?php echo ($active_tab == 'pending_products') ? 'active' : ''; ?>">
                     <a class="nav-link" href="<?php echo lang_base_url(); ?>pending-products">
                         <span><?php echo trans("pending_products"); ?></span>
@@ -19,7 +19,7 @@
                     </a>
                 </li>
             <?php endif; ?>
-            <?php if ($this->auth_check && $this->auth_user->id == $user->id && ($user->role == 'admin' || $user->role == 'vendor')): ?>
+            <?php if ($this->auth_check && $this->auth_user->id == $user->id && ($user->role == 'admin' || $user->role == 'vendor')) : ?>
                 <li class="nav-item <?php echo ($active_tab == 'hidden_products') ? 'active' : ''; ?>">
                     <a class="nav-link" href="<?php echo lang_base_url(); ?>hidden-products">
                         <span><?php echo trans("hidden_products"); ?></span>
@@ -27,7 +27,7 @@
                     </a>
                 </li>
             <?php endif; ?>
-            <?php if ($this->auth_check && $this->auth_user->id == $user->id && ($user->role == 'admin' || $user->role == 'vendor')): ?>
+            <?php if ($this->auth_check && $this->auth_user->id == $user->id && ($user->role == 'admin' || $user->role == 'vendor')) : ?>
                 <li class="nav-item <?php echo ($active_tab == 'drafts') ? 'active' : ''; ?>">
                     <a class="nav-link" href="<?php echo lang_base_url(); ?>drafts">
                         <span><?php echo trans("drafts"); ?></span>
@@ -42,8 +42,8 @@
                 <span class="count">(<?php echo get_user_favorited_products_count($user->id); ?>)</span>
             </a>
         </li>
-        <?php if (is_multi_vendor_active()): ?>
-            <?php if ($this->auth_check && $this->auth_user->id == $user->id && is_marketplace_active()): ?>
+        <?php if (is_multi_vendor_active()) : ?>
+            <?php if ($this->auth_check && $this->auth_user->id == $user->id && is_marketplace_active()) : ?>
                 <li class="nav-item <?php echo ($active_tab == 'downloads') ? 'active' : ''; ?>">
                     <a class="nav-link" href="<?php echo lang_base_url(); ?>downloads">
                         <span><?php echo trans("downloads"); ?></span>
@@ -64,7 +64,7 @@
                 <span class="count">(<?php echo get_following_users_count($user->id); ?>)</span>
             </a>
         </li>
-        <?php if (($general_settings->user_reviews == 1) && ($user->role == 'admin' || $user->role == 'vendor') && is_multi_vendor_active()): ?>
+        <?php if (($general_settings->user_reviews == 1) && ($user->role == 'admin' || $user->role == 'vendor') && is_multi_vendor_active()) : ?>
             <li class="nav-item <?php echo ($active_tab == 'reviews') ? 'active' : ''; ?>">
                 <a class="nav-link" href="<?php echo lang_base_url() . "reviews/" . $user->slug; ?>">
                     <span><?php echo trans("reviews"); ?></span>
@@ -75,31 +75,33 @@
 
     </ul>
 </div>
-<div class="profile-mobile-tabs  hidden-md-up" style="display: flex">
-    <?php if (is_multi_vendor_active()): ?>
-        <?php if ($user->role == 'admin' || $user->role == 'vendor'): ?>
-            <a class="btn btn-md btn-outline-gray <?php echo ($active_tab == 'products') ? 'active' : ''; ?>" href="<?php echo lang_base_url() . "profile/" . $user->slug; ?>" style="display: flex; margin: 2px;">
+<div class="profile-mobile-tabs  hidden-md-up">
+    <?php if (is_multi_vendor_active()) : ?>
+        <?php if ($user->role == 'admin' || $user->role == 'vendor') : ?>
+            <a class="btn-outline-gray <?php echo ($active_tab == 'products') ? 'active' : ''; ?>" href="<?php echo lang_base_url() . "profile/" . $user->slug; ?>">
+                <div class="count">&nbsp;(<?php echo get_user_products_count($user->slug); ?>)</div>
                 <span><?php echo trans("products"); ?></span>
-                <span class="count">&nbsp;(<?php echo get_user_products_count($user->slug); ?>)</span>
             </a>
         <?php endif; ?>
     <?php endif; ?>
-    <a class="btn btn-md btn-outline-gray <?php echo ($active_tab == 'followers') ? 'active' : ''; ?>" href="<?php echo lang_base_url() . "profile/followers/" . $user->slug; ?>" style="display: flex; margin: 2px;">
+    <a class="btn-outline-gray <?php echo ($active_tab == 'followers') ? 'active' : ''; ?>" href="<?php echo lang_base_url() . "profile/followers/" . $user->slug; ?>">
+        <div class="count">&nbsp;(<?php echo get_followers_count($user->id); ?>)</div>
         <span><?php echo trans("followers"); ?></span>
-        <span class="count">&nbsp;(<?php echo get_followers_count($user->id); ?>)</span>
     </a>
-    <?php if (is_multi_vendor_active()): ?>
-        <?php if ($user->role == 'admin' || $user->role == 'vendor'): ?>
-            <a class="btn btn-md btn-outline-gray <?php echo ($active_tab == 'reviews') ? 'active' : ''; ?>" href="<?php echo lang_base_url() . "profile/reviews/" . $user->slug; ?>" style="display: flex; margin: 2px;">
+    <?php if (is_multi_vendor_active()) : ?>
+        <?php if ($user->role == 'admin' || $user->role == 'vendor') : ?>
+            <a class="btn-outline-gray <?php echo ($active_tab == 'reviews') ? 'active' : ''; ?>" href="<?php echo lang_base_url() . "profile/reviews/" . $user->slug; ?>">
+                <div class="count">&nbsp;(<?php echo get_user_review_count($user->id); ?>)</div>
                 <span><?php echo trans("reviews"); ?></span>
-                <span class="count">&nbsp;(<?php echo get_user_review_count($user->id); ?>)</span>
             </a>
         <?php endif; ?>
     <?php endif; ?>
+    <a class="btn-outline-gray <?php echo ($active_tab == 'seller_info') ? 'active' : ''; ?>" href="<?php echo lang_base_url() . "profile/seller_info/" . $user->slug; ?>">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                <path fill="currentColor" id="info" d="M10,2a8,8,0,1,0,8,8A8.012,8.012,0,0,0,10,2Zm0,1.6A6.4,6.4,0,1,1,3.6,10,6.388,6.388,0,0,1,10,3.6ZM9.2,6V7.6h1.6V6Zm0,3.2V14h1.6V9.2Z" transform="translate(-2 -2)" />
+            </svg>
+        </div>
+        <span><?php echo trans("seller_info"); ?></span>
+    </a>
 </div>
-
-<div class="row-custom">
-    <!--Include banner-->
-    <?php $this->load->view("partials/_ad_spaces_sidebar", ["ad_space" => "profile_sidebar", "class" => "m-t-30"]); ?>
-</div>
-

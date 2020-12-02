@@ -1160,7 +1160,7 @@ function set_default_location(location_id) {
 //show phone number
 $(document).on('click', '#show_phone_number', function () {
     $(this).hide();
-    $("#phone_number").show();
+    $(".phone_number").show();
 });
 //show phone number
 $(document).on('click', '#show_phone_number2', function () {

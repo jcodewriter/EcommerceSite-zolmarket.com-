@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 ?>
-<div class="col-6 col-sm-6 col-md-6 col-lg-3 col-product pr-2 pl-2">
+<div class="col-6 col-sm-6 col-md-6 col-lg-3 col-product pr-1 pl-1">
     <div class="product-item">
         <div class="row-custom">
             <a class="item-favorite-button item-favorite-enable <?php echo (is_product_in_favorites($product->id) == true) ? 'item-favorited' : ''; ?>" data-product-id="<?php echo $product->id; ?>"></a>

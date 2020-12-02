@@ -10,8 +10,8 @@ if (auth_check() && ($user->id == user()->id)) {
 
 <?php if ($show_review_input == true): ?>
     <input type="hidden" value="<?php echo $review_limit; ?>" id="user_review_limit">
-    <div class="row m-b-15">
-        <div class="col-12">
+    <div class="row" style="margin-bottom: 7px">
+        <div class="col-12" style="padding: 20px 30px 0;">
             <div class="row-custom">
                 <div class="rating-bar">
                     <span><?php echo trans("your_rating"); ?></span>
@@ -28,7 +28,7 @@ if (auth_check() && ($user->id == user()->id)) {
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom: 7px;">
                 <textarea name="review" id="user_review" class="form-control form-input form-textarea" placeholder="<?php echo trans("write_review"); ?>" required></textarea>
             </div>
             <?php if (auth_check()): ?>

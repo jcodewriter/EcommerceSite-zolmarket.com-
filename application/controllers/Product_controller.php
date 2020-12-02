@@ -72,22 +72,22 @@ class Product_controller extends Home_Core_Controller
         if (!auth_check()) {
             redirect(lang_base_url());
         }
+
         $user_id = $this->input->post('id', true);
         $data = array(
             'is_active_shop_request' => 1,
             'username' => remove_special_characters($this->input->post('shop_name', true)),
             'shop_name' => remove_special_characters($this->input->post('shop_name', true)),
+            'is_private' => $this->input->post('is_private', true),
             'country_id' => $this->input->post('country_id', true),
             'state_id' => $this->input->post('state_id', true),
             'city_id' => $this->input->post('city_id', true),
             'phone_number' => $this->input->post('phone_number', true),
             'address' => $this->input->post('address', true),
             'zip_code' => $this->input->post('zip_code', true),
-            'fullname' => $this->input->post('fullname', true),
             'about_me' => $this->input->post('about_me', true)
         );
 
-        // echo "here"; exit;
         $this->profile_model->update_profile($data, $user_id);
         //is shop name unique
         if (!$this->auth_model->is_unique_shop_name($data['shop_name'], $user_id)) {

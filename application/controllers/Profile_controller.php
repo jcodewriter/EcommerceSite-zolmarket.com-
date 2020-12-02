@@ -152,7 +152,7 @@ class Profile_controller extends Home_Core_Controller
         $data['products'] = $this->product_model->get_paginated_user_products($data["user"]->slug, $pagination['per_page'], $pagination['offset']);
 
         $this->load->view('partials/_header', $data);
-        $this->load->view('profile/account', $data);
+        $this->load->view('account/products', $data);
         $this->load->view('partials/_footer');
     }
 
@@ -528,6 +528,34 @@ class Profile_controller extends Home_Core_Controller
 
         $this->load->view('partials/_header', $data);
         $this->load->view('account/reviews', $data);
+        $this->load->view('partials/_footer');
+    }
+
+    /**
+     * seller info
+     */
+    public function seller_info($slug)
+    {
+        $slug = decode_slug($slug);
+        if ($this->general_settings->user_reviews != 1) {
+            redirect(lang_base_url());
+        }
+
+        $data["user"] = $this->auth_model->get_user_by_slug($slug);
+        if (empty($data["user"])) {
+            redirect(lang_base_url());
+        }
+        if ($data["user"]->role != 'admin' && $data["user"]->role != 'vendor') {
+            redirect(lang_base_url());
+        }
+
+        $data['title'] = get_shop_name($data["user"]) . " " . trans("reviews");
+        $data['description'] = $data["user"]->username . " " . trans("reviews") . " - " . $this->app_name;
+        $data['keywords'] = $data["user"]->username . " " . trans("reviews") . "," . $this->app_name;
+        $data["active_tab"] = "seller_info";
+
+        $this->load->view('partials/_header', $data);
+        $this->load->view('account/seller_info', $data);
         $this->load->view('partials/_footer');
     }
 

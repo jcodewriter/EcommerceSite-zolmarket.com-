@@ -1,19 +1,9 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
-<?php
-if (auth_check()) {
-    $profile = $this->auth_user;
-}
-?>
 
-
-
-
-
-<?php $this->load->view("profile/_menu_account"); ?>
-
+<?php $this->load->view("account/_profile_header"); ?>
 <!-- Wrapper -->
 <div id="wrapper">
-    <div class="container pt-2">
+    <div class="container">
         <div class="row">
             <div class="col-12">
                 <nav class="nav-breadcrumb" aria-label="breadcrumb">
@@ -24,19 +14,19 @@ if (auth_check()) {
                 </nav>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="profile-page-top">
-                    <!-- load profile details -->
-                    <?php $this->load->view("profile/_profile_user_info"); ?>
-                </div>
-            </div>
-        </div>
+
+        <!-- load profile details -->
+        <?php
+        if ($user->is_private) {
+            $this->load->view("account/private/_profile_info");
+        } else {
+            $this->load->view("account/company/_profile_info");
+        }
+        ?>
 
         <div class="row">
             <div class="col-sm-12 col-md-3">
                 <!-- load profile nav -->
-                <?php $this->load->view("profile/_account_tabs"); ?>
             </div>
 
             <div class="col-sm-12 col-md-9">

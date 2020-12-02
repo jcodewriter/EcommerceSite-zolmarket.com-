@@ -67,8 +67,7 @@ $route['confirm'] = 'auth_controller/confirm_email';
 $route['connect-with-facebook'] = 'auth_controller/connect_with_facebook';
 $route['facebook-callback'] = 'auth_controller/facebook_callback';
 $route['connect-with-google'] = 'auth_controller/connect_with_google';
-//profile routes
-$route['profile/(:any)'] = 'profile_controller/account/$1';
+//account routes
 $route['product/(:any)'] = 'profile_controller/product/$1';
 $route['account/(:any)'] = 'profile_controller/profile/$1';
 $route['favorites/(:any)'] = 'profile_controller/favorites/$1';
@@ -77,8 +76,11 @@ $route['followers/(:any)'] = 'profile_controller/followers/$1';
 $route['following/(:any)'] = 'profile_controller/following/$1';
 $route['reviews/(:any)'] = 'profile_controller/reviews/$1';
 $route['options/(:any)'] = 'profile_controller/options/$1';
+// profile routes
+$route['profile/(:any)'] = 'profile_controller/account/$1';
 $route['profile/followers/(:any)'] = 'profile_controller/account_followers/$1';
 $route['profile/following/(:any)'] = 'profile_controller/account_following/$1';
+$route['profile/seller_info/(:any)'] = 'profile_controller/seller_info/$1';
 $route['profile/reviews/(:any)'] = 'profile_controller/account_reviews/$1';
 $route['profile/options/(:any)'] = 'profile_controller/account_options/$1';
 
@@ -337,9 +339,8 @@ foreach ($languages as $language) {
         $route[$key . '/forgot-password'] = 'auth_controller/forgot_password';
         $route[$key . '/reset-password'] = 'auth_controller/reset_password';
         $route[$key . '/confirm'] = 'auth_controller/confirm_email';
-        //profile routes
+        //account routes
         $route[$key . '/account/(:any)'] = 'profile_controller/profile/$1';
-        $route[$key . '/profile/(:any)'] = 'profile_controller/account/$1';
         $route[$key . '/product/(:any)'] = 'profile_controller/product/$1';
         $route[$key . '/favorites/(:any)'] = 'profile_controller/favorites/$1';
         $route[$key . '/favorites'] = 'home_controller/guest_favorites/$1';
@@ -347,6 +348,8 @@ foreach ($languages as $language) {
         $route[$key . '/following/(:any)'] = 'profile_controller/following/$1';
         $route[$key . '/reviews/(:any)'] = 'profile_controller/reviews/$1';
         $route[$key . '/options/(:any)'] = 'profile_controller/options/$1';
+        // profile routes
+        $route[$key . '/profile/(:any)'] = 'profile_controller/account/$1';
         $route[$key . '/profile/followers/(:any)'] = 'profile_controller/account_followers/$1';
         $route[$key . '/profile/following/(:any)'] = 'profile_controller/account_following/$1';
         $route[$key . '/profile/reviews/(:any)'] = 'profile_controller/account_reviews/$1';
