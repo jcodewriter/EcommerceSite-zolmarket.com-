@@ -661,6 +661,9 @@ class Profile_controller extends Home_Core_Controller
                 'shop_name' => $this->input->post('username', true),
                 'slug' => str_slug($this->input->post('slug', true)),
                 'email' => $this->input->post('email', true),
+                'about_me' => $this->input->post('about_me', true),
+                'send_email_when_item_sold' => $this->input->post('send_email_when_item_sold', true),
+                'show_rss_feeds' => $this->input->post('show_rss_feeds', true),
                 'send_email_new_message' => $this->input->post('send_email_new_message', true)
             );
 
