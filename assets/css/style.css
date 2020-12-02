@@ -11426,3 +11426,7 @@ h4.col-md-12.title {
     margin: 0;
     line-height: 20px;
 }
+
+.review-submit__button span{
+    color: red;
+}
