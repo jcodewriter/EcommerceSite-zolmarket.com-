@@ -67,7 +67,11 @@ if (auth_check() && ($user->id == user()->id)) {
                                 </a>
                                 <div class="review-list__action">
                                     <span class="date"><?php echo time_ago($review->created_at); ?></span>
-                                    <a href="javascript:void(0)" class="btn-delete-comment" onclick="delete_user_review('<?php echo $review->id; ?>','<?php echo trans("confirm_review"); ?>');">&nbsp;<i class="icon-trash"></i>&nbsp;<?php echo trans("delete"); ?></a>
+                                    <?php if (auth_check()) :
+                                        if ($review->user_id == user()->id) : ?>
+                                            <a href="javascript:void(0)" class="btn-delete-comment" onclick="delete_user_review('<?php echo $review->id; ?>','<?php echo trans("confirm_review"); ?>');">&nbsp;<i class="icon-trash"></i>&nbsp;<?php echo trans("delete"); ?></a>
+                                    <?php endif;
+                                    endif; ?>
                                 </div>
                             </div>
                         </li>
