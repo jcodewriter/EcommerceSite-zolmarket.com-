@@ -124,12 +124,12 @@
 															<div class="d-flex justify-content-between" style="width: 100%;">
 																<div class="custom-control custom-checkbox" style="width: 49%; text-align: right; padding-right: 5px;">
 																	<input type="radio" class="custom-control-input" name="is_private" id="private_chk" onclick="onClickCustomCheckBox({name: 'private'})" value="1" <?php echo $this->auth_user->is_private ? "checked" : ""; ?>>
-																	<label for="private_chk" class="custom-control-label custom-check" style="font-size:13px; padding-top: 5px;">&nbsp;&nbsp;<strong>Private</strong></a></label>
+																	<label for="private_chk" class="custom-control-label custom-check" style="font-size:13px; padding-top: 5px;">&nbsp;&nbsp;<strong><?php echo trans("private");?></strong></a></label>
 
 																</div>
 																<div class="custom-control custom-checkbox" style="width: 49%; text-align: left; padding-left: 35px">
 																	<input type="radio" class="custom-control-input" name="is_private" id="company_chk" onclick="onClickCustomCheckBox({name: 'company'})" value="0" <?php echo $this->auth_user->is_private ? "" : "checked"; ?>>
-																	<label for="company_chk" class="custom-control-label custom-check" style="font-size:13px; padding-top: 5px;">&nbsp;&nbsp;<strong>Company</strong></a></label>
+																	<label for="company_chk" class="custom-control-label custom-check" style="font-size:13px; padding-top: 5px;">&nbsp;&nbsp;<strong><?php echo trans("company");?></strong></a></label>
 																</div>
 															</div>
 														</div>
