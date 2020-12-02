@@ -15,7 +15,7 @@
             </div>
         </div>
         <?php
-        if ($user->is_private) {
+        if ($user->is_private && $user->role != 'admin') {
             $this->load->view("account/private/_profile_info");
         } else {
             $this->load->view("account/company/_profile_info");
