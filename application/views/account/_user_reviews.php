@@ -31,11 +31,14 @@ if (auth_check() && ($user->id == user()->id)) {
             <div class="form-group" style="margin-bottom: 7px;">
                 <textarea name="review" id="user_review" class="form-control form-input form-textarea" placeholder="<?php echo trans("write_review"); ?>" required></textarea>
             </div>
-            <?php if (auth_check()) : ?>
-                <button type="submit" id="submit_user_review" class="btn btn-md btn-custom float-right"><?php echo trans("submit"); ?></button>
-            <?php else : ?>
-                <button type="button" class="btn btn-md btn-custom float-right" data-toggle="modal" data-target="#loginModal"><?php echo trans("submit"); ?></button>
-            <?php endif; ?>
+            <div class="review-submit__button">
+                <span>* Please adhere to the comments.</span>
+                <?php if (auth_check()) : ?>
+                    <button type="submit" id="submit_user_review" class="btn btn-md btn-custom float-right"><?php echo trans("submit"); ?></button>
+                <?php else : ?>
+                    <button type="button" class="btn btn-md btn-custom float-right" data-toggle="modal" data-target="#loginModal"><?php echo trans("submit"); ?></button>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
 <?php endif; ?>
