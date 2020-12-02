@@ -57,6 +57,11 @@
                         <?php echo form_close(); ?>
                     </div>
                 <?php endif; ?>
+            <?php else : ?>
+                <div class="profile-row__right">
+                    <button class="btn btn-md btn-orange" data-toggle="modal" data-target="#loginModal"><i class="icon-envelope"></i><?php echo trans("ask_question") ?></button>
+                    <button class="btn btn-md btn-orange" data-toggle="modal" data-target="#loginModal"><i class="icon-user-plus"></i><?php echo trans("follow"); ?></button>
+                </div>
             <?php endif; ?>
         </div>
 
