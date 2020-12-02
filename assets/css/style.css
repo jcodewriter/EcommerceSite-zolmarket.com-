@@ -30,8 +30,8 @@ body {
     font-weight: 300;
     font-style: normal;
     color: #222 !important;
-    font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
-    /* font-family: "Droid Arabic Kufi", "Helvetica Neue", Helvetica, Arial, sans-serif; */
+    /*font-family: 'Open Sans', Helvetica, Arial, sans-serif*/
+    font-family: "Droid Arabic Kufi", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 a {
