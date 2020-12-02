@@ -54,28 +54,36 @@ if (auth_check() && ($user->id == user()->id)) {
                     <?php foreach ($reviews as $key => $review) : ?>
                         <li>
                             <div class="review-list__item">
-                                <a class="review-list__content" href="<?php echo lang_base_url(); ?>account/<?php echo html_escape($review->user_slug); ?>">
-                                    <img src="<?php echo get_user_avatar_by_id($review->user_id); ?>" alt="<?php echo get_shop_name_by_user_id($review->user_id); ?>">
-                                    <div class="review-content__wrapper">
-                                        <span class="username"><?php echo get_shop_name_by_user_id($review->user_id); ?></span>
-                                        <div class="rating__wrapper" style="display: flex; margin-left: -3px;">
-                                            <i class="<?php echo ($review->rating >= 1) ? 'icon-star' : 'icon-star-o'; ?>"></i>
-                                            <i class="<?php echo ($review->rating >= 2) ? 'icon-star' : 'icon-star-o'; ?>"></i>
-                                            <i class="<?php echo ($review->rating >= 3) ? 'icon-star' : 'icon-star-o'; ?>"></i>
-                                            <i class="<?php echo ($review->rating >= 4) ? 'icon-star' : 'icon-star-o'; ?>"></i>
-                                            <i class="<?php echo ($review->rating >= 5) ? 'icon-star' : 'icon-star-o'; ?>"></i>
+                                <?php if (auth_check()) :?>
+                                    <?php if ($review->user_id == user()->id) : ?>
+                                        <a class="review-list__content" href="<?php echo lang_base_url(); ?>account/<?php echo html_escape($review->user_slug); ?>">
+                                    <?php else : ?>
+                                        <a class="review-list__content" href="<?php echo lang_base_url(); ?>profile/<?php echo html_escape($review->user_slug); ?>">
+                                    <?php endif; ?>
+                                <?php else : ?>
+                                    <a class="review-list__content" href="<?php echo lang_base_url(); ?>profile/<?php echo html_escape($review->user_slug); ?>">
+                                <?php endif; ?>
+                                        <img src="<?php echo get_user_avatar_by_id($review->user_id); ?>" alt="<?php echo get_shop_name_by_user_id($review->user_id); ?>">
+                                        <div class="review-content__wrapper">
+                                            <span class="username"><?php echo get_shop_name_by_user_id($review->user_id); ?></span>
+                                            <div class="rating__wrapper" style="display: flex; margin-left: -3px;">
+                                                <i class="<?php echo ($review->rating >= 1) ? 'icon-star' : 'icon-star-o'; ?>"></i>
+                                                <i class="<?php echo ($review->rating >= 2) ? 'icon-star' : 'icon-star-o'; ?>"></i>
+                                                <i class="<?php echo ($review->rating >= 3) ? 'icon-star' : 'icon-star-o'; ?>"></i>
+                                                <i class="<?php echo ($review->rating >= 4) ? 'icon-star' : 'icon-star-o'; ?>"></i>
+                                                <i class="<?php echo ($review->rating >= 5) ? 'icon-star' : 'icon-star-o'; ?>"></i>
+                                            </div>
+                                            <div class="rating__review"><?php echo html_escape($review->review); ?></div>
                                         </div>
-                                        <div class="rating__review"><?php echo html_escape($review->review); ?></div>
+                                    </a>
+                                    <div class="review-list__action">
+                                        <span class="date"><?php echo time_ago($review->created_at); ?></span>
+                                        <?php if (auth_check()) :
+                                            if ($review->user_id == user()->id) : ?>
+                                                <a href="javascript:void(0)" class="btn-delete-comment" onclick="delete_user_review('<?php echo $review->id; ?>','<?php echo trans("confirm_review"); ?>');">&nbsp;<i class="icon-trash"></i>&nbsp;<?php echo trans("delete"); ?></a>
+                                        <?php endif;
+                                        endif; ?>
                                     </div>
-                                </a>
-                                <div class="review-list__action">
-                                    <span class="date"><?php echo time_ago($review->created_at); ?></span>
-                                    <?php if (auth_check()) :
-                                        if ($review->user_id == user()->id) : ?>
-                                            <a href="javascript:void(0)" class="btn-delete-comment" onclick="delete_user_review('<?php echo $review->id; ?>','<?php echo trans("confirm_review"); ?>');">&nbsp;<i class="icon-trash"></i>&nbsp;<?php echo trans("delete"); ?></a>
-                                    <?php endif;
-                                    endif; ?>
-                                </div>
                             </div>
                         </li>
                     <?php endforeach; ?>
