@@ -10,7 +10,7 @@ if (auth_check())
         <?php if (auth_check() && $profile->id == $user->id) : ?>
             <?= trans("my_account") ?>
         <?php else : ?>
-            <?= mb_substr(ucfirst(get_shop_name($user)), 0, 28, 'utf-8') ?>
+            <?= mb_substr(ucfirst(get_shop_name($user)), 0, 20, 'utf-8') ?>
         <?php endif; ?>
     </span>
 </div>

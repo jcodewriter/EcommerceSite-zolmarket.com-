@@ -11418,6 +11418,7 @@ h4.col-md-12.title {
 .profile__name{
     display: flex;
     align-items: center;
+    margin-bottom: 5px;
 }
 
 .profile__name h1{
