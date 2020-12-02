@@ -354,6 +354,7 @@ foreach ($languages as $language) {
         $route[$key . '/profile/following/(:any)'] = 'profile_controller/account_following/$1';
         $route[$key . '/profile/reviews/(:any)'] = 'profile_controller/account_reviews/$1';
         $route[$key . '/profile/options/(:any)'] = 'profile_controller/account_options/$1';
+        $route[$key . '/profile/seller_info/(:any)'] = 'profile_controller/seller_info/$1';
         /*settings*/
         $route[$key . '/settings'] = 'profile_controller/settings';
         $route[$key . '/settings/update-profile'] = 'profile_controller/update_profile';
