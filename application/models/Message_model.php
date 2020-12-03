@@ -15,8 +15,14 @@ class Message_model extends CI_Model
         );
 
         //check conversation exists
+        $this->db->group_start();
         $this->db->where('sender_id', $data['sender_id']);
+        $this->db->or_where('sender_id', $data['receiver_id']);
+        $this->db->group_end();
+        $this->db->group_start();
         $this->db->where('receiver_id', $data['receiver_id']);
+        $this->db->or_where('receiver_id', $data['sender_id']);
+        $this->db->group_end();
         $this->db->where('subject', $data['subject']);
         $this->db->where('slug', $data['slug']);
         $query = $this->db->get('conversations');
