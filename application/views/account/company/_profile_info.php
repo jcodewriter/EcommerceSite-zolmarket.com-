@@ -5,11 +5,7 @@
         <div class="profile__image" style="position: relative">
             <img src="<?php echo get_user_avatar($user); ?>" alt="<?php echo get_shop_name($user); ?>" class="">
             <div class="profile-company__info hidden-md-up">
-                <?php if (is_user_online($user->last_seen)) : ?>
-                    <span class="last-seen <?php echo (is_user_online($user->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i> <?php echo trans("last_seen"); ?>&nbsp;<?php echo time_ago($user->last_seen); ?></span>
-                <?php else : ?>
-                    <span class="last-seen <?php echo (is_user_online($user->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i> <?php echo trans("last_seen"); ?>&nbsp;<?php echo $user->last_seen; ?></span>
-                <?php endif; ?>
+                <span class="last-seen <?php echo (is_user_online($user->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i> <?php echo trans("last_seen"); ?>&nbsp;<?php echo time_ago($user->last_seen); ?></span>
                 <div class="company__icon">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="33.464" height="28.316" viewBox="0 0 33.464 28.316">
                         <defs>
@@ -46,11 +42,7 @@
             <?php endif; ?>
         </div>
         <div class="row-custom hidden-md-down">
-            <?php if (is_user_online($user->last_seen)) : ?>
-                <span class="last-seen <?php echo (is_user_online($user->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i> <?php echo trans("last_seen"); ?>&nbsp;<?php echo time_ago($user->last_seen); ?></span>
-            <?php else : ?>
-                <span class="last-seen <?php echo (is_user_online($user->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i> <?php echo trans("last_seen"); ?>&nbsp;<?php echo ($user->last_seen); ?></span>
-            <?php endif; ?>
+            <span class="last-seen <?php echo (is_user_online($user->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i> <?php echo trans("last_seen"); ?>&nbsp;<?php echo time_ago($user->last_seen); ?></span>
         </div>
         <div class="profile-details__row">
             <div class="profile-row__left">
