@@ -81,8 +81,16 @@
                                 <input type="email" name="email" class="form-control form-input" value="<?php echo html_escape($user->email); ?>" placeholder="<?php echo trans("email_address"); ?>" required>
                             </div>
                             <div class="form-group" style="text-align: left">
-                                <label class="control-label"><?php echo trans("username"); ?></label>
-                                <input type="text" name="username" class="form-control form-input" value="<?php echo html_escape($user->username); ?>" placeholder="<?php echo trans("username"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" required>
+                                <div class="d-flex justify-content-between">
+                                    <div class="pr-1">
+                                        <label class="control-label"><?php echo trans("first_name"); ?></label>
+                                        <input type="text" name="firstname" class="form-control form-input" value="<?php echo html_escape($user->firstname); ?>" placeholder="<?php echo trans("first_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" required>
+                                    </div>
+                                    <div class="pl-1">
+                                        <label class="control-label"><?php echo trans("last_name"); ?></label>
+                                        <input type="text" name="lastname" class="form-control form-input" value="<?php echo html_escape($user->lastname); ?>" placeholder="<?php echo trans("last_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" required>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group" style="display: none">
                                 <label class="control-label"><?php echo trans("slug"); ?></label>

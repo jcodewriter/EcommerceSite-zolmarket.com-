@@ -649,7 +649,8 @@ class Profile_controller extends Home_Core_Controller
         }
 
         //validate inputs
-        $this->form_validation->set_rules('username', trans("username"), 'required|xss_clean|max_length[255]');
+        $this->form_validation->set_rules('firstname', trans("username"), 'required|xss_clean|max_length[255]');
+        $this->form_validation->set_rules('lastname', trans("username"), 'required|xss_clean|max_length[255]');
         $this->form_validation->set_rules('email', trans("email"), 'required|xss_clean');
         if ($this->form_validation->run() === false) {
             $this->session->set_flashdata('errors', validation_errors());
@@ -657,8 +658,9 @@ class Profile_controller extends Home_Core_Controller
         } else {
 
             $data = array(
-                'username' => $this->input->post('username', true),
-                'shop_name' => $this->input->post('username', true),
+                'firstname' => $this->input->post('firstname', true),
+                'lastname' => $this->input->post('lastname', true),
+                // 'shop_name' => $this->input->post('username', true),
                 'slug' => str_slug($this->input->post('slug', true)),
                 'email' => $this->input->post('email', true),
                 'about_me' => $this->input->post('about_me', true),
