@@ -9,11 +9,13 @@ class Auth_model extends CI_Model
 
         $firstname = remove_special_characters($this->input->post('firstname', true));
         $lastname = remove_special_characters($this->input->post('lastname', true));
+        $random_key = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, 5);
 
         $data = array(
             'firstname' => $firstname,
             'lastname' => $lastname,
-            'username' => $firstname . '_' . $lastname,
+            'username' => $firstname . ' ' . $lastname,
+            'slug' => $firstname . $random_key,
             'email' => $this->input->post('email', true),
             'password' => $this->input->post('password', true)
         );
@@ -188,11 +190,11 @@ class Auth_model extends CI_Model
         // print_r($data); exit;
         $data['firstname'] = $data['firstname'];
         $data['lastname'] = $data['lastname'];
-        $data['username'] = $data['firstname'] . '_' . $data['lastname'];
+        $data['username'] = $data['username'];
         //secure password
         $data['password'] = $this->bcrypt->hash_password($data['password']);
         $data['user_type'] = "registered";
-        $data["slug"] = $this->generate_uniqe_slug($data["username"]);
+        $data["slug"] = $this->generate_uniqe_slug($data["slug"]);
         $data['banned'] = 0;
         $data['send_email_new_message'] = 1;
         $data['created_at'] = date('Y-m-d H:i:s');

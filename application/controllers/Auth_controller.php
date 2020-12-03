@@ -253,8 +253,9 @@ class Auth_controller extends Home_Core_Controller
         } else {
             $email = $this->input->post('email', true);
             $firstname = $this->input->post('firstname', true);
-            $lastname = $this->input->post('lastname', true);
-            $username = $firstname.'_'.$lastname;
+
+            $random_key = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, 5);
+            $username = $firstname . '_' . $random_key;
             // print_r($username); exit;
             // $username = $this->input->post('username', true);
 
