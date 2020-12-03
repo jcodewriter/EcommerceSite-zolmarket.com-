@@ -17,11 +17,7 @@
                     </svg>
                 <?php endif; ?>
             </div>
-            <?php if (is_user_online($user->last_seen)) : ?>
-                <span class="last-seen <?php echo (is_user_online($user->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i> <?php echo trans("last_seen"); ?>&nbsp;<?php echo time_ago($user->last_seen); ?></span>
-            <?php else : ?>
-                <span class="last-seen <?php echo (is_user_online($user->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i> <?php echo trans("last_seen"); ?>&nbsp;<?php echo ($user->last_seen); ?></span>
-            <?php endif; ?>
+            <span class="last-seen <?php echo (is_user_online($user->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i> <?php echo trans("last_seen"); ?>&nbsp;<?php echo time_ago($user->last_seen); ?></span>
         </div>
     </div>
     <div class="profile-details__right col-sm-9 col-md-9">
@@ -37,11 +33,7 @@
                     </svg>
                 <?php endif; ?>
             </div>
-            <?php if (is_user_online($user->last_seen)) : ?>
-                <span class="last-seen <?php echo (is_user_online($user->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i> <?php echo trans("last_seen"); ?>&nbsp;<?php echo time_ago($user->last_seen); ?></span>
-            <?php else : ?>
-                <span class="last-seen <?php echo (is_user_online($user->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i> <?php echo trans("last_seen"); ?>&nbsp;<?php echo ($user->last_seen); ?></span>
-            <?php endif; ?>
+            <span class="last-seen <?php echo (is_user_online($user->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i> <?php echo trans("last_seen"); ?>&nbsp;<?php echo time_ago($user->last_seen); ?></span>
         </div>
         <div class="profile-details__row">
             <div class="profile-row__left">
