@@ -76,14 +76,15 @@
     <!-- intlTelInput -->
     <link href="<?php echo base_url(); ?>assets/vendor/telinput/css/intlTelInput.css" rel="stylesheet" />
     <!-- Owl Carousel -->
-    <link href="<?php echo base_url(); ?>assets/vendor/owl-carousel/owl.carousel.min.css" rel="stylesheet" />
+    <!-- <link href="<?php echo base_url(); ?>assets/vendor/owl-carousel/owl.carousel.min.css" rel="stylesheet" /> -->
     <!-- swiper Carousel -->
     <link href="<?php echo base_url(); ?>assets/vendor/swiper/swiper.min.css" rel="stylesheet" />
     <!-- smartphoto -->
     <link href="<?php echo base_url(); ?>assets/vendor/smartphoto/smartphoto.css" rel="stylesheet" />
     <!-- Plugins CSS -->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/plugins-1.4.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/plugins-1.7.css" />
     <!-- Style CSS -->
+    <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/main-1.7.min.css" /> -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/newstyle.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/costum_style.css" />

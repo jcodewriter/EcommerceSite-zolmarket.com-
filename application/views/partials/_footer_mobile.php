@@ -24,15 +24,14 @@
 <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/popper.min.js"></script>
 <!-- Bootstrap JS-->
 <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!-- Owl-carousel -->
-<script src="<?php echo base_url(); ?>assets/vendor/owl-carousel/owl.carousel.min.js"></script>
 <!-- Plugins JS-->
-<script src="<?php echo base_url(); ?>assets/js/plugins-1.4.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/plugins-1.7.js"></script>
 <script>
     var base_url = '<?php echo base_url(); ?>';
     var lang_base_url = '<?php echo lang_base_url(); ?>';
     var csfr_token_name = '<?php echo $this->security->get_csrf_token_name(); ?>';
     var csfr_cookie_name = '<?php echo $this->config->item('csrf_cookie_name'); ?>'
+    var slider_fade_effect = "<?php echo ($this->general_settings->slider_effect == "fade") ? 1 : 0; ?>";
 </script>
 
 <script src="<?php echo base_url(); ?>assets/js/script.js"></script>

@@ -1,12 +1,14 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
+
+
 <div class="top-search-bar mobile-search-form">
     <?php
     $placeholder = trans("search"); ?>
     <div style="padding: 5px 8px;">
         <div class="clearable-parent">
             <div style="white-space: nowrap;color: #b0b3b6;font-size: 12px;font-weight: bold; background: #404040">
-                <button class=" has-menu" header-text="<?php echo trans('all_states');?>" type="button" data-ajax="<?php echo $general_settings->default_product_location;?>" data-type="<?= $is_hkm_one_country ? ('state') : ('country') ?>" data-url="search_location">
+                <button class=" has-menu" header-text="<?php echo trans('all_states'); ?>" type="button" data-ajax="<?php echo $general_settings->default_product_location; ?>" data-type="<?= $is_hkm_one_country ? ('state') : ('country') ?>" data-url="search_location">
                     <i class="fas fa-map-marker-alt" style="font-size: 16px;"></i>
                     <span class="home-location-text"><?php echo trans('all_sudan'); ?></span>
                     <i class="fas fa-chevron-down"></i>
@@ -127,12 +129,11 @@
 <!-- Wrapper -->
 <div id="wrapper" class="index-wrapper">
     <div class="container container-slider">
-        <?php if (!empty($slider_items) && $general_settings->index_slider == 1) : ?>
-            <div class="section section-slider" style="">
-                <!-- main slider -->
-                <?php $this->load->view("partials/_main_slider"); ?>
-            </div>
-        <?php endif; ?>
+        <div class="section-slider">
+            <?php if (!empty($slider_items) && $this->general_settings->slider_status == 1) :
+                $this->load->view("partials/_main_slider");
+            endif; ?>
+        </div>
     </div>
 
     <div class="container">
@@ -167,11 +168,11 @@
                     <div class="row row-product">
                         <!--print products-->
                         <?php foreach ($latest_products as $product) :
-                            if ($this->is_mobile):?>
-                            <!-- <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-product pr-1 pl-1"> -->
-                            <?php $this->load->view('product/_product_item_th_list', ['product' => $product, 'promoted_badge' => false]); ?>
-                            <!-- </div> -->
-                            <?php else: ?>
+                            if ($this->is_mobile) : ?>
+                                <!-- <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-product pr-1 pl-1"> -->
+                                <?php $this->load->view('product/_product_item_th_list', ['product' => $product, 'promoted_badge' => false]); ?>
+                                <!-- </div> -->
+                            <?php else : ?>
                                 <?php $this->load->view('product/_product_item', ['product' => $product, 'promoted_badge' => false]); ?>
                             <?php endif; ?>
                         <?php endforeach; ?>
@@ -188,9 +189,9 @@
                     <?php $this->load->view("partials/_ad_spaces", ["ad_space" => "index_2", "class" => ""]); ?>
                 </div>
             </div>
-            <?php if ($general_settings->index_blog_slider == 1 && !empty($blog_slider_posts)) : ?>
+            <?php if ($this->general_settings->index_blog_slider == 1 && !empty($blog_slider_posts)) : ?>
                 <div class="col-12 section section-blog m-0">
-                    <h3 class="title"><?php echo trans("latest_blog_posts"); ?></h3>
+                    <h3 class="title"><?= trans("latest_blog_posts"); ?></h3>
                     <p class="title-exp"><?php echo trans("latest_blog_posts_exp"); ?></p>
                     <div class="row-custom">
                         <!-- main slider -->

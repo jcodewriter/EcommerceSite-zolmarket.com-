@@ -208,10 +208,8 @@
 
 <!-- Bootstrap JS-->
 <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!-- Owl-carousel -->
-<script src="<?php echo base_url(); ?>assets/vendor/owl-carousel/owl.carousel.min.js"></script>
 <!-- Plugins JS-->
-<script src="<?php echo base_url(); ?>assets/js/plugins-1.4.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/plugins-1.7.js"></script>
 <script>
     var base_url = '<?php echo base_url(); ?>';
     var lang_base_url = '<?php echo lang_base_url(); ?>';
@@ -219,6 +217,7 @@
     var lang_folder = '<?php echo $this->selected_lang->folder_name; ?>';
     var lang_id = '<?php echo $this->selected_lang->id; ?>';
     var fb_app_id = '<?php echo $this->general_settings->facebook_app_id; ?>';
+    var slider_fade_effect = "<?php echo ($this->general_settings->slider_effect == "fade") ? 1 : 0; ?>";
     var csfr_token_name = '<?php echo $this->security->get_csrf_token_name(); ?>';
     var csfr_cookie_name = '<?php echo $this->config->item('csrf_cookie_name'); ?>';
     var is_hkm_one_country = '<?php echo @$is_hkm_one_country; ?>';
