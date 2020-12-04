@@ -135,6 +135,7 @@
                             <span><?php echo trans("slider"); ?></span>
                         </a>
                     </li>
+                    <li class="header"><?php echo trans("orders"); ?></li>
                     <li class="treeview">
                         <a href="#" style="display: flex">
                             <i class="fa fa-shopping-cart"></i>
@@ -195,6 +196,83 @@
                             <?php endif; ?>
                         </a>
                     </li>
+                    <li class="treeview">
+                        <a href="#" style="display: flex">
+                            <i class="fa fa-money" aria-hidden="true"></i>
+                            <span><?php echo trans("earnings"); ?></span>
+                            <?php $total = admin_total_notifcations(".005");
+                            if ($total) : ?>
+                                <div class="admin_notification">
+                                    <span><?= $total ?></span>
+                                </div>
+                            <?php endif; ?>
+                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a href="<?php echo admin_url(); ?>earnings">
+                                    <?php echo trans("earnings"); ?>
+                                    <?php $result = admin_notifcations(".005.001");
+                                    if ($result) : ?>
+                                        <div class="admin_notification">
+                                            <span><?= $result ?></span>
+                                        </div>
+                                    <?php endif; ?>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo admin_url(); ?>seller-balances">
+                                    <?php echo trans("seller_balances"); ?>
+                                    <?php $result = admin_notifcations(".005.002");
+                                    if ($result) : ?>
+                                        <div class="admin_notification">
+                                            <span><?= $result ?></span>
+                                        </div>
+                                    <?php endif; ?>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#" style="display: flex">
+                            <i class="fa fa-credit-card" aria-hidden="true"></i>
+                            <span><?php echo trans("payouts"); ?></span>
+                            <?php $total = admin_total_notifcations(".006");
+                            if ($total) : ?>
+                                <div class="admin_notification">
+                                    <span><?= $total ?></span>
+                                </div>
+                            <?php endif; ?>
+                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="<?php echo admin_url(); ?>add-payout"> <?php echo trans("add_payout"); ?></a></li>
+                            <li>
+                                <a href="<?php echo admin_url(); ?>payout-requests">
+                                    <?php echo trans("payout_requests"); ?>
+                                    <?php $result = admin_notifcations(".006.001");
+                                    if ($result) : ?>
+                                        <div class="admin_notification">
+                                            <span><?= $result ?></span>
+                                        </div>
+                                    <?php endif; ?>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo admin_url(); ?>completed-payouts">
+                                    <?php echo trans("completed_payouts"); ?>
+                                    <?php $result = admin_notifcations(".006.002");
+                                    if ($result) : ?>
+                                        <div class="admin_notification">
+                                            <span><?= $result ?></span>
+                                        </div>
+                                    <?php endif; ?>
+                                </a>
+                            </li>
+                            <li><a href="<?php echo admin_url(); ?>payout-settings"> <?php echo trans("payout_settings"); ?></a></li>
+                        </ul>
+                    </li>
+                    <li class="header"><?php echo trans("products"); ?></li>
                     <li class="treeview">
                         <a href="#" style="display: flex">
                             <i class="fa fa-shopping-basket angle-left" aria-hidden="true"></i>
@@ -331,82 +409,7 @@
                             <li><a href="<?php echo admin_url(); ?>custom-fields"> <?php echo trans("custom_fields"); ?></a></li>
                         </ul>
                     </li>
-                    <li class="treeview">
-                        <a href="#" style="display: flex">
-                            <i class="fa fa-money" aria-hidden="true"></i>
-                            <span><?php echo trans("earnings"); ?></span>
-                            <?php $total = admin_total_notifcations(".005");
-                            if ($total) : ?>
-                                <div class="admin_notification">
-                                    <span><?= $total ?></span>
-                                </div>
-                            <?php endif; ?>
-                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li>
-                                <a href="<?php echo admin_url(); ?>earnings">
-                                    <?php echo trans("earnings"); ?>
-                                    <?php $result = admin_notifcations(".005.001");
-                                    if ($result) : ?>
-                                        <div class="admin_notification">
-                                            <span><?= $result ?></span>
-                                        </div>
-                                    <?php endif; ?>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?php echo admin_url(); ?>seller-balances">
-                                    <?php echo trans("seller_balances"); ?>
-                                    <?php $result = admin_notifcations(".005.002");
-                                    if ($result) : ?>
-                                        <div class="admin_notification">
-                                            <span><?= $result ?></span>
-                                        </div>
-                                    <?php endif; ?>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#" style="display: flex">
-                            <i class="fa fa-credit-card" aria-hidden="true"></i>
-                            <span><?php echo trans("payouts"); ?></span>
-                            <?php $total = admin_total_notifcations(".006");
-                            if ($total) : ?>
-                                <div class="admin_notification">
-                                    <span><?= $total ?></span>
-                                </div>
-                            <?php endif; ?>
-                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="<?php echo admin_url(); ?>add-payout"> <?php echo trans("add_payout"); ?></a></li>
-                            <li>
-                                <a href="<?php echo admin_url(); ?>payout-requests">
-                                    <?php echo trans("payout_requests"); ?>
-                                    <?php $result = admin_notifcations(".006.001");
-                                    if ($result) : ?>
-                                        <div class="admin_notification">
-                                            <span><?= $result ?></span>
-                                        </div>
-                                    <?php endif; ?>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?php echo admin_url(); ?>completed-payouts">
-                                    <?php echo trans("completed_payouts"); ?>
-                                    <?php $result = admin_notifcations(".006.002");
-                                    if ($result) : ?>
-                                        <div class="admin_notification">
-                                            <span><?= $result ?></span>
-                                        </div>
-                                    <?php endif; ?>
-                                </a>
-                            </li>
-                            <li><a href="<?php echo admin_url(); ?>payout-settings"> <?php echo trans("payout_settings"); ?></a></li>
-                        </ul>
-                    </li>
+                    <li class="header"><?php echo trans("content"); ?></li>
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-file"></i>
@@ -430,24 +433,25 @@
                             <li><a href="<?php echo admin_url(); ?>blog-categories"> <?php echo trans("categories"); ?></a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="<?php echo admin_url(); ?>contact-messages">
-                            <i class="fa fa-paper-plane" aria-hidden="true"></i>
-                            <span><?php echo trans("contact_messages"); ?></span>
-                        </a>
-                    </li>
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-envelope"></i> <span><?php echo trans("newsletter"); ?></span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                            <i class="fa fa-map-marker"></i>
+                            <span><?php echo trans("location"); ?></span>
+                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
-                            <li>
-                                <a href="<?php echo admin_url(); ?>send-email-subscribers"><?php echo trans("send_email_subscribers"); ?></a>
-                            </li>
-                            <li>
-                                <a href="<?php echo admin_url(); ?>subscribers"><?php echo trans("subscribers"); ?></a>
-                            </li>
+                            <li><a href="<?php echo admin_url(); ?>countries"> <?php echo trans("countries"); ?></a></li>
+                            <li><a href="<?php echo admin_url(); ?>states"> <?php echo trans("states"); ?></a></li>
+                            <li><a href="<?php echo admin_url(); ?>cities"> <?php echo trans("cities"); ?></a></li>
+                            <li><a href="<?php echo admin_url(); ?>location-settings"> <?php echo trans("location_settings"); ?></a></li>
                         </ul>
+                    </li>
+                    <li class="header"><?php echo trans("membership"); ?></li>
+                    <li>
+                        <a href="<?php echo admin_url(); ?>shop-opening-requests">
+                            <i class="fa fa-question-circle" aria-hidden="true"></i>
+                            <span><?php echo trans("shop_opening_requests"); ?></span>
+                        </a>
                     </li>
                     <li class="treeview">
                         <a href="#" style="display:flex">
@@ -486,19 +490,30 @@
                                     <?php endif; ?>
                                 </a>
                             </li>
+
+                        </ul>
+                    </li>
+                    <li class="header"><?php echo trans("management_tools"); ?></li>
+                    <li>
+                        <a href="<?php echo admin_url(); ?>contact-messages">
+                            <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                            <span><?php echo trans("contact_messages"); ?></span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-envelope"></i> <span><?php echo trans("newsletter"); ?></span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                        </a>
+                        <ul class="treeview-menu">
                             <li>
-                                <a href="<?php echo admin_url(); ?>shop-opening-requests">
-                                    <?php echo trans("shop_opening_requests"); ?>
-                                    <?php $result = admin_notifcations(".007.003");
-                                    if ($result) : ?>
-                                        <div class="admin_notification">
-                                            <span><?= $result ?></span>
-                                        </div>
-                                    <?php endif; ?>
-                                </a>
+                                <a href="<?php echo admin_url(); ?>send-email-subscribers"><?php echo trans("send_email_subscribers"); ?></a>
+                            </li>
+                            <li>
+                                <a href="<?php echo admin_url(); ?>subscribers"><?php echo trans("subscribers"); ?></a>
                             </li>
                         </ul>
                     </li>
+
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-star"></i>
@@ -543,19 +558,7 @@
                             <i class="fa fa-dollar"></i> <span><?php echo trans("ad_spaces"); ?></span>
                         </a>
                     </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-map-marker"></i>
-                            <span><?php echo trans("location"); ?></span>
-                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="<?php echo admin_url(); ?>countries"> <?php echo trans("countries"); ?></a></li>
-                            <li><a href="<?php echo admin_url(); ?>states"> <?php echo trans("states"); ?></a></li>
-                            <li><a href="<?php echo admin_url(); ?>cities"> <?php echo trans("cities"); ?></a></li>
-                            <li><a href="<?php echo admin_url(); ?>location-settings"> <?php echo trans("location_settings"); ?></a></li>
-                        </ul>
-                    </li>
+
 
                     <li class="header text-uppercase"><?php echo trans("settings"); ?></li>
                     <li>
