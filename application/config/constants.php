@@ -83,3 +83,9 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+
+defined('IMG_BASE64_1x1')      		OR define('IMG_BASE64_1x1', 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==');
+defined('IMG_BG_PRODUCT_SMALL')      	OR define('IMG_BG_PRODUCT_SMALL', 'assets/img/img_bg_product_small.png');
+defined('IMG_BG_BLOG_SMALL')      	OR define('IMG_BG_BLOG_SMALL', 'assets/img/img_bg_blog_small.jpg');
+defined('IMG_BG_PRODUCT_SLIDER')      	OR define('IMG_BG_PRODUCT_SLIDER', 'assets/img/slider_bg.png');

@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Admin_controller extends Admin_Core_Controller
 {
@@ -67,34 +67,19 @@ class Admin_controller extends Admin_Core_Controller
         }
     }
 
-
     /*
-    * Slider Items
+    * Slider
     */
-    public function slider_items()
+    public function slider()
     {
         $data['title'] = trans("slider_items");
         $data['slider_items'] = $this->slider_model->get_slider_items_all();
         $data['lang_search_column'] = 3;
-
+        // $data['main_settings'] = get_main_settings();
         $this->load->view('admin/includes/_header', $data);
-        $this->load->view('admin/slider/slider_items', $data);
+        $this->load->view('admin/slider/slider', $data);
         $this->load->view('admin/includes/_footer');
     }
-
-
-    /*
-    * Add Slider Item
-    */
-    public function add_slider_item()
-    {
-        $data['title'] = trans("add_slider_item");
-        $data['admin_settings'] = get_admin_settings();
-        $this->load->view('admin/includes/_header', $data);
-        $this->load->view('admin/slider/add_item', $data);
-        $this->load->view('admin/includes/_footer');
-    }
-
 
     /**
      * Add Slider Item Post
@@ -102,10 +87,10 @@ class Admin_controller extends Admin_Core_Controller
     public function add_slider_item_post()
     {
         if ($this->slider_model->add_item()) {
-            $this->session->set_flashdata('success', trans("msg_slider_added"));
+            $this->session->set_flashdata('success_form', trans("msg_slider_added"));
             redirect($this->agent->referrer());
         } else {
-            $this->session->set_flashdata('error', trans("msg_error"));
+            $this->session->set_flashdata('error_form', trans("msg_error"));
             redirect($this->agent->referrer());
         }
     }
@@ -116,7 +101,6 @@ class Admin_controller extends Admin_Core_Controller
     public function update_slider_item($id)
     {
         $data['title'] = trans("update_slider_item");
-
         //get item
         $data['item'] = $this->slider_model->get_slider_item($id);
 
@@ -124,7 +108,7 @@ class Admin_controller extends Admin_Core_Controller
             redirect($this->agent->referrer());
         }
         $this->load->view('admin/includes/_header', $data);
-        $this->load->view('admin/slider/update_item', $data);
+        $this->load->view('admin/slider/update_slider', $data);
         $this->load->view('admin/includes/_footer');
     }
 
@@ -138,13 +122,27 @@ class Admin_controller extends Admin_Core_Controller
         $id = $this->input->post('id', true);
         if ($this->slider_model->update_item($id)) {
             $this->session->set_flashdata('success', trans("msg_updated"));
-            redirect(admin_url() . 'slider-items');
+            redirect(admin_url() . 'slider');
         } else {
             $this->session->set_flashdata('error', trans("msg_error"));
             redirect($this->agent->referrer());
         }
     }
 
+    /**
+     * Update Slider Settings Post
+     */
+    public function update_slider_settings_post()
+    {
+        if ($this->slider_model->update_slider_settings()) {
+            $this->session->set_flashdata('success_form', trans("msg_updated"));
+            $this->session->set_flashdata('msg_settings', 1);
+        } else {
+            $this->session->set_flashdata('error_form', trans("msg_error"));
+            $this->session->set_flashdata('msg_settings', 1);
+        }
+        redirect($this->agent->referrer());
+    }
 
     /**
      * Delete Slider Item Post
@@ -159,43 +157,135 @@ class Admin_controller extends Admin_Core_Controller
         }
     }
 
+
+    /*
+    * Slider Items
+    */
+    // public function slider_items()
+    // {
+    //     $data['title'] = trans("slider_items");
+    //     $data['slider_items'] = $this->slider_model->get_slider_items_all();
+    //     $data['lang_search_column'] = 3;
+
+    //     $this->load->view('admin/includes/_header', $data);
+    //     $this->load->view('admin/slider/slider_items', $data);
+    //     $this->load->view('admin/includes/_footer');
+    // }
+
+
+    /*
+    * Add Slider Item
+    */
+    // public function add_slider_item()
+    // {
+    //     $data['title'] = trans("add_slider_item");
+    //     $data['admin_settings'] = get_admin_settings();
+    //     $this->load->view('admin/includes/_header', $data);
+    //     $this->load->view('admin/slider/add_item', $data);
+    //     $this->load->view('admin/includes/_footer');
+    // }
+
+
+    /**
+     * Add Slider Item Post
+     */
+    // public function add_slider_item_post()
+    // {
+    //     if ($this->slider_model->add_item()) {
+    //         $this->session->set_flashdata('success', trans("msg_slider_added"));
+    //         redirect($this->agent->referrer());
+    //     } else {
+    //         $this->session->set_flashdata('error', trans("msg_error"));
+    //         redirect($this->agent->referrer());
+    //     }
+    // }
+
+    /**
+     * Update Slider Item
+     */
+    // public function update_slider_item($id)
+    // {
+    //     $data['title'] = trans("update_slider_item");
+
+    //     //get item
+    //     $data['item'] = $this->slider_model->get_slider_item($id);
+
+    //     if (empty($data['item'])) {
+    //         redirect($this->agent->referrer());
+    //     }
+    //     $this->load->view('admin/includes/_header', $data);
+    //     $this->load->view('admin/slider/update_item', $data);
+    //     $this->load->view('admin/includes/_footer');
+    // }
+
+
+    /**
+     * Update Slider Item Post
+     */
+    // public function update_slider_item_post()
+    // {
+    //     //item id
+    //     $id = $this->input->post('id', true);
+    //     if ($this->slider_model->update_item($id)) {
+    //         $this->session->set_flashdata('success', trans("msg_updated"));
+    //         redirect(admin_url() . 'slider-items');
+    //     } else {
+    //         $this->session->set_flashdata('error', trans("msg_error"));
+    //         redirect($this->agent->referrer());
+    //     }
+    // }
+
+
+    /**
+     * Delete Slider Item Post
+     */
+    // public function delete_slider_item_post()
+    // {
+    //     $id = $this->input->post('id', true);
+    //     if ($this->slider_model->delete_slider_item($id)) {
+    //         $this->session->set_flashdata('success', trans("msg_slider_deleted"));
+    //     } else {
+    //         $this->session->set_flashdata('error', trans("msg_error"));
+    //     }
+    // }
+
     /*
 	*-------------------------------------------------------------------------------------------------
 	* BIDDING SYSTEM
 	*-------------------------------------------------------------------------------------------------
 	*/
 
-	/**
-	 * Quote Requests
-	 */
-	public function quote_requests()
-	{
-		$this->load->model('bidding_model');
-		$data['title'] = trans("quote_requests");
-		$data['form_action'] = admin_url() . "quote-requests";
-		$data['admin_settings'] = get_admin_settings();
-		//get paginated requests
-		$pagination = $this->paginate(admin_url() . 'quote-requests', $this->bidding_model->get_admin_quote_requests_count());
-		$data['quote_requests'] = $this->bidding_model->get_admin_paginated_quote_requests($pagination['per_page'], $pagination['offset']);
+    /**
+     * Quote Requests
+     */
+    public function quote_requests()
+    {
+        $this->load->model('bidding_model');
+        $data['title'] = trans("quote_requests");
+        $data['form_action'] = admin_url() . "quote-requests";
+        $data['admin_settings'] = get_admin_settings();
+        //get paginated requests
+        $pagination = $this->paginate(admin_url() . 'quote-requests', $this->bidding_model->get_admin_quote_requests_count());
+        $data['quote_requests'] = $this->bidding_model->get_admin_paginated_quote_requests($pagination['per_page'], $pagination['offset']);
 
-		$this->load->view('admin/includes/_header', $data);
-		$this->load->view('admin/bidding/quote_requests', $data);
-		$this->load->view('admin/includes/_footer');
-	}
+        $this->load->view('admin/includes/_header', $data);
+        $this->load->view('admin/bidding/quote_requests', $data);
+        $this->load->view('admin/includes/_footer');
+    }
 
-	/**
-	 * Delete Quote Request
-	 */
-	public function delete_quote_request_post()
-	{
-		$this->load->model('bidding_model');
-		$id = $this->input->post('id', true);
-		if ($this->bidding_model->delete_admin_quote_request($id)) {
-			$this->session->set_flashdata('success', trans("msg_deleted"));
-		} else {
-			$this->session->set_flashdata('error', trans("msg_error"));
-		}
-	}
+    /**
+     * Delete Quote Request
+     */
+    public function delete_quote_request_post()
+    {
+        $this->load->model('bidding_model');
+        $id = $this->input->post('id', true);
+        if ($this->bidding_model->delete_admin_quote_request($id)) {
+            $this->session->set_flashdata('success', trans("msg_deleted"));
+        } else {
+            $this->session->set_flashdata('error', trans("msg_error"));
+        }
+    }
 
 
     /*
@@ -237,16 +327,14 @@ class Admin_controller extends Admin_Core_Controller
                 if (!$this->email_model->send_email_newsletter($item, $subject, $message)) {
                     $result = false;
                     $email_faileds .=  $item->email . '<br/>';
-                }
-                else
-                {
+                } else {
                     $email_success .= $item->email . '<br/>';
                 }
             }
         }
 
         if ($email_success != "") {
-            $this->session->set_flashdata('success', trans("msg_email_sent"). '<br/>' . $email_success);
+            $this->session->set_flashdata('success', trans("msg_email_sent") . '<br/>' . $email_success);
         }
 
         if ($email_faileds != "") {
@@ -347,7 +435,7 @@ class Admin_controller extends Admin_Core_Controller
 
         $data['ad_category'] = $this->ad_model->get_ad_category($data['ad_space']);
         $data['ad_codes'] = $this->ad_model->get_ad_codes($data['ad_space']);
-        
+
         $data["array_ad_spaces"] = array(
             "index_1" => trans("index_ad_space_1"),
             "index_2" => trans("index_ad_space_2"),
@@ -682,7 +770,7 @@ class Admin_controller extends Admin_Core_Controller
     }
 
 
-    
+
 
     /*
     * System Settings
@@ -790,7 +878,6 @@ class Admin_controller extends Admin_Core_Controller
         $this->load->view('admin/includes/_header', $data);
         $this->load->view('admin/users/members');
         $this->load->view('admin/includes/_footer');
-
     }
 
     /**
@@ -805,7 +892,6 @@ class Admin_controller extends Admin_Core_Controller
         $this->load->view('admin/includes/_header', $data);
         $this->load->view('admin/users/vendors');
         $this->load->view('admin/includes/_footer');
-
     }
 
     /**
@@ -930,11 +1016,12 @@ class Admin_controller extends Admin_Core_Controller
             $this->session->set_flashdata('error', trans("msg_error"));
         }
     }
-    
+
     /**
      * Decline User
      */
-    public function decline_user (){
+    public function decline_user()
+    {
         $id = $this->input->post('id', true);
         if ($this->auth_model->decline_user($id)) {
             $this->session->set_flashdata('success', trans("msg_updated"));
@@ -1051,29 +1138,29 @@ class Admin_controller extends Admin_Core_Controller
         $this->load->view('admin/includes/_footer');
     }
 
-	/**
-	 * Preferences Post
-	 */
-	public function preferences_post()
-	{
-		$form = $this->input->post('submit', true);
-		$this->session->set_flashdata('mes_' . $form, 1);
-		if ($this->settings_model->update_preferences($form)) {
+    /**
+     * Preferences Post
+     */
+    public function preferences_post()
+    {
+        $form = $this->input->post('submit', true);
+        $this->session->set_flashdata('mes_' . $form, 1);
+        if ($this->settings_model->update_preferences($form)) {
 
-			if ($form == 'general') {
-				$admin_panel_link = $this->input->post('admin_panel_link', true);
-				$this->settings_model->update_admin_panel_link($admin_panel_link);
-				sleep(1);
-			}
+            if ($form == 'general') {
+                $admin_panel_link = $this->input->post('admin_panel_link', true);
+                $this->settings_model->update_admin_panel_link($admin_panel_link);
+                sleep(1);
+            }
 
-			$this->session->set_flashdata('success', trans("msg_updated"));
-			//reset cache
-			redirect(admin_url() . "preferences");
-		} else {
-			$this->session->set_flashdata('error', trans("msg_error"));
-			redirect($this->agent->referrer());
-		}
-	}
+            $this->session->set_flashdata('success', trans("msg_updated"));
+            //reset cache
+            redirect(admin_url() . "preferences");
+        } else {
+            $this->session->set_flashdata('error', trans("msg_error"));
+            redirect($this->agent->referrer());
+        }
+    }
 
 
     /*

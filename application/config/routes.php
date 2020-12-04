@@ -196,9 +196,11 @@ $route[$r_admin . '/login'] = 'common_controller/admin_login';
 /*navigation routes*/
 $route[$r_admin . '/navigation'] = 'admin_controller/navigation';
 /*slider routes*/
-$route[$r_admin . '/add-slider-item'] = 'admin_controller/add_slider_item';
-$route[$r_admin . '/slider-items'] = 'admin_controller/slider_items';
+$route[$r_admin . '/slider'] = 'admin_controller/slider';
+// $route[$r_admin . '/slider-items'] = 'admin_controller/slider_items';
 $route[$r_admin . '/update-slider-item/(:num)'] = 'admin_controller/update_slider_item/$1';
+// $route[getr('admin', $rts) . '/slider'] = 'admin_controller/slider';
+// $route[getr('admin', $rts) . '/update-slider-item/(:num)'] = 'admin_controller/update_slider_item/$1';
 /*page routes*/
 $route[$r_admin] = 'admin_controller/index';
 $route[$r_admin . '/settings'] = 'admin_controller/settings';

@@ -7,7 +7,7 @@ class Core_Controller extends CI_Controller
         parent::__construct();
 
         //general settings
-        $global_data['general_settings'] = $this->settings_model->get_general_settings();
+        $global_data['general_settings'] = $this->settings_model->get_general_settings(); 
         $this->general_settings = $global_data['general_settings'];
         //storage settings
         $this->storage_settings = $this->settings_model->get_storage_settings();

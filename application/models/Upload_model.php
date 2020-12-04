@@ -1,6 +1,12 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+
+require_once APPPATH . "third_party/intervention-image/vendor/autoload.php";
+
+use Intervention\Image\ImageManager;
+use Intervention\Image\ImageManagerStatic as Image;
+
 use \Gumlet\ImageResize;
 use \Gumlet\ImageResizeException;
 
@@ -167,31 +173,21 @@ class Upload_model extends CI_Model
     //slider image upload
     public function slider_image_upload($path)
     {
-        try {
-            $image = new ImageResize($path);
-            $image->quality_jpg = 85;
-            $image->crop(1170, 356, true);
-            $new_path = 'uploads/slider/slider_' . generate_unique_id() . '.jpg';
-            $image->save(FCPATH . $new_path, IMAGETYPE_JPEG);
-            return $new_path;
-        } catch (ImageResizeException $e) {
-            return null;
-        }
+        $new_path = 'uploads/slider/slider_' . generate_unique_id() . '.jpg';
+        $img = Image::make($path)->orientate();
+        $img->fit(1920, 600);
+        $img->save(FCPATH . $new_path, $this->quality);
+        return $new_path;
     }
 
-    //slider small image upload
-    public function slider_small_image_upload($path)
+    //slider image mobile upload
+    public function slider_image_mobile_upload($path)
     {
-        try {
-            $image = new ImageResize($path);
-            $image->quality_jpg = 85;
-            $image->crop(768, 380, true);
-            $new_path = 'uploads/slider/slider_' . generate_unique_id() . '.jpg';
-            $image->save(FCPATH . $new_path, IMAGETYPE_JPEG);
-            return $new_path;
-        } catch (ImageResizeException $e) {
-            return null;
-        }
+        $new_path = 'uploads/slider/slider_' . generate_unique_id() . '.jpg';
+        $img = Image::make($path)->orientate();
+        $img->fit(768, 500);
+        $img->save(FCPATH . $new_path, $this->quality);
+        return $new_path;
     }
 
     //avatar image upload
