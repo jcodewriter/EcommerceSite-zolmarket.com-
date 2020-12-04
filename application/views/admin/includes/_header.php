@@ -409,17 +409,6 @@
                     </li>
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-sliders"></i>
-                            <span><?php echo trans("slider"); ?></span>
-                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="<?php echo admin_url(); ?>add-slider-item"> <?php echo trans("add_slider_item"); ?></a></li>
-                            <li><a href="<?php echo admin_url(); ?>slider-items"> <?php echo trans("slider_items"); ?></a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
                             <i class="fa fa-file"></i>
                             <span><?php echo trans("pages"); ?></span>
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
