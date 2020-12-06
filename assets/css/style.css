@@ -5110,7 +5110,9 @@ img {
 	text-align: center;
 	color: #777;
 	margin-top: 7px;
-	margin-bottom: 2px
+	margin-bottom: 2px;
+	font-size: 16px;
+    font-weight: 600;
 }
 .login-with-mail {
 	margin-top: 15px;
