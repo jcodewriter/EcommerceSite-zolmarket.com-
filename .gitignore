@@ -2,6 +2,7 @@
 /application/cache
 /application/session
 /application/config/database.php
+/system
 /uploads
 *.xml
 *.log
