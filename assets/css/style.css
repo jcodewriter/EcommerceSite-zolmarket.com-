@@ -9678,7 +9678,8 @@ h4.col-md-12.title {
 }
 
 .search__button{
-    height: 48px;
+	width: 30px;
+	height: 48px;
 	color: #fff;
     border-radius: 3px;
     margin-left: 5px;
