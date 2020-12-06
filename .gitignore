@@ -1,5 +1,3 @@
-
-/application/language
 /application/cache
 /application/session
 /application/config/database.php
