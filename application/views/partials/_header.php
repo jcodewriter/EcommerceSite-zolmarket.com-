@@ -305,10 +305,10 @@
                                             <?php endif; ?>
 
                                         <?php else : ?>
-                                            <li class="nav-item"><a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal"><?php echo trans("login"); ?></a></li>
+                                            <li class="nav-item"><a href="<?php echo lang_base_url() . 'login'; ?>"><?php echo trans("login"); ?></a></li>
                                             <li class="nav-item"><a href="<?php echo lang_base_url(); ?>register"><?php echo trans("register"); ?></a></li>
                                             <?php if (is_multi_vendor_active()) : ?>
-                                                <li class="nav-item"><a href="javascript:void(0)" class="btn btn-md btn-custom btn-sell-now" data-toggle="modal" data-target="#loginModal"><?php echo trans("sell_now"); ?></a></li>
+                                                <li class="nav-item"><a href="<?php echo lang_base_url() . 'login'; ?>" class="btn btn-md btn-custom btn-sell-now"><?php echo trans("sell_now"); ?></a></li>
                                             <?php endif; ?>
                                         <?php endif; ?>
 
@@ -375,7 +375,7 @@
                         </div>
                     <?php else : ?>
                         <div class="d-inline-block mr-2 text-center">
-                            <a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal" class="cart-link-mobile header-cart" redirect_url="cart">
+                            <a href="<?php echo lang_base_url() . 'login'; ?>" class="cart-link-mobile header-cart" redirect_url="cart">
                                 <i class="fa icon-cart"></i>
                             </a>
                         </div>
@@ -389,7 +389,7 @@
                         </div>
                     <?php else : ?>
                         <div class="cart-icon-mobile d-inline-block mr-2 text-center">
-                            <a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal" class="cart-link-mobile" redirect_url="favorites">
+                            <a href="<?php echo lang_base_url() . 'login'; ?>" class="cart-link-mobile" redirect_url="favorites">
                                 <i class="icon-heart-o fa-lg"></i>
                             </a>
                         </div>
@@ -400,7 +400,7 @@
                             if ($this->auth_check) : ?>
                                 <a href="<?php echo lang_base_url(); ?>sell-now" class="btn btn-md btn-custom btn-sell-now-mobile"><?php echo trans("sell_now"); ?></a>
                             <?php else : ?>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-custom btn-sell-now-mobile" data-toggle="modal" data-target="#loginModal"><?php echo trans("sell_now"); ?></a>
+                                <a href="<?php echo lang_base_url() . 'login'; ?>" class="btn btn-sm btn-custom btn-sell-now-mobile"><?php echo trans("sell_now"); ?></a>
                         <?php endif;
                         endif; ?>
                     </div>
@@ -412,51 +412,6 @@
     <!--include mobile menu-->
     <?php $this->load->view("partials/_mobile_nav"); ?>
 
-    <?php if (!$this->auth_check) : ?>
-        <!-- Login Modal -->
-        <div class="modal fade" id="loginModal" role="dialog">
-            <div class="modal-dialog modal-dialog-centered login-modal" role="document">
-                <div class="modal-content">
-                    <div class="auth-box">
-                        <button type="button" class="close" data-dismiss="modal"><i class="icon-close"></i></button>
-                        <h4 class="title"><?php echo trans("login"); ?></h4>
-                        <!-- form start -->
-                        <form id="form_login" novalidate="novalidate">
-                            <p class="p-social-media m-0 m-b-10"><?php echo trans("dont_have_account"); ?>&nbsp;<a href="<?php echo lang_base_url(); ?>register" class="link"><?php echo trans("register"); ?></a></p>
-                            <div class="social-login-cnt">
-                                <?php $this->load->view("partials/_social_login", ["or_text" => trans("login_with_email")]); ?>
-                            </div>
-                            <!-- include message block -->
-                            <div id="result-login"></div>
-
-                            <div class="form-group">
-                                <label for="email" style="color: #777;"><?php echo trans("email_address"); ?></label>
-                                <input type="email" id="email" name="email" class="form-control auth-form-input" placeholder="<?php echo trans("email_address"); ?>" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="password" style="color: #777;"><?php echo trans("password"); ?></label>
-                                <input type="password" id="password" name="password" class="form-control auth-form-input" placeholder="<?php echo trans("password"); ?>" minlength="4" required>
-                            </div>
-                            <div class="form-group" style="display: flex; flex-direction:row">
-                                <div class="custom-control custom-checkbox" style="flex: 1">
-                                    <input type="checkbox" name="remember_me" id="remember-me" class="custom-control-input" checked="checked">
-                                    <label for="remember-me" class="custom-control-label"><?php echo trans("remember_me"); ?></label>
-                                </div>
-                                <div style="align-items:flex-end;">
-                                    <a href="<?php echo lang_base_url(); ?>forgot-password" class="link-forgot-password text-right"><?php echo trans("forgot_password"); ?></a>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-md btn-custom btn-block"><?php echo trans("login"); ?></button>
-                            </div>
-
-                        </form>
-                        <!-- form end -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    <?php endif; ?>
     <style>
         .custom-control-input.is-valid~.custom-control-label,
         .was-validated .custom-control-input:valid~.custom-control-label {

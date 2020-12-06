@@ -135,36 +135,6 @@ $(".nav-mobile .btn-back-mobile-nav").on('click', function () {
 });
 
 var scrollPos = '';
-// $(".profile-tabs .nav .nav-item .nav-link").on('click', function (event) {
-
-//     event.preventDefault();
-//     /* aaaaaa  */
-//     if ($('.mobile-profile-form.cat-header').css('display') != 'none' && $(window).width() < 991) {
-//         let items = (new Array("hkmprofileupdate","hkmchangepassword","hkmshopsettings","hkmshippingadresse","hkmcontactinformation","hkmproducts", "hkmpending_products", "hkmhidden_products", "hkmdrafts", "hkmfavorites", "hkmdownloads", "hkmfollowers", "hkmfollowing", "hkmreviews","hkmorders","hkmorders_active","hkmorders_completed","hkmsales","hkmsales_active","hkmsales_completed","hkmearnings","hkmearnings_hkmearnings","hkmearnings_payouts","hkmearnings_setpayoutaccount","hkmquoterequests","hkmquoterequests_recieved","hkmquoterequests_sent"));
-//         // hkm_products
-//         if (items.includes($(this).attr('id'))) {
-//             localStorage.setItem("profil_settingss_hkm", $(this).attr('id'));
-//             let attr = '.navCatDownMobile.' + $(this).attr('id');
-//             $(attr).css('margin-left', "100%");
-
-//             if (oldmenu != undefined) {
-//                 oldmenu.css("z-index", "1");
-//             }
-
-//             $(attr).css("z-index", 2);
-//             oldmenu = $(attr);
-//             setTimeout(function () {
-//                 $(attr).css('margin-left', "0%");
-//                 $('html,body').addClass('disable-body-scroll');
-//             }, 50);
-//         } else {
-//             window.location.href = $(this).attr('href');
-//         }
-//     } else {
-//         window.location.href = $(this).attr('href');
-//     }
-// });
-
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -316,6 +286,30 @@ $(document).ready(function () {
         ]
     });
 })
+
+$("#togglePassword").on('click', function (e) {
+    // toggle the type attribute
+    const type = $("#password").attr("type") === 'password' ? 'text' : 'password';
+    $("#password").attr('type', type);
+    // toggle the eye slash icon
+    $(this).toggleClass('fa-eye-slash');
+});
+
+$("#registerTogglePassword").on('click', function (e) {
+    // toggle the type attribute
+    const type = $("#password").attr("type") === 'password' ? 'text' : 'password';
+    $("#password").attr('type', type);
+    // toggle the eye slash icon
+    $(this).toggleClass('fa-eye-slash');
+});
+
+$("#confirmTogglePassword").on('click', function (e) {
+    // toggle the type attribute
+    const type = $("#confirm_password").attr("type") === 'password' ? 'text' : 'password';
+    $("#confirm_password").attr('type', type);
+    // toggle the eye slash icon
+    $(this).toggleClass('fa-eye-slash');
+});
 
 $(document).ready(function () {
     var selectedBtn = window.localStorage.getItem("selectedBtn")
@@ -1113,14 +1107,6 @@ $(document).ready(function () {
         }, 200)
 
     });
-
-    $("#loginModal").on("hidden.bs.modal", function () {
-        if ($('body').hasClass('disable-body-scroll')) {
-            $('html').removeClass('disable-body-scroll');
-            $('body').removeClass('disable-body-scroll');
-        }
-    });
-
 });
 
 /*
@@ -1264,47 +1250,47 @@ $(document).on('click', '#show_phone_number2', function () {
  */
 
 //login
-$(document).ready(function () {
-    $("#form_login").submit(function (event) {
-        // event.preventDefault()
-        var form = $(this);
-        if (form[0].checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        } else {
-            event.preventDefault();
-            var inputs = form.find("input, select, button, textarea");
-            var serializedData = form.serializeArray();
-            serializedData.push({ name: csfr_token_name, value: $.cookie(csfr_cookie_name) });
-            if (serializedData[2].name == 'remember_me') {
-                localStorage.setItem('email', serializedData[0].value)
-                localStorage.setItem('password', serializedData[1].value)
-            } else {
-                var u_email = localStorage.getItem('email');
-                if (u_email == serializedData[0].value) {
-                    localStorage.setItem('email', "")
-                    localStorage.setItem('password', "")
-                }
-            }
-            $.ajax({
-                url: base_url + "auth_controller/login_post",
-                type: "post",
-                data: serializedData,
-                success: function (response) {
-                    var obj = JSON.parse(response);
-                    if (obj.result == 1) {
-                        location.reload();
-                    } else if (obj.result == 0) {
-                        document.getElementById("result-login").innerHTML = obj.error_message;
-                    }
-                }
-            });
-        }
-        form[0].classList.add('was-validated');
-    });
+// $(document).ready(function () {
+//     $("#form_login").submit(function (event) {
+//         // event.preventDefault()
+//         var form = $(this);
+//         if (form[0].checkValidity() === false) {
+//             event.preventDefault();
+//             event.stopPropagation();
+//         } else {
+//             event.preventDefault();
+//             var inputs = form.find("input, select, button, textarea");
+//             var serializedData = form.serializeArray();
+//             serializedData.push({ name: csfr_token_name, value: $.cookie(csfr_cookie_name) });
+//             if (serializedData[2].name == 'remember_me') {
+//                 localStorage.setItem('email', serializedData[0].value)
+//                 localStorage.setItem('password', serializedData[1].value)
+//             } else {
+//                 var u_email = localStorage.getItem('email');
+//                 if (u_email == serializedData[0].value) {
+//                     localStorage.setItem('email', "")
+//                     localStorage.setItem('password', "")
+//                 }
+//             }
+//             $.ajax({
+//                 url: base_url + "auth_controller/login_post",
+//                 type: "post",
+//                 data: serializedData,
+//                 success: function (response) {
+//                     var obj = JSON.parse(response);
+//                     if (obj.result == 1) {
+//                         location.reload();
+//                     } else if (obj.result == 0) {
+//                         document.getElementById("result-login").innerHTML = obj.error_message;
+//                     }
+//                 }
+//             });
+//         }
+//         form[0].classList.add('was-validated');
+//     });
 
-    set_site_language(lang_id)
-});
+//     set_site_language(lang_id)
+// });
 
 $(".cart-link-mobile").on("click", function () {
     document.cookie = `redirect_url=${$(this).attr("redirect_url")}; expires=; path=/`;

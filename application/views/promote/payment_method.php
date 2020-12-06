@@ -1,15 +1,15 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <div class="hkm_messages_navCatDownMobile">
-	<div class="cat-header">
+    <div class="cat-header">
         <div class="mobile-header-back">
-            <a href="javascript:history.go(-1)" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?>  </a>
+            <a href="javascript:history.go(-1)" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?> </a>
         </div>
         <div class="mobile-header-title">
-            <span  class="text-white textcat-header text-center"><?php echo trans("checkout"); ?></span>
+            <span class="text-white textcat-header text-center"><?php echo trans("checkout"); ?></span>
         </div>
         <div class="mobilde-header-cart">
         </div>
-	</div>   
+    </div>
 </div>
 <!-- Wrapper -->
 <div id="wrapper">
@@ -21,13 +21,13 @@
                         <div class="col-sm-12 col-lg-7">
                             <div class="left">
                                 <h1 class="cart-section-title page_title_hidden_on_mobile"><?php echo trans("checkout"); ?></h1>
-                                <?php if (!auth_check()): ?>
+                                <?php if (!auth_check()) : ?>
                                     <div class="row m-b-15">
                                         <div class="col-12 col-md-6">
                                             <p><?php echo trans("checking_out_as_guest"); ?></p>
                                         </div>
                                         <div class="col-12 col-md-6">
-                                            <p class="text-right"><?php echo trans("have_account"); ?>&nbsp;<a href="javascript:void(0)" class="link-underlined" data-toggle="modal" data-target="#loginModal"><?php echo trans("login"); ?></a></p>
+                                            <p class="text-right"><?php echo trans("have_account"); ?>&nbsp;<a href="<?php echo lang_base_url() . 'login'; ?>" class="link-underlined"><?php echo trans("login"); ?></a></p>
                                         </div>
                                     </div>
                                 <?php endif; ?>
@@ -39,7 +39,7 @@
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <ul class="payment-options-list">
-                                                    <?php if ($payment_settings->paypal_enabled): ?>
+                                                    <?php if ($payment_settings->paypal_enabled) : ?>
                                                         <li>
                                                             <div class="list-left">
                                                                 <div class="custom-control custom-radio">
@@ -52,7 +52,7 @@
                                                             </div>
                                                         </li>
                                                     <?php endif; ?>
-                                                    <?php if ($payment_settings->stripe_enabled): ?>
+                                                    <?php if ($payment_settings->stripe_enabled) : ?>
                                                         <li>
                                                             <div class="list-left">
                                                                 <div class="custom-control custom-radio">
@@ -65,7 +65,7 @@
                                                             </div>
                                                         </li>
                                                     <?php endif; ?>
-                                                    <?php if ($payment_settings->iyzico_enabled): ?>
+                                                    <?php if ($payment_settings->iyzico_enabled) : ?>
                                                         <li>
                                                             <div class="list-left">
                                                                 <div class="custom-control custom-radio">
@@ -78,7 +78,7 @@
                                                             </div>
                                                         </li>
                                                     <?php endif; ?>
-                                                    <?php if ($payment_settings->bank_transfer_enabled): ?>
+                                                    <?php if ($payment_settings->bank_transfer_enabled) : ?>
                                                         <li>
                                                             <div class="custom-control custom-radio">
                                                                 <input type="radio" class="custom-control-input" id="option_bank" name="payment_option" value="bank_transfer" required <?php echo ($payment_settings->paypal_enabled != 1 && $payment_settings->stripe_enabled != 1 && $payment_settings->iyzico_enabled != 1) ? 'checked' : ''; ?>>

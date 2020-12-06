@@ -1,6 +1,6 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
-<?php if (auth_check()): ?>
+<?php if (auth_check()) : ?>
     <div class="sub-comment-form-registered">
         <div class="row">
             <div class="col-12">
@@ -19,7 +19,7 @@
             </div>
         </div>
     </div>
-<?php else: ?>
+<?php else : ?>
     <div class="sub-comment-form">
         <div class="row">
             <div class="col-12">
@@ -27,10 +27,8 @@
                     <label><?php echo trans("comment"); ?></label>
                     <textarea name="comment" class="form-control form-input form-textarea form-comment-text" placeholder="<?php echo trans("comment"); ?>"></textarea>
                 </div>
-                <button type="button" class="btn btn-md btn-custom btn-subcomment" data-comment-id="<?php echo $parent_comment->product_id; ?>" data-toggle="modal" data-target="#loginModal"><?php echo trans("submit"); ?></button>
+                <a href="<?php echo lang_base_url() . 'login'; ?>" class="btn btn-md btn-custom btn-subcomment" data-comment-id="<?php echo $parent_comment->product_id; ?>"><?php echo trans("submit"); ?></a>
             </div>
         </div>
     </div>
 <?php endif; ?>
-
-

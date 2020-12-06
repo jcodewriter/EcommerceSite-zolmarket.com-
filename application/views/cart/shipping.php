@@ -1,11 +1,11 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <div class="hkm_messages_navCatDownMobile">
-	<div class="cat-header">
+    <div class="cat-header">
         <div class="mobile-header-back">
-            <a href="<?php echo lang_base_url();?>" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?>  </a>
+            <a href="<?php echo lang_base_url(); ?>" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?> </a>
         </div>
         <div class="mobile-header-title">
-            <span  class="text-white textcat-header text-center"><?php echo trans("checkout"); ?></span>
+            <span class="text-white textcat-header text-center"><?php echo trans("checkout"); ?></span>
         </div>
         <div class="mobilde-header-cart">
             <a href="<?php echo lang_base_url(); ?>cart">
@@ -13,12 +13,12 @@
                     <i class="fa icon-cart"></i>
                 </span>
                 <?php $cart_product_count = get_cart_product_count();
-                if ($cart_product_count > 0): ?>
+                if ($cart_product_count > 0) : ?>
                     <span class="notification"><?php echo $cart_product_count; ?></span>
                 <?php endif; ?>
             </a>
         </div>
-	</div>   
+    </div>
 </div>
 <br>
 <!-- Wrapper -->
@@ -32,13 +32,13 @@
                             <div class="left">
                                 <h1 class="cart-section-title page_title_hidden_on_mobile"><?php echo trans("checkout"); ?></h1>
 
-                                <?php if (!auth_check()): ?>
+                                <?php if (!auth_check()) : ?>
                                     <div class="row m-b-15">
                                         <div class="col-12 col-md-6">
                                             <p><?php echo trans("checking_out_as_guest"); ?></p>
                                         </div>
                                         <div class="col-12 col-md-6">
-                                            <p class="text-right"><?php echo trans("have_account"); ?>&nbsp;<a href="javascript:void(0)" class="link-underlined" data-toggle="modal" data-target="#loginModal"><?php echo trans("login"); ?></a></p>
+                                            <p class="text-right"><?php echo trans("have_account"); ?>&nbsp;<a href="<?php echo lang_base_url() . 'login'; ?>" class="link-underlined"><?php echo trans("login"); ?></a></p>
                                         </div>
                                     </div>
                                 <?php endif; ?>
@@ -86,7 +86,7 @@
                                                         <div class="selectdiv">
                                                             <select id="countries" name="shipping_country_id" class="form-control" required>
                                                                 <option value="" selected><?php echo trans("select_country"); ?></option>
-                                                                <?php foreach ($countries as $item): ?>
+                                                                <?php foreach ($countries as $item) : ?>
                                                                     <option value="<?php echo $item->id; ?>" <?php echo ($shipping_address->shipping_country_id == $item->id) ? 'selected' : ''; ?>><?php echo html_escape($item->name); ?></option>
                                                                 <?php endforeach; ?>
                                                             </select>
@@ -152,7 +152,7 @@
                                                         <div class="selectdiv">
                                                             <select id="countries" name="billing_country_id" class="form-control" required>
                                                                 <option value="" selected><?php echo trans("select_country"); ?></option>
-                                                                <?php foreach ($countries as $item): ?>
+                                                                <?php foreach ($countries as $item) : ?>
                                                                     <option value="<?php echo $item->id; ?>" <?php echo ($shipping_address->billing_country_id == $item->id) ? 'selected' : ''; ?>><?php echo html_escape($item->name); ?></option>
                                                                 <?php endforeach; ?>
                                                             </select>
@@ -188,8 +188,8 @@
                                     </div>
 
                                     <div class="form-group m-t-15">
-                                        <a href="<?php echo lang_base_url(); ?>cart" class="link-underlined link-return-cart"><&nbsp;<?php echo trans("return_to_cart"); ?></a>
-                                        <button type="submit" name="submit" value="update" class="btn btn-lg btn-custom float-right"><?php echo trans("continue_to_payment_method") ?></button>
+                                        <a href="<?php echo lang_base_url(); ?>cart" class="link-underlined link-return-cart">
+                                            <&nbsp;<?php echo trans("return_to_cart"); ?></a> <button type="submit" name="submit" value="update" class="btn btn-lg btn-custom float-right"><?php echo trans("continue_to_payment_method") ?></button>
                                     </div>
                                     <?php echo form_close(); ?>
                                 </div>
@@ -216,5 +216,3 @@
     </div>
 </div>
 <!-- Wrapper End-->
-
-

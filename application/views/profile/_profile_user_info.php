@@ -34,8 +34,8 @@
                                 <?php echo form_close(); ?>
                             <?php endif; ?>
                         <?php else : ?>
-                            <button class="btn btn-md btn-outline-gray" data-toggle="modal" data-target="#loginModal" style="background-color:#fff!important"><i class="icon-envelope"></i><?php echo trans("ask_question") ?></button>
-                            <button class="btn btn-md btn-outline-gray" data-toggle="modal" data-target="#loginModal" style="background-color:#fff!important"><i class="icon-user-plus"></i><?php echo trans("follow"); ?></button>
+                            <a href="<?php echo lang_base_url() . 'login'; ?>" class="btn btn-md btn-outline-gray" style="background-color:#fff!important"><i class="icon-envelope"></i><?php echo trans("ask_question") ?></a>
+                            <a href="<?php echo lang_base_url() . 'login'; ?>" class="btn btn-md btn-outline-gray" style="background-color:#fff!important"><i class="icon-user-plus"></i><?php echo trans("follow"); ?></a>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                     <span class="last-seen <?php echo (is_user_online($user->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i> <?php echo trans("last_seen"); ?>&nbsp;<?php echo time_ago($user->last_seen); ?></span>
                 </p>
             </div>
-            
+
 
             <div class="row-custom user-contact" style="margin-bottom: 0;">
 
@@ -154,8 +154,8 @@
                             <?php echo form_close(); ?>
                         <?php endif; ?>
                     <?php else : ?>
-                        <button class="btn btn-md btn-outline-gray" data-toggle="modal" data-target="#loginModal"><i class="icon-envelope"></i><?php echo trans("ask_question") ?></button>
-                        <button class="btn btn-md btn-outline-gray" data-toggle="modal" data-target="#loginModal"><i class="icon-user-plus"></i><?php echo trans("follow"); ?></button>
+                        <a href="<?php echo lang_base_url() . 'login'; ?>" class="btn btn-md btn-outline-gray"><i class="icon-envelope"></i><?php echo trans("ask_question") ?></a>
+                        <a href="<?php echo lang_base_url() . 'login'; ?>" class="btn btn-md btn-outline-gray"><i class="icon-user-plus"></i><?php echo trans("follow"); ?></a>
                     <?php endif; ?>
                 </div>
 

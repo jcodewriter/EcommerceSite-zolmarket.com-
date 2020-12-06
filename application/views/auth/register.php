@@ -30,7 +30,7 @@
                             echo form_open('auth_controller/register_post', ['id' => 'form_validate', 'class' => 'validate_terms']);
                         }
                         ?>
-                        <p class="p-social-media m-0 m-b-10"><?php echo trans("have_account"); ?>&nbsp;<a href="javascript:void(0)" class="link" data-toggle="modal" data-target="#loginModal"><?php echo trans("login"); ?></a></p>
+                        <p class="p-social-media m-0 m-b-10"><?php echo trans("have_account"); ?>&nbsp;<a href="<?php echo lang_base_url() . 'login'; ?>" class="link"><?php echo trans("login"); ?></a></p>
 
                         <div class="social-login-cnt">
                             <?php $this->load->view("partials/_social_login", ['or_text' => trans("register_with_email")]); ?>
@@ -55,11 +55,13 @@
                         </div>
                         <div class="form-group">
                             <label for="password" style="font-weight: 600"><?php echo trans("password"); ?></label>
-                            <input type="password" name="password" class="form-control auth-form-input" placeholder="<?php echo trans("password"); ?>" required>
+                            <input type="password" id="password" name="password" class="form-control auth-form-input" placeholder="<?php echo trans("password"); ?>" required>
+                            <i class="far fa-eye" id="registerTogglePassword" style="position: absolute; bottom: 15px; right: 10px;"></i>
                         </div>
                         <div class="form-group">
                             <label for="password" style="font-weight: 600"><?php echo trans("password_confirm"); ?></label>
-                            <input type="password" name="confirm_password" class="form-control auth-form-input" placeholder="<?php echo trans("password_confirm"); ?>" required>
+                            <input type="password" id="confirm_password" name="confirm_password" class="form-control auth-form-input" placeholder="<?php echo trans("password_confirm"); ?>" required>
+                            <i class="far fa-eye" id="confirmTogglePassword" style="position: absolute; bottom: 15px; right: 10px;"></i>
                         </div>
                         <div class="form-group m-t-5 m-b-20">
                             <div class="custom-control custom-checkbox custom-control-validate-input">

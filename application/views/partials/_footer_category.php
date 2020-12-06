@@ -44,7 +44,7 @@
                 </div>
             <?php else : ?>
                 <div style="max-width: 20%; width: 20%">
-                    <a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal" class="f-btn <?php echo $this->selected_btn == "f-btn-message" ? "f-btn-selected" : ""; ?>" name="f-btn-message">
+                    <a href="<?php echo lang_base_url() . 'login'; ?>" class="f-btn <?php echo $this->selected_btn == "f-btn-message" ? "f-btn-selected" : ""; ?>" name="f-btn-message">
                         <div class="f-btn-icon">
                             <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="comment-dots" class="svg-inline--fa fa-comment-dots fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                 <path d="M144 208c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm112 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm112 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zM256 32C114.6 32 0 125.1 0 240c0 47.6 19.9 91.2 52.9 126.3C38 405.7 7 439.1 6.5 439.5c-6.6 7-8.4 17.2-4.6 26S14.4 480 24 480c61.5 0 110-25.7 139.1-46.3C192 442.8 223.2 448 256 448c141.4 0 256-93.1 256-208S397.4 32 256 32zm0 368c-26.7 0-53.1-4.1-78.4-12.1l-22.7-7.2-19.5 13.8c-14.3 10.1-33.9 21.4-57.5 29 7.3-12.1 14.4-25.7 19.9-40.2l10.6-28.1-20.6-21.8C69.7 314.1 48 282.2 48 240c0-88.2 93.3-160 208-160s208 71.8 208 160-93.3 160-208 160z"></path>
@@ -80,7 +80,7 @@
                 </div>
             <?php else : ?>
                 <div style="max-width: 20%; width: 20%">
-                    <a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal" class="f-btn <?php echo $this->selected_btn == "f-btn-add" ? "f-btn-selected" : ""; ?>" name="f-btn-add">
+                    <a href="<?php echo lang_base_url() . 'login'; ?>" class="f-btn <?php echo $this->selected_btn == "f-btn-add" ? "f-btn-selected" : ""; ?>" name="f-btn-add">
                         <div class="f-btn-icon">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 214.2 214.2" style="enable-background:new 0 0 214.2 214.2;" xml:space="preserve">
                                 <path d="M194.39,55.534h-39.024l-8.733-32.756c-0.463-1.735-2.036-2.944-3.833-2.944H71.4c-1.797,0-3.37,1.209-3.833,2.944
@@ -126,7 +126,7 @@
 			c5.816,0.352,11.602,1.081,17.323,2.185c0.188,0,0.358,0,0.546,0c57.748,12.493,101.701,59.479,110.319,117.931l12.732,80.913
 			c4.232,26.931,29.49,45.336,56.422,41.114c8.608-1.681,17.214,2.907,20.617,10.991
 			C443.075,343.541,442.493,348.857,439.824,353.207z" /></svg>
-    			            <?php $notification_count = get_notification_count();
+                            <?php $notification_count = get_notification_count();
                             if ($notification_count > 0) : ?>
                                 <span class="notification"><?php echo $notification_count; ?></span>
                             <?php endif; ?>
@@ -136,7 +136,7 @@
                 </div>
             <?php else : ?>
                 <div style="max-width: 20%; width: 20%">
-                    <a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal" class="f-btn <?php echo $this->selected_btn == "f-btn-notification" ? "f-btn-selected" : ""; ?>" name="f-btn-notification">
+                    <a href="<?php echo lang_base_url() . 'login'; ?>" class="f-btn <?php echo $this->selected_btn == "f-btn-notification" ? "f-btn-selected" : ""; ?>" name="f-btn-notification">
                         <div class="f-btn-icon">
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 479.619 479.619" style="enable-background:new 0 0 479.619 479.619;" xml:space="preserve">
                                 <path d="M475.855,336.376c-0.441-2.809-1.116-5.577-2.017-8.275c-8.621-23.991-33.203-38.346-58.334-34.065
@@ -175,7 +175,7 @@
                 </div>
             <?php else : ?>
                 <div style="max-width: 20%; width: 20%">
-                    <a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal" class="f-btn <?php echo $this->selected_btn == "f-btn-account" ? "f-btn-selected" : ""; ?>" name="f-btn-account">
+                    <a href="<?php echo lang_base_url() . 'login'; ?>" class="f-btn <?php echo $this->selected_btn == "f-btn-account" ? "f-btn-selected" : ""; ?>" name="f-btn-account">
                         <div class="f-btn-icon">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                                 <path d="M256,0C114.837,0,0,114.837,0,256s114.837,256,256,256c2.581,0,5.099-0.32,7.68-0.384l0.896,0.171

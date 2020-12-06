@@ -1,24 +1,24 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <div class="hkm_messages_navCatDownMobile">
 	<div class="cat-header">
-        <div class="mobile-header-back">
-            <a href="<?php echo lang_base_url();?>" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?>  </a>
-        </div>
-        <div class="mobile-header-title">
-            <span  class="text-white textcat-header text-center"><?php echo trans("my_cart"); ?></span>
-        </div>
-        <div class="mobilde-header-cart">
-            <a href="<?php echo lang_base_url(); ?>cart">
-                <span style="font-size: 18px;">
-                    <i class="fa icon-cart"></i>
-                </span>
-                <?php $cart_product_count = get_cart_product_count();
-                if ($cart_product_count > 0): ?>
-                    <span class="notification"><?php echo $cart_product_count; ?></span>
-                <?php endif; ?>
-            </a>
-        </div>
-	</div>   
+		<div class="mobile-header-back">
+			<a href="<?php echo lang_base_url(); ?>" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?> </a>
+		</div>
+		<div class="mobile-header-title">
+			<span class="text-white textcat-header text-center"><?php echo trans("my_cart"); ?></span>
+		</div>
+		<div class="mobilde-header-cart">
+			<a href="<?php echo lang_base_url(); ?>cart">
+				<span style="font-size: 18px;">
+					<i class="fa icon-cart"></i>
+				</span>
+				<?php $cart_product_count = get_cart_product_count();
+				if ($cart_product_count > 0) : ?>
+					<span class="notification"><?php echo $cart_product_count; ?></span>
+				<?php endif; ?>
+			</a>
+		</div>
+	</div>
 </div>
 <br>
 <?php $disable_checkout_button = false; ?>
@@ -27,17 +27,17 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-				<?php if ($cart_items != null): ?>
+				<?php if ($cart_items != null) : ?>
 					<div class="shopping-cart">
 						<div class="row">
 							<div class="col-sm-12 col-lg-8">
 								<div class="left">
 									<h1 class="cart-section-title"><?php echo trans("my_cart"); ?> (<?php echo get_cart_product_count(); ?>)</h1>
-									<?php if (!empty($cart_items)):
+									<?php if (!empty($cart_items)) :
 										$last_product_url = "";
-										foreach ($cart_items as $cart_item):
+										foreach ($cart_items as $cart_item) :
 											$product = get_available_product($cart_item->product_id);
-											if (!empty($product)): ?>
+											if (!empty($product)) : ?>
 												<div class="item">
 													<div class="cart-item-image">
 														<div class="img-cart-product">
@@ -47,7 +47,7 @@
 														</div>
 													</div>
 													<div class="cart-item-details">
-														<?php if ($product->product_type == 'digital'): ?>
+														<?php if ($product->product_type == 'digital') : ?>
 															<div class="list-item">
 																<label class="label-instant-download label-instant-download-sm"><i class="icon-download-solid"></i><?php echo trans("instant_download"); ?></label>
 															</div>
@@ -56,7 +56,7 @@
 															<a href="<?php echo generate_product_url($product); ?>">
 																<?php echo html_escape($cart_item->product_title); ?>
 															</a>
-															<?php if (empty($cart_item->is_quantity_available)):
+															<?php if (empty($cart_item->is_quantity_available)) :
 																$disable_checkout_button = true; ?>
 																<div class="lbl-enough-quantity"><?php echo trans("not_enough_quantity"); ?></div>
 															<?php endif; ?>
@@ -72,7 +72,7 @@
 															<label><?php echo trans("total"); ?>:</label>
 															<strong class="lbl-price"><?php echo print_price($cart_item->total_price, $cart_item->currency); ?></strong>
 														</div>
-														<?php if ($product->product_type != 'digital' && !empty($product->shipping_cost_type)): ?>
+														<?php if ($product->product_type != 'digital' && !empty($product->shipping_cost_type)) : ?>
 															<div class="list-item">
 																<label><?php echo trans("shipping"); ?>:</label>
 																<strong><?php echo print_price($cart_item->shipping_cost, $cart_item->currency); ?></strong>
@@ -81,12 +81,12 @@
 														<a href="javascript:void(0)" class="btn btn-md btn-outline-gray btn-cart-remove" onclick="remove_from_cart('<?php echo $cart_item->cart_item_id; ?>');"><i class="icon-close"></i> <?php echo trans("remove"); ?></a>
 													</div>
 													<div class="cart-item-quantity">
-														<?php if ($cart_item->purchase_type == 'bidding'): ?>
+														<?php if ($cart_item->purchase_type == 'bidding') : ?>
 															<div class="touchspin-container">
 																<span><?php echo $cart_item->quantity; ?></span>
 															</div>
-														<?php else: ?>
-															<?php if ($product->quantity > 1): ?>
+														<?php else : ?>
+															<?php if ($product->quantity > 1) : ?>
 																<div class="touchspin-container">
 																	<input id="quantity_touchspin_<?php echo $cart_item->cart_item_id; ?>" type="text" value="<?php echo $cart_item->quantity; ?>" class="form-input">
 																</div>
@@ -94,7 +94,7 @@
 														<?php endif; ?>
 													</div>
 												</div>
-												<?php
+									<?php
 												$last_product_url = generate_product_url($product);
 											endif;
 										endforeach;
@@ -107,7 +107,7 @@
 									<p>
 										<strong><?php echo trans("subtotal"); ?><span class="float-right"><?php echo print_price($cart_total->subtotal, $cart_total->currency); ?></span></strong>
 									</p>
-									<?php if ($cart_has_physical_product == true): ?>
+									<?php if ($cart_has_physical_product == true) : ?>
 										<p>
 											<?php echo trans("shipping"); ?><span class="float-right"><?php echo print_price($cart_total->shipping_cost, $cart_total->currency); ?></span>
 										</p>
@@ -117,17 +117,17 @@
 										<strong><?php echo trans("total"); ?><span class="float-right"><?php echo print_price($cart_total->total, $cart_total->currency); ?></span></strong>
 									</p>
 									<p class="m-t-30">
-										<?php if ($disable_checkout_button): ?>
+										<?php if ($disable_checkout_button) : ?>
 											<a href="javascript:void(0)" class="btn btn-block"><?php echo trans("continue_to_checkout"); ?></a>
-										<?php else:
-											if (empty($this->auth_check) && $general_settings->guest_checkout != 1): ?>
-												<a href="#" class="btn btn-block" data-toggle="modal" data-target="#loginModal"><?php echo trans("continue_to_checkout"); ?></a>
-											<?php else:
-												if ($cart_has_physical_product == true): ?>
+											<?php else :
+											if (empty($this->auth_check) && $general_settings->guest_checkout != 1) : ?>
+												<a href="<?php echo lang_base_url() . 'login'; ?>" class="btn btn-block"><?php echo trans("continue_to_checkout"); ?></a>
+												<?php else :
+												if ($cart_has_physical_product == true) : ?>
 													<a href="<?php echo lang_base_url(); ?>cart/shipping" class="btn btn-block"><?php echo trans("continue_to_checkout"); ?></a>
-												<?php else: ?>
+												<?php else : ?>
 													<a href="<?php echo lang_base_url(); ?>cart/payment-method" class="btn btn-block"><?php echo trans("continue_to_checkout"); ?></a>
-												<?php endif;
+										<?php endif;
 											endif;
 										endif; ?>
 									</p>
@@ -142,7 +142,7 @@
 							</div>
 						</div>
 					</div>
-				<?php else: ?>
+				<?php else : ?>
 					<div class="shopping-cart-empty">
 						<p><strong class="font-600"><?php echo trans("your_cart_is_empty"); ?></strong></p>
 						<a href="<?php echo lang_base_url(); ?>" class="btn btn-lg btn-custom"><i class="icon-arrow-left"></i>&nbsp;<?php echo trans("shop_now"); ?></a>
@@ -155,37 +155,37 @@
 <!-- Wrapper End-->
 
 <script src="<?php echo base_url(); ?>assets/vendor/touchspin/jquery.bootstrap-touchspin.min.js"></script>
-<?php if (!empty($cart_items)):
-	foreach ($cart_items as $cart_item):
+<?php if (!empty($cart_items)) :
+	foreach ($cart_items as $cart_item) :
 		$product = get_available_product($cart_item->product_id);
-		if (!empty($product) && $product->quantity > 1):?>
+		if (!empty($product) && $product->quantity > 1) : ?>
 			<script>
-                $("#quantity_touchspin_<?php echo $cart_item->cart_item_id; ?>").TouchSpin({
-                    min: 1,
-                    max: <?php echo $product->quantity; ?>,
-                    verticalbuttons: true,
-                    verticalupclass: 'icon-arrow-up',
-                    verticaldownclass: 'icon-arrow-down'
-                });
-                $("#quantity_touchspin_<?php echo $cart_item->cart_item_id; ?>").change(function () {
-                    var quantity = $(this).val();
-                    var data = {
-                        'product_id': '<?php echo $cart_item->product_id; ?>',
-                        'cart_item_id': '<?php echo $cart_item->cart_item_id; ?>',
-                        'quantity': quantity
-                    };
-                    data[csfr_token_name] = $.cookie(csfr_cookie_name);
-                    $.ajax({
-                        type: "POST",
-                        url: base_url + "cart_controller/update_cart_product_quantity",
-                        data: data,
-                        success: function (response) {
-                            location.reload();
-                        }
-                    });
-                });
+				$("#quantity_touchspin_<?php echo $cart_item->cart_item_id; ?>").TouchSpin({
+					min: 1,
+					max: <?php echo $product->quantity; ?>,
+					verticalbuttons: true,
+					verticalupclass: 'icon-arrow-up',
+					verticaldownclass: 'icon-arrow-down'
+				});
+				$("#quantity_touchspin_<?php echo $cart_item->cart_item_id; ?>").change(function() {
+					var quantity = $(this).val();
+					var data = {
+						'product_id': '<?php echo $cart_item->product_id; ?>',
+						'cart_item_id': '<?php echo $cart_item->cart_item_id; ?>',
+						'quantity': quantity
+					};
+					data[csfr_token_name] = $.cookie(csfr_cookie_name);
+					$.ajax({
+						type: "POST",
+						url: base_url + "cart_controller/update_cart_product_quantity",
+						data: data,
+						success: function(response) {
+							location.reload();
+						}
+					});
+				});
 			</script>
-		<?php
+<?php
 		endif;
 	endforeach;
 endif; ?>

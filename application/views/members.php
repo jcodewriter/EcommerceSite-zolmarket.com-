@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
 <!-- Wrapper -->
 <div id="wrapper">
@@ -16,8 +16,8 @@
                 <h1 class="page-title page-title-product"><?php echo trans("members"); ?></h1>
 
                 <div class="row">
-                    <?php if (!empty($members)): ?>
-                        <?php foreach ($members as $member): ?>
+                    <?php if (!empty($members)) : ?>
+                        <?php foreach ($members as $member) : ?>
                             <div class="col-md-3 col-sm-6 col-12">
                                 <div class="member-list-item">
                                     <div class="left">
@@ -31,32 +31,32 @@
                                         </a>
                                         <p><?php echo trans("products") . ": " . get_user_products_count($member->slug); ?></p>
 
-                                        <?php if (auth_check()): ?>
-                                            <?php if ($member->id != user()->id): ?>
+                                        <?php if (auth_check()) : ?>
+                                            <?php if ($member->id != user()->id) : ?>
                                                 <?php echo form_open('profile_controller/follow_unfollow_user', ['class' => 'form-inline']); ?>
                                                 <input type="hidden" name="following_id" value="<?php echo $member->id; ?>">
                                                 <input type="hidden" name="follower_id" value="<?php echo user()->id; ?>">
-                                                <?php if (is_user_follows($member->id, user()->id)): ?>
+                                                <?php if (is_user_follows($member->id, user()->id)) : ?>
                                                     <p>
                                                         <button class="btn btn-md btn-custom"><i class="icon-user-plus"></i><?php echo trans("unfollow"); ?></button>
                                                     </p>
-                                                <?php else: ?>
+                                                <?php else : ?>
                                                     <p>
                                                         <button class="btn btn-md btn-outline"><i class="icon-user-plus"></i><?php echo trans("follow"); ?></button>
                                                     </p>
                                                 <?php endif; ?>
                                                 <?php echo form_close(); ?>
                                             <?php endif; ?>
-                                        <?php else: ?>
+                                        <?php else : ?>
                                             <p>
-                                                <button class="btn btn-md btn-outline" data-toggle="modal" data-target="#loginModal"><i class="icon-user-plus"></i><?php echo trans("follow"); ?></button>
+                                                <a href="<?php echo lang_base_url() . 'login'; ?>" class="btn btn-md btn-outline"><i class="icon-user-plus"></i><?php echo trans("follow"); ?></a>
                                             </p>
                                         <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
                         <?php endforeach; ?>
-                    <?php else: ?>
+                    <?php else : ?>
                         <div class="col-12">
                             <p class="no-records-found">
                                 <?php echo trans("no_members_found"); ?>
@@ -70,5 +70,3 @@
     </div>
 </div>
 <!-- Wrapper End-->
-
-

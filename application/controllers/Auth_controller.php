@@ -9,37 +9,47 @@ class Auth_controller extends Home_Core_Controller
     }
 
     /**
+     * Login Page
+     */
+    public function login()
+    {
+        //check if logged in
+        if (auth_check()) {
+            redirect(lang_base_url());
+        }
+
+        $data['title'] = trans("login");
+        $data['description'] = trans("login") . " - " . $this->app_name;
+        $data['keywords'] = trans("login") . "," . $this->app_name;
+
+        $this->load->view('partials/_header', $data);
+        $this->load->view('auth/login');
+        $this->load->view('partials/_footer_category');
+    }
+
+    /**
      * Login Post
      */
     public function login_post()
     {
         //check auth
         if (auth_check()) {
-            $data = array(
-                'result' => 1
-            );
-            echo json_encode($data);
-            exit();
+            redirect(lang_base_url());
         }
         //validate inputs
-        $this->form_validation->set_rules('email', trans("email_address"), 'required|xss_clean|max_length[100]');
-        $this->form_validation->set_rules('password', trans("password"), 'required|xss_clean|max_length[30]');
+        $this->form_validation->set_rules('email', trans("email_address"), 'required|xss_clean|max_length[200]');
+        $this->form_validation->set_rules('password', trans("password"), 'required|xss_clean|min_length[4]|max_length[50]');
         if ($this->form_validation->run() == false) {
             $this->session->set_flashdata('errors', validation_errors());
             $this->session->set_flashdata('form_data', $this->auth_model->input_values());
             $this->load->view('partials/_messages');
         } else {
             if ($this->auth_model->login()) {
-                $data = array(
-                    'result' => 1
-                );
-                echo json_encode($data);
+                redirect(lang_base_url());
             } else {
-                $data = array(
-                    'result' => 0,
-                    'error_message' => $this->load->view('partials/_messages', '', true)
-                );
-                echo json_encode($data);
+                $this->session->set_flashdata('form_data', $this->auth_model->input_values());
+                $this->session->set_flashdata('error', trans("msg_error"));
+                redirect($this->agent->referrer());
             }
             reset_flash_data();
         }

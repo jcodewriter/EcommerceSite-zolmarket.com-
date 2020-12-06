@@ -59,6 +59,7 @@ $route['404_override'] = 'home_controller/error_404';
 $route['translate_uri_dashes'] = FALSE;
 $route['error-404'] = 'home_controller/error_404';
 //auth routes
+$route['login'] = 'auth_controller/login';
 $route['logout'] = 'common_controller/logout';
 $route['register'] = 'auth_controller/register';
 $route['forgot-password'] = 'auth_controller/forgot_password';
@@ -336,6 +337,7 @@ foreach ($languages as $language) {
         $route[$key] = "home_controller/index";
         $route[$key . '/error-404'] = 'home_controller/error_404';
         //auth routes
+        $route[$key . '/login'] = 'auth_controller/login';
         $route[$key . '/logout'] = 'common_controller/logout';
         $route[$key . '/register'] = 'auth_controller/register';
         $route[$key . '/forgot-password'] = 'auth_controller/forgot_password';

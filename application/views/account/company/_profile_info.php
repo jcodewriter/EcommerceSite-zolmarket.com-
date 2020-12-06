@@ -68,8 +68,8 @@
                 <?php endif; ?>
             <?php else : ?>
                 <div class="profile-row__right">
-                    <button class="btn btn-md btn-orange" data-toggle="modal" data-target="#loginModal"><i class="icon-envelope"></i><?php echo trans("ask_question") ?></button>
-                    <button class="btn btn-md btn-orange" data-toggle="modal" data-target="#loginModal"><i class="icon-user-plus"></i><?php echo trans("follow"); ?></button>
+                    <a href="<?php echo lang_base_url() . 'login'; ?>" class="btn btn-md btn-orange"><i class="icon-envelope"></i><?php echo trans("ask_question") ?></a>
+                    <a href="<?php echo lang_base_url() . 'login'; ?>" class="btn btn-md btn-orange"><i class="icon-user-plus"></i><?php echo trans("follow"); ?></a>
                 </div>
             <?php endif; ?>
         </div>

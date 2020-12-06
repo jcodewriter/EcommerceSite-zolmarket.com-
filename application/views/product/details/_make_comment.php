@@ -1,5 +1,5 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-<?php if (auth_check()): ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
+<?php if (auth_check()) : ?>
     <div class="row">
         <div class="col-12">
             <form id="make_comment_registered">
@@ -15,14 +15,14 @@
             </form>
         </div>
     </div>
-<?php else: ?>
+<?php else : ?>
     <div class="row">
         <div class="col-12">
             <!--<form id="make_comment_registered">-->
-                <div class="form-group">
-                    <textarea name="comment" id="comment_text" class="form-control form-input form-textarea" placeholder="<?php echo trans("comment"); ?>"></textarea>
-                </div>
-                <button type="submit" class="btn btn-md btn-custom" data-toggle="modal" data-target="#loginModal"><?php echo trans("submit"); ?></button>
+            <div class="form-group">
+                <textarea name="comment" id="comment_text" class="form-control form-input form-textarea" placeholder="<?php echo trans("comment"); ?>"></textarea>
+            </div>
+            <a href="<?php echo lang_base_url() . 'login'; ?>" class="btn btn-md btn-custom"><?php echo trans("submit"); ?></a>
             <!--</form>-->
         </div>
     </div>

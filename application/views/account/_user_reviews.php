@@ -36,7 +36,7 @@ if (auth_check() && ($user->id == user()->id)) {
                 <?php if (auth_check()) : ?>
                     <button type="submit" id="submit_user_review" class="btn btn-md btn-custom float-right"><?php echo trans("submit"); ?></button>
                 <?php else : ?>
-                    <button type="button" class="btn btn-md btn-custom float-right" data-toggle="modal" data-target="#loginModal"><?php echo trans("submit"); ?></button>
+                    <a href="<?php echo lang_base_url() . 'login'; ?>" class="btn btn-md btn-custom float-right"><?php echo trans("submit"); ?></a>
                 <?php endif; ?>
             </div>
         </div>

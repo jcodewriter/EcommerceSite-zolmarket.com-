@@ -10,7 +10,7 @@
 			</div>
 		<?php else : ?>
 			<div class="row-custom m-t-10">
-				<button class="btn btn-instant-download" data-toggle="modal" data-target="#loginModal"><i class="icon-download-solid"></i><?php echo trans("download") ?></button>
+				<a href="<?php echo lang_base_url() . 'login'; ?>" class="btn btn-instant-download"><i class="icon-download-solid"></i><?php echo trans("download") ?></a>
 			</div>
 		<?php endif; ?>
 	<?php else : ?>
@@ -112,7 +112,7 @@ endif; ?>
 		<?php if (auth_check()) : ?>
 			<button class="btn btn-contact-seller" data-toggle="modal" data-target="#messageModal"><i class="icon-envelope"></i> <?php echo trans("ask_question") ?></button>
 		<?php else : ?>
-			<button class="btn btn-contact-seller" data-toggle="modal" data-target="#loginModal"><i class="icon-envelope"></i> <?php echo trans("ask_question") ?></button>
+			<a href="<?php echo lang_base_url() . 'login'; ?>" class="btn btn-contact-seller"><i class="icon-envelope"></i> <?php echo trans("ask_question") ?></a>
 		<?php endif; ?>
 	</div>
 </div>
