@@ -1070,7 +1070,7 @@ $(document).ready(function () {
     $('.has-search-product').blur(function () {
         // $('.clearable-content').html('');
         // $('.clearable-content').css('display', 'none');
-        // $('html,body').removeClass('disable-body-scroll');
+        $('html,body').removeClass('disable-body-scroll');
     });
 
 
