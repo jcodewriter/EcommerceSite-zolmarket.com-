@@ -11,7 +11,7 @@
         </ul>
     </div>
 </div>
-<div class="mobile-footer-filter">
+<div class="mobile-footer-filter" style="border-top: 1px solid #ced4da;">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
