@@ -37,7 +37,7 @@ $urls = explode("/", $current_url);
                                 <?php else : ?>
                                     <a href="products?country=<?php echo $country; ?>&state=<?php echo $state; ?>" class="nav-link" style="display: table;width: 100%;height:60px;">
                                     <?php endif; ?>
-                                    <div class="link-icon" style="display: table-cell;vertical-align: middle">
+                                    <div class="link-icon" style="display: table-cell;vertical-align: middle; font-weight: 600">
                                         <i class="fa fa-th-large float-none fa-fw fa-lg" aria-hidden="true" style="color:#fd7e14;text-align: left;margin-left:5px"></i>
                                         <span class="titre"><?php echo trans('all') ?></span>
                                     </div>
@@ -50,9 +50,9 @@ $urls = explode("/", $current_url);
                             <li class="nav-item" style="border-bottom: 1px solid #e9ecef;">
                                 <?php if ($location_type == "state") : ?>
                                     <?php if (sizeof($urls) > 4) : ?>
-                                        <a href="<?php echo $current_url; ?>?country=<?php echo $country; ?>&state=<?php echo $item->id; ?>" class="nav-link" style="display: table;width: 100%;height: 60px;">
+                                        <a href="<?php echo $current_url; ?>?country=<?php echo $country; ?>&state=<?php echo $item->id; ?>" class="nav-link" style="display: table;width: 100%;height: 60px; font-weight: 600;">
                                         <?php else : ?>
-                                            <a href="products?country=<?php echo $country; ?>&state=<?php echo $item->id; ?>" class="nav-link" style="display: table;width: 100%;height: 60px;">
+                                            <a href="products?country=<?php echo $country; ?>&state=<?php echo $item->id; ?>" class="nav-link" style="display: table;width: 100%;height: 60px; font-weight: 600">
                                             <?php endif; ?>
                                             <div class="link-icon" style="display: table-cell;vertical-align: middle">
                                                 <span class="titre" style="padding-left: 10px;"><?php echo $item->name ?></span>

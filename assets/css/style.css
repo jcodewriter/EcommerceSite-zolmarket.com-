@@ -5111,8 +5111,8 @@ img {
 	color: #777;
 	margin-top: 7px;
 	margin-bottom: 2px;
-	font-size: 16px;
-    font-weight: 600;
+	font-size: 15px;
+	font-weight: 600;
 }
 .login-with-mail {
 	margin-top: 15px;
@@ -9652,47 +9652,13 @@ h4.col-md-12.title {
 	background-color: #fff;
 }
 .clearable-parent {
-	display: flex;
+	display: table;
 	width: 100%;
 	height: 46px;
-	align-items: center;
+	background-color: #ffffff;
+	border-radius: 5px;
+	border: 2px solid #404040;
 }
-
-.location-search__wrapper{
-	flex: 1;
-	display: flex;
-	align-items: center;
-	border: 1px solid #404040;
-	border-radius: 3px;
-	padding-right: 5px;
-}
-
-.location-search__wrapper button{
-	display: flex;
-    width: 150px;
-    height: 46px;
-    border: 0;
-    border-right: 1px solid #404040;
-    align-items: center;
-    justify-content: space-between;
-    background: #404040;
-    color: #fff;
-}
-
-.search__button{
-	display: flex;
-    align-items: center;
-    justify-content: center;
-	width: 45px;
-	height: 48px;
-	color: #fff;
-    border-radius: 3px;
-    margin-left: 5px;
-    font-weight: 600;
-    background-color: #4182c3;	
-    border: 0;
-}
-
 .popup-location-menu {
 	display: table-cell;
 	vertical-align: middle;
@@ -9709,6 +9675,28 @@ h4.col-md-12.title {
 	outline: 0;
 	text-align: right;
 	color: #555
+}
+.clearable-parent button {
+	background: #fff;
+}
+.clearable-parent div {
+	display: table-cell;
+	/* width: 40px; */
+	text-align: center;
+	vertical-align: middle;
+}
+.clearable-parent div button {
+	border: 0;
+	color: #fff;
+	background-color: transparent;
+}
+/* .clearable-parent:hover{
+    box-shadow: 0 0 3px #28aae8;
+} */
+
+.clearable-parent:focus {
+	outline: 0;
+	box-shadow: 0 0 3px #28aae8;
 }
 .clearable-content {
 	display: none;

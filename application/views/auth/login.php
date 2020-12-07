@@ -38,7 +38,7 @@
                         </div>
                         <div class="form-group" style="display: flex; justify-content: space-between;">
                             <div class="custom-control custom-checkbox custom-control-validate-input" style="display: flex; align-items: center;">
-                                <input type="checkbox" name="remember_me" value="" id="remember-me" class="custom-control-input" onchange="">
+                                <input type="checkbox" name="remember_me" value="" id="remember-me" class="custom-control-input" checked>
                                 <label for="remember-me" class="custom-control-label"><?php echo trans("remember_me"); ?></label>
                             </div>
                             <a href="<?php echo lang_base_url(); ?>forgot-password" class="link-forgot-password text-right"><?php echo trans("forgot_password"); ?></a>

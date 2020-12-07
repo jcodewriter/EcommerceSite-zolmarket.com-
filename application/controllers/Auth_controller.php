@@ -17,6 +17,14 @@ class Auth_controller extends Home_Core_Controller
         if (auth_check()) {
             redirect(lang_base_url());
         }
+        if (@$_COOKIE["redirect_url"] == "messages")
+            $this->selected_btn = "f-btn-message";
+        else if (@$_COOKIE["redirect_url"] == "sell-now")
+            $this->selected_btn = "f-btn-add";
+        else if (@$_COOKIE["redirect_url"] == "notifications")
+            $this->selected_btn = "f-btn-notification";
+        else if (@$_COOKIE["redirect_url"] == "account")
+            $this->selected_btn = "f-btn-account";
 
         $data['title'] = trans("login");
         $data['description'] = trans("login") . " - " . $this->app_name;

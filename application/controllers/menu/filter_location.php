@@ -86,7 +86,7 @@
 		foreach ($items as $item):
 			?>
 			<li class="nav-item text-left">
-				<?php if ($currenttype != "city"): ?>
+				<?php if ($currenttype != "state"): ?>
 					<label
 						onclick="$('input[name=<?= $nexttype ?>]').val(-1)
 						$('input[name=<?=$currenttype?>]').val(<?=$item->id?>)
@@ -97,10 +97,10 @@
 						class="nav-link p-0 has-menu">
 				<?php else: ?>		
 					<label
-						onclick="$('input[name=<?= $nexttype ?>]').val(-1)
+						onclick="$('input[name=<?= $nexttype ?>]').val(0)
 						$('input[name=<?=$currenttype?>]').val(<?=$item->id?>)
 						$('.ajax-filter-menu').find('.navCatDownMobile.nav-mobile').slice(1,10).remove()
-						$('.location-name').text(`<?= $_POST['other_text'].','.$item->name?>`)
+						$('.location-name').text(`<?= $item->name?>`)
 						$('html,body').removeClass('disable-body-scroll')"
 						data-text="<?= $item->name?>"
 						class="nav-link p-0">
