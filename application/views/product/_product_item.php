@@ -3,7 +3,7 @@
 ?>
 <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-product pr-1 pl-1">
     <div class="product-item">
-        <div style="display: table; border: 1px solid #e4e4e4; border-radius: 6px;">
+        <div style="border: 1px solid #e4e4e4; border-radius: 6px; content-visibility: auto;">
             <div class="row-custom">
                 <a class="item-favorite-button item-favorite-enable <?php echo (is_product_in_favorites($product->id) == true) ? 'item-favorited' : ''; ?>" data-product-id="<?php echo $product->id; ?>"></a>
                 <a href="<?php echo lang_base_url() . $product->slug; ?>" name="ads_link">
