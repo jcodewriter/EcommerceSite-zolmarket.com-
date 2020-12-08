@@ -585,11 +585,6 @@ $(document).ready(function () {
         $('html,body').addClass('disable-body-scroll');
     })
 
-    $('input[name=email]').on('focus', function () {
-        $('html,body').addClass('disable-body-scroll');
-    })
-
-
     $.extend({
         getUrlVars: function () {
             var vars = [], hash;
