@@ -17,32 +17,32 @@
         <div class="row-custom item-details" style="padding-left:5px;padding-right:5px;">
             <h3 class="product-title">
                 <?php if (is_arabic($product->title)) : ?>
-                    <a href="<?php echo generate_product_url($product); ?>" name="">
+                    <a href="<?php echo generate_product_url($product); ?>" name="ads_link">
                         <?php echo html_escape($product->title); ?>
                     </a>
                 <?php else : ?>
-                    <a href="<?php echo generate_product_url($product); ?>" name="" style="direction: rtl">
+                    <a href="<?php echo generate_product_url($product); ?>" name="ads_link" style="direction: rtl">
                         <?php echo html_escape($product->title); ?>
                     </a>
                 <?php endif; ?>
             </h3>
             <!--stars-->
             <div class="product-moreinfo__wrapper">
-                <div class="product-rating">
+                <a href="<?php echo generate_product_url($product); ?>" name="ads_link" class="product-rating">
                     <?php if ($general_settings->product_reviews == 1) {
                         $this->load->view('partials/_review_stars', ['review' => $product->rating]);
                     } ?>
-                </div>
-                <div class="userinfo__wrapper">
-                    <?php $user = get_user($product->user_id); ?>
+                </a>
+                <?php $user = get_user($product->user_id); ?>
+                <a href="<?php echo lang_base_url() . 'profile/' . $user->slug; ?>" class="userinfo__wrapper">
                     <img src="<?php echo get_user_avatar($user); ?>" alt="User" style="width: 35px; height: 35px; border-radius: 50%" />
                     <span class="last-seen <?php echo (is_user_online($user->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i></span>
-                </div>
+                </a>
             </div>
-            <div class="item-meta">
+            <a href="<?php echo generate_product_url($product); ?>" name="ads_link" class="item-meta">
                 <?php $this->load->view('product/_price_product_item', ['product' => $product]); ?>
                 <span style="float: right;"><?php echo time_ago($product->created_at); ?></span>
-            </div>
+            </a>
         </div>
     </div>
 </div>

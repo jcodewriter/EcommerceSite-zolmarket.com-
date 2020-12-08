@@ -40,7 +40,7 @@
                             <!--print products-->
                             <?php foreach ($products as $product) : ?>
                                 <!-- <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-product"> -->
-                                <?php $this->load->view('product/_product_item', ['product' => $product, 'promoted_badge' => true]); ?>
+                                <?php $this->load->view('product/_product_item', ['product' => $product, 'promoted_badge' => true, 'profile_avatar' => true]); ?>
                                 <!-- </div> -->
                             <?php endforeach; ?>
                         </div>

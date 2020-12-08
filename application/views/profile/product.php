@@ -1,16 +1,16 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
 <div class="hkm_messages_navCatDownMobile">
-	<div class="cat-header">
+    <div class="cat-header">
         <div class="mobile-header-back">
-            <a href="<?php echo lang_base_url().'account/'. $this->auth_user->slug;?>" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?>  </a>
+            <a href="<?php echo lang_base_url() . 'account/' . $this->auth_user->slug; ?>" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?> </a>
         </div>
         <div class="mobile-header-title">
-            <span  class="text-white textcat-header text-center"><?php echo $title;?></span>
+            <span class="text-white textcat-header text-center"><?php echo $title; ?></span>
         </div>
         <div class="mobilde-header-cart">
         </div>
-	</div>   
+    </div>
 </div>
 
 <!-- Wrapper -->
@@ -43,16 +43,16 @@
 
             <div class="col-sm-12 col-md-9">
                 <div class="profile-tab-content">
-                    <?php if (auth_check() && user()->id == $user->id):
-                        foreach ($products as $product):
+                    <?php if (auth_check() && user()->id == $user->id) :
+                        foreach ($products as $product) :
                             $this->load->view('product/_product_item_profile', ['product' => $product, 'promoted_badge' => true]);
                         endforeach;
-                    else: ?>
+                    else : ?>
                         <div class="row row-product-items row-product">
                             <!--print products-->
-                            <?php foreach ($products as $product): ?>
+                            <?php foreach ($products as $product) : ?>
                                 <!-- <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-product"> -->
-                                    <?php $this->load->view('product/_product_item', ['product' => $product, 'promoted_badge' => true]); ?>
+                                <?php $this->load->view('product/_product_item', ['product' => $product, 'promoted_badge' => true, 'profile_avatar' => true]); ?>
                                 <!-- </div> -->
                             <?php endforeach; ?>
                         </div>
