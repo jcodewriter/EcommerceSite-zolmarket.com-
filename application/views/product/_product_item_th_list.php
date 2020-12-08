@@ -54,7 +54,7 @@
                 </div>
             </div>
 
-            <a href="<?php echo generate_product_url($product); ?>" name="ads_link" class="item-meta" style="margin-top: 2px">
+            <a href="<?php echo generate_product_url($product); ?>" name="ads_link" class="item-meta">
                 <?php $this->load->view('product/_price_product_item', ['product' => $product]); ?>
                 <span style="float: right;"><?php echo time_ago($product->created_at); ?></span>
             </a>

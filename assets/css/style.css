@@ -1849,7 +1849,7 @@ img {
 	/* position: relative; */
 	overflow: hidden;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: space-between;
 }
 .product-item .item-details .rating {
 	float: left;
