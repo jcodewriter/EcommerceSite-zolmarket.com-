@@ -49,7 +49,7 @@
                     } ?>
                 </a>
                 <div class="d-flex align-items-center">
-                    <?php if (!$user->is_private) : ?>
+                    <?php if (!$user->is_private || $user->role == 'admin') : ?>
                         <span class="store-mark">Store</span>
                     <?php endif; ?>
                     <a href="<?php echo lang_base_url() . 'profile/' . $user->slug; ?>" class="userinfo__wrapper">
