@@ -46,7 +46,7 @@
                         $this->load->view('partials/_review_stars', ['review' => $product->rating]);
                     } ?>
                 </a>
-                <?php if (!$profile_avatar) : ?>
+                <?php if (@!$profile_avatar) : ?>
                     <div class="d-flex align-items-center">
                         <?php if (!$user->is_private) : ?>
                             <span class="store-mark">Store</span>
