@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); 
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
 ?>
 <div class="col-12 col-product pr-2 pl-2">
@@ -10,44 +10,46 @@
                 </div>
             </a>
             <a class="item-favorite-button item-favorite-enable <?php echo (is_product_in_favorites($product->id) == true) ? 'item-favorited' : ''; ?>" data-product-id="<?php echo $product->id; ?>" style="right: 5px !important; top: 5px !important"></a>
-            <?php if ($product->is_promoted && $promoted_products_enabled == 1 && isset($promoted_badge) && $promoted_badge == true): ?>
+            <?php if ($product->is_promoted && $promoted_products_enabled == 1 && isset($promoted_badge) && $promoted_badge == true) : ?>
                 <span class="badge badge-dark badge-promoted"><?php echo trans("promoted"); ?></span>
             <?php endif; ?>
         </div>
         <div class="row-custom item-details product-item-th-list-text" style="">
-            <a href="<?php echo lang_base_url() . $product->slug; ?>" name="ads_link">
-                <div class="product-title">
-                    <?php if (is_arabic($product->title)):?>
-                        <a href="<?php echo generate_product_url($product); ?>" name="">
-                            <?php echo html_escape($product->title); ?>
-                        </a>
-                    <?php else:?>
-                        <a href="<?php echo generate_product_url($product); ?>" name="" style="direction: rtl">
-                            <?php echo html_escape($product->title); ?>
-                        </a>
-                    <?php endif;?>
+            <div class="product-title">
+                <?php if (is_arabic($product->title)) : ?>
+                    <a href="<?php echo generate_product_url($product); ?>" name="ads_link"><?php echo html_escape($product->title); ?> </a>
+                <?php else : ?>
+                    <a href="<?php echo generate_product_url($product); ?>" name="ads_link" style="direction: rtl"><?php echo html_escape($product->title); ?></a>
+                <?php endif; ?>
+            </div>
+            <div class="product-location">
+                <span class="location-icon">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="map-marker-alt" class="svg-inline--fa fa-map-marker-alt fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                        <path fill="currentColor" d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path>
+                    </svg>
+                </span>
+                <span class="location-text">
+                    <?php echo get_location($product); ?>
+                </span>
+            </div>
+
+            <!--stars-->
+            <div class="product-moreinfo__wrapper">
+                <div class="product-rating">
+                    <?php if ($general_settings->product_reviews == 1) {
+                        $this->load->view('partials/_review_stars', ['review' => $product->rating]);
+                    } ?>
                 </div>
-                <div class="product-location">
-                    <span class="location-icon">
-                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="map-marker-alt" class="svg-inline--fa fa-map-marker-alt fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path></svg>
-                    </span>
-                    <span class="location-text">
-                        <?php echo get_location($product); ?>
-                    </span>
+                <div class="userinfo__wrapper">
+                    <?php $user = get_user($product->user_id); ?>
+                    <img src="<?php echo get_user_avatar($user); ?>" alt="User" style="width: 35px; height: 35px; border-radius: 50%" />
+                    <span class="last-seen <?php echo (is_user_online($user->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i></span>
                 </div>
-                
-                <!--stars-->
-                <div class="product-rating" style="margin-left: -2px;">
-                <?php if ($general_settings->product_reviews == 1) {
-                    $this->load->view('partials/_review_stars', ['review' => $product->rating]);
-                } ?>
-                </div>
-                <div class="item-meta" style="position: absolute; bottom: 0">
-                    <?php $this->load->view('product/_price_product_item', ['product' => $product]); ?>
-                    <span style="float: right;padding-right: 15px;"><?php echo time_ago($product->created_at); ?></span>
-                </div>
-            </a>
+            </div>
+            <div class="item-meta">
+                <?php $this->load->view('product/_price_product_item', ['product' => $product]); ?>
+                <span style="float: right;"><?php echo time_ago($product->created_at); ?></span>
+            </div>
         </div>
     </div>
 </div>
-
