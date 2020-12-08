@@ -1859,7 +1859,7 @@ img {
 }
 .product-item .item-details .icon-star,
 .product-item .item-details .icon-star-o {
-	font-size: 20px
+	font-size: 18px
 }
 .product-item .item-details .icon-star:before,
 .product-item .item-details .icon-star-o:before {
@@ -1878,7 +1878,10 @@ img {
 	display: block;
 	overflow: hidden;
 	text-overflow: clip;
-	white-space: nowrap
+	white-space: nowrap;
+	color: #333;
+	font-size: 16px;
+	font-weight: 600;
 }
 .product-item-horizontal .item-details .product-title a {
 	display: block;
@@ -13044,4 +13047,17 @@ h4.col-md-12.title {
 	display: block;
 	bottom: -2px;
 	font-size: 9px;
+}
+.store-mark{
+	display: flex;
+    box-sizing: content-box;
+    width: 35px;
+    background: red;
+    color: #fff;
+	font-size: 12px;
+    font-weight: 600;
+    border-radius: 2px;
+	justify-content: center;
+	height: 18px;
+    margin-right: 3px;
 }
