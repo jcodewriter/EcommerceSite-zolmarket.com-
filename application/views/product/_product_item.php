@@ -3,8 +3,8 @@
 ?>
 <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-product pr-1 pl-1">
     <div class="product-item">
-        <div style="border: 1px solid #e4e4e4; border-radius: 6px; content-visibility: auto;">
-            <div class="row-custom">
+        <div style="border: 1px solid #e4e4e4; border-radius: 6px;">
+            <div class="product-image__wrapper">
                 <a class="item-favorite-button item-favorite-enable <?php echo (is_product_in_favorites($product->id) == true) ? 'item-favorited' : ''; ?>" data-product-id="<?php echo $product->id; ?>"></a>
                 <a href="<?php echo lang_base_url() . $product->slug; ?>" name="ads_link">
                     <div class="img-product-container">
@@ -15,7 +15,7 @@
                     <span class="badge badge-dark badge-promoted"><?php echo trans("promoted"); ?></span>
                 <?php endif; ?>
             </div>
-            <div class="row-custom item-details">
+            <div class="item-details">
                 <?php $user = get_user($product->user_id); ?>
                 <h3 class="product-title">
                     <?php if (is_arabic($product->title)) : ?>
@@ -50,7 +50,7 @@
                     <?php if (!@$profile_avatar) : ?>
                         <div class="d-flex align-items-center">
                             <?php if (!$user->is_private || $user->role == 'admin') : ?>
-                                <span class="store-mark">Store</span>
+                                <span class="store-mark"><?php echo trans("store");?></span>
                             <?php endif; ?>
                             <a href="<?php echo lang_base_url() . 'profile/' . $user->slug; ?>" class="userinfo__wrapper">
                                 <img src="<?php echo get_user_avatar($user); ?>" alt="User" style="width: 30px; height: 30px; border-radius: 50%" />

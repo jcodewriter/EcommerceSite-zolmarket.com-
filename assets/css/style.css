@@ -1842,11 +1842,8 @@ img {
 }
 .product-item .item-details {
 	padding: 5px 5px;
-	/* display: block; */
 	display: flex;
 	width: 100%;
-	/* float: left; */
-	/* position: relative; */
 	overflow: hidden;
 	flex-direction: column;
 	justify-content: space-between;
@@ -13060,4 +13057,11 @@ h4.col-md-12.title {
 	justify-content: center;
 	height: 18px;
     margin-right: 3px;
+}
+
+.product-image__wrapper{
+	display: block;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
 }
