@@ -16,6 +16,17 @@
         </div>
         <div class="row-custom item-details">
             <?php $user = get_user($product->user_id); ?>
+            <h3 class="product-title">
+                <?php if (is_arabic($product->title)) : ?>
+                    <a href="<?php echo generate_product_url($product); ?>" name="ads_link">
+                        <?php echo html_escape($product->title); ?>
+                    </a>
+                <?php else : ?>
+                    <a href="<?php echo generate_product_url($product); ?>" name="ads_link" style="direction: rtl">
+                        <?php echo html_escape($product->title); ?>
+                    </a>
+                <?php endif; ?>
+            </h3>
             <?php if (get_location($product)) : ?>
                 <a href="<?php echo generate_product_url($product); ?>" name="ads_link" class="product-location">
                     <span class="location-icon">
@@ -28,17 +39,6 @@
                     </span>
                 </a>
             <?php endif; ?>
-            <h3 class="product-title">
-                <?php if (is_arabic($product->title)) : ?>
-                    <a href="<?php echo generate_product_url($product); ?>" name="ads_link">
-                        <?php echo html_escape($product->title); ?>
-                    </a>
-                <?php else : ?>
-                    <a href="<?php echo generate_product_url($product); ?>" name="ads_link" style="direction: rtl">
-                        <?php echo html_escape($product->title); ?>
-                    </a>
-                <?php endif; ?>
-            </h3>
             <!--stars-->
             <div class="product-moreinfo__wrapper">
                 <a href="<?php echo generate_product_url($product); ?>" name="ads_link" class="product-rating">
