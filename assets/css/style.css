@@ -1903,10 +1903,9 @@ img {
 	line-height: 24px
 }
 .product-item .item-meta {
-	display: block;
-	width: 100%;
-	float: left;
-	position: relative
+	display: flex;
+	align-items: center;
+	justify-content: space-between
 }
 .product-item .item-meta .price {
 	display: inline-block;
@@ -1914,7 +1913,7 @@ img {
 	float: left;
 	position: relative;
 	font-weight: 700;
-	line-height: 24px;
+	line-height: 21px;
 	color: #59af7a;
 }
 .product-item .item-meta .price-free {
