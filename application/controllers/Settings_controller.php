@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Settings_controller extends Admin_Core_Controller
 {
@@ -178,6 +178,105 @@ class Settings_controller extends Admin_Core_Controller
         }
     }
 
+    /*
+    *-------------------------------------------------------------------------------------------------
+    * FONT SETTINGS
+    *-------------------------------------------------------------------------------------------------
+    */
+
+    /**
+     * Font Settings
+     */
+    public function font_settings()
+    {
+        $data["selected_lang"] = $this->input->get("lang", true);
+        if (empty($data["selected_lang"])) {
+            $data["selected_lang"] = $this->general_settings->site_lang;
+            redirect(admin_url() . "font-settings?lang=" . $data["selected_lang"]);
+        }
+
+        $data['title'] = trans("font_settings");
+        $data['fonts'] = $this->settings_model->get_fonts();
+        $data['settings'] = $this->settings_model->get_settings($data["selected_lang"]);
+        $data["session"] = get_user_session();
+        $this->load->view('admin/includes/_header', $data);
+        $this->load->view('admin/font/fonts', $data);
+        $this->load->view('admin/includes/_footer');
+    }
+
+    /**
+     * Add Font Post
+     */
+    public function add_font_post()
+    {
+        if ($this->settings_model->add_font()) {
+            $this->session->set_flashdata('success', trans("msg_added"));
+        } else {
+            $this->session->set_flashdata('error', trans("msg_error"));
+        }
+        $this->session->set_flashdata('mes_add_font', 1);
+        redirect($this->agent->referrer());
+    }
+
+    /**
+     * Set Site Font Post
+     */
+    public function set_site_font_post()
+    {
+        if ($this->settings_model->set_site_font()) {
+            $this->session->set_flashdata('success', trans("msg_updated"));
+        } else {
+            $this->session->set_flashdata('error', trans("msg_error"));
+        }
+        $this->session->set_flashdata('mes_set_font', 1);
+        redirect($this->agent->referrer());
+    }
+
+    /**
+     * Update Font
+     */
+    public function update_font($id)
+    {
+        $data['title'] = trans("update_font");
+        $data['font'] = $this->settings_model->get_font($id);
+        if (empty($data['font'])) {
+            redirect(admin_url() . "font-settings");
+        }
+        $data["session"] = get_user_session();
+        $this->load->view('admin/includes/_header', $data);
+        $this->load->view('admin/font/update', $data);
+        $this->load->view('admin/includes/_footer');
+    }
+
+    /**
+     * Update Font Post
+     */
+    public function update_font_post()
+    {
+        $id = $this->input->post('id', true);
+        if ($this->settings_model->update_font($id)) {
+            $this->session->set_flashdata('success', trans("msg_updated"));
+        } else {
+            $this->session->set_flashdata('error', trans("msg_error"));
+        }
+        $this->session->set_flashdata('mes_table', 1);
+        redirect(admin_url() . "font-settings?lang=" . $this->general_settings->site_lang);
+    }
+
+    /**
+     * Delete Font Post
+     */
+    public function delete_font_post()
+    {
+        $id = $this->input->post('id', true);
+        if ($this->settings_model->delete_font($id)) {
+            $this->session->set_flashdata('success', trans("msg_deleted"));
+        } else {
+            $this->session->set_flashdata('error', trans("msg_error"));
+        }
+        $this->session->set_flashdata('mes_table', 1);
+    }
+
 
     /*
     *-------------------------------------------------------------------------------------------------
@@ -192,7 +291,7 @@ class Settings_controller extends Admin_Core_Controller
     {
         $data['title'] = trans("form_settings");
 
-        $data['categories'] = $this->category_model->get_parent_categories_all(); 
+        $data['categories'] = $this->category_model->get_parent_categories_all();
         $data['admin_settings'] = get_admin_settings();
 
         $this->load->view('admin/includes/_header', $data);
@@ -200,7 +299,8 @@ class Settings_controller extends Admin_Core_Controller
         $this->load->view('admin/includes/_footer');
     }
 
-    public function edit_form_settings($id) {
+    public function edit_form_settings($id)
+    {
         $data['title'] = trans("form_settings");
         $data['form_settings'] = $this->settings_model->get_form_settings($id);
         $data['admin_settings'] = get_admin_settings();

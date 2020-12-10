@@ -447,6 +447,17 @@
                         </ul>
                     </li>
                     <li class="header"><?php echo trans("membership"); ?></li>
+                    <li class="treeview<?php is_admin_nav_active(['membership-plans', 'transactions-membership']); ?>">
+                        <a href="#">
+                            <i class="fa fa-adjust"></i>
+                            <span><?php echo trans("membership"); ?></span>
+                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="nav-membership-plans"><a href="<?php echo admin_url(); ?>membership-plans"> <?php echo trans("membership_plans"); ?></a></li>
+                            <li class="nav-transactions-membership"><a href="<?php echo admin_url(); ?>transactions-membership"> <?php echo trans("transactions"); ?></a></li>
+                        </ul>
+                    </li>
                     <li>
                         <a href="<?php echo admin_url(); ?>shop-opening-requests">
                             <i class="fa fa-question-circle" aria-hidden="true"></i>
@@ -605,10 +616,16 @@
                             <i class="fa fa-cog"></i> <span><?php echo trans("email_settings"); ?></span>
                         </a>
                     </li>
-                    <li>
-                        <a href="<?php echo admin_url(); ?>visual-settings">
-                            <i class="fa fa-paint-brush"></i> <span><?php echo trans("visual_settings"); ?></span>
+                    <li class="treeview<?php is_admin_nav_active(['visual-settings', 'font-settings']); ?>">
+                        <a href="#">
+                            <i class="fa fa-paint-brush"></i>
+                            <span><?php echo trans("visual_settings"); ?></span>
+                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
+                        <ul class="treeview-menu">
+                            <li class="nav-visual-settings"><a href="<?php echo admin_url(); ?>visual-settings"> <?php echo trans("visual_settings"); ?></a></li>
+                            <li class="nav-font-settings"><a href="<?php echo admin_url(); ?>font-settings"> <?php echo trans("font_settings"); ?></a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="<?php echo admin_url(); ?>system-settings">

@@ -280,6 +280,10 @@ $route[$r_admin . '/update-state/(:num)'] = 'admin_controller/update_state/$1';
 $route[$r_admin . '/cities'] = 'admin_controller/cities';
 $route[$r_admin . '/add-city'] = 'admin_controller/add_city';
 $route[$r_admin . '/update-city/(:num)'] = 'admin_controller/update_city/$1';
+
+/* membership plan */
+$route[$r_admin . '/membership-plans'] = 'membership_controller/membership_plans';
+$route[$r_admin . '/edit-plan/(:num)'] = 'membership_controller/edit_plan/$1';
 /*users routes*/
 $route[$r_admin . '/members'] = 'admin_controller/members';
 $route[$r_admin . '/vendors'] = 'admin_controller/vendors';
@@ -297,6 +301,8 @@ $route[$r_admin . '/search-phrases'] = 'language_controller/search_phrases';
 /*payment routes*/
 $route[$r_admin . '/payment-settings'] = 'settings_controller/payment_settings';
 $route[$r_admin . '/visual-settings'] = 'admin_controller/visual_settings';
+$route[$r_admin . '/font-settings'] = 'settings_controller/font_settings';
+$route[$r_admin . '/update-font/(:num)'] = 'settings_controller/update_font/$1';
 $route[$r_admin . '/system-settings'] = 'admin_controller/system_settings';
 /*currency*/
 $route[$r_admin . '/currency-settings'] = 'admin_controller/currency_settings';

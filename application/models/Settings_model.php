@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Settings_model extends CI_Model
 {
@@ -58,7 +58,6 @@ class Settings_model extends CI_Model
 
         $this->db->where('id', 1);
         return $this->db->update('general_settings', $data);
-
     }
 
     //update maintenance mode settings
@@ -76,7 +75,6 @@ class Settings_model extends CI_Model
 
         $this->db->where('id', 1);
         return $this->db->update('general_settings', $data);
-
     }
 
     //update email settings
@@ -301,7 +299,7 @@ class Settings_model extends CI_Model
                 'vendor_verification_system' => $this->input->post('vendor_verification_system', true),
                 'guest_checkout' => $this->input->post('guest_checkout', true)
             );
-            
+
             if (!$this->input->post('vendor_verification_system', true)) {
                 $this->load->model('auth_model');
                 $this->auth_model->set_vendor_verification_system();
@@ -583,7 +581,7 @@ class Settings_model extends CI_Model
         $this->db->where('category_id', $id);
         $query = $this->db->get('form_settings');
         $row = $query->row();
-        if (empty($row)){
+        if (empty($row)) {
             $data = array(
                 'category_id' => $id
             );
@@ -591,7 +589,7 @@ class Settings_model extends CI_Model
             $this->db->where('category_id', $id);
             $query = $this->db->get('form_settings');
             return $query->row();
-        }else
+        } else
             return $row;
     }
 
@@ -923,7 +921,7 @@ class Settings_model extends CI_Model
         $sql = 'SELECT t0.*, t2.name FROM custom_fields AS t0
                 JOIN custom_fields_category AS t1 ON t0.id = t1.field_id
                 JOIN custom_fields_lang AS t2 ON t0.id = t2.field_id
-                WHERE t0.is_product_filter = 1 '.($category_id?'AND t1.category_id = '.$category_id:'').' GROUP BY t0.id';
+                WHERE t0.is_product_filter = 1 ' . ($category_id ? 'AND t1.category_id = ' . $category_id : '') . ' GROUP BY t0.id';
         $query = $this->db->query($sql);
         return $query->result();
     }
@@ -948,5 +946,80 @@ class Settings_model extends CI_Model
                 return $this->db->delete('product_options');
             }
         }
+    }
+
+    /*
+    *-------------------------------------------------------------------------------------------------
+    * FONT SETTINGS
+    *-------------------------------------------------------------------------------------------------
+    */
+
+    //get selected fonts
+    public function get_selected_fonts()
+    {
+        $sql = "SELECT * FROM fonts WHERE id = ?";
+        $query = $this->db->query($sql, array(clean_number($this->settings->site_font)));
+        return $query->row();
+    }
+
+    //get fonts
+    public function get_fonts()
+    {
+        $query = $this->db->query("SELECT * FROM fonts ORDER BY font_name");
+        return $query->result();
+    }
+
+    //get font
+    public function get_font($id)
+    {
+        $sql = "SELECT * FROM fonts WHERE id =  ?";
+        $query = $this->db->query($sql, array(clean_number($id)));
+        return $query->row();
+    }
+
+    //add font
+    public function add_font()
+    {
+        $data = array(
+            'font_name' => $this->input->post('font_name', true),
+            'font_url' => $this->input->post('font_url', false),
+            'font_family' => $this->input->post('font_family', true),
+            'is_default' => 0
+        );
+        return $this->db->insert('fonts', $data);
+    }
+
+    //set site font
+    public function set_site_font()
+    {
+        $lang_id = $this->input->post('lang_id', true);
+        $data = array(
+            'site_font' => $this->input->post('site_font', true)
+        );
+        $this->db->where('lang_id', clean_number($lang_id));
+        return $this->db->update('settings', $data);
+    }
+
+    //update font
+    public function update_font($id)
+    {
+        $data = array(
+            'font_name' => $this->input->post('font_name', true),
+            'font_url' => $this->input->post('font_url', false),
+            'font_family' => $this->input->post('font_family', true)
+        );
+        $this->db->where('id', clean_number($id));
+        return $this->db->update('fonts', $data);
+    }
+
+    //delete font
+    public function delete_font($id)
+    {
+        $font = $this->get_font($id);
+        if (!empty($font)) {
+            $this->db->where('id', $font->id);
+            return $this->db->delete('fonts');
+        }
+        return false;
     }
 }
