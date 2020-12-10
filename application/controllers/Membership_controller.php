@@ -88,4 +88,14 @@ class Membership_controller extends Admin_Core_Controller
         $this->session->set_flashdata('msg_settings', 1);
         redirect($this->agent->referrer());
     }
+
+    /**
+     * Delete Plan Post
+     */
+    public function delete_plan_post()
+    {
+        $id = $this->input->post('id', true);
+        $this->membership_model->delete_plan($id);
+        redirect($this->agent->referrer());
+    }
 }
