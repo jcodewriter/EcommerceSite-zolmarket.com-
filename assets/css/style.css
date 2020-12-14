@@ -8696,7 +8696,7 @@ form select.error {
 	.container_oeane_message {
 		height: 50px;
 		overflow: hidden;
-		border-bottom: 2px solid #eee;
+		border-bottom: 1px solid #eee;
 		position: fixed;
 		background: #fff;
 		z-index: 4;
@@ -8704,7 +8704,6 @@ form select.error {
 		padding-left: 12px;
 		margin-top: -6px;
 		box-shadow: none;
-		border: 0;
 	}
 	.container_oeane_message .delete-conversation-link.hkm_deleteconversation.delete-conversation_mbl {
 		top: 15px;
