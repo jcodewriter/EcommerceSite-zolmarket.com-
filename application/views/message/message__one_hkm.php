@@ -730,11 +730,11 @@
                                                     <div class="message-list-item-row-sent">
                                                         <div class="user-message">
                                                             <?php if( substr(html_escape($item->message), 0, 10 ) === "emoticons/" ) { ?> 
-                                                            <div class="message-text">
+                                                            <div class="message-text" style="padding: .25rem;">
                                                                 <img src="https://www.zolmarket.com/uploads/profile/<?php echo html_escape($item->message); ?>" style="width:50px"  class="" >
                                                             </div>
                                                             <?php }else{ ?>
-                                                            <div class="message-text">
+                                                            <div class="message-text" style="padding: .25rem;">
                                                                 <img src="https://www.zolmarket.com/uploads/profile/<?php echo html_escape($item->message); ?>"   class="img-thumbnail" >
                                                             </div>
                                                             <?php } ?>
