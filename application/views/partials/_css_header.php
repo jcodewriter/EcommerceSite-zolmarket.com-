@@ -1,0 +1,1 @@
+<style>body {<?php echo $this->fonts->font_family; ?>}<?php if(!empty($index_banners_array)):foreach ($index_banners_array as $banner_set):foreach ($banner_set as $banner):?>  .index_bn_<?=$banner->id;?> {-ms-flex: 0 0 <?=$banner->banner_width;?>%;flex: 0 0 <?=$banner->banner_width;?>%;max-width: <?=$banner->banner_width;?>%;}  <?php endforeach; endforeach; endif; ?></style>

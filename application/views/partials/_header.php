@@ -67,7 +67,7 @@
     endif; ?>
     <!-- Icons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css">
-
+    <?php echo !empty($this->fonts->font_url) ? $this->fonts->font_url : ''; ?>
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/font-awesome/font-awesome.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/font-icons/css/font-icons.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
@@ -75,8 +75,6 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/bootstrap/css/bootstrap.min.css" />
     <!-- intlTelInput -->
     <link href="<?php echo base_url(); ?>assets/vendor/telinput/css/intlTelInput.css" rel="stylesheet" />
-    <!-- Owl Carousel -->
-    <!-- <link href="<?php echo base_url(); ?>assets/vendor/owl-carousel/owl.carousel.min.css" rel="stylesheet" /> -->
     <!-- swiper Carousel -->
     <link href="<?php echo base_url(); ?>assets/vendor/swiper/swiper.min.css" rel="stylesheet" />
     <!-- smartphoto -->
@@ -95,6 +93,7 @@
     <?php else : ?>
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/colors/default.min.css" />
     <?php endif; ?>
+    <?php $this->load->view("partials/_css_header"); ?>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

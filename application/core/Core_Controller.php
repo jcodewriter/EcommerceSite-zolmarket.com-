@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
 class Core_Controller extends CI_Controller
 {
@@ -7,7 +7,7 @@ class Core_Controller extends CI_Controller
         parent::__construct();
 
         //general settings
-        $global_data['general_settings'] = $this->settings_model->get_general_settings(); 
+        $global_data['general_settings'] = $this->settings_model->get_general_settings();
         $this->general_settings = $global_data['general_settings'];
         //storage settings
         $this->storage_settings = $this->settings_model->get_storage_settings();
@@ -34,10 +34,10 @@ class Core_Controller extends CI_Controller
         $lang_segment = $this->uri->segment(1);
         foreach ($this->languages as $lang) {
             if ($lang_segment == $lang->short_form) {
-                if ($this->general_settings->multilingual_system == 1):
+                if ($this->general_settings->multilingual_system == 1) :
                     $global_data['selected_lang'] = $lang;
                     $global_data['lang_base_url'] = base_url() . $lang->short_form . "/";
-                else:
+                else :
                     redirect(base_url());
                 endif;
             }
@@ -73,6 +73,8 @@ class Core_Controller extends CI_Controller
         //settings
         $global_data['settings'] = $this->settings_model->get_settings($this->selected_lang->id);
         $this->settings = $global_data['settings'];
+        //get site fonts
+        $this->fonts = $this->settings_model->get_selected_fonts();
         $global_data['payment_settings'] = $this->settings_model->get_payment_settings();
         $this->payment_settings = $global_data['payment_settings'];
 
@@ -112,7 +114,7 @@ class Core_Controller extends CI_Controller
         include APPPATH . "third_party/image-resize/ImageResizeException.php";
 
         $this->load->vars($global_data);
-        $this -> load -> library('Mobile_Detect');
+        $this->load->library('Mobile_Detect');
         $detect = new Mobile_Detect();
         $this->is_mobile = $detect->isMobile();
         $this->is_AndroidOS = $detect->is('AndroidOS');
@@ -121,11 +123,10 @@ class Core_Controller extends CI_Controller
         if (strpos($_SERVER['HTTP_USER_AGENT'], 'Convertify') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'SM-G973F') !== false) {
             if (strpos($_SERVER['HTTP_USER_AGENT'], 'Convertify') !== false)
                 $this->is_webview = "ios";
-            else    
+            else
                 $this->is_webview = "android";
         }
     }
-
 }
 
 class Home_Core_Controller extends Core_Controller
@@ -181,7 +182,7 @@ class Home_Core_Controller extends Core_Controller
             $location_country = $this->location_model->get_country($_SESSION["modesy_default_location"]);
             if (!empty($location_country)) {
                 $global_data['default_location'] = $location_country->name;
-                 $this->default_location_id = $location_country->id;
+                $this->default_location_id = $location_country->id;
             }
         } else {
             $global_data['default_location'] = trans("all");
@@ -192,7 +193,7 @@ class Home_Core_Controller extends Core_Controller
             $location_country = $this->location_model->get_country($this->general_settings->default_product_location);
             if (!empty($location_country)) {
                 $global_data['default_location'] = $location_country->name;
-                 $this->default_location_id = $location_country->id;
+                $this->default_location_id = $location_country->id;
             }
         }
 
@@ -281,7 +282,6 @@ class Admin_Core_Controller extends Core_Controller
     public function __construct()
     {
         parent::__construct();
-
     }
 
     public function paginate($url, $total_rows)
@@ -310,4 +310,3 @@ class Admin_Core_Controller extends Core_Controller
         return array('per_page' => $per_page, 'offset' => $page * $per_page);
     }
 }
-
