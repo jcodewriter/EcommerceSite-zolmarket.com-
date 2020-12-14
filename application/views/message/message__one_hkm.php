@@ -266,8 +266,7 @@
                             <div class="form-group form-group_uplado_images ">
                                 <button type="submit" class="btn btn-md btn-custom float-right btn_send"><i class="icon-send"></i> <?php echo trans("send"); ?></button>
                                 <input type="file" name="userfile_mobile" id="image_file_mobile" class="file_uplaod_inuptt" accept="image/x-png,image/gif,image/jpeg" >
-                                <button type="button" class="choose-files__btn"><i class="fas fa-images"></i>?php echo trans("choose_files");?></button>
-                                <!-- <button type="button" class="btn btn-md btn-outline float-right btn_uploadd"> <i class="fas fa-images"></i>  <?php echo trans("choose_files")?> </button> -->
+                                <button type="button" class="choose-files__btn"><i class="fas fa-images"></i>&nbsp;<?php echo trans("choose_files");?></button>
                             </div>
                             <?php echo form_close(); ?>
                             <!-- form end -->
