@@ -1712,7 +1712,7 @@ img {
 	overflow: hidden;
 	padding: 0 3px!important;
 	margin-top: -21px;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 }
 .owl-stage-outer::after {
 	width: 1px;
