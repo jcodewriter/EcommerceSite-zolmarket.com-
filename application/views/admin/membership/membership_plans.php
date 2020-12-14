@@ -21,7 +21,7 @@
                     <label class="control-label m-b-5"><?= trans("number_of_ads"); ?></label>
                     <div>
                         <div class="form-group form-group-number-of-ads">
-                            <input type="number" class="form-control form-input m-r-10" name="number_of_ads" min="1" max="999999999" placeholder="E.g: 10" required style="min-width: 400px; max-width: 100%;">
+                            <input type="number" class="form-control form-input m-r-10" name="number_of_ads" min="1" max="999999999" placeholder="E.g: 10" required style="max-width: 100%;">
                         </div>
                         <div class="form-group">
                             <div class="col-custom-option">
@@ -38,7 +38,7 @@
                     <label class="control-label m-b-5"><?= trans("duration") . " (" . trans("time_limit_for_plan") . ")"; ?></label>
                     <div>
                         <div class="form-group form-group-duration">
-                            <input type="number" class="form-control form-input m-r-10" name="number_of_days" min="1" max="999999999" placeholder="<?= trans("number_of_days") ?>&nbsp;&nbsp;(E.g: 30)" required style="min-width: 400px; max-width: 100%;">
+                            <input type="number" class="form-control form-input m-r-10" name="number_of_days" min="1" max="999999999" placeholder="<?= trans("number_of_days") ?>&nbsp;&nbsp;(E.g: 30)" required style="max-width: 100%;">
                         </div>
                         <div class="form-group">
                             <div class="col-custom-option">
@@ -55,7 +55,7 @@
                     <label class="control-label m-b-5"><?php echo trans("price"); ?></label>
                     <div>
                         <div class="form-group form-group-price">
-                            <div class="input-group" style="min-width: 410px; max-width: 100%; padding-right: 10px;">
+                            <div class="input-group" style="max-width: 100%;">
                                 <span class="input-group-addon"><?php echo get_currency($this->payment_settings->default_product_currency); ?></span>
                                 <input type="text" name="price" class="form-control form-input price-input validate-price-input" placeholder="<?php echo $this->input_initial_price; ?>" onpaste="return false;" maxlength="32" required>
                             </div>
