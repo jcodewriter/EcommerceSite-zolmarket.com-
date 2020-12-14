@@ -82,7 +82,6 @@
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/plugins-1.7.css" />
     <!-- Style CSS -->
-    <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/main-1.7.min.css" /> -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/newstyle.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/costum_style.css" />

@@ -28,7 +28,7 @@ body {
 	font-style: normal;
 	color: #222 !important;
 	/*font-family: 'Open Sans', Helvetica, Arial, sans-serif*/
-	font-family: "Droid Arabic Kufi", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	/* font-family: "Droid Arabic Kufi", "Helvetica Neue", Helvetica, Arial, sans-serif; */
 }
 a {
 	-webkit-transition: all .2s ease-in-out;
