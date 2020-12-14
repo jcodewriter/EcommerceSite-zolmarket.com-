@@ -10147,7 +10147,7 @@ h4.col-md-12.title {
 }
 /* Create a custom checkbox */
 
-.checkmark {
+.check__mark {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -10158,31 +10158,31 @@ h4.col-md-12.title {
 }
 /* On mouse-over, add a grey background color */
 
-.custom-check__wrapper:hover input ~ .checkmark {
+.custom-check__wrapper:hover input ~ .check__mark {
 	background-color: #fff;
 	border: 1px solid #0C8168
 }
 /* When the checkbox is checked, add a blue background */
 
-.custom-check__wrapper input:checked ~ .checkmark {
+.custom-check__wrapper input:checked ~ .check__mark {
 	background-color: #fff;
 	border: 1px solid #0C8168
 }
 /* Create the checkmark/indicator (hidden when not checked) */
 
-.checkmark:after {
+.check__mark:after {
 	content: "";
 	position: absolute;
 	display: none;
 }
 /* Show the checkmark when checked */
 
-.custom-check__wrapper input:checked ~ .checkmark:after {
+.custom-check__wrapper input:checked ~ .check__mark:after {
 	display: block;
 }
 /* Style the checkmark/indicator */
 
-.custom-check__wrapper .checkmark:after {
+.custom-check__wrapper .check__mark:after {
 	left: 14px;
 	top: 2px;
 	width: 8px;

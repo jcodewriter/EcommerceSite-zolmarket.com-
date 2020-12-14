@@ -324,7 +324,7 @@
 																			</div>
 																			<div class="custom-check__wrapper">
 																				<input type="radio" name="plan_type" checked>
-																				<span class="checkmark"></span>
+																				<span class="check__mark"></span>
 																			</div>
 																		</div>
 																	</div>
@@ -360,7 +360,7 @@
 																			</div>
 																			<div class="custom-check__wrapper">
 																				<input type="radio" name="plan_type" checked>
-																				<span class="checkmark"></span>
+																				<span class="check__mark"></span>
 																			</div>
 																		</div>
 																	</div>
