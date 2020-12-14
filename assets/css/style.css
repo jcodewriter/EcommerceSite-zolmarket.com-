@@ -8955,13 +8955,13 @@ form select.error {
 }
 @media (max-width: 576px) {
 	.index-mobile-slider .slider-container {
-		height: 250px!important;
+		height: 270px!important;
 	}
 	.index-mobile-slider .item {
-		height: 250px!important;
+		height: 270px!important;
 	}
 	.index-mobile-slider .row-slider-caption {
-		height: 250px!important;
+		height: 270px!important;
 	}
 	.main-slider .item .caption .title {
 		font-size: 28px;
@@ -9096,13 +9096,13 @@ form select.error {
 }
 @media (max-width: 480px) {
 	.index-mobile-slider .slider-container {
-		height: 250px!important;
+		height: 270px!important;
 	}
 	.index-mobile-slider .item {
-		height: 250px!important;
+		height: 270px!important;
 	}
 	.index-mobile-slider .row-slider-caption {
-		height: 250px!important;
+		height: 270px!important;
 	}
 	.bn-lg {
 		display: none;
