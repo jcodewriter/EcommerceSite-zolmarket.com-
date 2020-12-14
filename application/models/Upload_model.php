@@ -175,7 +175,7 @@ class Upload_model extends CI_Model
     {
         $new_path = 'uploads/slider/slider_' . generate_unique_id() . '.jpg';
         $img = Image::make($path)->orientate();
-        $img->fit(1920, 600);
+        $img->fit(1920, 400);
         $img->save(FCPATH . $new_path, $this->quality);
         return $new_path;
     }
@@ -185,7 +185,7 @@ class Upload_model extends CI_Model
     {
         $new_path = 'uploads/slider/slider_' . generate_unique_id() . '.jpg';
         $img = Image::make($path)->orientate();
-        $img->fit(768, 500);
+        $img->fit(768, 300);
         $img->save(FCPATH . $new_path, $this->quality);
         return $new_path;
     }
