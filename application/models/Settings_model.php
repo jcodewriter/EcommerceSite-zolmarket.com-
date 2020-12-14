@@ -284,7 +284,7 @@ class Settings_model extends CI_Model
     {
         if ($form == 'homepage') {
             $data = array(
-                'index_slider' => $this->input->post('index_slider', true),
+                'slider_status' => $this->input->post('slider_status', true),
                 'index_categories' => $this->input->post('index_categories', true),
                 'index_promoted_products' => $this->input->post('index_promoted_products', true),
                 'index_latest_products' => $this->input->post('index_latest_products', true),
