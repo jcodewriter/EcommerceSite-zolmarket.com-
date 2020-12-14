@@ -1712,7 +1712,6 @@ img {
 	overflow: hidden;
 	padding: 0 3px!important;
 	margin-top: -21px;
-	margin-bottom: 10px;
 }
 .owl-stage-outer::after {
 	width: 1px;
@@ -8955,13 +8954,13 @@ form select.error {
 }
 @media (max-width: 576px) {
 	.index-mobile-slider .slider-container {
-		height: 200px!important;
+		height: 250px!important;
 	}
 	.index-mobile-slider .item {
-		height: 200px!important;
+		height: 250px!important;
 	}
 	.index-mobile-slider .row-slider-caption {
-		height: 200px!important;
+		height: 250px!important;
 	}
 	.main-slider .item .caption .title {
 		font-size: 28px;
@@ -9096,13 +9095,13 @@ form select.error {
 }
 @media (max-width: 480px) {
 	.index-mobile-slider .slider-container {
-		height: 200px!important;
+		height: 250px!important;
 	}
 	.index-mobile-slider .item {
-		height: 200px!important;
+		height: 250px!important;
 	}
 	.index-mobile-slider .row-slider-caption {
-		height: 200px!important;
+		height: 250px!important;
 	}
 	.bn-lg {
 		display: none;
