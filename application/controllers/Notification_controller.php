@@ -29,7 +29,7 @@ class Notification_controller extends Home_Core_Controller
 
         $this->load->view('partials/_header', $data);
         $this->load->view('notification/index', $data);
-        $this->load->view('partials/_footer');
+        $this->load->view('partials/_footer_category');
     }
     /**
      * visible method

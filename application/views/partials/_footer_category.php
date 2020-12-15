@@ -205,7 +205,8 @@
         <a href="javascript:void(0)" onclick="hide_cookies_warning();" class="icon-cl"> <i class="icon-close"></i></a>
     </div>
 <?php endif; ?>
-
+<!-- Popper JS-->
+<script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/popper.min.js"></script>
 <!-- Bootstrap JS-->
 <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!-- Plugins JS-->

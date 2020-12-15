@@ -304,7 +304,7 @@
             <?php if (auth_check()) : ?>
                 <div style="max-width: 20%; width: 20%">
                     <a href="<?php echo lang_base_url(); ?>notifications" class="f-btn <?php echo $this->selected_btn == "f-btn-notification" ? "f-btn-selected" : ""; ?>" name="f-btn-notification">
-                        <div class="f-btn-icon" style="postion: relative">
+                        <div class="f-btn-icon" style="position: relative">
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 479.619 479.619" style="enable-background:new 0 0 479.619 479.619;" xml:space="preserve">
                                 <path d="M475.855,336.376c-0.441-2.809-1.116-5.577-2.017-8.275c-8.621-23.991-33.203-38.346-58.334-34.065
 			c-8.313,1.309-16.114-4.368-17.425-12.681l-12.646-80.913c-10.379-68.459-59.835-124.522-126.464-143.36

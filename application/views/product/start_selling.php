@@ -281,11 +281,11 @@
 																</div>
 																<div class="col-12 col-sm-4 m-b-15">
 																	<label class="control-label"><?php echo trans("address") ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
-																	<input type="text" id="address" name="address" class="form-control form-input" value="<?php echo html_escape($this->auth_user->address); ?>" placeholder="Street Address" required>
+																	<input type="text" id="address" name="address" class="form-control form-input" value="<?php echo html_escape($this->auth_user->address); ?>" placeholder="<?php echo trans("address") ?>" required>
 																</div>
 																<div class="col-12 col-sm-4">
 																	<label class="control-label"><?php echo trans("zip_code"); ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i> </label>
-																	<input type="text" id="zip_code" name="zip_code" class="form-control form-input" value="<?php echo html_escape($this->auth_user->zip_code); ?>" placeholder="Zip Code" required>
+																	<input type="text" id="zip_code" name="zip_code" class="form-control form-input" value="<?php echo html_escape($this->auth_user->zip_code); ?>" placeholder="<?php echo trans("zip_code"); ?>" required>
 																</div>
 															</div>
 														</div>
