@@ -115,7 +115,7 @@
 												<?php echo form_open_multipart('product_controller/start_selling_post', ['id' => 'form_validate', 'class' => 'validate_terms', 'name' => 'start_selling', 'onkeypress' => "return event.keyCode != 13;"]); ?>
 												<input type="hidden" name="id" value="<?php echo $this->auth_user->id; ?>">
 
-												<div class="form-box" style="margin-bottom: 0 !im Gportant">
+												<div class="form-box" style="margin-bottom: 0 !important">
 													<div class="form-box-head text-center">
 														<h4 class="title title-start-selling-box"><?php echo trans('tell_us_about_shop'); ?></h4>
 													</div>
@@ -154,22 +154,16 @@
 
 														<div class="form-group">
 															<div class="row">
-																<div class="col-12 col-sm-6 m-b-15">
+																<div class="col-12 col-sm-6 m-b-15" style="text-align: center;">
 																	<label class="control-label"><?php echo trans("upload_your_shop"); ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
 																	<div class="upload-image-container">
-																		<div style="width: 100%; height: 150px;">
-																			<?php if ($this->auth_user->avatar) : ?>
-																				<img src="<?php echo get_user_avatar($this->auth_user); ?>" alt="<?php echo $this->auth_user->username; ?>" id="imgadshoww" style="width:100%;height: 100%;border-radius: 5px;" class="valid">
-																			<?php else : ?>
-																				<img src="<?php echo get_product_image(0, "small"); ?>" alt="<?php echo $this->auth_user->username; ?>" id="imgadshoww" style="width:100%;height: 100%;border-radius: 5px;">
-																			<?php endif; ?>
+																		<div class="private-image__wrapper profile-image__wrapper" style="<?php echo !$this->auth_user->avatar ? 'display: none;' : '' ?>">
+																			<img src="<?php echo get_user_avatar($this->auth_user); ?>" alt="<?php echo $this->auth_user->username; ?>" id="imgadshoww">
+																			<i class="fa fa-times delete-profile-image__btn"></i>
 																		</div>
-																		<div style="position: absolute; top: 10px; right: 0">
-																			<a class='btn btn-md btn-secondary btn-file-upload' style="background-color: #495057d1;">
-																				<span><i class="far fa-image"></i><?php echo trans('select_image'); ?></span>
-																				<input type="file" name="file" id="imgUploader" size="40" accept=".png, .jpg, .jpeg, .gif" onchange="$('#upload-file-info').html($(this).val().replace(/.*[\/\\]/, ''));$('.upload-image-container').css('border-color', '#999');$('#imgadshoww').addClass('valid')">
-																			</a>
-																		</div>
+																		<span class='btn-file-upload far fa-image private-upload-image__btn update-profile-image__btn ' style="<?php echo $this->auth_user->avatar ? 'display: none;' : '' ?>background-color: #a9a9a9;">
+																			<input type="file" name="file" id="imgUploader" size="40" accept=".png, .jpg, .jpeg, .gif" onchange="$('#upload-file-info').html($(this).val().replace(/.*[\/\\]/, ''));" required>
+																		</span>
 																	</div>
 																</div>
 																<div class="col-12 col-sm-6">
@@ -487,10 +481,18 @@
 			$(".company_name_group").css({
 				display: "none"
 			})
+			$(".profile-image__wrapper").addClass("private-image__wrapper")
+			$(".profile-image__wrapper").removeClass("company-image__wrapper")
+			$(".update-profile-image__btn").addClass("private-upload-image__btn")
+			$(".update-profile-image__btn").removeClass("company-upload-image__btn")
 		} else if (e.name == "company") {
 			$(".company_name_group").css({
 				display: "block"
 			})
+			$(".profile-image__wrapper").addClass("company-image__wrapper")
+			$(".profile-image__wrapper").removeClass("private-image__wrapper")
+			$(".update-profile-image__btn").addClass("company-upload-image__btn")
+			$(".update-profile-image__btn").removeClass("private-upload-image__btn")
 		}
 	}
 </script>

@@ -614,9 +614,21 @@ class Profile_controller extends Home_Core_Controller
         $data["active_tab"] = "update_profile";
         $data["user_session"] = get_user_session();
 
+        // $data["countries"] = $this->location_model->get_countries();
+        // $data["states"] = $this->location_model->get_states_by_country($data["user"]->country_id);
+        // $data["cities"] = $this->location_model->get_cities_by_state($data["user"]->state_id);
+        // if ($data['user']->country_id) {
+        //     $data['btn_string'] = $this->location_model->get_btn_string($data['user']);
+        //     $data['state_button'] = $this->location_model->get_state_button_string($data['user']);
+        // }
+
         $data["countries"] = $this->location_model->get_countries();
-        $data["states"] = $this->location_model->get_states_by_country($data["user"]->country_id);
+        if ($data["user"]->country_id)
+            $data["states"] = $this->location_model->get_states_by_country($data["user"]->country_id);
+        else
+            $data["states"] = $this->location_model->get_states_by_country($this->general_settings->default_product_location);
         $data["cities"] = $this->location_model->get_cities_by_state($data["user"]->state_id);
+
         if ($data['user']->country_id) {
             $data['btn_string'] = $this->location_model->get_btn_string($data['user']);
             $data['state_button'] = $this->location_model->get_state_button_string($data['user']);
@@ -666,7 +678,16 @@ class Profile_controller extends Home_Core_Controller
                 'about_me' => $this->input->post('about_me', true),
                 'send_email_when_item_sold' => $this->input->post('send_email_when_item_sold', true),
                 'show_rss_feeds' => $this->input->post('show_rss_feeds', true),
-                'send_email_new_message' => $this->input->post('send_email_new_message', true)
+                'send_email_new_message' => $this->input->post('send_email_new_message', true),
+                'country_id' => $this->input->post('country_id', true),
+                'state_id' => $this->input->post('state_id', true),
+                'city_id' => $this->input->post('city_id', true),
+                'address' => $this->input->post('address', true),
+                'zip_code' => $this->input->post('zip_code', true),
+                'phone_number' => $this->input->post('phone_number', true),
+                'show_email' => $this->input->post('show_email', true),
+                'show_phone' => $this->input->post('show_phone', true),
+                'show_location' => $this->input->post('show_location', true)
             );
 
             //is email unique
@@ -676,11 +697,11 @@ class Profile_controller extends Home_Core_Controller
                 exit();
             }
             //is username unique
-            if (!$this->auth_model->is_unique_username($data["username"], $user_id)) {
-                $this->session->set_flashdata('error', trans("msg_username_unique_error"));
-                redirect($this->agent->referrer());
-                exit();
-            }
+            // if (!$this->auth_model->is_unique_username($data["username"], $user_id)) {
+            //     $this->session->set_flashdata('error', trans("msg_username_unique_error"));
+            //     redirect($this->agent->referrer());
+            //     exit();
+            // }
             //is slug unique
             if ($this->auth_model->check_is_slug_unique($data["slug"], $user_id)) {
                 $this->session->set_flashdata('error', trans("msg_slug_unique_error"));

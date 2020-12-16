@@ -32,4 +32,3 @@ if (auth_check()) {
         </div>
     </div>
 </div>
-<br />
