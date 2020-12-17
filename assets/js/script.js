@@ -164,6 +164,9 @@ $("body").on('DOMSubtreeModified', "#imgUploader", function () {
     let className = $(this).attr('class');
     if (className == 'error') {
         $('.update-profile-image__btn').css({ borderColor: '#E91E63' })
+        $("html, body").animate({
+            scrollTop: 170
+        }, 700);
     }
 });
 
