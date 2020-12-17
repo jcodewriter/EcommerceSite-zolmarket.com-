@@ -56,6 +56,23 @@
                     </a>
                 </li>
             <?php endif; ?>
+            <?php if ($this->auth_check && $this->auth_user->id == $user->id && ($user->role == 'admin' || $user->role == 'vendor')): ?>
+                <?php if (is_sale_active()): ?>
+                    <?php if (is_user_vendor()): ?>
+                        <li class="nav-item <?php echo ($active_tab == 'sales') ? 'active' : ''; ?>">
+                            <a class="nav-link" id="hkmsales" href="<?php echo lang_base_url(); ?>sales">
+                                <div class="profile-tab-item">
+                                    <div class="profile-tab-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34.84 34.84" style="width: 40px; height: 40px;"><defs><style>.cls-12{fill:#3950b6;}.cls-2{fill:#fff;}</style></defs><title>Asset 17</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="cls-12" width="34.84" height="34.84" rx="4.03"/><path class="cls-2" d="M16.07,24.94a1.5,1.5,0,1,0,1.5,1.5A1.5,1.5,0,0,0,16.07,24.94Zm10-6.36L15.58,21.87a1.49,1.49,0,0,1-1.88-1l-3.46-11-2.84.91.3.95,1.89-.6,3.16,10a2.49,2.49,0,0,0,3.14,1.63l10.44-3.28Zm-1.88-4L22.81,10A1.51,1.51,0,0,0,21.5,9h-.13a1.48,1.48,0,0,0-.46.08l-5.7,1.75a1.51,1.51,0,0,0-1,1.87l1.34,4.54a1.51,1.51,0,0,0,.75.88,1.53,1.53,0,0,0,1.15.09l5.7-1.76A1.5,1.5,0,0,0,24.15,14.53Zm-7.46,2.82-1.62-5.48L18,11l.57,1.82.95-.3-.57-1.82L21.23,10l.53-.27.1.6,1.47,5Z"/></g></g></svg>
+                                    </div>
+                                    <span style="flex-grow: 1"><?php echo trans("sales"); ?></span>
+                                    <span class="material-icons hidden-sm-up">keyboard_arrow_right</span>
+                                </div>
+                            </a>
+                        </li>
+                    <?php endif;?>
+                <?php endif;?>
+            <?php endif;?>
             <!-- end here -->
             <?php if ($this->auth_check && $this->auth_user->id == $user->id && ($user->role == 'admin' || $user->role == 'vendor')): ?>
                 <li class="nav-item <?php echo ($active_tab == 'pending_products') ? 'active' : ''; ?>">
@@ -171,17 +188,6 @@
             <?php if ($this->auth_check && $this->auth_user->id == $user->id && ($user->role == 'admin' || $user->role == 'vendor')): ?>
                 <?php if (is_sale_active()): ?>
                     <?php if (is_user_vendor()): ?>
-                        <li class="nav-item <?php echo ($active_tab == 'sales') ? 'active' : ''; ?>">
-                            <a class="nav-link" id="hkmsales" href="<?php echo lang_base_url(); ?>sales">
-                                <div class="profile-tab-item">
-                                    <div class="profile-tab-icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34.84 34.84" style="width: 40px; height: 40px;"><defs><style>.cls-12{fill:#3950b6;}.cls-2{fill:#fff;}</style></defs><title>Asset 17</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="cls-12" width="34.84" height="34.84" rx="4.03"/><path class="cls-2" d="M16.07,24.94a1.5,1.5,0,1,0,1.5,1.5A1.5,1.5,0,0,0,16.07,24.94Zm10-6.36L15.58,21.87a1.49,1.49,0,0,1-1.88-1l-3.46-11-2.84.91.3.95,1.89-.6,3.16,10a2.49,2.49,0,0,0,3.14,1.63l10.44-3.28Zm-1.88-4L22.81,10A1.51,1.51,0,0,0,21.5,9h-.13a1.48,1.48,0,0,0-.46.08l-5.7,1.75a1.51,1.51,0,0,0-1,1.87l1.34,4.54a1.51,1.51,0,0,0,.75.88,1.53,1.53,0,0,0,1.15.09l5.7-1.76A1.5,1.5,0,0,0,24.15,14.53Zm-7.46,2.82-1.62-5.48L18,11l.57,1.82.95-.3-.57-1.82L21.23,10l.53-.27.1.6,1.47,5Z"/></g></g></svg>
-                                    </div>
-                                    <span style="flex-grow: 1"><?php echo trans("sales"); ?></span>
-                                    <span class="material-icons hidden-sm-up">keyboard_arrow_right</span>
-                                </div>
-                            </a>
-                        </li>
                         <li class="nav-item <?php echo ($active_tab == 'earnings') ? 'active' : ''; ?>">
                             <a class="nav-link" id="hkmearnings"  href="<?php echo lang_base_url(); ?>earnings">
                                 <div class="profile-tab-item">

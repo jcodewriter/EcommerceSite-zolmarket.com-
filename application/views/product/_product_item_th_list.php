@@ -45,7 +45,7 @@
                 </a>
                 <div class="d-flex align-items-center">
                     <?php if (!$user->is_private || $user->role == 'admin') : ?>
-                        <a href="<?php echo lang_base_url() . 'profile/' . $user->slug; ?>" class="userinfo__wrapper">
+                        <a href="<?php echo lang_base_url() . 'profile/' . $user->slug; ?>">
                             <span class="store-mark"><?php echo trans("store"); ?></span>
                         </a>
                     <?php endif; ?>
