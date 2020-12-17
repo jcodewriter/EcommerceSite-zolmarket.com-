@@ -841,7 +841,5 @@ endif; ?>
             let url = decodeURIComponent($(location).attr("href"));
             localStorage.setItem('chat_profile_url', url)
         })
-
-        $("html, body").animate({ scrollTop: 100000 });
     })
 </script>
