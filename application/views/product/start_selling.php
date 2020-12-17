@@ -133,6 +133,19 @@
 																</div>
 															</div>
 														</div>
+														
+														<div class="form-group" style="text-align: center;">
+															<label class="control-label"><?php echo trans("upload_your_shop"); ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
+															<div class="upload-image-container">
+																<div class="private-image__wrapper profile-image__wrapper" style="<?php echo !$this->auth_user->avatar ? 'display: none;' : '' ?>">
+																	<img src="<?php echo get_user_avatar($this->auth_user); ?>" alt="<?php echo $this->auth_user->username; ?>" id="imgadshoww">
+																	<i class="fa fa-times delete-profile-image__btn"></i>
+																</div>
+																<span class='btn-file-upload far fa-image private-upload-image__btn update-profile-image__btn ' style="<?php echo $this->auth_user->avatar ? 'display: none;' : '' ?>background-color: #a9a9a9;">
+																	<input type="file" name="file" id="imgUploader" size="40" accept=".png, .jpg, .jpeg, .gif" onchange="$('#upload-file-info').html($(this).val().replace(/.*[\/\\]/, ''));" required>
+																</span>
+															</div>
+														</div>
 
 														<div class="form-group">
 															<div class="d-flex justify-content-between" style="width: 100%;">
@@ -153,24 +166,8 @@
 														</div>
 
 														<div class="form-group">
-															<div class="row">
-																<div class="col-12 col-sm-6 m-b-15" style="text-align: center;">
-																	<label class="control-label"><?php echo trans("upload_your_shop"); ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
-																	<div class="upload-image-container">
-																		<div class="private-image__wrapper profile-image__wrapper" style="<?php echo !$this->auth_user->avatar ? 'display: none;' : '' ?>">
-																			<img src="<?php echo get_user_avatar($this->auth_user); ?>" alt="<?php echo $this->auth_user->username; ?>" id="imgadshoww">
-																			<i class="fa fa-times delete-profile-image__btn"></i>
-																		</div>
-																		<span class='btn-file-upload far fa-image private-upload-image__btn update-profile-image__btn ' style="<?php echo $this->auth_user->avatar ? 'display: none;' : '' ?>background-color: #a9a9a9;">
-																			<input type="file" name="file" id="imgUploader" size="40" accept=".png, .jpg, .jpeg, .gif" onchange="$('#upload-file-info').html($(this).val().replace(/.*[\/\\]/, ''));" required>
-																		</span>
-																	</div>
-																</div>
-																<div class="col-12 col-sm-6">
-																	<label class="control-label"><?php echo trans("shop_description"); ?></label>
-																	<textarea name="about_me" class="form-control form-textarea" placeholder="<?php echo trans("shop_description"); ?>"><?php echo old('about_me'); ?></textarea>
-																</div>
-															</div>
+															<label class="control-label"><?php echo trans("shop_description"); ?></label>
+															<textarea name="about_me" class="form-control form-textarea" placeholder="<?php echo trans("shop_description"); ?>"><?php echo old('about_me'); ?></textarea>
 														</div>
 
 														<div class="form-group">

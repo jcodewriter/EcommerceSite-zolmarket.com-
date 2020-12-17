@@ -141,8 +141,8 @@ function readURL(input) {
         reader.onload = function (e) {
             $('#imgadshoww').attr('src', e.target.result);
         }
-        $('.profile-image__wrapper').css({display: 'block'});
-        $('.update-profile-image__btn').css({display: 'none'});
+        $('.profile-image__wrapper').css({ display: 'block' });
+        $('.update-profile-image__btn').css({ display: 'none' });
         reader.readAsDataURL(input.files[0]);
     }
 }
@@ -153,12 +153,19 @@ function app_suggest_hide() {
 
 $("#imgUploader").change(function () { readURL(this); });
 
-$(".delete-profile-image__btn").on("click", function(){
-    $('.profile-image__wrapper').css({display: 'none'});
-    $('.update-profile-image__btn').css({display: 'flex'});
+$(".delete-profile-image__btn").on("click", function () {
+    $('.profile-image__wrapper').css({ display: 'none' });
+    $('.update-profile-image__btn').css({ display: 'flex' });
     $('#imgadshoww').attr('src', '');
     $('#imgUploader').val('');
 })
+
+$("body").on('DOMSubtreeModified', "#imgUploader", function () {
+    let className = $(this).attr('class');
+    if (className == 'error') {
+        $('.update-profile-image__btn').css({ borderColor: '#E91E63' })
+    }
+});
 
 $(document).ready(function () {
     //main slider
@@ -3399,3 +3406,4 @@ jQuery('.mobile-footer .col > a').each(function () {
         jQuery(this).addClass('active');
     }
 });
+

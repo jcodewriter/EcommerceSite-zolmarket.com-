@@ -8637,7 +8637,7 @@ form select.error {
 		/* padding-top: 20px; */
 	}
 	.profile-tabs .nav .nav-item {
-		border-bottom: 1px solid #f5f5f5;
+		border-top: 1px solid #f5f5f5;
 		padding: 4px 0;
 	}
 	.profile-tabs .nav .active .nav-link {
@@ -8927,9 +8927,8 @@ form select.error {
 		width: 95px !important;
 		height: 95px !important;
 		border-radius: 50%;
-		box-shadow: 0 3px 6px #00000016;
-		max-height: 255px;
-		border-radius: 50%;
+		border: 1px solid #e4e4e4;
+		box-shadow: 0px 0px 7px 0px #6c757d;
 	}
 	.profile-name__wrapper {
 		width: 100%;
@@ -13090,7 +13089,8 @@ h4.col-md-12.title {
 }
 
 .company-image__wrapper {
-    width: 100%;
+	width: 100%;
+	max-width: 300px;
     height: 180px;
     align-items: center;
     justify-content: center;
@@ -13150,4 +13150,5 @@ h4.col-md-12.title {
 	width: 180px;
 	height: 180px;
 	border-radius: 50%;
+	border: 1px dashed #404041;
 }

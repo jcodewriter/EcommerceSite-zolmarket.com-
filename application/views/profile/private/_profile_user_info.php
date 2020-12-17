@@ -18,12 +18,39 @@
                 <?php endif; ?>
             </div>
             <span class="last-seen <?php echo (is_user_online($user->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i> <?php echo trans("last_seen"); ?>&nbsp;<?php echo time_ago($user->last_seen); ?></span>
-            <div class="profile-row__left">
+            <div class="row-custom">
                 <?php $rew_count = get_user_review_count($user->id); ?>
                 <!--stars-->
                 <?php $this->load->view('partials/_review_stars', ['review' => get_user_rating($user->id)]); ?>
                 &nbsp;<span>(<?php echo $rew_count; ?>)</span>
             </div>
+            <?php if (!empty($user->email) && $user->show_email == 1) : ?>
+                <div class="row-custom">
+                    <span class="info"><i class="icon-envelope"></i>&nbsp;<?php echo html_escape($user->email); ?></span>
+                </div>
+            <?php endif; ?>
+            <?php if (!empty(get_location($user)) && $user->show_location == 1) : ?>
+                <div class="row-custom">
+                    <span class="info"><i class="icon-map-marker"></i><?php echo get_location($user); ?></span>
+                </div>
+            <?php endif; ?>
+            <?php if (!empty($user->phone_number) && $user->show_phone == 1) : ?>
+                <div class="profile-details__row">
+                    <span class="info">
+                        <i class="icon-phone"></i>
+                        <a href="tel:<?php echo html_escape($user->phone_number); ?>" class="phone_number"><?php echo html_escape($user->phone_number); ?></a>
+                    </span>
+                    <?php
+                    $matches = explode("/", $_SERVER['REQUEST_URI']);
+                    $last_word = $matches[1];
+                    if ($this->auth_check && user()->id == $user->id) {
+                    ?>
+                        <a href="<?php echo lang_base_url(); ?>settings" style="background: #fff;padding: 3px 5px;border-radius: 10px;color: #000;">
+                            <i class="icon-settings"></i> <?php echo trans("settings"); ?>
+                        </a>
+                    <?php } ?>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
     <div class="profile-details__right col-sm-9 col-md-9">
@@ -48,27 +75,6 @@
                 <?php $this->load->view('partials/_review_stars', ['review' => get_user_rating($user->id)]); ?>
                 &nbsp;<span>(<?php echo $rew_count; ?>)</span>
             </div>
-            <?php if (auth_check()) : ?>
-                <?php if (user()->id != $user->id) : ?>
-                    <div class="profile-row__right">
-                        <button class="btn btn-md btn-orange" data-toggle="modal" data-target="#messageModal"><i class="icon-envelope"></i><?php echo trans("ask_question") ?></button>
-                        <?php echo form_open('profile_controller/follow_unfollow_user', ['class' => 'form-inline']); ?>
-                        <input type="hidden" name="following_id" value="<?php echo $user->id; ?>">
-                        <input type="hidden" name="follower_id" value="<?php echo user()->id; ?>">
-                        <?php if (is_user_follows($user->id, user()->id)) : ?>
-                            <button class="btn btn-md btn-orange"><i class="icon-user-minus"></i><?php echo trans("unfollow"); ?></button>
-                        <?php else : ?>
-                            <button class="btn btn-md btn-orange"><i class="icon-user-plus"></i><?php echo trans("follow"); ?></button>
-                        <?php endif; ?>
-                        <?php echo form_close(); ?>
-                    </div>
-                <?php endif; ?>
-            <?php else : ?>
-                <div class="profile-row__right">
-                    <a href="<?php echo lang_base_url() . 'login'; ?>" class="btn btn-md btn-orange"><i class="icon-envelope"></i><?php echo trans("ask_question") ?></a>
-                    <a href="<?php echo lang_base_url() . 'login'; ?>" class="btn btn-md btn-orange"><i class="icon-user-plus"></i><?php echo trans("follow"); ?></a>
-                </div>
-            <?php endif; ?>
         </div>
 
         <div class="row-custom user-contact hidden-md-down">
