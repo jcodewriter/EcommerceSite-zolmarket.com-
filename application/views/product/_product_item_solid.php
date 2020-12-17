@@ -16,7 +16,7 @@
         </div>
         <div class="row-custom item-details" style="padding-left:5px;padding-right:5px;">
             <?php $user = get_user($product->user_id); ?>
-            
+
 
             <h3 class="product-title">
                 <?php if (is_arabic($product->title)) : ?>
@@ -50,7 +50,9 @@
                 </a>
                 <div class="d-flex align-items-center">
                     <?php if (!$user->is_private || $user->role == 'admin') : ?>
-                        <span class="store-mark"><?php echo trans("store");?></span>
+                        <a href="<?php echo lang_base_url() . 'profile/' . $user->slug; ?>" class="userinfo__wrapper">
+                            <span class="store-mark"><?php echo trans("store"); ?></span>
+                        </a>
                     <?php endif; ?>
                     <a href="<?php echo lang_base_url() . 'profile/' . $user->slug; ?>" class="userinfo__wrapper">
                         <img src="<?php echo get_user_avatar($user); ?>" alt="User" style="width: 30px; height: 30px; border-radius: 50%" />
