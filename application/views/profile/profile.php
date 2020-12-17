@@ -29,7 +29,7 @@ if (auth_check()) {
 
             </div>
         <?php endif; ?>
-        <div class="row hkmnone_userinfo">
+        <div class="row hkmnone_userinfo" style="margin-bottom: 20px;">
             <div class="col-12">
                 <div class="profile-page-top">
                     <!-- load profile details -->

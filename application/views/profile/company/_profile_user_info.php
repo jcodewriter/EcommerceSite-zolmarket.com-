@@ -77,24 +77,24 @@
 
                 <?php if ($this->selected_lang->ckeditor_lang == 'ar') : ?>
                     <span class="info"><img src="<?php echo base_url() . 'assets/img/user_confirm.png'; ?>" alt="" style="margin-right: 8px;" /><?php echo trans("member_since"); ?>&nbsp;<?php echo helper_date_format($user->created_at); ?></span>
-                    <?php if (!empty($user->phone_number) && $user->show_phone == 1) : ?>
+                    <?php if (!empty($user->phone_number)) : ?>
                         <span class="info"><i class="icon-phone"></i>
                             <a href="javascript:void(0)" id="show_phone_number"><?php echo trans("show"); ?></a>
                             <a href="tel:<?php echo html_escape($user->phone_number); ?>" id="phone_number" class="display-none"><?php echo html_escape($user->phone_number); ?></a>
                         </span>
                     <?php endif; ?>
-                    <?php if (!empty($user->email) && $user->show_email == 1) : ?>
+                    <?php if (!empty($user->email)) : ?>
                         <span class="info"><i class="icon-envelope"></i><?php echo html_escape($user->email); ?></span>
                     <?php endif; ?>
-                    <?php if (!empty(get_location($user)) && $user->show_location == 1) : ?>
+                    <?php if (!empty(get_location($user))) : ?>
                         <span class="info"><i class="icon-map-marker"></i><?php echo get_location($user); ?></span>
                     <?php endif; ?>
                 <?php else : ?>
                     <span class="info"><img src="<?php echo base_url() . 'assets/img/user_confirm.png'; ?>" alt="" style="margin-right: 8px;" /><?php echo trans("member_since"); ?>&nbsp;<?php echo helper_date_format($user->created_at); ?></span>
-                    <?php if (!empty($user->email) && $user->show_email == 1) : ?>
+                    <?php if (!empty($user->email)) : ?>
                         <span class="info"><i class="icon-envelope"></i><?php echo html_escape($user->email); ?></span>
                     <?php endif; ?>
-                    <?php if (!empty($user->phone_number) && $user->show_phone == 1) : ?>
+                    <?php if (!empty($user->phone_number)) : ?>
                         <span class="info only_on_dadeesktop">
                             <i class="icon-phone"></i>
                             <a href="javascript:void(0)" id="show_phone_number"><?php echo trans("show"); ?></a>
@@ -106,7 +106,7 @@
                             <a href="tel:<?php echo html_escape($user->phone_number); ?>" id="phone_number2" class="display-none"><?php echo html_escape($user->phone_number); ?></a>
                         </span>
                     <?php endif; ?>
-                    <?php if (!empty(get_location($user)) && $user->show_location == 1) : ?>
+                    <?php if (!empty(get_location($user))) : ?>
                         <span class="info" style="margin-bottom: -10px;"><i class="icon-map-marker"></i><?php echo trim(get_location($user)); ?></span>
                     <?php endif; ?>
                 <?php endif; ?>
