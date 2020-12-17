@@ -52,7 +52,7 @@
                                         <i class="fa fa-times delete-profile-image__btn"></i>
                                     </div>
                                     <span class='btn-file-upload far fa-image <?php echo (!$this->auth_user->is_private || $this->auth_user->role == "admin") ? 'company-upload-image__btn' : 'private-upload-image__btn'; ?> update-profile-image__btn ' style="<?php echo $this->auth_user->avatar ? 'display: none;' : '' ?>background-color: #a9a9a9;">
-                                        <input type="file" name="file" id="imgUploader" size="40" accept=".png, .jpg, .jpeg, .gif" onchange="$('#upload-file-info').html($(this).val().replace(/.*[\/\\]/, ''));" required>
+                                        <input type="file" name="file" id="imgUploader" size="40" accept=".png, .jpg, .jpeg, .gif" onchange="$('#upload-file-info').html($(this).val().replace(/.*[\/\\]/, ''));">
                                     </span>
                                 </div>
                             </div>
