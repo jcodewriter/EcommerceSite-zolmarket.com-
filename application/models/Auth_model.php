@@ -9,13 +9,13 @@ class Auth_model extends CI_Model
 
         $firstname = remove_special_characters($this->input->post('firstname', true));
         $lastname = remove_special_characters($this->input->post('lastname', true));
-        $random_key = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, 5);
+        // $random_key = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, 5);
 
         $data = array(
             'firstname' => $firstname,
             'lastname' => $lastname,
             'username' => $firstname . ' ' . $lastname,
-            'slug' => $firstname . $random_key,
+            'slug' =>  strtolower($firstname . '.' . $lastname),
             'email' => $this->input->post('email', true),
             'password' => $this->input->post('password', true)
         );

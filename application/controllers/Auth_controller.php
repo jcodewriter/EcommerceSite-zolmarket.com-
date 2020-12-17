@@ -270,10 +270,10 @@ class Auth_controller extends Home_Core_Controller
             redirect($this->agent->referrer());
         } else {
             $email = $this->input->post('email', true);
-            $firstname = $this->input->post('firstname', true);
+            // $firstname = $this->input->post('firstname', true);
 
-            $random_key = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, 5);
-            $username = $firstname . '_' . $random_key;
+            // $random_key = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, 5);
+            // $username = $firstname . '_' . $random_key;
             // print_r($username); exit;
             // $username = $this->input->post('username', true);
 
@@ -284,11 +284,11 @@ class Auth_controller extends Home_Core_Controller
                 redirect($this->agent->referrer());
             }
             // is username unique
-            if (!$this->auth_model->is_unique_username($username)) {
-                $this->session->set_flashdata('form_data', $this->auth_model->input_values());
-                $this->session->set_flashdata('error', trans("msg_username_unique_error"));
-                redirect($this->agent->referrer());
-            }
+            // if (!$this->auth_model->is_unique_username($username)) {
+            //     $this->session->set_flashdata('form_data', $this->auth_model->input_values());
+            //     $this->session->set_flashdata('error', trans("msg_username_unique_error"));
+            //     redirect($this->agent->referrer());
+            // }
             //register
             $user = $this->auth_model->register();
             if ($user) {
