@@ -34,23 +34,23 @@
                     <span class="info"><i class="icon-map-marker"></i><?php echo get_location($user); ?></span>
                 </div>
             <?php endif; ?>
-            <?php if (!empty($user->phone_number) && $user->show_phone == 1) : ?>
-                <div class="profile-details__row">
-                    <span class="info">
+            <div class="profile-details__row">
+                <span class="info">
+                    <?php if (!empty($user->phone_number) && $user->show_phone == 1) : ?>
                         <i class="icon-phone"></i>
                         <a href="tel:<?php echo html_escape($user->phone_number); ?>" class="phone_number"><?php echo html_escape($user->phone_number); ?></a>
-                    </span>
-                    <?php
-                    $matches = explode("/", $_SERVER['REQUEST_URI']);
-                    $last_word = $matches[1];
-                    if ($this->auth_check && user()->id == $user->id) {
-                    ?>
-                        <a href="<?php echo lang_base_url(); ?>settings" style="background: #fff;padding: 3px 5px;border-radius: 10px;color: #000;">
-                            <i class="icon-settings"></i> <?php echo trans("settings"); ?>
-                        </a>
-                    <?php } ?>
-                </div>
-            <?php endif; ?>
+                    <?php endif; ?>
+                </span>
+                <?php
+                $matches = explode("/", $_SERVER['REQUEST_URI']);
+                $last_word = $matches[1];
+                if ($this->auth_check && user()->id == $user->id) {
+                ?>
+                    <a href="<?php echo lang_base_url(); ?>settings" style="background: #fff;padding: 3px 5px;border-radius: 10px;color: #000;">
+                        <i class="icon-settings"></i> <?php echo trans("settings"); ?>
+                    </a>
+                <?php } ?>
+            </div>
         </div>
     </div>
     <div class="profile-details__right col-sm-9 col-md-9">

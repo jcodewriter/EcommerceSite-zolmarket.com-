@@ -74,10 +74,15 @@ class Product_controller extends Home_Core_Controller
         }
 
         $user_id = $this->input->post('id', true);
+        // echo $this->input->post('is_private', true);
+        // exit;
+        // redirect($this->agent->referrer());
+        $firstname = $this->input->post('firstname', true);
+        $lastname = $this->input->post('lastname', true);
+
         $data = array(
             'is_active_shop_request' => 1,
-            'username' => remove_special_characters($this->input->post('shop_name', true)),
-            'shop_name' => remove_special_characters($this->input->post('shop_name', true)),
+            'shop_name' => $this->input->post('is_private', true) == 0 ? remove_special_characters($this->input->post('shop_name', true)) : $firstname . ' ' . $lastname,
             'is_private' => $this->input->post('is_private', true),
             'country_id' => $this->input->post('country_id', true),
             'state_id' => $this->input->post('state_id', true),

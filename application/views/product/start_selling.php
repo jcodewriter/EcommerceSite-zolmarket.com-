@@ -133,7 +133,7 @@
 																</div>
 															</div>
 														</div>
-														
+
 														<div class="form-group" style="text-align: center;">
 															<label class="control-label"><?php echo trans("upload_your_shop"); ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
 															<div class="upload-image-container">
@@ -429,7 +429,7 @@
 		$('.checkmark').toggle();
 		if ($(this).width() < 500) {
 			$("form[name=start_selling]").submit(function(e) {
-				if (!$('#countries').val() || !$('#states').val() || $('#imgadshoww').attr('class') != 'valid') {
+				if (!$('#countries').val() || !$('#states').val()) {
 					if (!$('#countries').val())
 						$('button[name=country]').css({
 							'border-width': '1px',
@@ -440,12 +440,12 @@
 							'border-width': '1px',
 							'border-color': 'rgba(220, 53, 69, 0.40)'
 						})
-					if ($('#imgadshoww').attr('class') != 'valid') {
-						$('.upload-image-container').css('border-color', '#dc354566');
-						$("html, body").animate({
-							scrollTop: 250
-						}, 700);
-					}
+					// if ($('#imgadshoww').attr('class') != 'valid') {
+					// 	$('.upload-image-container').css('border-color', '#dc354566');
+					// 	$("html, body").animate({
+					// 		scrollTop: 250
+					// 	}, 700);
+					// }
 					e.preventDefault();
 				}
 			})
