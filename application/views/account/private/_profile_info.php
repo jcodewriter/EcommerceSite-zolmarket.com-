@@ -3,7 +3,7 @@
 <div class="row align-items-center">
     <div class="profile-details__left col-sm-3 col-md-3">
         <div class="profile__image">
-            <img src="<?php echo get_user_avatar($user); ?>" alt="<?php echo get_shop_name($user); ?>" class="">
+            <img src="<?php echo get_user_avatar($user); ?>" alt="<?php echo get_shop_name($user); ?>" class="sys-border sys-shadow">
         </div>
         <div class="profile-name__wrapper hidden-md-up">
             <div class="profile-name">
