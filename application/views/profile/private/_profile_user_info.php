@@ -24,19 +24,17 @@
                 <?php $this->load->view('partials/_review_stars', ['review' => get_user_rating($user->id)]); ?>
                 &nbsp;<span>(<?php echo $rew_count; ?>)</span>
             </div>
-            <?php if (!empty($user->email) && $user->show_email == 1) : ?>
-                <div class="row-custom">
-                    <span class="info"><i class="icon-envelope"></i>&nbsp;<?php echo html_escape($user->email); ?></span>
-                </div>
-            <?php endif; ?>
-            <?php if (!empty(get_location($user)) && $user->show_location == 1) : ?>
+            <div class="row-custom">
+                <span class="info"><i class="icon-envelope"></i>&nbsp;<?php echo html_escape($user->email); ?></span>
+            </div>
+            <?php if (!empty(get_location($user))) : ?>
                 <div class="row-custom">
                     <span class="info"><i class="icon-map-marker"></i><?php echo get_location($user); ?></span>
                 </div>
             <?php endif; ?>
             <div class="profile-details__row">
                 <span class="info">
-                    <?php if (!empty($user->phone_number) && $user->show_phone == 1) : ?>
+                    <?php if (!empty($user->phone_number)) : ?>
                         <i class="icon-phone"></i>
                         <a href="tel:<?php echo html_escape($user->phone_number); ?>" class="phone_number"><?php echo html_escape($user->phone_number); ?></a>
                     <?php endif; ?>
