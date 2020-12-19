@@ -70,6 +70,8 @@ class Core_Controller extends CI_Controller
             $this->auth_user = user();
         }
 
+        $this->countries = $this->location_model->get_countries();
+
         //settings
         $global_data['settings'] = $this->settings_model->get_settings($this->selected_lang->id);
         $this->settings = $global_data['settings'];

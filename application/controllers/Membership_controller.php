@@ -98,4 +98,70 @@ class Membership_controller extends Admin_Core_Controller
         $this->membership_model->delete_plan($id);
         redirect($this->agent->referrer());
     }
+
+    /**
+     * Edit User
+     */
+    public function edit_user($id)
+    {
+        $data['title'] = trans("edit_user");
+        $data['user'] = $this->auth_model->get_user($id);
+        if (empty($data['user'])) {
+            redirect(admin_url() . "members");
+        }
+        $data["countries"] = $this->location_model->get_countries();
+        $data["states"] = $this->location_model->get_states_by_country($data['user']->country_id);
+        $data["cities"] = $this->location_model->get_cities_by_state($data['user']->state_id);
+
+        $this->load->view('admin/includes/_header', $data);
+        $this->load->view('admin/users/edit_user');
+        $this->load->view('admin/includes/_footer');
+    }
+
+    /**
+     * Edit User Post
+     */
+    public function edit_user_post()
+    {
+        //validate inputs
+        $this->form_validation->set_rules('username', trans("username"), 'required|xss_clean|max_length[255]');
+        $this->form_validation->set_rules('email', trans("email"), 'required|xss_clean');
+        if ($this->form_validation->run() === false) {
+            $this->session->set_flashdata('errors', validation_errors());
+            redirect($this->agent->referrer());
+        } else {
+            $data = array(
+                'id' => $this->input->post('id', true),
+                'username' => $this->input->post('username', true),
+                'slug' => $this->input->post('slug', true),
+                'email' => $this->input->post('email', true)
+            );
+            //is email unique
+            if (!$this->auth_model->is_unique_email($data["email"], $data["id"])) {
+                $this->session->set_flashdata('error', trans("msg_email_unique_error"));
+                redirect($this->agent->referrer());
+                exit();
+            }
+            //is username unique
+            if (!$this->auth_model->is_unique_username($data["username"], $data["id"])) {
+                $this->session->set_flashdata('error', trans("msg_username_unique_error"));
+                redirect($this->agent->referrer());
+                exit();
+            }
+            //is slug unique
+            if ($this->auth_model->check_is_slug_unique($data["slug"], $data["id"])) {
+                $this->session->set_flashdata('error', trans("msg_slug_unique_error"));
+                redirect($this->agent->referrer());
+                exit();
+            }
+
+            if ($this->profile_model->edit_user($data["id"])) {
+                $this->session->set_flashdata('success', trans("msg_updated"));
+                redirect($this->agent->referrer());
+            } else {
+                $this->session->set_flashdata('error', trans("msg_error"));
+                redirect($this->agent->referrer());
+            }
+        }
+    }
 }

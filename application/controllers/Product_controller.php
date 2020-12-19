@@ -1250,6 +1250,7 @@ class Product_controller extends Home_Core_Controller
     //get states
     public function get_states()
     {
+        echo "here"; exit;
         $country_id = $this->input->post('country_id', true);
         $states = $this->location_model->get_states_by_country($country_id);
         foreach ($states as $item) {

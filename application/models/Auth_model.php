@@ -498,6 +498,78 @@ class Auth_model extends CI_Model
         return $query->num_rows();
     }
 
+    //get paginated users
+    public function get_paginated_filtered_products($role, $per_page, $offset)
+    {
+        $this->filter_users();
+        $this->db->where('role', clean_str($role));
+        $this->db->order_by('created_at', 'DESC')->limit(clean_number($per_page), clean_number($offset));
+        return $this->db->get('users')->result();
+    }
+
+    //get paginated users
+    public function get_paginated_filtered_products_by_private($role, $per_page, $offset)
+    {
+        $this->filter_users();
+        $this->db->where('role', clean_str($role));
+        $this->db->where('is_private', 1);
+        $this->db->order_by('created_at', 'DESC')->limit(clean_number($per_page), clean_number($offset));
+        return $this->db->get('users')->result();
+    }
+
+    //get paginated users
+    public function get_paginated_filtered_products_by_company($role, $per_page, $offset)
+    {
+        $this->filter_users();
+        $this->db->where('role', clean_str($role));
+        $this->db->where('is_private', 0);
+        $this->db->order_by('created_at', 'DESC')->limit(clean_number($per_page), clean_number($offset));
+        return $this->db->get('users')->result();
+    }
+
+    //get users count by role
+    public function get_users_count_by_role($role)
+    {
+        $this->filter_users();
+        return $this->db->where('role', clean_str($role))->count_all_results('users');
+    }
+
+    //get users count by role
+    public function get_users_count_by_role_private($role)
+    {
+        $this->filter_users();
+        return $this->db->where('role', clean_str($role))->where('is_private', 1)->count_all_results('users');
+    }
+
+    //get users count by role
+    public function get_users_count_by_role_company($role)
+    {
+        $this->filter_users();
+        return $this->db->where('role', clean_str($role))->where('is_private', 0)->count_all_results('users');
+    }
+
+    //users filter
+    public function filter_users()
+    {
+        $q = input_get('q');
+        if (!empty($q)) {
+            $this->db->group_start();
+            $this->db->like('username', clean_str($q));
+            $this->db->or_like('email', clean_str($q));
+            $this->db->group_end();
+        }
+        $status = input_get('status');
+        if (!empty($status)) {
+            $banned = $status == 'banned' ? 1 : 0;
+            $this->db->where('banned', $banned);
+        }
+        $email_status = input_get('email_status');
+        if (!empty($email_status)) {
+            $status = $email_status == 'confirmed' ? 1 : 0;
+            $this->db->where('email_status', $status);
+        }
+    }
+
     //get members
     public function get_members()
     {

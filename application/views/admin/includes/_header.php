@@ -102,7 +102,7 @@
         <!-- Left side column. contains the logo and sidebar -->
         <aside class="main-sidebar" style="background-color: #343B4A;">
             <!-- sidebar: style can be found in sidebar.less -->
-            <section class="sidebar">
+            <section class="sidebar sidebar-scrollbar">
                 <!-- Sidebar user panel -->
                 <div class="user-panel">
                     <div class="pull-left image">
@@ -118,12 +118,12 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header"><?php echo trans("navigation"); ?></li>
-                    <li>
+                    <li class="nav-home">
                         <a href="<?php echo admin_url(); ?>">
                             <i class="fa fa-home"></i> <span><?php echo trans("home"); ?></span>
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-navigation">
                         <a href="<?php echo admin_url(); ?>navigation">
                             <i class="fa fa-th"></i>
                             <span><?php echo trans("navigation"); ?></span>
@@ -136,7 +136,7 @@
                         </a>
                     </li>
                     <li class="header"><?php echo trans("orders"); ?></li>
-                    <li class="treeview">
+                    <li class="treeview<?php is_admin_nav_active(['orders', 'transactions', 'order-bank-transfers']); ?>">
                         <a href="#" style="display: flex">
                             <i class="fa fa-shopping-cart"></i>
                             <span><?php echo trans("orders"); ?></span>
@@ -149,7 +149,7 @@
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
-                            <li>
+                            <li class="nav-orders">
                                 <a href="<?php echo admin_url(); ?>orders">
                                     <?php echo trans("orders"); ?>
                                     <?php $result = admin_notifcations(".001.001");
@@ -160,7 +160,7 @@
                                     <?php endif; ?>
                                 </a>
                             </li>
-                            <li>
+                            <li class="nav-transactions">
                                 <a href="<?php echo admin_url(); ?>transactions">
                                     <?php echo trans("transactions"); ?>
                                     <?php $result = admin_notifcations(".001.002");
@@ -171,7 +171,7 @@
                                     <?php endif; ?>
                                 </a>
                             </li>
-                            <li>
+                            <li class="nav-order-bank-transfers">
                                 <a href="<?php echo admin_url(); ?>order-bank-transfers">
                                     <?php echo trans("bank_transfer_notifications"); ?>
                                     <?php $result = admin_notifcations(".001.003");
@@ -184,7 +184,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="nav-digital-sales">
                         <a href="<?php echo admin_url(); ?>digital-sales" style="display: flex">
                             <i class="fa fa-shopping-bag"></i>
                             <span><?php echo trans("digital_sales"); ?></span>
@@ -196,7 +196,7 @@
                             <?php endif; ?>
                         </a>
                     </li>
-                    <li class="treeview">
+                    <li class="treeview<?php is_admin_nav_active(['earnings', 'seller-balances']); ?>">
                         <a href="#" style="display: flex">
                             <i class="fa fa-money" aria-hidden="true"></i>
                             <span><?php echo trans("earnings"); ?></span>
@@ -209,7 +209,7 @@
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
-                            <li>
+                            <li class="nav-earnings">
                                 <a href="<?php echo admin_url(); ?>earnings">
                                     <?php echo trans("earnings"); ?>
                                     <?php $result = admin_notifcations(".005.001");
@@ -220,7 +220,7 @@
                                     <?php endif; ?>
                                 </a>
                             </li>
-                            <li>
+                            <li class="nav-seller-balances">
                                 <a href="<?php echo admin_url(); ?>seller-balances">
                                     <?php echo trans("seller_balances"); ?>
                                     <?php $result = admin_notifcations(".005.002");
@@ -233,7 +233,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="treeview">
+                    <li class="treeview<?php is_admin_nav_active(['add-payout', 'payout-requests', 'completed-payouts', 'payout-settings']); ?>">
                         <a href="#" style="display: flex">
                             <i class="fa fa-credit-card" aria-hidden="true"></i>
                             <span><?php echo trans("payouts"); ?></span>
@@ -246,8 +246,8 @@
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?php echo admin_url(); ?>add-payout"> <?php echo trans("add_payout"); ?></a></li>
-                            <li>
+                            <li class="nav-add-payout"><a href="<?php echo admin_url(); ?>add-payout"> <?php echo trans("add_payout"); ?></a></li>
+                            <li class="nav-payout-requests">
                                 <a href="<?php echo admin_url(); ?>payout-requests">
                                     <?php echo trans("payout_requests"); ?>
                                     <?php $result = admin_notifcations(".006.001");
@@ -258,7 +258,7 @@
                                     <?php endif; ?>
                                 </a>
                             </li>
-                            <li>
+                            <li class="nav-completed-payouts">
                                 <a href="<?php echo admin_url(); ?>completed-payouts">
                                     <?php echo trans("completed_payouts"); ?>
                                     <?php $result = admin_notifcations(".006.002");
@@ -269,11 +269,11 @@
                                     <?php endif; ?>
                                 </a>
                             </li>
-                            <li><a href="<?php echo admin_url(); ?>payout-settings"> <?php echo trans("payout_settings"); ?></a></li>
+                            <li class="nav-payout-settings"><a href="<?php echo admin_url(); ?>payout-settings"> <?php echo trans("payout_settings"); ?></a></li>
                         </ul>
                     </li>
                     <li class="header"><?php echo trans("products"); ?></li>
-                    <li class="treeview">
+                    <li class="treeview<?php is_admin_nav_active(['products', 'pending-products', 'hidden-products', 'drafts', 'deleted-products', 'sold-products']); ?>">
                         <a href="#" style="display: flex">
                             <i class="fa fa-shopping-basket angle-left" aria-hidden="true"></i>
                             <span><?php echo trans("products"); ?></span>
@@ -286,7 +286,7 @@
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
-                            <li>
+                            <li class="nav-products">
                                 <a href="<?php echo admin_url(); ?>products">
                                     <?php echo trans("products"); ?>
                                     <?php $result = admin_notifcations(".003.001");
@@ -297,7 +297,7 @@
                                     <?php endif; ?>
                                 </a>
                             </li>
-                            <li>
+                            <li class="nav-pending-products">
                                 <a href="<?php echo admin_url(); ?>pending-products">
                                     <?php echo trans("pending_products"); ?>
                                     <?php $result = admin_notifcations(".003.002");
@@ -308,7 +308,7 @@
                                     <?php endif; ?>
                                 </a>
                             </li>
-                            <li>
+                            <li class="nav-hidden-products">
                                 <a href="<?php echo admin_url(); ?>hidden-products">
                                     <?php echo trans("hidden_products"); ?>
                                     <?php $result = admin_notifcations(".003.003");
@@ -319,7 +319,7 @@
                                     <?php endif; ?>
                                 </a>
                             </li>
-                            <li>
+                            <li class="nav-sold-products">
                                 <a href="<?php echo admin_url(); ?>sold-products">
                                     <?php echo trans("sold_products"); ?>
                                     <?php $result = admin_notifcations(".003.004");
@@ -330,7 +330,7 @@
                                     <?php endif; ?>
                                 </a>
                             </li>
-                            <li>
+                            <li class="nav-drafts">
                                 <a href="<?php echo admin_url(); ?>drafts">
                                     <?php echo trans("drafts"); ?>
                                     <?php $result = admin_notifcations(".003.005");
@@ -341,7 +341,7 @@
                                     <?php endif; ?>
                                 </a>
                             </li>
-                            <li>
+                            <li class="nav-deleted-products">
                                 <a href="<?php echo admin_url(); ?>deleted-products">
                                     <?php echo trans("deleted_products"); ?>
                                     <?php $result = admin_notifcations(".003.006");
@@ -354,7 +354,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="treeview">
+                    <li class="treeview<?php is_admin_nav_active(['promoted-products', 'promoted-products-pricing', 'promoted-products-transactions']); ?>">
                         <a href="#" style="display: flex">
                             <i class="fa fa-dollar" aria-hidden="true"></i>
                             <span><?php echo trans("promoted_products"); ?></span>
@@ -367,9 +367,9 @@
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?php echo admin_url(); ?>promoted-products"> <?php echo trans("products"); ?></a></li>
-                            <li><a href="<?php echo admin_url(); ?>promoted-products-pricing"> <?php echo trans("pricing"); ?></a></li>
-                            <li>
+                            <li class="nav-promoted-products"><a href="<?php echo admin_url(); ?>promoted-products"> <?php echo trans("products"); ?></a></li>
+                            <li class="nav-promoted-products-pricing"><a href="<?php echo admin_url(); ?>promoted-products-pricing"> <?php echo trans("pricing"); ?></a></li>
+                            <li class="nav-promoted-products-transactions">
                                 <a href="<?php echo admin_url(); ?>promoted-products-transactions">
                                     <?php echo trans("transactions"); ?>
                                     <?php $result = admin_notifcations(".004.001");
@@ -382,68 +382,68 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="nav-quote-requests">
                         <a href="<?php echo admin_url(); ?>quote-requests">
                             <i class="fa fa-tag"></i> <span><?php echo trans("quote_requests"); ?></span>
                         </a>
                     </li>
-                    <li class="treeview">
+                    <li class="treeview<?php is_admin_nav_active(['add-category', 'categories']); ?>">
                         <a href="#">
                             <i class="fa fa-folder-open"></i>
                             <span><?php echo trans("categories"); ?></span>
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?php echo admin_url(); ?>add-category"> <?php echo trans("add_category"); ?></a></li>
-                            <li><a href="<?php echo admin_url(); ?>categories"> <?php echo trans("categories"); ?></a></li>
+                            <li class="nav-add-category"><a href="<?php echo admin_url(); ?>add-category"> <?php echo trans("add_category"); ?></a></li>
+                            <li class="nav-categories"><a href="<?php echo admin_url(); ?>categories"> <?php echo trans("categories"); ?></a></li>
                         </ul>
                     </li>
-                    <li class="treeview">
+                    <li class="treeview<?php is_admin_nav_active(['add-custom-field', 'custom-fields']); ?>">
                         <a href="#">
                             <i class="fa fa-plus-square-o"></i>
                             <span><?php echo trans("custom_fields"); ?></span>
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?php echo admin_url(); ?>add-custom-field"> <?php echo trans("add_custom_field"); ?></a></li>
-                            <li><a href="<?php echo admin_url(); ?>custom-fields"> <?php echo trans("custom_fields"); ?></a></li>
+                            <li class="nav-add-custom-field"><a href="<?php echo admin_url(); ?>add-custom-field"> <?php echo trans("add_custom_field"); ?></a></li>
+                            <li class="nav-custom-fields"><a href="<?php echo admin_url(); ?>custom-fields"> <?php echo trans("custom_fields"); ?></a></li>
                         </ul>
                     </li>
                     <li class="header"><?php echo trans("content"); ?></li>
-                    <li class="treeview">
+                    <li class="treeview<?php is_admin_nav_active(['add-page', 'pages']); ?>">
                         <a href="#">
                             <i class="fa fa-file"></i>
                             <span><?php echo trans("pages"); ?></span>
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?php echo admin_url(); ?>add-page"> <?php echo trans("add_page"); ?></a></li>
-                            <li><a href="<?php echo admin_url(); ?>pages"> <?php echo trans("pages"); ?></a></li>
+                            <li class="nav-add-page"><a href="<?php echo admin_url(); ?>add-page"> <?php echo trans("add_page"); ?></a></li>
+                            <li class="nav-pages"><a href="<?php echo admin_url(); ?>pages"> <?php echo trans("pages"); ?></a></li>
                         </ul>
                     </li>
-                    <li class="treeview">
+                    <li class="treeview<?php is_admin_nav_active(['blog-add-post', 'blog-posts', 'blog-categories']); ?>">
                         <a href="#">
                             <i class="fa fa-file"></i>
                             <span><?php echo trans("blog"); ?></span>
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?php echo admin_url(); ?>blog-add-post"> <?php echo trans("add_post"); ?></a></li>
-                            <li><a href="<?php echo admin_url(); ?>blog-posts"> <?php echo trans("posts"); ?></a></li>
-                            <li><a href="<?php echo admin_url(); ?>blog-categories"> <?php echo trans("categories"); ?></a></li>
+                            <li class="nav-blog-add-post"><a href="<?php echo admin_url(); ?>blog-add-post"> <?php echo trans("add_post"); ?></a></li>
+                            <li class="nav-blog-posts"><a href="<?php echo admin_url(); ?>blog-posts"> <?php echo trans("posts"); ?></a></li>
+                            <li class="nav-blog-categories"><a href="<?php echo admin_url(); ?>blog-categories"> <?php echo trans("categories"); ?></a></li>
                         </ul>
                     </li>
-                    <li class="treeview">
+                    <li class="treeview<?php is_admin_nav_active(['countries', 'states', 'cities', 'location-settings']); ?>">
                         <a href="#">
                             <i class="fa fa-map-marker"></i>
                             <span><?php echo trans("location"); ?></span>
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?php echo admin_url(); ?>countries"> <?php echo trans("countries"); ?></a></li>
-                            <li><a href="<?php echo admin_url(); ?>states"> <?php echo trans("states"); ?></a></li>
-                            <li><a href="<?php echo admin_url(); ?>cities"> <?php echo trans("cities"); ?></a></li>
-                            <li><a href="<?php echo admin_url(); ?>location-settings"> <?php echo trans("location_settings"); ?></a></li>
+                            <li class="nav-countries"><a href="<?php echo admin_url(); ?>countries"> <?php echo trans("countries"); ?></a></li>
+                            <li class="nav-states"><a href="<?php echo admin_url(); ?>states"> <?php echo trans("states"); ?></a></li>
+                            <li class="nav-cities"><a href="<?php echo admin_url(); ?>cities"> <?php echo trans("cities"); ?></a></li>
+                            <li class="nav-location-settings"><a href="<?php echo admin_url(); ?>location-settings"> <?php echo trans("location_settings"); ?></a></li>
                         </ul>
                     </li>
                     <li class="header"><?php echo trans("membership"); ?></li>
@@ -458,13 +458,13 @@
                             <li class="nav-transactions-membership"><a href="<?php echo admin_url(); ?>transactions-membership"> <?php echo trans("transactions"); ?></a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="nav-shop-opening-requests">
                         <a href="<?php echo admin_url(); ?>shop-opening-requests">
                             <i class="fa fa-question-circle" aria-hidden="true"></i>
                             <span><?php echo trans("shop_opening_requests"); ?></span>
                         </a>
                     </li>
-                    <li class="treeview">
+                    <li class="treeview<?php is_admin_nav_active(['add-administrator', 'administrators', 'companies', 'vendors', 'members', 'edit-user']); ?>">
                         <a href="#" style="display:flex">
                             <i class="fa fa-users"></i>
                             <span><?php echo trans("users"); ?></span>
@@ -477,9 +477,10 @@
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?php echo admin_url(); ?>add-administrator"> <?php echo trans("add_administrator"); ?></a></li>
-                            <li><a href="<?php echo admin_url(); ?>administrators"> <?php echo trans("administrators"); ?></a></li>
-                            <li>
+                            <li class="nav-add-administrator"><a href="<?php echo admin_url(); ?>add-administrator"> <?php echo trans("add_administrator"); ?></a></li>
+                            <li class="nav-administrators"><a href="<?php echo admin_url(); ?>administrators"> <?php echo trans("administrators"); ?></a></li>
+                            <li class="nav-companies"><a href="<?php echo admin_url(); ?>companies"> <?php echo trans("companies"); ?></a></li>
+                            <li class="nav-vendors">
                                 <a href="<?php echo admin_url(); ?>vendors">
                                     <?php echo trans("vendors"); ?>
                                     <?php $result = admin_notifcations(".007.001");
@@ -490,7 +491,7 @@
                                     <?php endif; ?>
                                 </a>
                             </li>
-                            <li>
+                            <li class="nav-members">
                                 <a href="<?php echo admin_url(); ?>members">
                                     <?php echo trans("members"); ?>
                                     <?php $result = admin_notifcations(".007.002");
@@ -505,66 +506,66 @@
                         </ul>
                     </li>
                     <li class="header"><?php echo trans("management_tools"); ?></li>
-                    <li>
+                    <li class="nav-contact-messages">
                         <a href="<?php echo admin_url(); ?>contact-messages">
                             <i class="fa fa-paper-plane" aria-hidden="true"></i>
                             <span><?php echo trans("contact_messages"); ?></span>
                         </a>
                     </li>
-                    <li class="treeview">
+                    <li class="treeview<?php is_admin_nav_active(['send-email-subscribers', 'subscribers']); ?>">
                         <a href="#">
                             <i class="fa fa-envelope"></i> <span><?php echo trans("newsletter"); ?></span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
-                            <li>
+                            <li class="nav-send-email-subscribers">
                                 <a href="<?php echo admin_url(); ?>send-email-subscribers"><?php echo trans("send_email_subscribers"); ?></a>
                             </li>
-                            <li>
+                            <li class="nav-subscribers">
                                 <a href="<?php echo admin_url(); ?>subscribers"><?php echo trans("subscribers"); ?></a>
                             </li>
                         </ul>
                     </li>
 
-                    <li class="treeview">
+                    <li class="treeview<?php is_admin_nav_active(['product-reviews', 'user-reviews']); ?>">
                         <a href="#">
                             <i class="fa fa-star"></i>
                             <span><?php echo trans("reviews"); ?></span>
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?php echo admin_url(); ?>product-reviews"> <?php echo trans("product_reviews"); ?></a></li>
-                            <li><a href="<?php echo admin_url(); ?>user-reviews"> <?php echo trans("user_reviews"); ?></a></li>
+                            <li class="nav-product-reviews"><a href="<?php echo admin_url(); ?>product-reviews"> <?php echo trans("product_reviews"); ?></a></li>
+                            <li class="nav-user-reviews"><a href="<?php echo admin_url(); ?>user-reviews"> <?php echo trans("user_reviews"); ?></a></li>
                         </ul>
                     </li>
-                    <li class="treeview">
+                    <li class="treeview<?php is_admin_nav_active(['product-comments', 'blog-comments']); ?>">
                         <a href="#">
                             <i class="fa fa-comments"></i>
                             <span><?php echo trans("comments"); ?></span>
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?php echo admin_url(); ?>product-comments"> <?php echo trans("product_comments"); ?></a></li>
-                            <li><a href="<?php echo admin_url(); ?>blog-comments"> <?php echo trans("blog_comments"); ?></a></li>
+                            <li class="nav-product-comments"><a href="<?php echo admin_url(); ?>product-comments"> <?php echo trans("product_comments"); ?></a></li>
+                            <li class="nav-blog-comments"><a href="<?php echo admin_url(); ?>blog-comments"> <?php echo trans("blog_comments"); ?></a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="nav-storage">
                         <a href="<?php echo admin_url(); ?>storage">
                             <i class="fa fa-cloud-upload"></i>
                             <span><?php echo trans("storage"); ?></span>
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-cache-system">
                         <a href="<?php echo admin_url(); ?>cache-system">
                             <i class="fa fa-database"></i>
                             <span><?php echo trans("cache_system"); ?></span>
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-seo-tools">
                         <a href="<?php echo admin_url(); ?>seo-tools">
                             <i class="fa fa-wrench"></i> <span><?php echo trans("seo_tools"); ?></span>
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-ad-spaces">
                         <a href="<?php echo admin_url(); ?>ad-spaces">
                             <i class="fa fa-dollar"></i> <span><?php echo trans("ad_spaces"); ?></span>
                         </a>
@@ -572,46 +573,46 @@
 
 
                     <li class="header text-uppercase"><?php echo trans("settings"); ?></li>
-                    <li>
+                    <li class="nav-preferences">
                         <a href="<?php echo admin_url(); ?>preferences">
                             <i class="fa fa-check-square-o"></i>
                             <span><?php echo trans("preferences"); ?></span>
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-social-login">
                         <a href="<?php echo admin_url(); ?>social-login">
                             <i class="fa fa-share-alt"></i> <span><?php echo trans("social_login"); ?></span>
                         </a>
                     </li>
-                    <li class="treeview">
+                    <li class="treeview<?php is_admin_nav_active(['form-settings', 'form-settings/shipping-options', 'form-settings/product-conditions']); ?>">
                         <a href="#">
                             <i class="fa fa-cogs"></i>
                             <span><?php echo trans("form_settings"); ?></span>
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?php echo admin_url(); ?>form-settings"> <?php echo trans("form_settings"); ?></a></li>
+                            <li class="nav-form-settings"><a href="<?php echo admin_url(); ?>form-settings"> <?php echo trans("form_settings"); ?></a></li>
                             <li><a href="<?php echo admin_url(); ?>form-settings/shipping-options"> <?php echo trans("shipping_options"); ?></a></li>
                             <li><a href="<?php echo admin_url(); ?>form-settings/product-conditions"> <?php echo trans("product_conditions"); ?></a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="nav-payment-settings">
                         <a href="<?php echo admin_url(); ?>payment-settings">
                             <i class="fa fa-credit-card-alt" aria-hidden="true"></i> <span><?php echo trans("payment_settings"); ?></span>
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-currency-settings">
                         <a href="<?php echo admin_url(); ?>currency-settings">
                             <i class="fa fa-money"></i> <span><?php echo trans("currency_settings"); ?></span>
                         </a>
                     </li>
 
-                    <li>
+                    <li class="nav-languages">
                         <a href="<?php echo admin_url(); ?>languages">
                             <i class="fa fa-language"></i> <span><?php echo trans("language_settings"); ?></span>
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-email-settings">
                         <a href="<?php echo admin_url(); ?>email-settings">
                             <i class="fa fa-cog"></i> <span><?php echo trans("email_settings"); ?></span>
                         </a>
@@ -627,12 +628,12 @@
                             <li class="nav-font-settings"><a href="<?php echo admin_url(); ?>font-settings"> <?php echo trans("font_settings"); ?></a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="nav-system-settings">
                         <a href="<?php echo admin_url(); ?>system-settings">
                             <i class="fa fa-cogs"></i> <span><?php echo trans("system_settings"); ?></span>
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-settings">
                         <a href="<?php echo admin_url(); ?>settings">
                             <i class="fa fa-cogs"></i> <span><?php echo trans("general_settings"); ?></span>
                         </a>
@@ -641,6 +642,21 @@
             </section>
             <!-- /.sidebar -->
         </aside>
+        <?php
+        $segment2 = @$this->uri->segment(2);
+        $segment3 = @$this->uri->segment(3);
+
+        $uri_string = $segment2;
+        if (!empty($segment3)) {
+            $uri_string .= '-' . $segment3;
+        } ?>
+        <style>
+            <?php if (!empty($uri_string)) :
+                echo '.nav-' . $uri_string . ' > a{color: #fff !important;}';
+            else :
+                echo '.nav-home > a{color: #fff !important;}';
+            endif; ?>
+        </style>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">

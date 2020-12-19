@@ -3,7 +3,7 @@
 <div class="box">
     <div class="box-header with-border">
         <div class="left">
-            <h3 class="box-title"><?php echo trans('members'); ?></h3>
+            <h3 class="box-title"><?php echo trans('companies'); ?></h3>
         </div>
     </div><!-- /.box-header -->
 
@@ -17,14 +17,14 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="table-responsive">
-                    <?php $this->load->view('admin/users/_filters'); ?>
-                    <table class="table table-bordered table-striped">
+                    <table class="table table-bordered table-striped dataTable" id="cs_datatable" role="grid" aria-describedby="example1_info">
                         <thead>
                             <tr role="row">
                                 <th width="20"><?php echo trans('id'); ?></th>
                                 <th><?php echo trans('image'); ?></th>
-                                <th><?php echo trans('username'); ?></th>
+                                <th><?php echo trans('company_name'); ?></th>
                                 <th><?php echo trans('email'); ?></th>
+                                <th><?= trans("membership_plan"); ?></th>
                                 <th><?php echo trans('status'); ?></th>
                                 <th><?php echo str_replace(":", "", trans("last_seen")); ?></th>
                                 <th><?php echo trans('date'); ?></th>
@@ -33,7 +33,8 @@
                         </thead>
                         <tbody>
 
-                            <?php foreach ($users as $user) : ?>
+                            <?php foreach ($users as $user) :
+                                $membership_plan = $this->membership_model->get_user_plan_by_user_id($user->id); ?>
                                 <tr>
                                     <td><?php echo html_escape($user->id); ?></td>
                                     <td>
@@ -48,6 +49,7 @@
                                             <small class="text-danger">(<?php echo trans("unconfirmed"); ?>)</small>
                                         <?php endif; ?>
                                     </td>
+                                    <td><?= !empty($membership_plan) ? $membership_plan->plan_title : ''; ?></td>
                                     <td>
                                         <?php if ($user->banned == 0) : ?>
                                             <label class="label label-success"><?php echo trans('active'); ?></label>
@@ -65,7 +67,13 @@
                                             </button>
                                             <ul class="dropdown-menu options-dropdown">
                                                 <li>
-                                                    <a href="javascript:void(0)" onclick="open_close_user_shop(<?php echo $user->id; ?>,'');"><i class="fa fa-cart-plus option-icon"></i><?php echo trans('open_user_shop'); ?></a>
+                                                    <?php if ($user->banned == 0) : ?>
+                                                        <?php if ($user->is_active_shop_request == 0) : ?>
+                                                            <a href="javascript:void(0)" onclick="decline_user(<?php echo $user->id; ?>);"><i class="fa fa-times option-icon"></i><?php echo trans('close_user_shop'); ?></a>
+                                                        <?php else : ?>
+                                                            <a href="javascript:void(0)" onclick="decline_user(<?php echo $user->id; ?>);"><i class="fa fa-cart-plus option-icon"></i><?php echo trans('open_user_shop'); ?></a>
+                                                        <?php endif; ?>
+                                                    <?php endif; ?>
                                                 </li>
                                                 <li>
                                                     <?php if ($user->email_status != 1) : ?>
@@ -73,10 +81,12 @@
                                                     <?php endif; ?>
                                                 </li>
                                                 <li>
-                                                    <?php if ($user->banned == 0) : ?>
-                                                        <a href="javascript:void(0)" onclick="ban_remove_ban_user(<?php echo $user->id; ?>);"><i class="fa fa-stop-circle option-icon"></i><?php echo trans('ban_user'); ?></a>
-                                                    <?php else : ?>
-                                                        <a href="javascript:void(0)" onclick="ban_remove_ban_user(<?php echo $user->id; ?>);"><i class="fa fa-circle option-icon"></i><?php echo trans('remove_user_ban'); ?></a>
+                                                    <?php if ($user->is_active_shop_request == 0) : ?>
+                                                        <?php if ($user->banned == 0) : ?>
+                                                            <a href="javascript:void(0)" onclick="ban_remove_ban_user(<?php echo $user->id; ?>);"><i class="fa fa-stop-circle option-icon"></i><?php echo trans('ban_user'); ?></a>
+                                                        <?php else : ?>
+                                                            <a href="javascript:void(0)" onclick="ban_remove_ban_user(<?php echo $user->id; ?>);"><i class="fa fa-circle option-icon"></i><?php echo trans('remove_user_ban'); ?></a>
+                                                        <?php endif; ?>
                                                     <?php endif; ?>
                                                 </li>
                                                 <li>
@@ -94,7 +104,7 @@
 
                         </tbody>
                     </table>
-                    <?php if (empty($users)): ?>
+                    <?php if (empty($users)) : ?>
                         <p class="text-center text-muted"><?= trans("no_records_found"); ?></p>
                     <?php endif; ?>
                 </div>

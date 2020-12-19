@@ -2187,3 +2187,32 @@ if (!function_exists('get_membership_plan_features')) {
         return "";
     }
 }
+//print date
+if (!function_exists('formatted_date')) {
+    function formatted_date($timestamp)
+    {
+        return date("Y-m-d / H:i", strtotime($timestamp));
+    }
+}
+
+//get
+if (!function_exists('input_get')) {
+    function input_get($input_name)
+    {
+        $ci =& get_instance();
+        return clean_str($ci->input->get($input_name, true));
+    }
+}
+
+//clean string
+if (!function_exists('clean_str')) {
+    function clean_str($str)
+    {
+        $ci =& get_instance();
+        $str = trim($str);
+        $str = strip_tags($str);
+        $str = $ci->security->xss_clean($str);
+        $str = remove_special_characters($str, false);
+        return $str;
+    }
+}

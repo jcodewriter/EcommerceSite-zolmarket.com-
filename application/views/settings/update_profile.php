@@ -44,6 +44,14 @@
 
                         <?php echo form_open_multipart("profile_controller/update_profile_post", ['id' => 'form_validate']); ?>
                         <div class="form-box-body-other">
+                            <div class="form-group hidden-md-up" style="text-align: center;">
+                                <?php if ($this->general_settings->email_verification == 1) : ?>
+                                    <?php if ($user->email_status != 1) : ?>
+                                        <button type="submit" name="submit" value="resend_activation_email" class="btn resend-email__btn"><?php echo trans("resend_activation_email"); ?></button>
+                                        <!-- <button type="submit" name="submit" value="resend_activation_email" class="btn float-right btn-resend-email"><?php echo trans("resend_activation_email"); ?></button> -->
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                            </div>
                             <div class="form-group" style="text-align: center;">
                                 <label class="control-label"><?php echo trans("upload_your_shop"); ?></label>
                                 <div class="upload-image-container">
@@ -58,18 +66,23 @@
                             </div>
 
                             <div class="form-group" style="text-align: left">
-                                <label class="control-label"><?php echo trans("email_address"); ?></label>
-                                <?php if ($this->general_settings->email_verification == 1) : ?>
-                                    <?php if ($user->email_status == 1) : ?>
-                                        &nbsp;
-                                        <small class="text-success" style="font-size: 12px">(<?php echo trans("confirmed"); ?>)</small>
-                                        <img src="<?php echo base_url(); ?>assets/img/confirm.png" style="width:15px; margin: 3px 0 0 0" />
-                                    <?php else : ?>
-                                        &nbsp;
-                                        <small class="text-danger">(<?php echo trans("unconfirmed"); ?>)</small>
-                                        <button type="submit" name="submit" value="resend_activation_email" class="btn float-right btn-resend-email"><?php echo trans("resend_activation_email"); ?></button>
+                                <div class="email-label__wrapper">
+                                    <div class="label__wrapper">
+                                    <label class="control-label"><?php echo trans("email_address"); ?></label>
+                                    <?php if ($this->general_settings->email_verification == 1) : ?>
+                                        <?php if ($user->email_status == 1) : ?>
+                                            &nbsp;
+                                            <small class="text-success" style="font-size: 12px">(<?php echo trans("confirmed"); ?>)</small>
+                                            <img src="<?php echo base_url(); ?>assets/img/confirm.png" style="width:15px; margin: 3px 0 0 0" />
+                                            </div>
+                                        <?php else : ?>
+                                            &nbsp;
+                                            <small class="text-danger">(<?php echo trans("unconfirmed"); ?>)</small>
+                                            </div>
+                                            <button type="submit" name="submit" value="resend_activation_email" class="btn float-right resend-email__btn hidden-sm-down"><?php echo trans("resend_activation_email"); ?></button>
+                                        <?php endif; ?>
                                     <?php endif; ?>
-                                <?php endif; ?>
+                                </div>
 
                                 <input type="email" name="email" class="form-control form-input" value="<?php echo html_escape($user->email); ?>" placeholder="<?php echo trans("email_address"); ?>" required>
                             </div>

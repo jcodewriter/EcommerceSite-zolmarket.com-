@@ -88,6 +88,48 @@ class Ajax_controller extends Home_Core_Controller
         }
     }
 
+    //get states
+    public function get_states()
+    {
+        $country_id = $this->input->post('country_id', true);
+        $states = $this->location_model->get_states_by_country($country_id);
+        $status = 0;
+        $content = '';
+        if (!empty($states)) {
+            $status = 1;
+            $content = '<option value="">' . trans("state") . '</option>';
+            foreach ($states as $item) {
+                $content .= '<option value="' . $item->id . '">' . html_escape($item->name) . '</option>';
+            }
+        }
+        $data = array(
+            'result' => $status,
+            'content' => $content
+        );
+        echo json_encode($data);
+    }
+
+    //get cities
+    public function get_cities()
+    {
+        $state_id = $this->input->post('state_id', true);
+        $cities = $this->location_model->get_cities_by_state($state_id);
+        $status = 0;
+        $content = '';
+        if (!empty($cities)) {
+            $status = 1;
+            $content = '<option value="">' . trans("city") . '</option>';
+            foreach ($cities as $item) {
+                $content .= '<option value="' . $item->id . '">' . html_escape($item->name) . '</option>';
+            }
+        }
+        $data = array(
+            'result' => $status,
+            'content' => $content
+        );
+        echo json_encode($data);
+    }
+
     //search location
     public function filter_location()
     {

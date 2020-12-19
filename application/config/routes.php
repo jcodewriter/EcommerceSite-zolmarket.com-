@@ -288,8 +288,10 @@ $route[$r_admin . '/edit-plan/(:num)'] = 'membership_controller/edit_plan/$1';
 $route[$r_admin . '/members'] = 'admin_controller/members';
 $route[$r_admin . '/vendors'] = 'admin_controller/vendors';
 $route[$r_admin . '/administrators'] = 'admin_controller/administrators';
+$route[$r_admin . '/companies'] = 'admin_controller/companies';
 $route[$r_admin . '/shop-opening-requests'] = 'admin_controller/shop_opening_requests';
 $route[$r_admin . '/add-administrator'] = 'admin_controller/add_administrator';
+$route[$r_admin . '/edit-user/(:num)'] = 'membership_controller/edit_user/$1';
 
 $route[$r_admin . "/cache-system"] = 'admin_controller/cache_system';
 $route[$r_admin . '/storage'] = 'admin_controller/storage';

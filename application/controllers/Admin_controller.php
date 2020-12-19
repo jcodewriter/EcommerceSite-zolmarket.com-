@@ -781,7 +781,9 @@ class Admin_controller extends Admin_Core_Controller
     {
         $data['title'] = trans("members");
         $this->order_admin_model->show_notifications(".007.002");
-        $data['users'] = $this->auth_model->get_members();
+        $data['page_url'] = admin_url() . "members";
+        $pagination = $this->paginate($data['page_url'], $this->auth_model->get_users_count_by_role('member'));
+        $data['users'] = $this->auth_model->get_paginated_filtered_products('member', $pagination['per_page'], $pagination['offset']);
 
         $this->load->view('admin/includes/_header', $data);
         $this->load->view('admin/users/members');
@@ -795,10 +797,27 @@ class Admin_controller extends Admin_Core_Controller
     {
         $data['title'] = trans("vendors");
         $this->order_admin_model->show_notifications(".007.001");
-        $data['users'] = $this->auth_model->get_vendors();
+        $data['page_url'] = admin_url() . "members";
+        $pagination = $this->paginate($data['page_url'], $this->auth_model->get_users_count_by_role_private('vendor'));
+        $data['users'] = $this->auth_model->get_paginated_filtered_products_by_private('vendor', $pagination['per_page'], $pagination['offset']);
 
         $this->load->view('admin/includes/_header', $data);
         $this->load->view('admin/users/vendors');
+        $this->load->view('admin/includes/_footer');
+    }
+
+    /**
+     * Administrators
+     */
+    public function companies()
+    {
+        $data['title'] = trans("companies");
+        $data['page_url'] = admin_url() . "companies";
+        $pagination = $this->paginate($data['page_url'], $this->auth_model->get_users_count_by_role_company('vendor'));
+        $data['users'] = $this->auth_model->get_paginated_filtered_products_by_company('vendor', $pagination['per_page'], $pagination['offset']);
+
+        $this->load->view('admin/includes/_header', $data);
+        $this->load->view('admin/users/companies');
         $this->load->view('admin/includes/_footer');
     }
 
