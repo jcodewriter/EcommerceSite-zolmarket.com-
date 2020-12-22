@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit56d6ad02d38b7a281c8a66dcad3539f9
+class ComposerStaticInit581212d3d405280c16db3f01de547f7b
 {
     public static $prefixLengthsPsr4 = array (
         'S' => 
@@ -13,11 +13,8 @@ class ComposerStaticInit56d6ad02d38b7a281c8a66dcad3539f9
         ),
         'P' => 
         array (
+            'PayPalHttp\\' => 11,
             'PayPalCheckoutSdk\\' => 18,
-        ),
-        'B' => 
-        array (
-            'BraintreeHttp\\' => 14,
         ),
     );
 
@@ -26,21 +23,21 @@ class ComposerStaticInit56d6ad02d38b7a281c8a66dcad3539f9
         array (
             0 => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/samples',
         ),
+        'PayPalHttp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/paypal/paypalhttp/lib/PayPalHttp',
+        ),
         'PayPalCheckoutSdk\\' => 
         array (
             0 => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk',
-        ),
-        'BraintreeHttp\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/braintree/braintreehttp/lib/BraintreeHttp',
         ),
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit56d6ad02d38b7a281c8a66dcad3539f9::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit56d6ad02d38b7a281c8a66dcad3539f9::$prefixDirsPsr4;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit581212d3d405280c16db3f01de547f7b::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit581212d3d405280c16db3f01de547f7b::$prefixDirsPsr4;
 
         }, null, ClassLoader::class);
     }

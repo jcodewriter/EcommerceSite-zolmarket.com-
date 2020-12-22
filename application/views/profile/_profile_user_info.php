@@ -14,7 +14,7 @@
                     </a>
                 <?php } ?>
             </div>
-            <img class="img-fluid  only_on_dadeesktop" src="<?php echo get_user_avatar($user); ?>" style="width:400px;height:200px;object-fit:cover;border-radius:5px;">
+            <img class="img-fluid  only_on_dadeesktop sys-border sys-shadow" src="<?php echo get_user_avatar($user); ?>" style="width:400px;height:200px;object-fit:cover;border-radius:5px;">
             <div class="only_on_mobile">
                 <div class="row-custom profile-buttons" style="position: absolute;bottom: 15px;right: -15px;">
                     <div class="buttons">

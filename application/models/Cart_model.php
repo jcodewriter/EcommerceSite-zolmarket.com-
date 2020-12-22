@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Cart_model extends CI_Model
 {
@@ -479,6 +479,19 @@ class Cart_model extends CI_Model
     {
         if (!empty($this->session->userdata('mds_cart_shipping_address'))) {
             $this->session->unset_userdata('mds_cart_shipping_address');
+        }
+    }
+
+    //validate cart
+    public function validate_cart()
+    {
+        $cart_total = $this->cart_model->get_sess_cart_total();
+        print_r($cart_total); exit;
+        if (!empty($cart_total)) {
+            if ($cart_total->total <= 0 || $cart_total->is_stock_available != 1) {
+                redirect(lang_base_url() . "cart");
+                exit();
+            }
         }
     }
 }

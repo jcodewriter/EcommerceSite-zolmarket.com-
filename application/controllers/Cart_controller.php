@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Cart_controller extends Home_Core_Controller
 {
@@ -148,13 +148,55 @@ class Cart_controller extends Home_Core_Controller
         $data['title'] = trans("shopping_cart");
         $data['description'] = trans("shopping_cart") . " - " . $this->app_name;
         $data['keywords'] = trans("shopping_cart") . "," . $this->app_name;
-        $data['site_settings'] = get_site_settings();
-        $data['mds_payment_type'] = 'sale';
 
-        $payment_type = $this->input->get('payment_type', true);
+        $payment_type = input_get('payment_type');
+        if ($payment_type != "membership" && $payment_type != "promote") {
+            $payment_type = "sale";
+        }
 
-        if (!empty($payment_type) && $payment_type == 'promote') {
-            if ($this->promoted_products_enabled != 1) {
+        if ($payment_type == "sale") {
+            // $this->cart_model->validate_cart();
+            //sale payment
+            $data['cart_items'] = $this->cart_model->get_sess_cart_items();
+            $data['mds_payment_type'] = "sale";
+            if ($data['cart_items'] == null) {
+                redirect(lang_base_url() . "cart");
+            }
+            //check auth for digital products
+            if (!$this->auth_check && $this->cart_model->check_cart_has_digital_product() == true) {
+                $this->session->set_flashdata('error', trans("msg_digital_product_register_error"));
+                redirect(lang_base_url() . "register");
+                exit();
+            }
+            $data['cart_total'] = $this->cart_model->get_sess_cart_total();
+            $user_id = null;
+            if ($this->auth_check) {
+                $user_id = $this->auth_user->id;
+            }
+
+            $data['cart_has_physical_product'] = $this->cart_model->check_cart_has_physical_product();
+            $data['cart_has_digital_product'] = $this->cart_model->check_cart_has_digital_product();
+            $this->cart_model->unset_sess_cart_payment_method();
+        } elseif ($payment_type == 'membership') {
+            //membership payment
+            if ($this->general_settings->membership_plans_system != 1) {
+                redirect(lang_base_url());
+                exit();
+            }
+            $data['mds_payment_type'] = 'membership';
+            $plan_id = $this->session->userdata('modesy_selected_membership_plan_id');
+            if (empty($plan_id)) {
+                redirect(lang_base_url());
+                exit();
+            }
+            $data['plan'] = $this->membership_model->get_plan($plan_id);
+            if (empty($data['plan'])) {
+                redirect(lang_base_url());
+                exit();
+            }
+        } elseif ($payment_type == 'promote') {
+            //promote payment
+            if ($this->general_settings->promoted_products != 1) {
                 redirect(lang_base_url());
             }
             $data['mds_payment_type'] = 'promote';
@@ -162,28 +204,6 @@ class Cart_controller extends Home_Core_Controller
             if (empty($data['promoted_plan'])) {
                 redirect(lang_base_url());
             }
-        } else {
-            $data['cart_items'] = $this->cart_model->get_sess_cart_items();
-            if ($data['cart_items'] == null) {
-                redirect(lang_base_url() . "cart");
-            }
-
-            //check auth for digital products
-            if (!auth_check() && $this->cart_model->check_cart_has_digital_product() == true) {
-                $this->session->set_flashdata('error', trans("msg_digital_product_register_error"));
-                redirect(lang_base_url() . 'register');
-                exit();
-            }
-
-            $data['cart_total'] = $this->cart_model->get_sess_cart_total();
-            $user_id = null;
-            if (auth_check()) {
-                $user_id = user()->id;
-            }
-
-            $data['cart_has_physical_product'] = $this->cart_model->check_cart_has_physical_product();
-            $data['cart_has_digital_product'] = $this->cart_model->check_cart_has_digital_product();
-            $this->cart_model->unset_sess_cart_payment_method();
         }
 
         $this->load->view('partials/_header', $data);
@@ -196,16 +216,31 @@ class Cart_controller extends Home_Core_Controller
      */
     public function payment_method_post()
     {
+        // $this->cart_model->set_sess_cart_payment_method();
+
+        // $mds_payment_type = $this->input->post('mds_payment_type', true);
+        // if (!empty($mds_payment_type) && $mds_payment_type == 'promote') {
+        //     $transaction_number = 'bank-' . generate_transaction_number();
+        //     $this->session->set_userdata('mds_promote_bank_transaction_number', $transaction_number);
+        //     redirect(lang_base_url() . "cart/payment?payment_type=promote");
+        // } else {
+        //     redirect(lang_base_url() . "cart/payment");
+        // }
         $this->cart_model->set_sess_cart_payment_method();
 
         $mds_payment_type = $this->input->post('mds_payment_type', true);
-        if (!empty($mds_payment_type) && $mds_payment_type == 'promote') {
+        if ($mds_payment_type == "sale") {
+            redirect(lang_base_url() . "cart/payment");
+        } elseif ($mds_payment_type == 'membership') {
+            $transaction_number = 'bank-' . generate_transaction_number();
+            $this->session->set_userdata('mds_membership_bank_transaction_number', $transaction_number);
+            redirect(lang_base_url() . "cart/payment?payment_type=membership");
+        } elseif ($mds_payment_type == 'promote') {
             $transaction_number = 'bank-' . generate_transaction_number();
             $this->session->set_userdata('mds_promote_bank_transaction_number', $transaction_number);
             redirect(lang_base_url() . "cart/payment?payment_type=promote");
-        } else {
-            redirect(lang_base_url() . "cart/payment");
         }
+        redirect(lang_base_url());
     }
 
     /**
@@ -216,11 +251,11 @@ class Cart_controller extends Home_Core_Controller
         $data['title'] = trans("shopping_cart");
         $data['description'] = trans("shopping_cart") . " - " . $this->app_name;
         $data['keywords'] = trans("shopping_cart") . "," . $this->app_name;
-        $data['mds_payment_type'] = 'sale';
+        $data['mds_payment_type'] = "sale";
 
         //check guest checkout
         if (empty($this->auth_check) && $this->general_settings->guest_checkout != 1) {
-            redirect(lang_base_url() . "cart");
+            redirect(lang_base_url("cart"));
             exit();
         }
 
@@ -230,9 +265,49 @@ class Cart_controller extends Home_Core_Controller
             redirect(lang_base_url() . "cart/payment-method");
         }
 
-        $payment_type = $this->input->get('payment_type', true);
-        if (!empty($payment_type) && $payment_type == 'promote') {
-            if ($this->promoted_products_enabled != 1) {
+        $payment_type = input_get('payment_type');
+        if ($payment_type != "membership" && $payment_type != "promote") {
+            $payment_type = "sale";
+        }
+
+        if ($payment_type == "sale") {
+            // $this->cart_model->validate_cart();
+            //sale payment
+            $data['cart_items'] = $this->cart_model->get_sess_cart_items();
+            if ($data['cart_items'] == null) {
+                redirect(lang_base_url("cart"));
+            }
+            $data['cart_total'] = $this->cart_model->get_sess_cart_total();
+            $data["shipping_address"] = $this->cart_model->get_sess_cart_shipping_address();
+            $data['cart_has_physical_product'] = $this->cart_model->check_cart_has_physical_product();
+            //total amount
+            $data['total_amount'] = $data['cart_total']->total;
+            $data['currency'] = $this->payment_settings->default_product_currency;
+        } elseif ($payment_type == 'membership') {
+            //membership payment
+            if ($this->general_settings->membership_plans_system != 1) {
+                redirect(lang_base_url());
+                exit();
+            }
+            $data['mds_payment_type'] = 'membership';
+            $plan_id = $this->session->userdata('modesy_selected_membership_plan_id');
+            if (empty($plan_id)) {
+                redirect(lang_base_url());
+                exit();
+            }
+            $data['plan'] = $this->membership_model->get_plan($plan_id);
+            if (empty($data['plan'])) {
+                redirect(lang_base_url());
+                exit();
+            }
+            //total amount
+            $data['total_amount'] = $data['plan']->price;
+            $data['currency'] = $this->payment_settings->default_product_currency;
+            $data['transaction_number'] = $this->session->userdata('mds_membership_bank_transaction_number');
+            $data['cart_total'] = null;
+        } elseif ($payment_type == 'promote') {
+            //promote payment
+            if ($this->general_settings->promoted_products != 1) {
                 redirect(lang_base_url());
             }
             $data['mds_payment_type'] = 'promote';
@@ -245,17 +320,6 @@ class Cart_controller extends Home_Core_Controller
             $data['currency'] = $this->payment_settings->default_product_currency;
             $data['transaction_number'] = $this->session->userdata('mds_promote_bank_transaction_number');
             $data['cart_total'] = null;
-        } else {
-            $data['cart_items'] = $this->cart_model->get_sess_cart_items();
-            if ($data['cart_items'] == null) {
-                redirect(lang_base_url() . "cart");
-            }
-            $data['cart_total'] = $this->cart_model->get_sess_cart_total();
-            $data["shipping_address"] = $this->cart_model->get_sess_cart_shipping_address();
-            $data['cart_has_physical_product'] = $this->cart_model->check_cart_has_physical_product();
-            //total amount
-            $data['total_amount'] = $data['cart_total']->total;
-            $data['currency'] = $this->payment_settings->default_product_currency;
         }
 
         //check pagseguro
@@ -351,7 +415,6 @@ class Cart_controller extends Home_Core_Controller
                 //execute promote payment
                 $this->execute_promote_payment($data_transaction, 'json_encode');
             }
-
         } catch (\Stripe\Error\Base $e) {
             $this->session->set_flashdata('error', $e);
             $data = array(
@@ -475,7 +538,6 @@ class Cart_controller extends Home_Core_Controller
                 //execute promote payment
                 $this->execute_promote_payment($data_transaction, 'direct');
             }
-
         } else {
             echo "sdsd";
             $this->session->set_flashdata('error', trans("msg_error"));
@@ -627,7 +689,6 @@ class Cart_controller extends Home_Core_Controller
 
         $this->session->set_flashdata('error', trans("msg_error"));
         redirect(lang_base_url() . "/cart/payment");
-
     }
 
     /**
@@ -774,5 +835,4 @@ class Cart_controller extends Home_Core_Controller
         $this->load->view('cart/promote_payment_completed', $data);
         $this->load->view('partials/_footer');
     }
-
 }

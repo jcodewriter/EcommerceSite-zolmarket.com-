@@ -1268,7 +1268,7 @@ $(document).on('click', '#show_phone_number2', function () {
  */
 
 //login
-// $(document).ready(function () {
+$(document).ready(function () {
 //     $("#form_login").submit(function (event) {
 //         // event.preventDefault()
 //         var form = $(this);
@@ -1307,8 +1307,8 @@ $(document).on('click', '#show_phone_number2', function () {
 //         form[0].classList.add('was-validated');
 //     });
 
-//     set_site_language(lang_id)
-// });
+    set_site_language(lang_id)
+});
 
 $(".cart-link-mobile").on("click", function () {
     document.cookie = `redirect_url=${$(this).attr("redirect_url")}; expires=; path=/`;

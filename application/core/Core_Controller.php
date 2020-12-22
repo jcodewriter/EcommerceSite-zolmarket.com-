@@ -12,7 +12,7 @@ class Core_Controller extends CI_Controller
         //storage settings
         $this->storage_settings = $this->settings_model->get_storage_settings();
         //form settings
-        // $this->form_settings = '';
+        // $this->form_settings = $this->settings_model->get_form_settings();
 
         //set timezone
         date_default_timezone_set($this->general_settings->timezone);

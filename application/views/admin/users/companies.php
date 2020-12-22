@@ -17,7 +17,8 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped dataTable" id="cs_datatable" role="grid" aria-describedby="example1_info">
+                    <?php $this->load->view('admin/users/_filters'); ?>
+                    <table class="table table-bordered table-striped">
                         <thead>
                             <tr role="row">
                                 <th width="20"><?php echo trans('id'); ?></th>

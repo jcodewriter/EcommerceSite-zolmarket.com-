@@ -3,7 +3,7 @@
 <div class="row-custom">
     <div class="profile-details">
         <div class="leftdesktop">
-            <div class="only_on_mobile" style="width: calc(100% + 30px);height: 200px;margin-bottom: 10px;margin-left: -15px;background: url('<?php echo get_user_avatar($user); ?>');background-position: center;background-repeat: no-repeat;background-color: #282828;background-size: cover;">
+            <div class="only_on_mobile sys-border sys-shadow" style="width: calc(100% + 30px);height: 200px;margin-bottom: 10px;margin-left: -15px;background: url('<?php echo get_user_avatar($user); ?>');background-position: center;background-repeat: no-repeat;background-color: #282828;background-size: cover;">
                 <?php
                 $matches = explode("/", $_SERVER['REQUEST_URI']);
                 $last_word = $matches[1];
@@ -14,7 +14,7 @@
                     </a>
                 <?php } ?>
             </div>
-            <img class="img-fluid  only_on_dadeesktop" src="<?php echo get_user_avatar($user); ?>" style="width:400px;height:200px;object-fit:cover;border-radius:5px;">
+            <img class="img-fluid  only_on_dadeesktop sys-border sys-shadow" src="<?php echo get_user_avatar($user); ?>" style="width:400px;height:200px;object-fit:cover;border-radius:5px;">
             <div class="only_on_mobile">
                 <div class="row-custom profile-buttons" style="position: absolute;bottom: 15px;right: -15px;">
                     <div class="buttons">

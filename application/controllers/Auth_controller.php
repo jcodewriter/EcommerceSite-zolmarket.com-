@@ -55,8 +55,19 @@ class Auth_controller extends Home_Core_Controller
             if ($this->auth_model->login()) {
                 redirect(lang_base_url());
             } else {
+                $idiom = $this->session->userdata('modesy_selected_lang');
                 $this->session->set_flashdata('form_data', $this->auth_model->input_values());
-                $this->session->set_flashdata('error', trans("msg_error"));
+                if ($idiom == 1) {
+                    $this->config->set_item('language', 'default');
+                    $this->lang->load('site', 'default');
+                    $oops = $this->lang->line('msg_error');
+                    $this->session->set_flashdata('error', $oops);
+                } else {
+                    $this->config->set_item('language', 'العربية');
+                    $this->lang->load('site', 'العربية');
+                    $oops = $this->lang->line('msg_error');
+                    $this->session->set_flashdata('error', $oops);
+                }
                 redirect($this->agent->referrer());
             }
             reset_flash_data();
@@ -265,8 +276,8 @@ class Auth_controller extends Home_Core_Controller
         $this->form_validation->set_rules('confirm_password', trans("password_confirm"), 'required|xss_clean|matches[password]');
 
         if ($this->form_validation->run() === false) {
-            $this->session->set_flashdata('errors', validation_errors());
             $this->session->set_flashdata('form_data', $this->auth_model->input_values());
+            $this->session->set_flashdata('errors', validation_errors());
             redirect($this->agent->referrer());
         } else {
             $email = $this->input->post('email', true);
@@ -327,6 +338,7 @@ class Auth_controller extends Home_Core_Controller
                 }
             } else {
                 //error
+                echo "here"; exit;
                 $this->session->set_flashdata('form_data', $this->auth_model->input_values());
                 $this->session->set_flashdata('error', trans("msg_error"));
                 redirect($this->agent->referrer());

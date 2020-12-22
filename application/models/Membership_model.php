@@ -46,7 +46,7 @@ class Membership_model extends CI_Model
 			'plan_id' => $plan->id,
 			'plan_title' => $this->get_membership_plan_title($plan),
 			'payment_amount' => get_price($plan->price, 'decimal'),
-			'currency' => $this->payment_settings->default_currency,
+			'currency' => $this->payment_settings->default_product_currency,
 			'payment_status' => $data_transaction["payment_status"],
 			'ip_address' => 0,
 			'created_at' => date('Y-m-d H:i:s')
@@ -122,7 +122,7 @@ class Membership_model extends CI_Model
 			'number_of_ads' => $plan->number_of_ads,
 			'number_of_days' => $plan->number_of_days,
 			'price' => $plan->price,
-			'currency' => $this->payment_settings->default_currency,
+			'currency' => $this->payment_settings->default_product_currency,
 			'is_free' => $plan->is_free,
 			'is_unlimited_number_of_ads' => $plan->is_unlimited_number_of_ads,
 			'is_unlimited_time' => $plan->is_unlimited_time,
@@ -143,6 +143,7 @@ class Membership_model extends CI_Model
 		}
 
 		$user_plan = $this->get_user_plan_by_user_id($user_id);
+		print_r($user_plan); exit;
 		if (!empty($user_plan)) {
 			//update plan
 			$this->db->where('id', $user_plan->id);
@@ -165,7 +166,7 @@ class Membership_model extends CI_Model
 			'number_of_ads' => $plan->number_of_ads,
 			'number_of_days' => $plan->number_of_days,
 			'price' => 0,
-			'currency' => $this->payment_settings->default_currency,
+			'currency' => $this->payment_settings->default_product_currency,
 			'is_free' => $plan->is_free,
 			'is_unlimited_number_of_ads' => $plan->is_unlimited_number_of_ads,
 			'is_unlimited_time' => $plan->is_unlimited_time,

@@ -19,6 +19,41 @@ class Product_controller extends Home_Core_Controller
     }
 
     /**
+     * Select Membership Plan
+     */
+    public function select_membership_plan()
+    {
+        get_method();
+        if ($this->general_settings->membership_plans_system != 1) {
+            redirect(lang_base_url());
+            exit();
+        }
+        //check auth
+        if (!$this->auth_check) {
+            redirect(lang_base_url());
+        }
+        if ($this->general_settings->email_verification == 1 && $this->auth_user->email_status != 1) {
+            $this->session->set_flashdata('error', trans("msg_confirmed_required"));
+            redirect(lang_base_url() . "update_profile");
+        }
+        if ($this->auth_user->is_active_shop_request == 1) {
+            redirect(lang_base_url() . "start_selling");
+        }
+        $data['title'] = trans("select_your_plan");
+        $data['description'] = trans("select_your_plan") . " - " . $this->app_name;
+        $data['keywords'] = trans("select_your_plan") . "," . $this->app_name;
+        $data['request_type'] = "new";
+        $data["membership_plans"] = $this->membership_model->get_plans();
+        // $data["index_settings"] = get_index_settings();
+        $data['user_current_plan'] = $this->membership_model->get_user_plan_by_user_id($this->auth_user->id);
+        $data['user_ads_count'] = $this->membership_model->get_user_ads_count($this->auth_user->id);
+
+        $this->load->view('partials/_header', $data);
+        $this->load->view('product/select_membership_plan', $data);
+        $this->load->view('partials/_footer');
+    }
+
+    /**
      * Start Selling
      */
     public function start_selling()
@@ -37,13 +72,28 @@ class Product_controller extends Home_Core_Controller
             redirect(lang_base_url() . "settings/update-profile");
         }
 
-        $data['btn_string'] = '';
-        $data['state_button'] = '';
         $data['title'] = trans("start_selling");
         $data['description'] = trans("start_selling") . " - " . $this->app_name;
         $data['keywords'] = trans("start_selling") . "," . $this->app_name;
         $data["site_settings"] = get_site_settings();
 
+        if ($this->general_settings->membership_plans_system == 1) {
+            if ($this->auth_user->is_active_shop_request != 1) {
+                $plan_id = clean_number(input_get('plan'));
+                if (empty($plan_id)) {
+                    redirect(lang_base_url("select_membership_plan"));
+                    exit();
+                }
+                $data['plan'] = $this->membership_model->get_plan($plan_id);
+                if (empty($data['plan'])) {
+                    redirect(lang_base_url("select_membership_plan"));
+                    exit();
+                }
+            }
+        }
+
+        $data['btn_string'] = '';
+        $data['state_button'] = '';
         $data["user"] = user();
         $data["countries"] = $this->location_model->get_countries();
         $data["states"] = $this->location_model->get_states_by_country($data["user"]->country_id);
@@ -55,7 +105,7 @@ class Product_controller extends Home_Core_Controller
         if ($this->general_settings->default_product_location) {
             $data["states"] = $this->location_model->get_states_by_country($this->general_settings->default_product_location);
         }
-        // print_r($data); exit;
+
         $this->load->view('partials/_header', $data);
         $this->load->view('product/start_selling', $data);
         $this->load->view('partials/_footer');
@@ -74,9 +124,6 @@ class Product_controller extends Home_Core_Controller
         }
 
         $user_id = $this->input->post('id', true);
-        // echo $this->input->post('is_private', true);
-        // exit;
-        // redirect($this->agent->referrer());
         $firstname = $this->input->post('firstname', true);
         $lastname = $this->input->post('lastname', true);
 
@@ -100,38 +147,73 @@ class Product_controller extends Home_Core_Controller
             $this->session->set_flashdata('error', trans("msg_shop_name_unique_error"));
             redirect($this->agent->referrer());
         }
+        if ($this->general_settings->membership_plans_system == 1) {
+            $plan_id = clean_number($this->input->post('plan_id', true));
+            if (empty($plan_id)) {
+                redirect(lang_base_url() . "select_membership_plan");
+                exit();
+            }
+            $plan = $this->membership_model->get_plan($plan_id);
 
-        if ($this->auth_model->add_shop_opening_requests($data)) {
-            //send email
-            $user = get_user($user_id);
-            if (!empty($user) && $this->general_settings->send_email_shop_opening_request == 1) {
-                $email_data = array(
-                    'email_type' => 'email_shop_request',
-                    'to' => $this->general_settings->mail_options_account,
-                    'subject' => trans("shop_opening_request"),
-                    'email_link' => admin_url() . "shop-opening-requests",
-                    'email_button_text' => trans("view_details")
-                );
-                $this->session->set_userdata('mds_send_email_data', json_encode($email_data));
+            if (empty($plan)) {
+                redirect(lang_base_url() . "select_membership_plan");
+                exit();
             }
-            // language 
-            $idiom = $this->session->userdata('modesy_selected_lang');
-            if ($idiom == 2) {
-                $this->config->set_item('language', 'العربية');
-                $this->lang->load('site', 'العربية');
-                $oops = $this->lang->line('msg_start_selling');
-                $this->session->set_flashdata('success', $oops);
+            if ($plan->is_free == 1) {
+                // print_r($plan); exit;
+                if ($this->auth_model->add_shop_opening_requests($data)) {
+                    $this->membership_model->add_user_free_plan($plan, $this->auth_user->id);
+                    redirect(lang_base_url() . "start_selling");
+                    exit();
+                } else {
+                    $this->session->set_flashdata('error', trans("msg_error"));
+                    redirect($this->agent->referrer());
+                }
             } else {
-                $this->config->set_item('language', 'default');
-                $this->lang->load('site', 'default');
-                $oops = $this->lang->line('msg_start_selling');
-                $this->session->set_flashdata('success', $oops);
+                $data['is_active_shop_request'] = 0;
+                if ($this->auth_model->add_shop_opening_requests($data)) {
+                    //go to checkout
+                    $this->session->set_userdata('modesy_selected_membership_plan_id', $plan->id);
+                    $this->session->set_userdata('modesy_membership_request_type', "new");
+                    redirect(lang_base_url() . "cart/payment-method?payment_type=membership");
+                } else {
+                    $this->session->set_flashdata('error', trans("msg_error"));
+                    redirect($this->agent->referrer());
+                }
             }
-            redirect($this->agent->referrer());
-        } else {
-            $this->session->set_flashdata('error', trans("msg_error"));
-            redirect($this->agent->referrer());
         }
+
+        // if ($this->auth_model->add_shop_opening_requests($data)) {
+        //     //send email
+        //     $user = get_user($user_id);
+        //     if (!empty($user) && $this->general_settings->send_email_shop_opening_request == 1) {
+        //         $email_data = array(
+        //             'email_type' => 'email_shop_request',
+        //             'to' => $this->general_settings->mail_options_account,
+        //             'subject' => trans("shop_opening_request"),
+        //             'email_link' => admin_url() . "shop-opening-requests",
+        //             'email_button_text' => trans("view_details")
+        //         );
+        //         $this->session->set_userdata('mds_send_email_data', json_encode($email_data));
+        //     }
+        //     // language 
+        //     $idiom = $this->session->userdata('modesy_selected_lang');
+        //     if ($idiom == 2) {
+        //         $this->config->set_item('language', 'العربية');
+        //         $this->lang->load('site', 'العربية');
+        //         $oops = $this->lang->line('msg_start_selling');
+        //         $this->session->set_flashdata('success', $oops);
+        //     } else {
+        //         $this->config->set_item('language', 'default');
+        //         $this->lang->load('site', 'default');
+        //         $oops = $this->lang->line('msg_start_selling');
+        //         $this->session->set_flashdata('success', $oops);
+        //     }
+        //     redirect($this->agent->referrer());
+        // } else {
+        //     $this->session->set_flashdata('error', trans("msg_error"));
+        //     redirect($this->agent->referrer());
+        // }
     }
 
     public function add_post()
@@ -152,8 +234,15 @@ class Product_controller extends Home_Core_Controller
             redirect(lang_base_url());
         }
 
-        if (!is_user_vendor() || !user()->is_approval) {
-            redirect(lang_base_url() . 'start-selling');
+        if (!is_user_vendor()) {
+            if ($this->general_settings->membership_plans_system == 1) {
+                redirect(lang_base_url() . "start_selling/select_membership_plan");
+                exit();
+            }
+            if (!user()->is_approval) {
+                redirect(lang_base_url() . "start_selling");
+                exit();
+            }
         }
 
         if (user()->is_approval == 1) {
@@ -162,22 +251,8 @@ class Product_controller extends Home_Core_Controller
         }
 
         if ($this->general_settings->email_verification == 1 && user()->email_status != 1) {
-
-            // language 
-            $idiom = $this->session->userdata('modesy_selected_lang');
-            if ($idiom == 2) {
-                $this->config->set_item('language', 'العربية');
-                $this->lang->load('site', 'العربية');
-                $oops = $this->lang->line('msg_confirmed_required');
-                $this->session->set_flashdata('error', $oops);
-                redirect(lang_base_url() . "settings/update-profile");
-            } else {
-                $this->config->set_item('language', 'default');
-                $this->lang->load('site', 'default');
-                $oops = $this->lang->line('msg_confirmed_required');
-                $this->session->set_flashdata('error', $oops);
-                redirect(lang_base_url() . "settings/update-profile");
-            }
+            $this->session->set_flashdata('error', trans('msg_confirmed_required'));
+            redirect(lang_base_url() . "settings/update-profile");
         }
 
         $data['title'] = trans("sell_now");
@@ -189,8 +264,10 @@ class Product_controller extends Home_Core_Controller
         $data["file_manager_images"] = $this->file_model->get_user_file_manager_images();
         $data["active_product_system_array"] = $this->get_activated_product_system();
 
+        $view = !$this->membership_model->is_allowed_adding_product() ? 'plan_expired' : 'add_product';
+
         $this->load->view('partials/_header', $data);
-        $this->load->view('product/add_product', $data);
+        $this->load->view('product/' . $view, $data);
         $this->load->view('partials/_footer');
     }
 
@@ -1250,7 +1327,8 @@ class Product_controller extends Home_Core_Controller
     //get states
     public function get_states()
     {
-        echo "here"; exit;
+        echo "here";
+        exit;
         $country_id = $this->input->post('country_id', true);
         $states = $this->location_model->get_states_by_country($country_id);
         foreach ($states as $item) {

@@ -90,6 +90,7 @@ $route['settings'] = 'profile_controller/settings';
 $route['settings/update-profile'] = 'profile_controller/update_profile';
 $route['settings/shop-settings'] = 'profile_controller/shop_settings';
 $route['settings/contact-informations'] = 'profile_controller/contact_informations';
+$route['settings/membership-plan'] = 'profile_controller/membership_plan';
 $route['settings/social-media'] = 'profile_controller/social_media';
 $route['settings/change-password'] = 'profile_controller/change_password';
 $route['settings/shipping-address'] = 'profile_controller/shipping_address';
@@ -97,13 +98,15 @@ $route['settings/shipping-address'] = 'profile_controller/shipping_address';
 $route['contact'] = 'home_controller/contact';
 $route['members'] = 'home_controller/members';
 /*product routes*/
-$route['start-selling'] = 'product_controller/start_selling';
+$route['start_selling/select_membership_plan']['GET'] = 'product_controller/select_membership_plan';
+$route['start_selling']['GET'] = 'product_controller/start_selling';
 $route['add-post'] = 'product_controller/add_post';
 $route['add-product-success/(:num)'] = 'product_controller/add_product_success/$1';
 $route['sell-now'] = 'product_controller/add_product';
 $route['sell-now/(:num)'] = 'product_controller/edit_draft/$1';
 $route['sell-now/product-details/(:num)'] = 'product_controller/edit_product_details/$1';
 $route['sell-now/edit-product/(:num)'] = 'product_controller/edit_product/$1';
+$route['select_membership_plan'] = 'product_controller/select_membership_plan';
 $route['search'] = 'home_controller/search';
 $route['products'] = 'product_controller/products';
 // $route['filter'] = 'product_controller/products_filter/$';
@@ -386,6 +389,7 @@ foreach ($languages as $language) {
         $route[$key . '/sell-now/(:num)'] = 'product_controller/edit_draft/$1';
         $route[$key . '/sell-now/product-details/(:num)'] = 'product_controller/edit_product_details/$1';
         $route[$key . '/sell-now/edit-product/(:num)'] = 'product_controller/edit_product/$1';
+        $route[$key . '/select_membership_plan'] = 'product_controller/select_membership_plan';
         $route[$key . '/search'] = 'home_controller/search';
 
         $route[$key . '/products'] = 'product_controller/products';

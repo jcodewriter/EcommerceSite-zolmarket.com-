@@ -1,5 +1,5 @@
 {
     "require": {
-        "stripe/stripe-php": "^6.19"
+        "stripe/stripe-php": "^7.56"
     }
 }

@@ -114,6 +114,9 @@
 											<div class="col-12">
 												<?php echo form_open_multipart('product_controller/start_selling_post', ['id' => 'form_validate', 'class' => 'validate_terms', 'name' => 'start_selling', 'onkeypress' => "return event.keyCode != 13;"]); ?>
 												<input type="hidden" name="id" value="<?php echo $this->auth_user->id; ?>">
+												<?php if (!empty($plan)) : ?>
+													<input type="hidden" name="plan_id" value="<?php echo $plan->id; ?>">
+												<?php endif; ?>
 
 												<div class="form-box" style="margin-bottom: 0 !important">
 													<div class="form-box-head text-center">
