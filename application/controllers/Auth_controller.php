@@ -60,12 +60,12 @@ class Auth_controller extends Home_Core_Controller
                 if ($idiom == 1) {
                     $this->config->set_item('language', 'default');
                     $this->lang->load('site', 'default');
-                    $oops = $this->lang->line('msg_error');
+                    $oops = $this->lang->line('login_error');
                     $this->session->set_flashdata('error', $oops);
                 } else {
                     $this->config->set_item('language', 'العربية');
                     $this->lang->load('site', 'العربية');
-                    $oops = $this->lang->line('msg_error');
+                    $oops = $this->lang->line('login_error');
                     $this->session->set_flashdata('error', $oops);
                 }
                 redirect($this->agent->referrer());
