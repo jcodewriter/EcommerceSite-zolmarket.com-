@@ -375,6 +375,7 @@ foreach ($languages as $language) {
         $route[$key . '/settings/update-profile'] = 'profile_controller/update_profile';
         $route[$key . '/settings/shop-settings'] = 'profile_controller/shop_settings';
         $route[$key . '/settings/contact-informations'] = 'profile_controller/contact_informations';
+        $route[$key . '/settings/membership-plan'] = 'profile_controller/membership_plan';
         $route[$key . '/settings/social-media'] = 'profile_controller/social_media';
         $route[$key . '/settings/change-password'] = 'profile_controller/change_password';
         $route[$key . '/settings/shipping-address'] = 'profile_controller/shipping_address';
@@ -382,7 +383,8 @@ foreach ($languages as $language) {
         $route[$key . '/contact'] = 'home_controller/contact';
         $route[$key . '/members'] = 'home_controller/members';
         /*product routes*/
-        $route[$key . '/start-selling'] = 'product_controller/start_selling';
+        $route[$key . '/start_selling/select_membership_plan']['GET'] = 'product_controller/select_membership_plan';
+        $route[$key . '/start_selling']['GET'] = 'product_controller/start_selling';
         $route[$key . '/add-post'] = 'product_controller/add_post';
         $route[$key . '/add-product-success/(:num)'] = 'product_controller/add_product_success/$1';
         $route[$key . '/sell-now'] = 'product_controller/add_product';
