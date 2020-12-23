@@ -276,7 +276,6 @@ class Auth_controller extends Home_Core_Controller
         $this->form_validation->set_rules('confirm_password', trans("password_confirm"), 'required|xss_clean|matches[password]');
 
         if ($this->form_validation->run() === false) {
-            echo validation_errors(); exit;
             $this->session->set_flashdata('errors', validation_errors());
             $this->session->set_flashdata('form_data', $this->auth_model->input_values());
             redirect($this->agent->referrer());
@@ -339,7 +338,6 @@ class Auth_controller extends Home_Core_Controller
                 }
             } else {
                 //error
-                echo "here"; exit;
                 $this->session->set_flashdata('form_data', $this->auth_model->input_values());
                 $this->session->set_flashdata('error', trans("msg_error"));
                 redirect($this->agent->referrer());
