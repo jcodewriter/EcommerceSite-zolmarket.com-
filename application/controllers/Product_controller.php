@@ -265,7 +265,17 @@ class Product_controller extends Home_Core_Controller
         $data["file_manager_images"] = $this->file_model->get_user_file_manager_images();
         $data["active_product_system_array"] = $this->get_activated_product_system();
 
-        $view = !$this->membership_model->is_allowed_adding_product() ? 'plan_expired' : 'add_product';
+        $view = 'plan_expired';
+        if (user()->role == "admin")
+            $view = 'add_product';
+        else {
+            if (!$this->membership_model->is_allowed_adding_product()) {
+                redirect(lang_base_url() . "settings/membership-plan");
+                exit();
+            } else {
+                $view = 'add_product';
+            }
+        }
 
         $this->load->view('partials/_header', $data);
         $this->load->view('product/' . $view, $data);
