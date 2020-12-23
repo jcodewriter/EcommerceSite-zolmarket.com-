@@ -164,4 +164,42 @@ class Membership_controller extends Admin_Core_Controller
             }
         }
     }
+
+    /**
+     * Membership Transactions
+     */
+    public function transactions_membership()
+    {
+        $data['title'] = trans("membership_transactions");
+        $data['description'] = trans("membership_transactions") . " - " . $this->app_name;
+        $data['keywords'] = trans("membership_transactions") . "," . $this->app_name;
+
+        $data['num_rows'] = $this->membership_model->get_membership_transactions_count(null);
+        $pagination = $this->paginate(admin_url() . "membership-transactions", $data['num_rows']);
+        $data['transactions'] = $this->membership_model->get_paginated_membership_transactions(null, $pagination['per_page'], $pagination['offset']);
+
+        $this->load->view('admin/includes/_header', $data);
+        $this->load->view('admin/membership/transactions');
+        $this->load->view('admin/includes/_footer');
+    }
+
+    /**
+     * Approve Payment Post
+     */
+    public function approve_payment_post()
+    {
+        $id = $this->input->post('id', true);
+        $this->membership_model->approve_transaction_payment($id);
+        $this->session->set_flashdata('success', trans("msg_updated"));
+        redirect($this->agent->referrer());
+    }
+
+    /**
+     * Delete Transactions Post
+     */
+    public function delete_transaction_post()
+    {
+        $id = $this->input->post('id', true);
+        $this->membership_model->delete_transaction($id);
+    }
 }

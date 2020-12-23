@@ -287,6 +287,7 @@ $route[$r_admin . '/update-city/(:num)'] = 'admin_controller/update_city/$1';
 /* membership plan */
 $route[$r_admin . '/membership-plans'] = 'membership_controller/membership_plans';
 $route[$r_admin . '/edit-plan/(:num)'] = 'membership_controller/edit_plan/$1';
+$route[$r_admin . '/transactions-membership'] = 'membership_controller/transactions_membership';
 /*users routes*/
 $route[$r_admin . '/members'] = 'admin_controller/members';
 $route[$r_admin . '/vendors'] = 'admin_controller/vendors';

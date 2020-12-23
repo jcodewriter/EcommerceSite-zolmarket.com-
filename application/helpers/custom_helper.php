@@ -2216,3 +2216,31 @@ if (!function_exists('clean_str')) {
         return $str;
     }
 }
+
+//get payment method
+if (!function_exists('get_payment_method')) {
+    function get_payment_method($payment_method)
+    {
+        if ($payment_method == "Bank Transfer") {
+            return trans("bank_transfer");
+        } elseif ($payment_method == "Cash On Delivery") {
+            return trans("cash_on_delivery");
+        } else {
+            return $payment_method;
+        }
+    }
+}
+
+//get payment status
+if (!function_exists('get_payment_status')) {
+    function get_payment_status($payment_status)
+    {
+        if ($payment_status == "payment_received") {
+            return trans("payment_received");
+        } elseif ($payment_status == "awaiting_payment") {
+            return trans("awaiting_payment");
+        } else {
+            return $payment_status;
+        }
+    }
+}
