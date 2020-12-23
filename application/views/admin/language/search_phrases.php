@@ -24,6 +24,7 @@
 
                         <?php echo form_open('language_controller/update_phrases_post'); ?>
                         <input type="hidden" name="id" class="form-control" value="<?php echo $language->id; ?>">
+                        <input type="hidden" name="file_name" class="form-control" value="<?php echo $file_name; ?>">
                         <input type="hidden" id="lang_folder" class="form-control" value="<?php echo $language->folder_name; ?>">
 
                         <table class="table table-bordered table-striped dataTable">

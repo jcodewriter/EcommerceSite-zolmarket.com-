@@ -202,6 +202,7 @@ class Language_model extends CI_Model
     {
         $lang = array();
         $phrases = array();
+        // echo $file_name; exit;
         include 'application/language/' . $lang_name . '/' . $file_name . '.php';
 
         foreach ($lang as $key => $value) {
@@ -264,6 +265,7 @@ class Language_model extends CI_Model
         $end = '?>';
 
         $old_phrases = $this->get_phrases($lang_name, $file_name);
+        // print_r($phrases); exit;
 
         foreach ($old_phrases as $old_item) {
 
