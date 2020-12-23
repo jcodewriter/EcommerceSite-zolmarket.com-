@@ -234,7 +234,7 @@ class Product_controller extends Home_Core_Controller
             redirect(lang_base_url());
         }
 
-        if (!is_user_vendor()) {
+        if (!is_user_vendor() || !user()->is_approval) {
             if ($this->general_settings->membership_plans_system == 1) {
                 redirect(lang_base_url() . "start_selling/select_membership_plan");
                 exit();
