@@ -181,39 +181,39 @@ class Product_controller extends Home_Core_Controller
                     redirect($this->agent->referrer());
                 }
             }
+        } else {
+            if ($this->auth_model->add_shop_opening_requests($data)) {
+                //send email
+                $user = get_user($user_id);
+                if (!empty($user) && $this->general_settings->send_email_shop_opening_request == 1) {
+                    $email_data = array(
+                        'email_type' => 'email_shop_request',
+                        'to' => $this->general_settings->mail_options_account,
+                        'subject' => trans("shop_opening_request"),
+                        'email_link' => admin_url() . "shop-opening-requests",
+                        'email_button_text' => trans("view_details")
+                    );
+                    $this->session->set_userdata('mds_send_email_data', json_encode($email_data));
+                }
+                // language 
+                $idiom = $this->session->userdata('modesy_selected_lang');
+                if ($idiom == 2) {
+                    $this->config->set_item('language', 'العربية');
+                    $this->lang->load('site', 'العربية');
+                    $oops = $this->lang->line('msg_start_selling');
+                    $this->session->set_flashdata('success', $oops);
+                } else {
+                    $this->config->set_item('language', 'default');
+                    $this->lang->load('site', 'default');
+                    $oops = $this->lang->line('msg_start_selling');
+                    $this->session->set_flashdata('success', $oops);
+                }
+                redirect($this->agent->referrer());
+            } else {
+                $this->session->set_flashdata('error', trans("msg_error"));
+                redirect($this->agent->referrer());
+            }
         }
-
-        // if ($this->auth_model->add_shop_opening_requests($data)) {
-        //     //send email
-        //     $user = get_user($user_id);
-        //     if (!empty($user) && $this->general_settings->send_email_shop_opening_request == 1) {
-        //         $email_data = array(
-        //             'email_type' => 'email_shop_request',
-        //             'to' => $this->general_settings->mail_options_account,
-        //             'subject' => trans("shop_opening_request"),
-        //             'email_link' => admin_url() . "shop-opening-requests",
-        //             'email_button_text' => trans("view_details")
-        //         );
-        //         $this->session->set_userdata('mds_send_email_data', json_encode($email_data));
-        //     }
-        //     // language 
-        //     $idiom = $this->session->userdata('modesy_selected_lang');
-        //     if ($idiom == 2) {
-        //         $this->config->set_item('language', 'العربية');
-        //         $this->lang->load('site', 'العربية');
-        //         $oops = $this->lang->line('msg_start_selling');
-        //         $this->session->set_flashdata('success', $oops);
-        //     } else {
-        //         $this->config->set_item('language', 'default');
-        //         $this->lang->load('site', 'default');
-        //         $oops = $this->lang->line('msg_start_selling');
-        //         $this->session->set_flashdata('success', $oops);
-        //     }
-        //     redirect($this->agent->referrer());
-        // } else {
-        //     $this->session->set_flashdata('error', trans("msg_error"));
-        //     redirect($this->agent->referrer());
-        // }
     }
 
     public function add_post()
@@ -1327,8 +1327,6 @@ class Product_controller extends Home_Core_Controller
     //get states
     public function get_states()
     {
-        echo "here";
-        exit;
         $country_id = $this->input->post('country_id', true);
         $states = $this->location_model->get_states_by_country($country_id);
         foreach ($states as $item) {
