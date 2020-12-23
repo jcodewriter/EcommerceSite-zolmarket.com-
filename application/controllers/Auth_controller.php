@@ -276,8 +276,9 @@ class Auth_controller extends Home_Core_Controller
         $this->form_validation->set_rules('confirm_password', trans("password_confirm"), 'required|xss_clean|matches[password]');
 
         if ($this->form_validation->run() === false) {
-            $this->session->set_flashdata('form_data', $this->auth_model->input_values());
+            echo validation_errors(); exit;
             $this->session->set_flashdata('errors', validation_errors());
+            $this->session->set_flashdata('form_data', $this->auth_model->input_values());
             redirect($this->agent->referrer());
         } else {
             $email = $this->input->post('email', true);
@@ -290,8 +291,8 @@ class Auth_controller extends Home_Core_Controller
 
             //is email unique
             if (!$this->auth_model->is_unique_email($email)) {
-                $this->session->set_flashdata('form_data', $this->auth_model->input_values());
                 $this->session->set_flashdata('error', trans("msg_email_unique_error"));
+                $this->session->set_flashdata('form_data', $this->auth_model->input_values());
                 redirect($this->agent->referrer());
             }
             // is username unique

@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
 <div class="row">
 	<div class="col-lg-5 col-md-12">
@@ -13,14 +13,14 @@
 
 			<div class="box-body">
 				<!-- include message block -->
-				<?php if (!empty($this->session->flashdata('mes_set_language'))):
+				<?php if (!empty($this->session->flashdata('mes_set_language'))) :
 					$this->load->view('admin/includes/_messages_form');
 				endif; ?>
 
 				<div class="form-group">
 					<label><?php echo trans("language"); ?></label>
 					<select name="site_lang" class="form-control">
-						<?php foreach ($languages as $language): ?>
+						<?php foreach ($languages as $language) : ?>
 							<option value="<?php echo $language->id; ?>" <?php echo ($selected_lang->id == $language->id) ? 'selected' : ''; ?>><?php echo $language->name; ?></option>
 						<?php endforeach; ?>
 					</select>
@@ -33,7 +33,8 @@
 				<button type="submit" class="btn btn-primary pull-right"><?php echo trans('save_changes'); ?></button>
 			</div>
 			<!-- /.box-footer -->
-			<?php echo form_close(); ?><!-- form end -->
+			<?php echo form_close(); ?>
+			<!-- form end -->
 		</div>
 
 		<div class="box">
@@ -47,28 +48,25 @@
 
 			<div class="box-body">
 				<!-- include message block -->
-				<?php if (empty($this->session->flashdata('mes_set_language'))):
+				<?php if (empty($this->session->flashdata('mes_set_language'))) :
 					$this->load->view('admin/includes/_messages_form');
 				endif; ?>
 
 				<div class="form-group">
 					<label><?php echo trans("language_name"); ?></label>
-					<input type="text" class="form-control" name="name" placeholder="<?php echo trans("language_name"); ?>"
-						   value="<?php echo old('name'); ?>" maxlength="200" <?php echo ($rtl == true) ? 'dir="rtl"' : ''; ?> required>
+					<input type="text" class="form-control" name="name" placeholder="<?php echo trans("language_name"); ?>" value="<?php echo old('name'); ?>" maxlength="200" <?php echo ($rtl == true) ? 'dir="rtl"' : ''; ?> required>
 					<small>(Ex: English)</small>
 				</div>
 
 				<div class="form-group">
 					<label class="control-label"><?php echo trans("short_form"); ?> </label>
-					<input type="text" class="form-control" name="short_form" placeholder="<?php echo trans("short_form"); ?>"
-						   value="<?php echo old('short_form'); ?>" maxlength="200" <?php echo ($rtl == true) ? 'dir="rtl"' : ''; ?> required>
+					<input type="text" class="form-control" name="short_form" placeholder="<?php echo trans("short_form"); ?>" value="<?php echo old('short_form'); ?>" maxlength="200" <?php echo ($rtl == true) ? 'dir="rtl"' : ''; ?> required>
 					<small>(Ex: en)</small>
 				</div>
 
 				<div class="form-group">
 					<label class="control-label"><?php echo trans("language_code"); ?> </label>
-					<input type="text" class="form-control" name="language_code" placeholder="<?php echo trans("language_code"); ?>"
-						   value="<?php echo old('language_code'); ?>" maxlength="200" <?php echo ($rtl == true) ? 'dir="rtl"' : ''; ?> required>
+					<input type="text" class="form-control" name="language_code" placeholder="<?php echo trans("language_code"); ?>" value="<?php echo old('language_code'); ?>" maxlength="200" <?php echo ($rtl == true) ? 'dir="rtl"' : ''; ?> required>
 					<small>(Ex: en_us)</small>
 				</div>
 
@@ -177,7 +175,8 @@
 				<button type="submit" class="btn btn-primary pull-right"><?php echo trans('add_language'); ?></button>
 			</div>
 			<!-- /.box-footer -->
-			<?php echo form_close(); ?><!-- form end -->
+			<?php echo form_close(); ?>
+			<!-- form end -->
 		</div>
 	</div>
 
@@ -196,55 +195,62 @@
 							<?php $this->load->view('admin/includes/_messages'); ?>
 						</div>
 						<div class="col-sm-12">
-							<table class="table table-bordered table-striped dataTable" id="cs_datatable" role="grid"
-								   aria-describedby="example1_info">
+							<table class="table table-bordered table-striped dataTable" id="cs_datatable" role="grid" aria-describedby="example1_info">
 								<thead>
-								<tr role="row">
-									<th width="20"><?php echo trans('id'); ?></th>
-									<th><?php echo trans('language_name'); ?></th>
-									<th><?php echo trans('translation'); ?></th>
-									<th><?php echo trans('status'); ?></th>
-									<th class="th-options"><?php echo trans('options'); ?></th>
-								</tr>
+									<tr role="row">
+										<th width="20"><?php echo trans('id'); ?></th>
+										<th><?php echo trans('language_name'); ?></th>
+										<th><?php echo trans('translation'); ?></th>
+										<th><?php echo trans('status'); ?></th>
+										<th class="th-options"><?php echo trans('options'); ?></th>
+									</tr>
 								</thead>
 								<tbody>
 
-								<?php foreach ($languages as $item): ?>
-									<tr>
-										<td><?php echo html_escape($item->id); ?></td>
-										<td><?php echo html_escape($item->name); ?></td>
-										<td>
-											<a href="<?php echo admin_url(); ?>update-phrases/<?php echo $item->id; ?>?page=1" class="btn btn-sm btn-success float-right">
-												<i class="fa fa-exchange"></i>&nbsp;&nbsp;<?php echo trans('edit_translations'); ?>
-											</a>
-										</td>
-										<td>
-											<?php if ($item->status == 1): ?>
-												<label class="label label-success lbl-lang-status"><?php echo trans('active'); ?></label>
-											<?php else: ?>
-												<label class="label label-danger lbl-lang-status"><?php echo trans('inactive'); ?></label>
-											<?php endif; ?>
-										</td>
-										<td>
-											<div class="dropdown">
-												<button class="btn bg-purple dropdown-toggle btn-select-option"
-														type="button"
-														data-toggle="dropdown"><?php echo trans('select_option'); ?>
-													<span class="caret"></span>
-												</button>
-												<ul class="dropdown-menu options-dropdown">
-													<li>
-														<a href="<?php echo admin_url(); ?>update-language/<?php echo html_escape($item->id); ?>"><i class="fa fa-edit option-icon"></i><?php echo trans('edit'); ?></a>
-													</li>
-													<li>
-														<a href="javascript:void(0)" onclick="delete_item('language_controller/delete_language_post','<?php echo $item->id; ?>','<?php echo trans("confirm_language"); ?>');"><i class="fa fa-trash option-icon"></i><?php echo trans('delete'); ?></a>
-													</li>
-												</ul>
-											</div>
-										</td>
-									</tr>
+									<?php foreach ($languages as $item) : ?>
+										<tr>
+											<td><?php echo html_escape($item->id); ?></td>
+											<td><?php echo html_escape($item->name); ?></td>
+											<td>
+												<div class="dropdown">
+													<button href="<?php echo admin_url(); ?>update-phrases/<?php echo $item->id; ?>?page=1" class="btn btn-sm btn-success dropdown-toggle btn-select-option float-right" type="button" data-toggle="dropdown">
+														<i class="fa fa-exchange"></i>&nbsp;&nbsp;<?php echo trans('edit_translations'); ?>&nbsp;&nbsp;<span class="caret"></span>
+													</button>
+													<ul class="dropdown-menu options-dropdown">
+														<li>
+															<a href="<?php echo admin_url(); ?>update-phrases/<?php echo $item->id; ?>?page=1&file_name=site_lang"><?php echo trans('site_lang'); ?></a>
+														</li>
+														<li>
+															<a href="<?php echo admin_url(); ?>update-phrases/<?php echo $item->id; ?>?page=1&file_name=form_validation_lang"><?php echo trans('form_validation_lang'); ?></a>
+														</li>
+													</ul>
+												</div>
+											</td>
+											<td>
+												<?php if ($item->status == 1) : ?>
+													<label class="label label-success lbl-lang-status"><?php echo trans('active'); ?></label>
+												<?php else : ?>
+													<label class="label label-danger lbl-lang-status"><?php echo trans('inactive'); ?></label>
+												<?php endif; ?>
+											</td>
+											<td>
+												<div class="dropdown">
+													<button class="btn bg-purple dropdown-toggle btn-select-option" type="button" data-toggle="dropdown"><?php echo trans('select_option'); ?>
+														<span class="caret"></span>
+													</button>
+													<ul class="dropdown-menu options-dropdown">
+														<li>
+															<a href="<?php echo admin_url(); ?>update-language/<?php echo html_escape($item->id); ?>"><i class="fa fa-edit option-icon"></i><?php echo trans('edit'); ?></a>
+														</li>
+														<li>
+															<a href="javascript:void(0)" onclick="delete_item('language_controller/delete_language_post','<?php echo $item->id; ?>','<?php echo trans("confirm_language"); ?>');"><i class="fa fa-trash option-icon"></i><?php echo trans('delete'); ?></a>
+														</li>
+													</ul>
+												</div>
+											</td>
+										</tr>
 
-								<?php endforeach; ?>
+									<?php endforeach; ?>
 
 								</tbody>
 							</table>

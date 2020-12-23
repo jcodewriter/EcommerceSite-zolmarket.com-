@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Language_model extends CI_Model
 {
@@ -198,11 +198,11 @@ class Language_model extends CI_Model
     }
 
     //get phrases
-    public function get_phrases($lang_name)
+    public function get_phrases($lang_name, $file_name)
     {
         $lang = array();
         $phrases = array();
-        include 'application/language/' . $lang_name . '/site_lang.php';
+        include 'application/language/' . $lang_name . '/' . $file_name . '.php';
 
         foreach ($lang as $key => $value) {
             $phrases[] = array(
@@ -210,16 +210,15 @@ class Language_model extends CI_Model
                 'label' => $value
             );
         }
-
         return $phrases;
     }
 
     //search phrases
-    public function search_phrases($lang_name, $q)
+    public function search_phrases($lang_name, $file_name, $q)
     {
         $lang = array();
         $phrases = array();
-        include 'application/language/' . $lang_name . '/site_lang.php';
+        include 'application/language/' . $lang_name . '/' . $file_name . '.php';
 
         foreach ($lang as $key => $value) {
             if ((strpos($key, $q) !== false) || (strpos($value, $q) !== false)) {
@@ -229,7 +228,6 @@ class Language_model extends CI_Model
                 );
             }
         }
-
         return $phrases;
     }
 
@@ -259,13 +257,13 @@ class Language_model extends CI_Model
     }
 
     //update language file
-    public function update_language_file($lang_name, $phrases, $labels)
+    public function update_language_file($lang_name, $file_name, $phrases, $labels)
     {
         $start = '<?php defined("BASEPATH") OR exit("No direct script access allowed");' . PHP_EOL . PHP_EOL;
         $keys = '';
         $end = '?>';
 
-        $old_phrases = $this->get_phrases($lang_name);
+        $old_phrases = $this->get_phrases($lang_name, $file_name);
 
         foreach ($old_phrases as $old_item) {
 
@@ -284,22 +282,21 @@ class Language_model extends CI_Model
                     if (strpos($labels["label"][$i], '"') !== false) {
                         $labels["label"][$i] = str_replace('"', '&quot;', $labels["label"][$i]);
                     }
-
                 }
 
                 $i++;
             }
 
             $keys .= '$lang["' . $old_item["phrase"] . '"] = "' . $old_item["label"] . '";' . PHP_EOL;
-
         }
 
         $content = $start . $keys . $end;
 
-        file_put_contents(FCPATH . "application/language/" . $lang_name . "/site_lang.php", $content);
+        file_put_contents(FCPATH . "application/language/" . $lang_name . "/" . $file_name . ".php", $content);
     }
 
-    public function get_other_lang() {
+    public function get_other_lang()
+    {
         $this->db->where("id > ", 2);
         $query = $this->db->get("languages");
         return $query->result();

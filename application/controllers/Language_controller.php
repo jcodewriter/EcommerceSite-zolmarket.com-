@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Language_controller extends Admin_Core_Controller
 {
@@ -158,15 +158,19 @@ class Language_controller extends Admin_Core_Controller
         }
 
         $data['page'] = $this->input->get('page', true);
+        $data['file_name'] = $this->input->get('file_name', true);
 
         if (empty($data['page'])) {
-            redirect("language/update_phrases/" . $id . "?page=1");
+            redirect("language/update_phrases/" . $id . "?page=1&file_name=" . $data['file_name']);
         }
 
-        $data["phrases"] = $this->language_model->get_phrases($data['language']->folder_name);
-
+        $data["phrases"] = array();
+        if ($data['file_name'] == 'site_lang') {
+            $data["phrases"] = $this->language_model->get_phrases($data['language']->folder_name, $data['file_name']);
+        } else {
+            $data["phrases"] = $this->language_model->get_phrases($data['language']->folder_name, $data['file_name']);
+        }
         $data["tab_count"] = ceil(count($data["phrases"]) / 50);
-
         $this->session->set_userdata("phrases", $data["phrases"]);
 
         $this->load->view('admin/includes/_header', $data);
@@ -181,6 +185,7 @@ class Language_controller extends Admin_Core_Controller
     public function update_phrases_post()
     {
         $id = $this->input->post("id");
+        $file_name = $this->input->post("file_name");
 
         $data['language'] = $this->language_model->get_language($id);
 
@@ -191,7 +196,7 @@ class Language_controller extends Admin_Core_Controller
         $phrases = $this->input->post(array('phrase'));
         $labels = $this->input->post(array('label'));
 
-        $this->language_model->update_language_file($data['language']->folder_name, $phrases, $labels);
+        $this->language_model->update_language_file($data['language']->folder_name, $file_name, $phrases, $labels);
 
         $this->session->set_flashdata('success', trans("msg_updated"));
         sleep(3);
@@ -205,6 +210,8 @@ class Language_controller extends Admin_Core_Controller
     {
         $id = trim($this->input->get('id', TRUE));
         $data["q"] = trim($this->input->get('q', TRUE));
+        $data['file_name'] = $this->input->get('file_name', true);
+
         if (empty($data['q'])) {
             redirect($this->agent->referrer());
         }
@@ -218,7 +225,7 @@ class Language_controller extends Admin_Core_Controller
         if (empty($data['language'])) {
             redirect($this->agent->referrer());
         }
-        $data["phrases"] = $this->language_model->search_phrases($data['language']->folder_name, $data["q"]);
+        $data["phrases"] = $this->language_model->search_phrases($data['language']->folder_name, $data['file_name'], $data["q"]);
 
         $this->session->set_userdata("phrases", $data["phrases"]);
 
@@ -226,5 +233,4 @@ class Language_controller extends Admin_Core_Controller
         $this->load->view('admin/language/search_phrases', $data);
         $this->load->view('admin/includes/_footer');
     }
-
 }

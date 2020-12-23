@@ -838,10 +838,11 @@ table.dataTable {
 }
 
 .phrases-search {
-    position: absolute;
-    right: 15px;
+    /* position: absolute; */
+    /* right: 15px; */
     top: 0;
     max-width: 400px;
+    float: right;
 }
 
 .phrases-search input {
