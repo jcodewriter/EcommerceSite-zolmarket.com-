@@ -146,6 +146,7 @@ class Product_controller extends Home_Core_Controller
             $this->session->set_flashdata('form_data', $data);
             $this->session->set_flashdata('error', trans("msg_shop_name_unique_error"));
             redirect($this->agent->referrer());
+            exit();
         }
         if ($this->general_settings->membership_plans_system == 1) {
             $plan_id = clean_number($this->input->post('plan_id', true));
