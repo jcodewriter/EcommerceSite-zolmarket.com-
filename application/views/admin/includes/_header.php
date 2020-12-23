@@ -447,16 +447,11 @@
                         </ul>
                     </li>
                     <li class="header"><?php echo trans("membership"); ?></li>
-                    <li class="treeview<?php is_admin_nav_active(['membership-plans', 'transactions-membership']); ?>">
-                        <a href="#">
+                    <li class="nav-membership-plans">
+                        <a href="<?php echo admin_url(); ?>membership-plans">
                             <i class="fa fa-adjust"></i>
-                            <span><?php echo trans("membership"); ?></span>
-                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                            <span><?php echo trans("membership_plans"); ?></span>
                         </a>
-                        <ul class="treeview-menu">
-                            <li class="nav-membership-plans"><a href="<?php echo admin_url(); ?>membership-plans"> <?php echo trans("membership_plans"); ?></a></li>
-                            <li class="nav-transactions-membership"><a href="<?php echo admin_url(); ?>transactions-membership"> <?php echo trans("transactions"); ?></a></li>
-                        </ul>
                     </li>
                     <li class="nav-shop-opening-requests">
                         <a href="<?php echo admin_url(); ?>shop-opening-requests">
