@@ -23,6 +23,7 @@ class Product_controller extends Home_Core_Controller
      */
     public function select_membership_plan()
     {
+        $this->selected_btn = "f-btn-add";
         get_method();
         if ($this->general_settings->membership_plans_system != 1) {
             redirect(lang_base_url());
@@ -169,9 +170,10 @@ class Product_controller extends Home_Core_Controller
                 } else {
                     $this->session->set_flashdata('error', trans("msg_error"));
                     redirect($this->agent->referrer());
+                    exit();
                 }
             } else {
-                $data['is_active_shop_request'] = 0;
+                // $data['is_active_shop_request'] = 0;
                 if ($this->auth_model->add_shop_opening_requests($data)) {
                     //go to checkout
                     $this->session->set_userdata('modesy_selected_membership_plan_id', $plan->id);
@@ -180,6 +182,7 @@ class Product_controller extends Home_Core_Controller
                 } else {
                     $this->session->set_flashdata('error', trans("msg_error"));
                     redirect($this->agent->referrer());
+                    exit();
                 }
             }
         } else {
@@ -210,9 +213,11 @@ class Product_controller extends Home_Core_Controller
                     $this->session->set_flashdata('success', $oops);
                 }
                 redirect($this->agent->referrer());
+                exit();
             } else {
                 $this->session->set_flashdata('error', trans("msg_error"));
                 redirect($this->agent->referrer());
+                exit();
             }
         }
     }
@@ -268,14 +273,8 @@ class Product_controller extends Home_Core_Controller
         $view = 'plan_expired';
         if (user()->role == "admin")
             $view = 'add_product';
-        else {
-            if (!$this->membership_model->is_allowed_adding_product()) {
-                redirect(lang_base_url() . "settings/membership-plan");
-                exit();
-            } else {
-                $view = 'add_product';
-            }
-        }
+        else
+            $view = !$this->membership_model->is_allowed_adding_product() ? 'plan_expired' : 'add_product';
 
         $this->load->view('partials/_header', $data);
         $this->load->view('product/' . $view, $data);

@@ -20,7 +20,7 @@
                 <span class="count hidden-sm-up"> <i class="fas fa-angle-right"></i> </span>
             </a>
         </li>
-        <li class="nav-item <?php echo ($active_tab == 'contact_informations') ? 'active' : ''; ?>">
+        <li class="<?php echo $this->auth_user->role == "admin"? "d-none": ""; ?> nav-item <?php echo ($active_tab == 'contact_informations') ? 'active' : ''; ?>">
             <a class="nav-link setting__item-list" href="<?php echo lang_base_url(); ?>settings/membership-plan" id="hkmmembershipplan">
                 <div class="setting__item">
                     <div style="display: inline-block; width: 40px; height: 40px; border-radius: 5px; background-color: #683ab8; text-align: center">
