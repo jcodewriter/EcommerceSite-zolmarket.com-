@@ -1219,6 +1219,15 @@ if (!function_exists('get_state')) {
     }
 }
 
+//get city
+if (!function_exists('get_city')) {
+    function get_city($id)
+    {
+        $ci =& get_instance();
+        return $ci->location_model->get_city($id);
+    }
+}
+
 //get states by country
 if (!function_exists('get_states_by_country')) {
     function get_states_by_country($country_id)
@@ -2242,5 +2251,18 @@ if (!function_exists('get_payment_status')) {
         } else {
             return $payment_status;
         }
+    }
+}
+//get currency sign
+if (!function_exists('get_currency_sign')) {
+    function get_currency_sign($currency_key)
+    {
+        $ci =& get_instance();
+        if (!empty($ci->currencies)) {
+            if (isset($ci->currencies[$currency_key])) {
+                return $ci->currencies[$currency_key]["symbol"];
+            }
+        }
+        return "";
     }
 }

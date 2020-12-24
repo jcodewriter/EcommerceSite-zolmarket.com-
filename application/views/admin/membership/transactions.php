@@ -62,10 +62,9 @@
                                     <td><?php $user = get_user($item->user_id);
                                         if (!empty($user)) : ?>
                                             <div class="table-orders-user">
-                                                <a href="<?= generate_profile_url($user->slug); ?>" target="_blank">
-                                                    <img src="<?= get_user_avatar($user); ?>" alt="buyer" class="img-responsive" style="height: 50px;">
-                                                    <?= html_escape($user->username); ?>
-                                                </a>
+                                                <img src="<?= get_user_avatar($user); ?>" alt="buyer" class="img-responsive" style="height: 50px;">
+                                                <?= html_escape($user->username); ?>
+                                                
                                             </div>
                                         <?php endif; ?>
                                     </td>

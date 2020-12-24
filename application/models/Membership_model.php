@@ -143,7 +143,7 @@ class Membership_model extends CI_Model
 		}
 
 		$user_plan = $this->get_user_plan_by_user_id($user_id);
-		print_r($user_plan); exit;
+		
 		if (!empty($user_plan)) {
 			//update plan
 			$this->db->where('id', $user_plan->id);
@@ -244,6 +244,7 @@ class Membership_model extends CI_Model
 				return false;
 			}
 			$user_plan = $this->get_user_plan_by_user_id($this->auth_user->id);
+
 			if (!empty($user_plan)) {
 				if ($user_plan->is_unlimited_number_of_ads == 1) {
 					return true;

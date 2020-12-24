@@ -608,33 +608,56 @@ class Cart_controller extends Home_Core_Controller
     /**
      * Payment with Bank Transfer
      */
+    /**
+     * Payment with Bank Transfer
+     */
     public function bank_transfer_payment_post()
     {
         $mds_payment_type = $this->input->post('mds_payment_type', true);
 
-        if ($mds_payment_type == 'promote') {
+        if ($mds_payment_type == 'membership') {
+            $plan_id = $this->session->userdata('modesy_selected_membership_plan_id');
+            $plan = null;
+            if (!empty($plan_id)) {
+                $plan = $this->membership_model->get_plan($plan_id);
+            }
+            if (!empty($plan)) {
+                $data_transaction = array(
+                    'payment_method' => 'Bank Transfer',
+                    'payment_status' => 'awaiting_payment',
+                    'payment_id' => $this->session->userdata('mds_membership_bank_transaction_number')
+                );
+                //add user membership plan
+                $this->membership_model->add_user_plan($data_transaction, $plan, $this->auth_user->id);
+                //add transaction
+                $this->membership_model->add_membership_transaction_bank($data_transaction, $plan);
+                redirect(lang_base_url() . "membership-payment-completed?method=bank_transfer&transaction_number=" . $data_transaction['payment_id']);
+            }
+            $this->session->set_flashdata('error', trans("msg_error"));
+            redirect(lang_base_url() . "cart/payment?payment_type=membership");
+        } elseif ($mds_payment_type == 'promote') {
             $promoted_plan = $this->session->userdata('modesy_selected_promoted_plan');
             if (!empty($promoted_plan)) {
-                //execute payment
-                $this->promote_model->execute_promote_payment_bank($promoted_plan);
+                $transaction_number = $this->session->userdata('mds_promote_bank_transaction_number');
+                //add transaction
+                $this->promote_model->add_promote_transaction_bank($promoted_plan, $transaction_number);
 
                 $type = $this->session->userdata('mds_promote_product_type');
 
                 if (empty($type)) {
                     $type = "new";
                 }
-                $transaction_number = $this->session->userdata('mds_promote_bank_transaction_number');
-                redirect(lang_base_url() . "promote-payment-completed?method=bank_transfer&transaction_number=" . $transaction_number . "&product_id=" . $promoted_plan->product_id);
+                redirect(lang_base_url() . "promote_payment_completed?method=bank_transfer&transaction_number=" . $transaction_number . "&product_id=" . $promoted_plan->product_id);
             }
             $this->session->set_flashdata('error', trans("msg_error"));
-            redirect(lang_base_url() . "/cart/payment");
+            redirect(lang_base_url() . "cart/payment?payment_type=promote");
         } else {
             //add order
             $order_id = $this->order_model->add_order_offline_payment("Bank Transfer");
             $order = $this->order_model->get_order($order_id);
             if (!empty($order)) {
                 //decrease product quantity after sale
-                $this->order_model->decrease_product_quantity_after_sale($order);
+                $this->order_model->decrease_product_stock_after_sale($order->id);
                 //send email
                 if ($this->general_settings->send_email_buyer_purchase == 1) {
                     $email_data = array(
@@ -646,17 +669,66 @@ class Cart_controller extends Home_Core_Controller
 
                 if ($order->buyer_id == 0) {
                     $this->session->set_userdata('mds_show_order_completed_page', 1);
-                    redirect(lang_base_url() . "order-completed/" . $order->order_number);
+                    redirect(lang_base_url() . "order_completed/" . $order->order_number);
                 } else {
                     $this->session->set_flashdata('success', trans("msg_order_completed"));
-                    redirect(lang_base_url() . "order/" . $order->order_number);
+                    redirect(lang_base_url() . "order_details/" . $order->order_number);
                 }
             }
 
             $this->session->set_flashdata('error', trans("msg_error"));
-            redirect(lang_base_url() . "/cart/payment");
+            redirect(lang_base_url() . "cart/payment");
         }
     }
+    // public function bank_transfer_payment_post()
+    // {
+    //     $mds_payment_type = $this->input->post('mds_payment_type', true);
+
+    //     if ($mds_payment_type == 'promote') {
+    //         $promoted_plan = $this->session->userdata('modesy_selected_promoted_plan');
+    //         if (!empty($promoted_plan)) {
+    //             //execute payment
+    //             $this->promote_model->execute_promote_payment_bank($promoted_plan);
+
+    //             $type = $this->session->userdata('mds_promote_product_type');
+
+    //             if (empty($type)) {
+    //                 $type = "new";
+    //             }
+    //             $transaction_number = $this->session->userdata('mds_promote_bank_transaction_number');
+    //             redirect(lang_base_url() . "promote-payment-completed?method=bank_transfer&transaction_number=" . $transaction_number . "&product_id=" . $promoted_plan->product_id);
+    //         }
+    //         $this->session->set_flashdata('error', trans("msg_error"));
+    //         redirect(lang_base_url() . "/cart/payment");
+    //     } else {
+    //         //add order
+    //         $order_id = $this->order_model->add_order_offline_payment("Bank Transfer");
+    //         $order = $this->order_model->get_order($order_id);
+    //         if (!empty($order)) {
+    //             //decrease product quantity after sale
+    //             $this->order_model->decrease_product_quantity_after_sale($order);
+    //             //send email
+    //             if ($this->general_settings->send_email_buyer_purchase == 1) {
+    //                 $email_data = array(
+    //                     'email_type' => 'new_order',
+    //                     'order_id' => $order_id
+    //                 );
+    //                 $this->session->set_userdata('mds_send_email_data', json_encode($email_data));
+    //             }
+
+    //             if ($order->buyer_id == 0) {
+    //                 $this->session->set_userdata('mds_show_order_completed_page', 1);
+    //                 redirect(lang_base_url() . "order-completed/" . $order->order_number);
+    //             } else {
+    //                 $this->session->set_flashdata('success', trans("msg_order_completed"));
+    //                 redirect(lang_base_url() . "order/" . $order->order_number);
+    //             }
+    //         }
+
+    //         $this->session->set_flashdata('error', trans("msg_error"));
+    //         redirect(lang_base_url() . "/cart/payment");
+    //     }
+    // }
 
     /**
      * Cash on Delivery
@@ -834,5 +906,66 @@ class Cart_controller extends Home_Core_Controller
         $this->load->view('partials/_header', $data);
         $this->load->view('cart/promote_payment_completed', $data);
         $this->load->view('partials/_footer');
+    }
+
+    /**
+     * Membership Payment Completed
+     */
+    public function membership_payment_completed()
+    {
+        $data['title'] = trans("msg_payment_completed");
+        $data['description'] = trans("msg_payment_completed") . " - " . $this->app_name;
+        $data['keywords'] = trans("payment") . "," . $this->app_name;
+        $transaction_insert_id = $this->session->userdata('mds_membership_transaction_insert_id');
+        if (empty($transaction_insert_id)) {
+            redirect(lang_base_url());
+        }
+        $data["transaction"] = $this->membership_model->get_membership_transaction($transaction_insert_id);
+        if (empty($data["transaction"])) {
+            redirect(lang_base_url());
+            exit();
+        }
+
+        $data["method"] = $this->input->get('method');
+        $data["transaction_number"] = $this->input->get('transaction_number');
+
+
+        $this->load->view('partials/_header', $data);
+        $this->load->view('cart/membership_payment_completed', $data);
+        $this->load->view('partials/_footer');
+    }
+
+    /**
+     * Invoice Membership
+     */
+    public function invoice_membership($id)
+    {
+        $data['title'] = trans("invoice");
+        $data['description'] = trans("invoice") . " - " . $this->app_name;
+        $data['keywords'] = trans("invoice") . "," . $this->app_name;
+
+        if (!$this->auth_check) {
+            redirect(lang_base_url());
+            exit();
+        }
+        $data["transaction"] = $this->membership_model->get_membership_transaction($id);
+        if (empty($data["transaction"])) {
+            redirect(lang_base_url());
+            exit();
+        }
+        if ($this->auth_user->role != "admin") {
+            if ($this->auth_user->id != $data["transaction"]->user_id) {
+                redirect(lang_base_url());
+                exit();
+            }
+        }
+        // $data['main_settings'] = get_main_settings();
+        $data["user"] = get_user($data["transaction"]->user_id);
+        if (empty($data["user"])) {
+            redirect(lang_base_url());
+            exit();
+        }
+
+        $this->load->view('invoice/invoice_membership', $data);
     }
 }

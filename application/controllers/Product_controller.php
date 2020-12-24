@@ -173,7 +173,7 @@ class Product_controller extends Home_Core_Controller
                     exit();
                 }
             } else {
-                // $data['is_active_shop_request'] = 0;
+                $data['is_active_shop_request'] = 0;
                 if ($this->auth_model->add_shop_opening_requests($data)) {
                     //go to checkout
                     $this->session->set_userdata('modesy_selected_membership_plan_id', $plan->id);
@@ -275,7 +275,7 @@ class Product_controller extends Home_Core_Controller
             $view = 'add_product';
         else
             $view = !$this->membership_model->is_allowed_adding_product() ? 'plan_expired' : 'add_product';
-
+// echo $view; exit;
         $this->load->view('partials/_header', $data);
         $this->load->view('product/' . $view, $data);
         $this->load->view('partials/_footer');
