@@ -987,13 +987,47 @@ class Profile_controller extends Home_Core_Controller
     public function membership_plan()
     {
         get_method();
+
+        if ($this->general_settings->email_verification == 1 && $this->auth_user->email_status != 1) {
+            $this->session->set_flashdata('error', trans("msg_confirmed_required"));
+            redirect(lang_base_url() . "settings/update-profile");
+        }
+        $data['title'] = trans("select_your_plan");
+        $data['description'] = trans("select_your_plan") . " - " . $this->app_name;
+        $data['keywords'] = trans("select_your_plan") . "," . $this->app_name;
+        $data['request_type'] = "renew";
+        $data["membership_plans"] = $this->membership_model->get_plans();
+        // $data["index_settings"] = get_index_settings();
+        $data['user_current_plan'] = $this->membership_model->get_user_plan_by_user_id($this->auth_user->id);
+        $data['user_ads_count'] = $this->membership_model->get_user_ads_count($this->auth_user->id);
+        $data['user_plan'] = $this->membership_model->get_user_plan_by_user_id($this->auth_user->id);
+        $data['days_left'] = $this->membership_model->get_user_plan_remaining_days_count($data['user_plan']);
+        $data['ads_left'] = $this->membership_model->get_user_plan_remaining_ads_count($data['user_plan']);
+
+        $data["active_tab"] = "membership_plan";
+
+        $this->load->view('partials/_header', $data);
+        $this->load->view('settings/shop_settings', $data);
+        // $this->load->view('product/select_membership_plan', $data);
+        $this->load->view('partials/_footer');
+    }
+
+    /**
+     * Renew Membership Plan
+     */
+    public function renew_membership_plan()
+    {
+        get_method();
+
         if ($this->general_settings->membership_plans_system != 1) {
             redirect(lang_base_url());
             exit();
         }
-        // if (!is_user_vendor()) {
-        //     redirect(lang_base_url());
-        // }
+
+        if (!is_user_vendor()) {
+            redirect(lang_base_url());
+        }
+
         if ($this->general_settings->email_verification == 1 && $this->auth_user->email_status != 1) {
             $this->session->set_flashdata('error', trans("msg_confirmed_required"));
             redirect(lang_base_url() . "settings/update-profile");
@@ -1039,7 +1073,7 @@ class Profile_controller extends Home_Core_Controller
         if ($plan->is_free == 1) {
             $this->membership_model->add_user_free_plan($plan, $this->auth_user->id);
             // redirect(generate_dash_url("shop_settings"));
-            exit();
+            // exit();
         }
 
         $this->session->set_userdata('modesy_selected_membership_plan_id', $plan->id);

@@ -91,6 +91,7 @@ $route['settings/update-profile'] = 'profile_controller/update_profile';
 $route['settings/shop-settings'] = 'profile_controller/shop_settings';
 $route['settings/contact-informations'] = 'profile_controller/contact_informations';
 $route['settings/membership-plan'] = 'profile_controller/membership_plan';
+$route['settings/renew-membership-plan'] = 'profile_controller/renew_membership_plan';
 $route['settings/social-media'] = 'profile_controller/social_media';
 $route['settings/change-password'] = 'profile_controller/change_password';
 $route['settings/shipping-address'] = 'profile_controller/shipping_address';
@@ -377,6 +378,7 @@ foreach ($languages as $language) {
         $route[$key . '/settings/shop-settings'] = 'profile_controller/shop_settings';
         $route[$key . '/settings/contact-informations'] = 'profile_controller/contact_informations';
         $route[$key . '/settings/membership-plan'] = 'profile_controller/membership_plan';
+        $route[$key . '/settings/renew-membership-plan'] = 'profile_controller/renew_membership_plan';
         $route[$key . '/settings/social-media'] = 'profile_controller/social_media';
         $route[$key . '/settings/change-password'] = 'profile_controller/change_password';
         $route[$key . '/settings/shipping-address'] = 'profile_controller/shipping_address';

@@ -13297,3 +13297,14 @@ h4.col-md-12.title {
     background-color:#d03e53!important;
     border-color:#d03e53!important
 }
+.membership__box{
+
+}
+
+.membership__box-body{
+	max-width: 500px;
+}
+
+.membership__box-body .form-group{
+	float: none !important;
+}
