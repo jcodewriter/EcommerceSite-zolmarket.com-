@@ -173,7 +173,7 @@ class Product_controller extends Home_Core_Controller
                     exit();
                 }
             } else {
-                // $data['is_active_shop_request'] = 0;
+                $data['is_active_shop_request'] = 0;
                 if ($this->auth_model->add_shop_opening_requests($data)) {
                     //go to checkout
                     $this->session->set_userdata('modesy_selected_membership_plan_id', $plan->id);
