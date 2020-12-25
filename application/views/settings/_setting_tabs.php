@@ -36,9 +36,21 @@
                         </svg>
                     </div>
                     <span style="font-weight: 600"><?php echo trans("membership_plan"); ?></span>
+                    <!-- <div class="ml-1">
+                    </div> -->
                 </div>
                 <span class="count hidden-sm-up"> <i class="fas fa-angle-right"></i> </span>
             </a>
+            <?php if (!empty($user_plan)) :?>
+                <div style="text-align: center; font-size: 12px">
+                    <p style="color: red;font-size: 12px;font-weight: 600; margin-bottom: 0"><?= trans("plan_expiration_date"); ?></p>
+                    <?php if ($user_plan->is_unlimited_time) : ?>
+                        <span class="text-success"><?= trans("unlimited"); ?></span>
+                    <?php else : ?>
+                        <span style="color: red; font-weight: 600;"><?= formatted_date($user_plan->plan_end_date); ?>&nbsp;<span class="text-danger">(<?= ucfirst(trans("days_left")); ?>:&nbsp;<?= $days_left < 0 ? 0 : $days_left; ?>)</span></span>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
         </li>
         <?php endif;?>
         <li class="d-none nav-item <?php echo ($active_tab == 'contact_informations') ? 'active' : ''; ?>">

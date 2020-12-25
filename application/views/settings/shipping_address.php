@@ -33,7 +33,7 @@
             <div class="col-sm-12 col-md-3 hidden-sm-down">
                 <div class="row-custom">
                     <!-- load profile nav -->
-                    <?php $this->load->view("settings/_setting_tabs"); ?>
+                    <?php $this->load->view("settings/_setting_tabs", ["user_plan" => $user_plan, "days_left" => $days_left]); ?>
                 </div>
             </div>
 

@@ -588,6 +588,9 @@ class Profile_controller extends Home_Core_Controller
             $data['state_button'] = $this->location_model->get_state_button_string($data['user']);
         }
 
+        $data['user_plan'] = $this->membership_model->get_user_plan_by_user_id($this->auth_user->id);
+        $data['days_left'] = $this->membership_model->get_user_plan_remaining_days_count($data['user_plan']);
+
         $this->load->view('partials/_header', $data);
         $this->load->view('settings/settings', $data);
         $this->load->view('partials/_footer');
@@ -633,6 +636,8 @@ class Profile_controller extends Home_Core_Controller
             $data['btn_string'] = $this->location_model->get_btn_string($data['user']);
             $data['state_button'] = $this->location_model->get_state_button_string($data['user']);
         }
+        $data['user_plan'] = $this->membership_model->get_user_plan_by_user_id($this->auth_user->id);
+        $data['days_left'] = $this->membership_model->get_user_plan_remaining_days_count($data['user_plan']);
 
         $this->load->view('partials/_header', $data);
         $this->load->view('settings/update_profile', $data);
@@ -845,6 +850,9 @@ class Profile_controller extends Home_Core_Controller
         $data["active_tab"] = "shipping_address";
         $data["countries"] = $this->location_model->get_countries();
         $data["user_session"] = get_user_session();
+        $data['user_plan'] = $this->membership_model->get_user_plan_by_user_id($this->auth_user->id);
+        $data['days_left'] = $this->membership_model->get_user_plan_remaining_days_count($data['user_plan']);
+
         $this->load->view('partials/_header', $data);
         $this->load->view('settings/shipping_address', $data);
         $this->load->view('partials/_footer');
@@ -928,6 +936,8 @@ class Profile_controller extends Home_Core_Controller
             redirect(lang_base_url());
         }
         $data["active_tab"] = "change_password";
+        $data['user_plan'] = $this->membership_model->get_user_plan_by_user_id($this->auth_user->id);
+        $data['days_left'] = $this->membership_model->get_user_plan_remaining_days_count($data['user_plan']);
 
         $this->load->view('partials/_header', $data);
         $this->load->view('settings/change_password', $data);
