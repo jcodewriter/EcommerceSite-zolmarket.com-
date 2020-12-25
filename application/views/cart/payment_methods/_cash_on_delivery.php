@@ -1,6 +1,6 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-<?php if ($cart_payment_method->payment_option == "cash_on_delivery"): ?>
-	<?php if ($mds_payment_type != 'promote'): ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
+<?php if ($cart_payment_method->payment_option == "cash_on_delivery") : ?>
+	<?php if ($mds_payment_type != 'promote') : ?>
 		<!--PRODUCT SALES-->
 		<div class="row">
 			<div class="col-12">
@@ -12,8 +12,14 @@
 			<p class="m-b-30">
 				<?php echo trans("cash_on_delivery_warning"); ?>
 			</p>
-			<button type="submit" name="submit" value="update" class="btn btn-lg btn-custom float-right m-t-30"><?php echo trans("place_order") ?></button>
+			<button type="submit" name="submit" value="update" class="btn btn-lg btn-custom btn-place-order float-right m-t-30"><?php echo trans("place_order") ?></button>
 		</div>
 		<?php echo form_close(); ?>
 	<?php endif; ?>
 <?php endif; ?>
+
+<script>
+	$('form').submit(function() {
+		$(".btn-place-order").prop('disabled', true);
+	});
+</script>
