@@ -14,8 +14,8 @@
         <?php if ($this->general_settings->membership_plans_system == 1 && $user->role != 'admin'):?>
             <li class="nav-item <?php echo ($active_tab == 'membershipplan') ? 'active' : ''; ?>  hidden-md-up">
                 <?php if (!empty($user_plan)) :?>
-                    <div style="text-align: center; font-size: 12px">
-                        <p style="font-size: 12px;font-weight: 600; margin-bottom: 0"><?= trans("plan_expiration_date"); ?></p>
+                    <div style="text-align: center;">
+                        <p style="font-weight: 600; margin-bottom: 0"><?= trans("plan_expiration_date"); ?></p>
                         <?php if ($user_plan->is_unlimited_time) : ?>
                             <span class="text-success"><?= trans("unlimited"); ?></span>
                         <?php else : ?>
