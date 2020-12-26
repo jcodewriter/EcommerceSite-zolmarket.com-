@@ -44,7 +44,7 @@
                 $last_word = $matches[1];
                 if ($this->auth_check && user()->id == $user->id) {
                 ?>
-                    <a href="<?php echo lang_base_url(); ?>settings" style="background: #fff;padding: 3px 5px;border-radius: 10px;color: #000;">
+                    <a href="<?php echo lang_base_url(); ?>settings" style="background: #fff;padding: 3px 5px;border-radius: 10px;color: #000;border: 1px solid #e4e4e4;">
                         <i class="icon-settings"></i> <?php echo trans("settings"); ?>
                     </a>
                 <?php } ?>
