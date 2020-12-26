@@ -34,9 +34,9 @@ if (auth_check()) {
                 <div class="profile-page-top">
                     <!-- load profile details -->
                     <?php if (!$user->is_private || $user->role == "admin") : ?>
-                        <?php $this->load->view("profile/company/_profile_user_info"); ?>
+                        <?php $this->load->view("profile/company/_profile_user_info", ["user_plan" => $user_plan, "days_left" => $days_left]); ?>
                     <?php else : ?>
-                        <?php $this->load->view("profile/private/_profile_user_info"); ?>
+                        <?php $this->load->view("profile/private/_profile_user_info", ["user_plan" => $user_plan, "days_left" => $days_left]); ?>
                     <?php endif; ?>
                 </div>
             </div>

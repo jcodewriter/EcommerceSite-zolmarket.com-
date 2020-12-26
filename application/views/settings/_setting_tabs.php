@@ -43,11 +43,11 @@
             </a>
             <?php if (!empty($user_plan)) :?>
                 <div style="text-align: center; font-size: 12px">
-                    <p style="color: red;font-size: 12px;font-weight: 600; margin-bottom: 0"><?= trans("plan_expiration_date"); ?></p>
+                    <p style="font-size: 12px;font-weight: 600; margin-bottom: 0"><?= trans("plan_expiration_date"); ?></p>
                     <?php if ($user_plan->is_unlimited_time) : ?>
                         <span class="text-success"><?= trans("unlimited"); ?></span>
                     <?php else : ?>
-                        <span style="color: red; font-weight: 600;"><?= formatted_date($user_plan->plan_end_date); ?>&nbsp;<span class="text-danger">(<?= ucfirst(trans("days_left")); ?>:&nbsp;<?= $days_left < 0 ? 0 : $days_left; ?>)</span></span>
+                        <span style="font-weight: 600;"><?= formatted_date($user_plan->plan_end_date); ?>&nbsp;<span class="text-danger">(<?= ucfirst(trans("days_left")); ?>:&nbsp;<?= $days_left < 0 ? 0 : $days_left; ?>)</span></span>
                     <?php endif; ?>
                 </div>
             <?php endif; ?>

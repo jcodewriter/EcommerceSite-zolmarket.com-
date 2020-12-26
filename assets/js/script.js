@@ -2033,7 +2033,7 @@ function delete_conversation(conversation_id, message) {
                 data: data
             })
                 .done(function (response) {
-                    window.location.href = base_url + "messages";
+                    window.location.href = lang_base_url + "messages";
                 })
 
         }

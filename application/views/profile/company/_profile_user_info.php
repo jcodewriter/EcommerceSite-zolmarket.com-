@@ -39,7 +39,6 @@
                         <?php endif; ?>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="right" style="position: relative;">
@@ -54,64 +53,70 @@
                         <img src="<?php echo base_url(); ?>assets/img/confirm.png" style="width:15px;margin: 3px 15px 0 1px;" />
                     <?php endif; ?>
                     <h1 class="username" style="white-space: nowrap;font-size:19px;text-overflow: ellipsis;max-width: 89% !important;display: block;overflow: hidden;direction:rtl;"><?php echo get_shop_name($user); ?></h1>
-
                 <?php endif; ?>
-
-
             </div>
-            <?php if ($general_settings->user_reviews == 1) : ?>
-                <div class="row-custom only_on_mobile">
-                    <p class="p-last-seen" style="position: absolute;bottom: -8px;right: 5px;top:7px">
-                        <span class="last-seen <?php echo (is_user_online($user->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i> <?php echo trans("last_seen"); ?>&nbsp;<?php echo time_ago($user->last_seen); ?></span>
-                    </p>
-                </div>
+            <?php if (empty($user_plan)) : ?>
+                <?php if ($general_settings->user_reviews == 1) : ?>
+                    <div class="row-custom only_on_mobile">
+                        <p class="p-last-seen" style="position: absolute;bottom: -8px;right: 5px;top:7px">
+                            <span class="last-seen <?php echo (is_user_online($user->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i> <?php echo trans("last_seen"); ?>&nbsp;<?php echo time_ago($user->last_seen); ?></span>
+                        </p>
+                    </div>
+                <?php endif; ?>
             <?php endif; ?>
             <div class="row-custom only_on_dadeesktop">
                 <p class="p-last-seen">
                     <span class="last-seen <?php echo (is_user_online($user->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i> <?php echo trans("last_seen"); ?>&nbsp;<?php echo time_ago($user->last_seen); ?></span>
                 </p>
             </div>
-
-
-            <div class="row-custom user-contact" style="margin-bottom: 0;">
-
-                <?php if ($this->selected_lang->ckeditor_lang == 'ar') : ?>
-                    <span class="info"><img src="<?php echo base_url() . 'assets/img/user_confirm.png'; ?>" alt="" style="margin-right: 8px;" /><?php echo trans("member_since"); ?>&nbsp;<?php echo helper_date_format($user->created_at); ?></span>
-                    <?php if (!empty($user->phone_number)) : ?>
-                        <span class="info"><i class="icon-phone"></i>
-                            <a href="javascript:void(0)" id="show_phone_number"><?php echo trans("show"); ?></a>
-                            <a href="tel:<?php echo html_escape($user->phone_number); ?>" id="phone_number" class="display-none"><?php echo html_escape($user->phone_number); ?></a>
-                        </span>
+            <?php if (!empty($user_plan)) : ?>
+                <div style="font-size: 12px">
+                    <p style="font-size: 12px;font-weight: 600; margin-bottom: 0"><?= trans("plan_expiration_date"); ?></p>
+                    <?php if ($user_plan->is_unlimited_time) : ?>
+                        <span class="text-success"><?= trans("unlimited"); ?></span>
+                    <?php else : ?>
+                        <span ><?= formatted_date($user_plan->plan_end_date); ?>&nbsp;<span class="text-danger">(<?= ucfirst(trans("days_left")); ?>:&nbsp;<?= $days_left < 0 ? 0 : $days_left; ?>)</span></span>
                     <?php endif; ?>
-                    <?php if (!empty($user->email)) : ?>
-                        <span class="info"><i class="icon-envelope"></i><?php echo html_escape($user->email); ?></span>
+                </div>
+            <?php else : ?>
+                <div class="row-custom user-contact" style="margin-bottom: 0;">
+                    <?php if ($this->selected_lang->ckeditor_lang == 'ar') : ?>
+                        <span class="info"><img src="<?php echo base_url() . 'assets/img/user_confirm.png'; ?>" alt="" style="margin-right: 8px;" /><?php echo trans("member_since"); ?>&nbsp;<?php echo helper_date_format($user->created_at); ?></span>
+                        <?php if (!empty($user->phone_number)) : ?>
+                            <span class="info"><i class="icon-phone"></i>
+                                <a href="javascript:void(0)" id="show_phone_number"><?php echo trans("show"); ?></a>
+                                <a href="tel:<?php echo html_escape($user->phone_number); ?>" id="phone_number" class="display-none"><?php echo html_escape($user->phone_number); ?></a>
+                            </span>
+                        <?php endif; ?>
+                        <?php if (!empty($user->email)) : ?>
+                            <span class="info"><i class="icon-envelope"></i><?php echo html_escape($user->email); ?></span>
+                        <?php endif; ?>
+                        <?php if (!empty(get_location($user))) : ?>
+                            <span class="info"><i class="icon-map-marker"></i><?php echo get_location($user); ?></span>
+                        <?php endif; ?>
+                    <?php else : ?>
+                        <span class="info"><img src="<?php echo base_url() . 'assets/img/user_confirm.png'; ?>" alt="" style="margin-right: 8px;" /><?php echo trans("member_since"); ?>&nbsp;<?php echo helper_date_format($user->created_at); ?></span>
+                        <?php if (!empty($user->email)) : ?>
+                            <span class="info"><i class="icon-envelope"></i><?php echo html_escape($user->email); ?></span>
+                        <?php endif; ?>
+                        <?php if (!empty($user->phone_number)) : ?>
+                            <span class="info only_on_dadeesktop">
+                                <i class="icon-phone"></i>
+                                <a href="javascript:void(0)" id="show_phone_number"><?php echo trans("show"); ?></a>
+                                <a href="tel:<?php echo html_escape($user->phone_number); ?>" id="phone_number" class="display-none"><?php echo html_escape($user->phone_number); ?></a>
+                            </span>
+                            <span class="info only_on_mobile" style="position: absolute;right: -8px;text-align: right;top: 31px;">
+                                <i class="icon-phone" style="margin-right: 0!important;"></i>
+                                <a href="javascript:void(0)" id="show_phone_number2"><?php echo trans("show"); ?></a>
+                                <a href="tel:<?php echo html_escape($user->phone_number); ?>" id="phone_number2" class="display-none"><?php echo html_escape($user->phone_number); ?></a>
+                            </span>
+                        <?php endif; ?>
+                        <?php if (!empty(get_location($user))) : ?>
+                            <span class="info" style="margin-bottom: -10px;"><i class="icon-map-marker"></i><?php echo trim(get_location($user)); ?></span>
+                        <?php endif; ?>
                     <?php endif; ?>
-                    <?php if (!empty(get_location($user))) : ?>
-                        <span class="info"><i class="icon-map-marker"></i><?php echo get_location($user); ?></span>
-                    <?php endif; ?>
-                <?php else : ?>
-                    <span class="info"><img src="<?php echo base_url() . 'assets/img/user_confirm.png'; ?>" alt="" style="margin-right: 8px;" /><?php echo trans("member_since"); ?>&nbsp;<?php echo helper_date_format($user->created_at); ?></span>
-                    <?php if (!empty($user->email)) : ?>
-                        <span class="info"><i class="icon-envelope"></i><?php echo html_escape($user->email); ?></span>
-                    <?php endif; ?>
-                    <?php if (!empty($user->phone_number)) : ?>
-                        <span class="info only_on_dadeesktop">
-                            <i class="icon-phone"></i>
-                            <a href="javascript:void(0)" id="show_phone_number"><?php echo trans("show"); ?></a>
-                            <a href="tel:<?php echo html_escape($user->phone_number); ?>" id="phone_number" class="display-none"><?php echo html_escape($user->phone_number); ?></a>
-                        </span>
-                        <span class="info only_on_mobile" style="position: absolute;right: -8px;text-align: right;top: 31px;">
-                            <i class="icon-phone" style="margin-right: 0!important;"></i>
-                            <a href="javascript:void(0)" id="show_phone_number2"><?php echo trans("show"); ?></a>
-                            <a href="tel:<?php echo html_escape($user->phone_number); ?>" id="phone_number2" class="display-none"><?php echo html_escape($user->phone_number); ?></a>
-                        </span>
-                    <?php endif; ?>
-                    <?php if (!empty(get_location($user))) : ?>
-                        <span class="info" style="margin-bottom: -10px;"><i class="icon-map-marker"></i><?php echo trim(get_location($user)); ?></span>
-                    <?php endif; ?>
-                <?php endif; ?>
-
-            </div>
+                </div>
+            <?php endif; ?>
 
             <?php if ($general_settings->user_reviews == 1) : ?>
                 <div class="profile-rating only_on_mobile" style="position: absolute;top: 31px;left: 9px;">

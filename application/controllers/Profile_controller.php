@@ -92,8 +92,11 @@ class Profile_controller extends Home_Core_Controller
         // 		$data['quote_requests'] = $this->bidding_model->get_sent_quote_requests_paginated(user()->id,10000000000000, 0);
         // 	}
         // }
+        $data['user_plan'] = $this->membership_model->get_user_plan_by_user_id($this->auth_user->id);
+        $data['days_left'] = $this->membership_model->get_user_plan_remaining_days_count($data['user_plan']);
 
         $footer['is_exist'] = true;
+        
         $this->load->view('partials/_header', $data);
         $this->load->view('profile/profile', $data);
         $this->load->view('partials/_footer', $footer);
