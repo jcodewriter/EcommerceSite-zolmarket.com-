@@ -11,11 +11,41 @@
 <!--profile page tabs-->
 <div class="profile-tabs">
     <ul class="nav">
+        <?php if ($this->general_settings->membership_plans_system == 1 && $user->role != 'admin'):?>
+            <li class="nav-item <?php echo ($active_tab == 'membershipplan') ? 'active' : ''; ?>  hidden-md-up">
+                <?php if (!empty($user_plan)) :?>
+                    <div style="text-align: center; font-size: 12px">
+                        <p style="font-size: 12px;font-weight: 600; margin-bottom: 0"><?= trans("plan_expiration_date"); ?></p>
+                        <?php if ($user_plan->is_unlimited_time) : ?>
+                            <span class="text-success"><?= trans("unlimited"); ?></span>
+                        <?php else : ?>
+                            <span style=""><?= formatted_date($user_plan->plan_end_date); ?>&nbsp;<span class="text-danger">(<?= ucfirst(trans("days_left")); ?>:&nbsp;<?= $days_left < 0 ? 0 : $days_left; ?>)</span></span>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+                <a class="nav-link" id="hkmmembershipplan" href="<?php echo lang_base_url(); ?>settings/membership-plan">
+                    <div class="profile-tab-item">
+                        <div style="display: inline-block; width: 40px; height: 40px; margin-right: 10px; border-radius: 5px; background-color: #683ab8; text-align: center">
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                width="38.4px" height="38.4px" viewBox="0 0 159.436 159.436" style="width: 23px">
+                                <path style="fill:#fff" d="M157.818,54.936c-1.45-1.097-3.448-1.087-4.878,0.016l-41.966,32.028L83.431,24.753c-1.308-2.933-6.109-2.933-7.417,0
+                                    L48.149,87.707L6.55,54.988c-1.432-1.129-3.446-1.16-4.91-0.074c-1.469,1.084-2.025,3.017-1.366,4.72l28.901,74.664
+                                    c0.604,1.561,2.104,2.584,3.773,2.584h93.54c1.683,0,3.169-1.018,3.775-2.584l28.898-74.664
+                                    C159.817,57.941,159.268,56.019,157.818,54.936z M123.715,128.782h-87.99L13.157,70.486l34.085,26.797
+                                    c0.983,0.78,2.257,1.044,3.483,0.76c1.216-0.312,2.22-1.149,2.729-2.3l26.27-59.342l25.919,58.557
+                                    c0.512,1.134,1.497,1.978,2.7,2.283c1.218,0.301,2.479,0.042,3.475-0.701l34.626-26.438L123.715,128.782z"/>
+                            </svg>
+                        </div>
+                        <span style="flex-grow: 1"><?php echo trans("membership_plan"); ?></span>
+                        <span class="material-icons hidden-sm-up">keyboard_arrow_right</span>
+                    </div>
+                </a>
+            </li>
+        <?php endif;?>
         <?php if (is_multi_vendor_active()): ?>
             <?php if ($user->role == 'admin' || $user->role == 'vendor'): ?>
                 <li class="nav-item <?php echo ($active_tab == 'products') ? 'active' : ''; ?>">
-                    <a class="nav-link" id="hkmproducts"
-                       href="<?php echo lang_base_url() . "product/" . $user->slug; ?>">
+                    <a class="nav-link" id="hkmproducts" href="<?php echo lang_base_url() . "product/" . $user->slug; ?>">
                         <div class="profile-tab-item">
                             <div class="profile-tab-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34.84 34.84" style="width: 40px; height: 40px;"><defs><style>.cls-1{fill:#fe590d;}.cls-2{fill:#fff;}</style></defs><title>Asset 19</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="cls-1" width="34.84" height="34.84" rx="4.03"/><path class="cls-2" d="M23.42,25.28a1.5,1.5,0,1,0,1.5,1.5A1.5,1.5,0,0,0,23.42,25.28Zm-10,0a1.5,1.5,0,1,0,1.5,1.5A1.5,1.5,0,0,0,13.42,25.28Zm8.52-6a1.5,1.5,0,0,0,1.31-.77L26.85,12a.5.5,0,0,0,0-.5.52.52,0,0,0-.44-.25H11.33l-.83-2-2.58,0v1h1.9l3.53,8.45L12,20.87a1.58,1.58,0,0,0,1.34,2.41H24.92v-1H13.06l-.35-.63,1.48-2.37Zm-10.19-7H25.57l-3.34,6h-8Z"/></g></g></svg>

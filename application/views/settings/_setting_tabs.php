@@ -21,7 +21,7 @@
             </a>
         </li>
         <?php if ($this->general_settings->membership_plans_system == 1):?>
-        <li class="<?php echo $this->auth_user->role == "admin" || $this->auth_user->role != "vendor" ? "d-none": ""; ?> nav-item <?php echo ($active_tab == 'membership_plan') ? 'active' : ''; ?>">
+        <li class="<?php echo $this->auth_user->role == "admin" || $this->auth_user->role != "vendor" ? "d-none": ""; ?> d-none nav-item <?php echo ($active_tab == 'membership_plan') ? 'active' : ''; ?>">
             <a class="nav-link setting__item-list" href="<?php echo lang_base_url(); ?>settings/membership-plan" id="hkmmembershipplan">
                 <div class="setting__item">
                     <div style="display: inline-block; width: 40px; height: 40px; border-radius: 5px; background-color: #683ab8; text-align: center">

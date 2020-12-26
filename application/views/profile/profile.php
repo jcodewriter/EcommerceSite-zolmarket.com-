@@ -29,14 +29,14 @@ if (auth_check()) {
 
             </div>
         <?php endif; ?>
-        <div class="row hkmnone_userinfo" style="margin-bottom: 20px;">
+        <div class="row hkmnone_userinfo">
             <div class="col-12">
                 <div class="profile-page-top">
                     <!-- load profile details -->
                     <?php if (!$user->is_private || $user->role == "admin") : ?>
-                        <?php $this->load->view("profile/company/_profile_user_info", ["user_plan" => $user_plan, "days_left" => $days_left]); ?>
+                        <?php $this->load->view("profile/company/_profile_user_info"); ?>
                     <?php else : ?>
-                        <?php $this->load->view("profile/private/_profile_user_info", ["user_plan" => $user_plan, "days_left" => $days_left]); ?>
+                        <?php $this->load->view("profile/private/_profile_user_info"); ?>
                     <?php endif; ?>
                 </div>
             </div>
@@ -45,7 +45,7 @@ if (auth_check()) {
         <div class="row">
             <div class="col-sm-12 col-md-3 hkmnone_tabs">
                 <!-- load profile nav -->
-                <?php $this->load->view("profile/_profile_tabs"); ?>
+                <?php $this->load->view("profile/_profile_tabs", ["user_plan" => $user_plan, "days_left" => $days_left]); ?>
             </div>
             <div class="col-sm-12 col-md-9 hidden-sm-down">
                 <div class="profile-tab-content">

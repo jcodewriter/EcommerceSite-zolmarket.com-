@@ -8946,7 +8946,7 @@ form select.error {
 	}
 	.profile-details__right {
 		width: 100% !important;
-		margin: 10px 0px;
+		/* margin: 10px 0px; */
 	}
 	.profile-details__right .profile-name__wrapper {
 		display: none;

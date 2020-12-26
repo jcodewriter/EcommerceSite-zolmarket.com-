@@ -3,7 +3,7 @@
 <div class="hkm_messages_navCatDownMobile">
     <div class="cat-header">
         <div class="mobile-header-back">
-            <a href="<?php echo lang_base_url(); ?>settings" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?> </a>
+            <a href="<?php echo lang_base_url() . 'account/' . $this->auth_user->slug; ?>" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?> </a>
         </div>
         <div class="mobile-header-title">
             <span class="text-white textcat-header text-center"><?php echo $title; ?></span>
