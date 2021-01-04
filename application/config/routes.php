@@ -449,8 +449,8 @@ foreach ($languages as $language) {
         $route[$key . '/add-to-cart-quote']['POST'] = 'cart_controller/add_to_cart_quote';
         $route[$key . '/order-completed/(:num)'] = 'cart_controller/order_completed/$1';
         $route[$key . '/promote-payment-completed'] = 'cart_controller/promote_payment_completed';
-        $route[$key . 'membership-payment-completed'] = 'cart_controller/membership_payment_completed';
-        $route[$key . 'invoice-membership/(:num)']['GET'] = 'cart_controller/invoice_membership/$1';
+        $route[$key . '/membership-payment-completed'] = 'cart_controller/membership_payment_completed';
+        $route[$key . '/invoice-membership/(:num)']['GET'] = 'cart_controller/invoice_membership/$1';
         /*orders*/
         $route[$key . '/orders'] = 'order_controller/orders';
         $route[$key . '/orders/active-orders'] = 'order_controller/active_orders';
