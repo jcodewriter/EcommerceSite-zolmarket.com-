@@ -439,7 +439,7 @@ if ($product->is_draft == 1) {
                                                         </div>
                                                         <div class="col-12 col-sm-4 m-b-15">
                                                             <div class="selectdiv">
-                                                                <select id="cities" name="city_id" class="form-control" onchange="update_product_map();" <?php echo ($form_settings->product_location_required == 1) ? 'required' : ''; ?>>
+                                                                <select id="cities" name="city_id" class="form-control" onchange="update_product_map();">
                                                                     <option value=""><?php echo trans('city'); ?></option>
                                                                     <?php
                                                                     if (!empty($cities)) :

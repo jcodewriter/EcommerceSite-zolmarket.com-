@@ -273,7 +273,6 @@ class Home_Core_Controller extends Core_Controller
         $this->pagination->initialize($config);
 
         $per_page = clean_number($per_page);
-
         return array('per_page' => $per_page, 'offset' => $page * $per_page, 'current_page' => $page + 1);
     }
 }

@@ -706,6 +706,7 @@ class Product_model extends Core_Model
     //get paginated user products
     public function get_paginated_user_products($user_slug, $per_page, $offset)
     {
+        // echo $per_page.'/'.$offset; exit;
         $user_slug = clean_slug($user_slug);
         $this->build_query_unlocated();
         $this->db->where('users.slug', $user_slug);

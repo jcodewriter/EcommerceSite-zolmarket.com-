@@ -71,7 +71,12 @@ class Location_model extends CI_Model
     //get countries
     public function get_countries()
     {
-        $this->db->select('id, sortname, name, phonecode, is_default');
+        if ($this->session->userdata("modesy_selected_lang") == 1){
+            $field = "name";
+        }else{
+            $field = "ar_name";
+        }
+        $this->db->select('id, sortname, '.$field.' as name, phonecode, is_default');
         $this->db->order_by('countries.id');
         $query = $this->db->get('countries');
         return $query->result();
