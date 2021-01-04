@@ -182,7 +182,7 @@ class Location_model extends CI_Model
     public function get_state($id)
     {
         $id = clean_number($id);
-        if ($this->selected_lang->id == 1){
+        if ($this->session->userdata("modesy_selected_lang") == 1){
             $field = "name";
         }else{
             $field = "ar_name";
@@ -277,7 +277,7 @@ class Location_model extends CI_Model
     //get states by country
     public function get_states_by_country($country_id)
     {
-        if ($this->selected_lang->id == 1){
+        if ($this->session->userdata("modesy_selected_lang") == 1){
             $field = "name";
         }else{
             $field = "ar_name";
@@ -433,7 +433,7 @@ class Location_model extends CI_Model
     public function get_city($id)
     {
         $id = clean_number($id);
-        if ($this->selected_lang->id == 1){
+        if ($this->session->userdata("modesy_selected_lang") == 1){
             $filed = "name";
         }else{
             $filed = "ar_name";
@@ -458,11 +458,12 @@ class Location_model extends CI_Model
     public function get_cities_by_state($state_id)
     {
         $state_id = clean_number($state_id);
-        if ($this->selected_lang->id == 1){
+        if ($this->session->userdata("modesy_selected_lang") == 1){
             $filed = "name";
         }else{
             $filed = "ar_name";
         }
+        
         $this->db->select('id, '.$filed.' as name, state_id, is_default');
         $this->db->where('cities.state_id', $state_id);
         $this->db->order_by('cities.order_by');
