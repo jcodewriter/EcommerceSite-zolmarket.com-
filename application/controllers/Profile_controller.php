@@ -1016,12 +1016,13 @@ class Profile_controller extends Home_Core_Controller
         $data['user_plan'] = $this->membership_model->get_user_plan_by_user_id($this->auth_user->id);
         $data['days_left'] = $this->membership_model->get_user_plan_remaining_days_count($data['user_plan']);
         $data['ads_left'] = $this->membership_model->get_user_plan_remaining_ads_count($data['user_plan']);
-
+        
+        $plan = $this->membership_model->get_plan($data['user_plan']->plan_id);
+        $data['plan_title'] = $this->membership_model->get_membership_plan_title($plan);
         $data["active_tab"] = "membership_plan";
 
         $this->load->view('partials/_header', $data);
         $this->load->view('settings/shop_settings', $data);
-        // $this->load->view('product/select_membership_plan', $data);
         $this->load->view('partials/_footer');
     }
 

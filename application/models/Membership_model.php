@@ -118,6 +118,7 @@ class Membership_model extends CI_Model
 	public function add_user_plan($data_transaction, $plan, $user_id)
 	{
 		$data = array(
+			'plan_id' => $plan->id,
 			'plan_title' => $this->get_membership_plan_title($plan),
 			'number_of_ads' => $plan->number_of_ads,
 			'number_of_days' => $plan->number_of_days,
@@ -162,6 +163,7 @@ class Membership_model extends CI_Model
 	public function add_user_free_plan($plan, $user_id)
 	{
 		$data = array(
+			'plan_id' => $plan->id,
 			'plan_title' => $this->get_membership_plan_title($plan),
 			'number_of_ads' => $plan->number_of_ads,
 			'number_of_days' => $plan->number_of_days,

@@ -42,7 +42,7 @@
                         <?php if (!empty($user_plan)) : ?>
                             <div class="form-group">
                                 <label class="control-label"><?= trans("current_plan"); ?></label><br>
-                                <p class="label label-success label-user-plan"><?= $user_plan->plan_title; ?></p>
+                                <p class="label label-success label-user-plan"><?= $plan_title; ?></p>
                             </div>
                             <div class="form-group">
                                 <label class="control-label"><?= trans("plan_expiration_date"); ?></label><br>
