@@ -44,7 +44,7 @@
 											<?php $this->load->view('product/_messages'); ?>
 										</div>
 									</div>
-									<?php if ($this->auth_user->is_active_shop_request == 1) : ?>
+									<?php if (user()->is_active_shop_request == 1) : ?>
 										<div class="row">
 											<div class="col-12">
 												<div class="alert alert-info" role="alert">
@@ -57,7 +57,7 @@
 												<p class="start-selling-description"><?php echo trans("start_selling_exp"); ?></p>
 											</div>
 										</div>
-									<?php elseif ($this->auth_user->is_active_shop_request == 2) : ?>
+									<?php elseif (user()->is_active_shop_request == 2) : ?>
 										<div class="row">
 											<div class="col-12">
 												<div class="alert alert-secondary" role="alert">
@@ -72,7 +72,7 @@
 											</div>
 										</div>
 										<div class="row">
-											<div class="col-md-6 col-12 order-1 order-lg-0">
+											<div class="col-md-12 col-12 order-1 order-lg-0">
 												<h2 class="page-title page-title-product m-b-15" style="font-size: 22px !important;"><?php echo trans("please_contact_us"); ?></h2>
 												<!-- form start -->
 												<?php echo form_open('home_controller/contact_post', ['id' => 'form_validate', 'class' => 'validate_terms']); ?>

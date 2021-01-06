@@ -67,19 +67,18 @@ class Product_controller extends Home_Core_Controller
         if (is_user_vendor() && user()->is_approval == 2) {
             redirect(lang_base_url());
         }
-
         if ($this->general_settings->email_verification == 1 && user()->email_status != 1) {
             $this->session->set_flashdata('error', trans("msg_confirmed_required"));
             redirect(lang_base_url() . "settings/update-profile");
         }
-
+        
         $data['title'] = trans("start_selling");
         $data['description'] = trans("start_selling") . " - " . $this->app_name;
         $data['keywords'] = trans("start_selling") . "," . $this->app_name;
         $data["site_settings"] = get_site_settings();
-
+        
         if ($this->general_settings->membership_plans_system == 1) {
-            if ($this->auth_user->is_active_shop_request != 1) {
+            if ($this->auth_user->is_active_shop_request = 0) {
                 $plan_id = clean_number(input_get('plan'));
                 if (empty($plan_id)) {
                     redirect(lang_base_url("select_membership_plan"));
@@ -242,7 +241,11 @@ class Product_controller extends Home_Core_Controller
 
         if (!is_user_vendor() || !user()->is_approval) {
             if ($this->general_settings->membership_plans_system == 1) {
-                redirect(lang_base_url() . "start_selling/select_membership_plan");
+                // exit(user()->is_active_shop_request);
+                if (user()->is_active_shop_request == 2)
+                    redirect(lang_base_url() . "start_selling");
+                else
+                    redirect(lang_base_url() . "start_selling/select_membership_plan");
                 exit();
             }
             if (!user()->is_approval) {
@@ -275,7 +278,7 @@ class Product_controller extends Home_Core_Controller
             $view = 'add_product';
         else
             $view = !$this->membership_model->is_allowed_adding_product() ? 'plan_expired' : 'add_product';
-// echo $view; exit;
+        // echo $view; exit;
         $this->load->view('partials/_header', $data);
         $this->load->view('product/' . $view, $data);
         $this->load->view('partials/_footer');
