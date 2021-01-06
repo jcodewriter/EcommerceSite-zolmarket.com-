@@ -7,6 +7,9 @@
         -ms-transition: 0.2s all ease-in-out;
         transition: 0.2s all ease-in-out;
     }
+    .profile-tabs .nav{
+        display: unset !important;
+    }
 </style>
 <!--profile page tabs-->
 <div class="profile-tabs">

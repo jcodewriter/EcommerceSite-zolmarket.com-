@@ -33,70 +33,14 @@ class Profile_controller extends Home_Core_Controller
         $data['keywords'] = $data["user"]->username . "," . $this->app_name;
         $data["active_tab"] = "products";
         $data["user_session"] = get_user_session();
-        // if ($data["user"]->role == 'member') {
-        //     redirect(lang_base_url() . 'favorites/' . $data["user"]->slug);
-        // }
-
-
         //set pagination
         $pagination = $this->paginate(generate_profile_url($data["user"]), $this->product_model->get_user_products_count($data["user"]->slug), $this->pagination_per_page);
         $data['products'] = $this->product_model->get_paginated_user_products($data["user"]->slug, $pagination['per_page'], $pagination['offset']);
-        // $data['mproducts'] = $this->product_model->get_paginated_user_products($data["user"]->slug, '1000000000000000000', '0');
-        // $data['mpending_products'] = $this->product_model->get_paginated_user_pending_products($data["user"]->id, '1000000000000000000', '0');
-        // $data['mhidden_products'] = $this->product_model->get_paginated_user_hidden_products($data["user"]->id, '1000000000000000000', '0');
-        // $data['mdraft_products'] = $this->product_model->get_hkm_user_drafts($data["user"]->id, '1000000000000000000', '0');
-        // $data["mfavorites_products"] = $this->product_model->get_user_favorited_products($data["user"]->id);
-        // $data['mitems'] = $this->product_model->get_paginated_user_downloads($data["user"]->id, '1000000000000000000', '0');
-        // $data["muser_session"] = get_user_session();
-        // $data["mfollowers"] = $this->profile_model->get_followers($data["user"]->id);
-        // $data["mfollowing_users"] = $this->profile_model->get_following_users($data["user"]->id);
-        // $data["mreviews"] = $this->user_review_model->get_reviews($data["user"]->id);
-        // $data['mreview_count'] = $this->user_review_model->get_review_count($data["user"]->id);
-        // $data['mreviews'] = $this->user_review_model->get_limited_reviews($data["user"]->id, 5);
-        // $data['mreview_limit'] = 5;
-
-        // $data['orders'] = $this->order_model->get_paginated_orders(user()->id, 10000000000000, 0);
-        // $data['compelte_orders'] = $this->order_model->get_paginated_completed_orders(user()->id, 10000000000000, 0);
-        // $data['sales'] = $this->order_model->get_paginated_sales(user()->id, 10000000000000, 0);
-        // $data['compelte_sales'] = $this->order_model->get_paginated_completed_sales(user()->id, 10000000000000,0);
-        // $data['earnings'] = $this->earnings_model->get_paginated_earnings(user()->id, 10000000000000,0);
-        // $data['payouts'] = $this->earnings_model->get_paginated_payouts(user()->id, 10000000000000,0);
-
-        // $data['site_settings'] = get_site_settings();
-        // $data['user_payout'] = $this->earnings_model->get_user_payout_account(user()->id);
-        // if (empty($this->session->flashdata('msg_payout'))) {
-        //     if ($this->payment_settings->payout_paypal_enabled) {
-        //         $this->session->set_flashdata('msg_payout', "paypal");
-        //     } elseif ($this->payment_settings->payout_iban_enabled) {
-        //         $this->session->set_flashdata('msg_payout', "iban");
-        //     } elseif ($this->payment_settings->payout_swift_enabled) {
-        //         $this->session->set_flashdata('msg_payout', "swift");
-        //     }
-        // }
-
-
-        // $this->load->model('bidding_model');
-        // if(is_bidding_system_active()){
-        //     if (is_user_vendor()) {
-        // 		$data['active_tab'] = "received_quote_requests";
-        // 		$data['received_request_count'] = $this->bidding_model->get_received_quote_requests_count(user()->id);
-        // 		$data['sent_request_count'] = $this->bidding_model->get_sent_quote_requests_count(user()->id);
-        // 		//set pagination
-        // 		$data['quote_requests'] = $this->bidding_model->get_received_quote_requests_paginated(user()->id, 10000000000000, 0);
-
-        // 	} else {
-        // 		$data['active_tab'] = "sent_request_count";
-        // 		$data['received_request_count'] = $this->bidding_model->get_received_quote_requests_count( user()->id);
-        // 		$data['sent_request_count'] = $this->bidding_model->get_sent_quote_requests_count(user()->id);
-        // 		//set pagination
-        // 		$data['quote_requests'] = $this->bidding_model->get_sent_quote_requests_paginated(user()->id,10000000000000, 0);
-        // 	}
-        // }
         $data['user_plan'] = $this->membership_model->get_user_plan_by_user_id($this->auth_user->id);
         $data['days_left'] = $this->membership_model->get_user_plan_remaining_days_count($data['user_plan']);
 
         $footer['is_exist'] = true;
-        
+
         $this->load->view('partials/_header', $data);
         $this->load->view('profile/profile', $data);
         $this->load->view('partials/_footer', $footer);
@@ -121,7 +65,7 @@ class Profile_controller extends Home_Core_Controller
 
 
         //set pagination
-        $pagination = $this->paginate(generate_profile_url($data["user"]), $this->product_model->get_user_products_count($data["user"]->slug), $this->pagination_per_page);
+        $pagination = $this->paginate(lang_base_url() . "product/" . $data["user"]->slug, $this->product_model->get_user_products_count($data["user"]->slug), $this->pagination_per_page);
         $data['products'] = $this->product_model->get_paginated_user_products($data["user"]->slug, $pagination['per_page'], $pagination['offset']);
 
         $this->load->view('partials/_header', $data);
@@ -1016,7 +960,7 @@ class Profile_controller extends Home_Core_Controller
         $data['user_plan'] = $this->membership_model->get_user_plan_by_user_id($this->auth_user->id);
         $data['days_left'] = $this->membership_model->get_user_plan_remaining_days_count($data['user_plan']);
         $data['ads_left'] = $this->membership_model->get_user_plan_remaining_ads_count($data['user_plan']);
-        
+
         $plan = $this->membership_model->get_plan($data['user_plan']->plan_id);
         $data['plan_title'] = $this->membership_model->get_membership_plan_title($plan);
         $data["active_tab"] = "membership_plan";
