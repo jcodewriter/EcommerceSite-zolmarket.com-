@@ -158,13 +158,10 @@
                                                             <i class="icon-language"></i>
                                                             <?php echo html_escape($selected_lang->name); ?>&nbsp;<span class="icon-arrow-down"></span>
                                                         </button>
+
                                                         <div class="dropdown-menu">
-                                                            <?php foreach ($languages as $language) :
-                                                                $lang_url = base_url() . $language->short_form . "/";
-                                                                if ($language->id == $this->general_settings->site_lang) {
-                                                                    $lang_url = base_url();
-                                                                } ?>
-                                                                <a href="<?php echo $lang_url; ?>" class="<?php echo ($language->id == $selected_lang->id) ? 'selected' : ''; ?> " class="dropdown-item">
+                                                            <?php foreach ($languages as $language) : ?>
+                                                                <a href="<?php echo get_language_dropdown_option($language); ?>" class="<?php echo ($language->id == $selected_lang->id) ? 'selected' : ''; ?> " class="dropdown-item">
                                                                     <?php echo $language->name; ?>
                                                                 </a>
                                                             <?php endforeach; ?>
@@ -175,13 +172,8 @@
                                         </li>
                                     </ul>
                                 </div>
-
-
                                 <div class="col-md-5 nav-top-right" style="padding: 0;">
-
                                     <ul class="nav align-items-center">
-
-
                                         <?php if (is_marketplace_active()) : ?>
                                             <li class="nav-item nav-item-cart li-main-nav-right">
                                                 <a href="<?php echo lang_base_url(); ?>cart">

@@ -31,12 +31,14 @@ class Core_Controller extends CI_Controller
         $global_data['selected_lang'] = $global_data['site_lang'];
         $this->selected_lang = $global_data['site_lang'];
         //set language
+        $this->lang_segment = "";
         $lang_segment = $this->uri->segment(1);
         foreach ($this->languages as $lang) {
             if ($lang_segment == $lang->short_form) {
                 if ($this->general_settings->multilingual_system == 1) :
                     $global_data['selected_lang'] = $lang;
                     $global_data['lang_base_url'] = base_url() . $lang->short_form . "/";
+                    $this->lang_segment = $lang->short_form;
                 else :
                     redirect(base_url());
                 endif;

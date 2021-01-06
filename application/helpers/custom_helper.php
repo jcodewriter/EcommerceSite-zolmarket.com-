@@ -1223,7 +1223,7 @@ if (!function_exists('get_state')) {
 if (!function_exists('get_city')) {
     function get_city($id)
     {
-        $ci =& get_instance();
+        $ci = &get_instance();
         return $ci->location_model->get_city($id);
     }
 }
@@ -2173,7 +2173,7 @@ if (!function_exists('price_currency_format')) {
 if (!function_exists('get_membership_plan_features')) {
     function get_membership_plan_features($features_array, $lang_id)
     {
-        $ci =& get_instance();
+        $ci = &get_instance();
         if (!empty($features_array)) {
             $array = unserialize_data($features_array);
             if (!empty($array)) {
@@ -2208,7 +2208,7 @@ if (!function_exists('formatted_date')) {
 if (!function_exists('input_get')) {
     function input_get($input_name)
     {
-        $ci =& get_instance();
+        $ci = &get_instance();
         return clean_str($ci->input->get($input_name, true));
     }
 }
@@ -2217,7 +2217,7 @@ if (!function_exists('input_get')) {
 if (!function_exists('clean_str')) {
     function clean_str($str)
     {
-        $ci =& get_instance();
+        $ci = &get_instance();
         $str = trim($str);
         $str = strip_tags($str);
         $str = $ci->security->xss_clean($str);
@@ -2257,12 +2257,35 @@ if (!function_exists('get_payment_status')) {
 if (!function_exists('get_currency_sign')) {
     function get_currency_sign($currency_key)
     {
-        $ci =& get_instance();
+        $ci = &get_instance();
         if (!empty($ci->currencies)) {
             if (isset($ci->currencies[$currency_key])) {
                 return $ci->currencies[$currency_key]["symbol"];
             }
         }
         return "";
+    }
+}
+
+//language dropdown option
+if (!function_exists('get_language_dropdown_option')) {
+    function get_language_dropdown_option($language)
+    {
+        $ci = &get_instance();
+        $page_uri = "";
+        $base_url = base_url();
+        
+        if (empty($ci->lang_segment)) {
+            $page_uri = str_replace($base_url, '', current_url());
+        } else {
+            $base_url = base_url() . $ci->lang_segment;
+            $page_uri = str_replace($base_url, '', current_url());
+        }
+        $page_uri = trim($page_uri, '/');
+        $new_base_url = base_url();
+        if ($ci->general_settings->site_lang != $language->id) {
+            $new_base_url = base_url() . $language->short_form . "/";
+        }
+        return $new_base_url . $page_uri;
     }
 }
