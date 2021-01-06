@@ -104,7 +104,7 @@ $prevcat = prev($categories);
 </div>
 
 <!-- Wrapper -->
-<div id="wrapper" style="padding-top: 60px;">
+<div id="wrapper" style="padding-top: 66px;">
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
