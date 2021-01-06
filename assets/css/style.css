@@ -9259,8 +9259,9 @@ form select.error {
 	}
 }
 .swiper-slide {
-	background-size: cover;
-	background-position: center;
+	background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .gallery-top {
 	height: 75%;

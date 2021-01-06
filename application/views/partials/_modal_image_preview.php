@@ -21,8 +21,9 @@
                                             width: 100%;
                                             height: 100%;
                                             background-image: url(<?php echo get_product_image_url($image, 'image_default'); ?>);
-                                            background-size: cover;
-                                            background-position: center;"
+                                            background-size: contain;
+                                            background-position: center;
+                                            background-repeat: no-repeat;"
                                     >
                                     </div>
                                 </div>
