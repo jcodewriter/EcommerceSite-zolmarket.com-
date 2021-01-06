@@ -721,6 +721,8 @@ class Product_controller extends Home_Core_Controller
                     echo $this->load->view('product/_product_item_solid', ['product' => $row, 'promoted_badge' => true], TRUE, 'text/html');
                 elseif ($this->session->userdata('mds_product_view_method') == 3)
                     echo $this->load->view('product/_product_item', ['product' => $row, 'promoted_badge' => true], TRUE, 'text/html');
+                else
+                    echo $this->load->view('product/_product_item_th_list', ['product' => $row, 'promoted_badge' => true], TRUE, 'text/html');
                 
                 if (!(($key + 1) % 8)) {
                     echo '<div class="col-12">';
