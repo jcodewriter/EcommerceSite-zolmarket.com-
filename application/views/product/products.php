@@ -738,28 +738,28 @@ if ($page != 'product') {
             let slugs = window.location.pathname.split('/');
             let slug = slugs[slugs.length - 1];
             if (scrollTop > 1500 && !loading) {
-            let data = {
-                'slug': slug,
-                'country': urlParams.get('country'),
-                'state': urlParams.get('state'),
-                'city': urlParams.get('city'),
-                'sort': urlParams.get('sort'),
-                'search': urlParams.get('search'),
-                'p_min': urlParams.get('p_min'),
-                'p_max': urlParams.get('p_max'),
-                'condition': urlParams.get('condition')
-            }
+                let data = {
+                    'slug': slug,
+                    'country': urlParams.get('country'),
+                    'state': urlParams.get('state'),
+                    'city': urlParams.get('city'),
+                    'sort': urlParams.get('sort'),
+                    'search': urlParams.get('search'),
+                    'p_min': urlParams.get('p_min'),
+                    'p_max': urlParams.get('p_max'),
+                    'condition': urlParams.get('condition')
+                }
                 loading = true;
                 $.ajax({
                     type: "GET",
-                    url: base_url+"Product_controller/scroll_show_more",
+                    url: base_url + "Product_controller/scroll_show_more",
                     data: data,
                     cache: false,
                     success: function(response) {
-                        if (response != "not found"){
+                        if (response != "not found") {
                             $('.product-col .row-product').append(response);
                             loading = false;
-                        }else{
+                        } else {
                             loading = true;
                         }
                     }

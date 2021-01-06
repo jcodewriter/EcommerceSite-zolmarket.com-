@@ -57,7 +57,7 @@ class Product_model extends Core_Model
             'created_at' => date('Y-m-d H:i:s')
         );
 
-        $data["slug"] = str_slug("product");
+        $data["slug"] = str_slug($this->input->post('title', true));
         if (empty($data["subcategory_id"])) {
             $data["subcategory_id"] = 0;
         }
