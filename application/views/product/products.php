@@ -502,7 +502,7 @@ if ($page != 'product') {
                                 <div class="product-filter-results-area">
                                     <div class="product-filter-results">
                                         <span style="padding: 4px 0"><?php echo trans('results'); ?>: </span>
-                                        <span style="background-color: #e9ecef;border-radius: 10px;padding: 4px 10px;margin-left: 5px;"><?php echo sizeof($products); ?></span>
+                                        <span style="background-color: #e9ecef;border-radius: 10px;padding: 4px 10px;margin-left: 5px;"><?php echo $total_products_num; ?></span>
                                     </div>
                                     <div class="product-view-method mobile">
                                         <?php if ($this->session->userdata('mds_product_view_method')) : ?>
@@ -724,95 +724,42 @@ if ($page != 'product') {
             let url = decodeURIComponent($(location).attr("href"));
             localStorage.setItem('chat_profile_url', url)
         })
+
         let loading = false;
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+
         $(window).scroll(function() {
+            console.log("here")
             let scrollHeight = $(document).height();
             let scrollPosition = $(this).scrollTop() + $(this).height();
             let scrollTop = $(this).scrollTop();
 
             let slugs = window.location.pathname.split('/');
             let slug = slugs[slugs.length - 1];
-
             if (scrollTop > 1500 && !loading) {
-                // if ((scrollHeight - scrollPosition) / scrollHeight === 0 && !loading) {
+            let data = {
+                'slug': slug,
+                'country': urlParams.get('country'),
+                'state': urlParams.get('state'),
+                'city': urlParams.get('city'),
+                'sort': urlParams.get('sort'),
+                'search': urlParams.get('search'),
+                'p_min': urlParams.get('p_min'),
+                'p_max': urlParams.get('p_max'),
+                'condition': urlParams.get('condition')
+            }
                 loading = true;
-                // $('.loadingio-spinner-rolling-9x1ye48f16e').css('display', 'block')
-                let data = {
-                    'slug': slug
-                }
                 $.ajax({
                     type: "GET",
-                    url: base_url + "Product_controller/get_product_json",
+                    url: base_url+"Product_controller/scroll_show_more",
                     data: data,
-                    dataType: 'json',
-                    contentType: 'application/json',
                     cache: false,
                     success: function(response) {
-                        let data = response[0];
-                        let ad_space = response[1];
-                        // $('.loadingio-spinner-rolling-9x1ye48f16e').css('display', 'none')
-                        let html = '';
-                        if (data.length) {
-                            for (let i in data) {
-                                html = `<div class="col-6 col-sm-6 col-md-6 col-lg-3 col-product pr-1 pl-1">
-                                        <div class="product-item">
-                                            <div class="row-custom">
-                                                <a class="item-favorite-button item-favorite-enable ${data[i].product_favorited_count ? 'item-favorited' : ''}" data-product-id="${data[i].id}"></a>
-                                                <a href="${data[i].lang_base_url+data[i].slug}">
-                                                    <div class="img-product-container">
-                                                        <img src="${data[i].product_image}" data-src="${data[i].product_image}" alt="${data[i].title}" class="img-fluid img-product mb-0 lazyloaded" onerror="this.src='${data[i].lang_base_url}assets/img/img_bg_product_small.jpg'">
-                                                    </div>
-                                                </a>
-                                                ${data[i].promoted ? `<span class="badge badge-dark badge-promoted"><?= trans("promoted"); ?></span>`: ''}
-                                            </div>
-                                            <div class="row-custom item-details">
-                                                <h3 class="product-title">
-                                                    <a href="${data[i].product_url}">${data[i].title}</a>
-                                                </h3>
-                                                <p class="product-user text-truncate">
-                                                    <a href="${data[i].lang_base_url+'/profile'+data[i].user_slug}">${data[i].shop_name_product}</a>
-                                                </p>
-                                                <div class="rating">
-                                                    <i class="${data[i].rating >= 1 ? 'icon-star' : 'icon-star-o'}"></i>
-                                                    <i class="${data[i].rating >= 2 ? 'icon-star' : 'icon-star-o'}"></i>
-                                                    <i class="${data[i].rating >= 3 ? 'icon-star' : 'icon-star-o'}"></i>
-                                                    <i class="${data[i].rating >= 4 ? 'icon-star' : 'icon-star-o'}"></i>
-                                                    <i class="${data[i].rating >= 5 ? 'icon-star' : 'icon-star-o'}"></i>
-                                                </div>        
-                                                <div class="item-meta">
-                                                    ${data[i].is_free_product == 1
-                                                        ?
-                                                        `<span class="price-free"><?= trans("free"); ?></span>`
-                                                        :
-                                                        `${data[i].listing_type == 'bidding' 
-                                                            ? 
-                                                            `<a href="${data[i].product_url}" class="a-meta-request-quote"><?= trans("request_a_quote"); ?></a>`
-                                                            :
-                                                            `<span class="price"><span>${data[i].currency}</span>${data[i].price}
-                                                                ${data[i].is_sold == 1 ? `<span>(<?= trans("sold"); ?>)</span>`: ''}
-                                                            </span>`
-                                                        }`
-                                                    }
-                                                    <span class="item-comments"><i class="icon-comment"></i>&nbsp;${data[i].product_comment_count}</span>
-                                                    <span class="item-favorites"><i class="icon-heart-o"></i>&nbsp;${data[i].product_favorited_count}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>`;
-                                $('.product-col .row').append(html);
-                                if (!((parseInt(i) + 1) % 8)) {
-                                    html = `<div class="col-12">
-                                    <div class="bn-sm m-b-20">
-                                        <a href="${ad_space.site_url}" target="_blank">
-                                            <img src="${ad_space.img_url}" class="ad-image-sm" alt="">
-                                        </a>
-                                    </div>
-                                </div>`;
-                                    $('.product-col .row').append(html);
-                                }
-                            }
+                        if (response != "not found"){
+                            $('.product-col .row-product').append(response);
                             loading = false;
-                        } else {
+                        }else{
                             loading = true;
                         }
                     }

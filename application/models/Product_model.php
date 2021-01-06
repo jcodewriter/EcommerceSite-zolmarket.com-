@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Product_model extends Core_Model
 {
@@ -17,14 +17,14 @@ class Product_model extends Core_Model
     //add product
     public function add_product()
     {
-        $custom_id = $this->input->post('custom_id', true);        
+        $custom_id = $this->input->post('custom_id', true);
         $data = array(
             'title' => $this->input->post('title', true),
             'product_type' => $this->input->post('product_type', true),
             'listing_type' => $this->input->post('listing_type', true),
-            'category_id' => $custom_id?$custom_id:end($this->input->post('second_parent_id', true)),
-            'subcategory_id' => $custom_id?$custom_id:end($this->input->post('second_parent_id', true)),
-            'third_category_id' =>  $custom_id?$custom_id:end($this->input->post('second_parent_id', true)),
+            'category_id' => $custom_id ? $custom_id : end($this->input->post('second_parent_id', true)),
+            'subcategory_id' => $custom_id ? $custom_id : end($this->input->post('second_parent_id', true)),
+            'third_category_id' =>  $custom_id ? $custom_id : end($this->input->post('second_parent_id', true)),
             'price' => 0,
             'currency' => "",
             'description' => $this->input->post('description', false),
@@ -189,9 +189,9 @@ class Product_model extends Core_Model
             'title' => $this->input->post('title', true),
             'product_type' => $this->input->post('product_type', true),
             'listing_type' => $this->input->post('listing_type', true),
-            'category_id' =>$custom_id?$custom_id:end($this->input->post('second_parent_id', true)),
-            'subcategory_id' => $custom_id?$custom_id:end($this->input->post('second_parent_id', true)),
-            'third_category_id' => $custom_id?$custom_id:end($this->input->post('second_parent_id', true)),
+            'category_id' => $custom_id ? $custom_id : end($this->input->post('second_parent_id', true)),
+            'subcategory_id' => $custom_id ? $custom_id : end($this->input->post('second_parent_id', true)),
+            'third_category_id' => $custom_id ? $custom_id : end($this->input->post('second_parent_id', true)),
             'description' => $this->input->post('description', false),
         );
         $data["slug"] = str_slug("product");
@@ -366,10 +366,10 @@ class Product_model extends Core_Model
         $this->db->where('products.is_draft', 0);
         $this->db->where('products.is_deleted', 0);
 
-		if ($this->general_settings->vendor_verification_system == 1) {
-			$this->db->where('users.role !=', 'member');
-		}
-		
+        if ($this->general_settings->vendor_verification_system == 1) {
+            $this->db->where('users.role !=', 'member');
+        }
+
         //default location
         if ($this->default_location_id != 0) {
             $this->db->where('products.country_id', $this->default_location_id);
@@ -387,8 +387,8 @@ class Product_model extends Core_Model
         $this->db->where('products.is_draft', 0);
         $this->db->where('products.is_deleted', 0);
         if ($this->general_settings->vendor_verification_system == 1) {
-			$this->db->where('users.role !=', 'member');
-		}
+            $this->db->where('users.role !=', 'member');
+        }
     }
 
     //filter products
@@ -402,8 +402,7 @@ class Product_model extends Core_Model
         $p_max = remove_special_characters($this->input->get("p_max", true));
         $sort = remove_special_characters($this->input->get("sort", true));
         $search = remove_special_characters(trim($this->input->get('search', true)));
-
-        //check if custom filters selected
+        // check if custom filters selected
         $custom_filters = array();
         // $session_custom_filters = get_sess_product_filters();
         $session_custom_filters = get_custom_product_conditions($categories_id[0]);
@@ -413,41 +412,41 @@ class Product_model extends Core_Model
             foreach ($session_custom_filters as $filter) {
                 if (isset($query_string_filters[$filter->product_filter_key]) && !empty($query_string_filters[$filter->product_filter_key])) {
                     $item = new stdClass();
-                    $item->product_filter_key = $filter->product_filter_key;                    
+                    $item->product_filter_key = $filter->product_filter_key;
                     $item->product_filter_value = @$query_string_filters[$filter->product_filter_key];
                     array_push($custom_filters, $item);
                 }
             }
         }
 
-       
+
         if (!empty($custom_filters)) {
             foreach ($custom_filters as $filter) {
                 if (!empty($filter)) {
                     $filter->product_filter_key = remove_special_characters($filter->product_filter_key);
                     $filter->product_filter_value = remove_special_characters($filter->product_filter_value);
-                    $array_queries[] = '(custom_fields_product.product_filter_key = "'.$filter->product_filter_key.'" and custom_fields_options.field_option = "'.$filter->product_filter_value.'")';
+                    $array_queries[] = '(custom_fields_product.product_filter_key = "' . $filter->product_filter_key . '" and custom_fields_options.field_option = "' . $filter->product_filter_value . '")';
                 }
             }
         }
-        
+
 
         $data = array();
-        if (!empty($query_string_filters)){
-            foreach ($query_string_filters as $key => $filter){
+        if (!empty($query_string_filters)) {
+            foreach ($query_string_filters as $key => $filter) {
                 $result = explode('shift', $key);
-                if (sizeof($result) > 1){
-                    $data[$result[0]][] = 'custom_fields_options.field_option = "'.$filter.'"';
+                if (sizeof($result) > 1) {
+                    $data[$result[0]][] = 'custom_fields_options.field_option = "' . $filter . '"';
                 }
             }
         }
 
-        if (!empty($data)){
-            foreach ($data as $key=>$val){
-                $array_queries[] = '(custom_fields_product.product_filter_key = "'.$key.'" and '.implode(' or ', $val).')';
+        if (!empty($data)) {
+            foreach ($data as $key => $val) {
+                $array_queries[] = '(custom_fields_product.product_filter_key = "' . $key . '" and ' . implode(' or ', $val) . ')';
             }
         }
-        if (!empty($array_queries)){
+        if (!empty($array_queries)) {
             $this->db->select('product_id');
             $this->db->from('custom_fields_product');
             $this->db->join('custom_fields_options', 'custom_fields_options.common_id = custom_fields_product.selected_option_common_id');
@@ -458,7 +457,7 @@ class Product_model extends Core_Model
             $this->db->reset_query();
             $this->build_query();
             $this->db->where("products.id IN ($query)", NULL, FALSE);
-        }else{
+        } else {
             $this->build_query();
         }
 
@@ -505,30 +504,28 @@ class Product_model extends Core_Model
     }
 
     //search products (AJAX search)
-    public function search_products($search,$searcha = null,$nolimit = false)
+    public function search_products($search, $searcha = null, $nolimit = false)
     {
         $search = remove_special_characters($search);
         $searcha = remove_special_characters($searcha);
         $this->build_query();
         //$this->db->like('products.title', $search);
         $this->db->group_start();
-            $this->db->group_start();
-                $this->db->where('products.title SOUNDS LIKE '.$this->db->escape($search), NULL, false);
-               $this->db->or_where('products.title LIKE '.$this->db->escape("%" . $search . "%"), NULL, false);
+        $this->db->group_start();
+        $this->db->where('products.title SOUNDS LIKE ' . $this->db->escape($search), NULL, false);
+        $this->db->or_where('products.title LIKE ' . $this->db->escape("%" . $search . "%"), NULL, false);
+        $this->db->group_end();
+
+        if ($searcha != null) {
+            $this->db->or_group_start();
+            $this->db->where('products.title SOUNDS LIKE ' . $this->db->escape($searcha), NULL, false);
+            $this->db->or_where('products.title LIKE ' . $this->db->escape("%" . $searcha . "%"), NULL, false);
             $this->db->group_end();
-             
-            if($searcha != null)
-            {
-                 $this->db->or_group_start();
-                    $this->db->where('products.title SOUNDS LIKE '.$this->db->escape($searcha), NULL, false);
-                   $this->db->or_where('products.title LIKE '.$this->db->escape("%" . $searcha . "%"), NULL, false);
-                $this->db->group_end();
-            
-            }
-        
-      $this->db->group_end();
+        }
+
+        $this->db->group_end();
         $this->db->order_by('products.is_promoted', 'DESC');
-        if(!$nolimit)
+        if (!$nolimit)
             $this->db->limit(8);
         $query = $this->db->get('products');
         return $query->result();
@@ -620,13 +617,14 @@ class Product_model extends Core_Model
         $query = $this->db->get('products');
         return $query->result();
     }
-    
+
     // get scroll filtered products 
     public function get_scroll_filtered_products($categories_id, $per_page, $offset)
     {
         $this->filter_products($categories_id);
         $this->db->limit($per_page, $offset);
         $query = $this->db->get('products');
+        // $query = $this->db->get_compiled_select();
         return $query->result();
     }
 
@@ -742,8 +740,8 @@ class Product_model extends Core_Model
         $this->db->where('products.is_draft', 0);
         $this->db->where('products.is_deleted', 0);
         if ($this->general_settings->vendor_verification_system == 1) {
-			$this->db->where('users.role !=', 'member');
-		}
+            $this->db->where('users.role !=', 'member');
+        }
         $this->db->order_by('products.created_at', 'DESC');
         $this->db->limit($per_page, $offset);
         $query = $this->db->get('products');
@@ -761,8 +759,8 @@ class Product_model extends Core_Model
         $this->db->where('products.is_draft', 0);
         $this->db->where('products.is_deleted', 0);
         if ($this->general_settings->vendor_verification_system == 1) {
-			$this->db->where('users.role !=', 'member');
-		}
+            $this->db->where('users.role !=', 'member');
+        }
         $query = $this->db->get('products');
         return $query->num_rows();
     }
@@ -777,13 +775,13 @@ class Product_model extends Core_Model
         $this->db->where('products.is_draft', 1);
         $this->db->where('products.is_deleted', 0);
         if ($this->general_settings->vendor_verification_system == 1) {
-			$this->db->where('users.role !=', 'member');
-		}
+            $this->db->where('users.role !=', 'member');
+        }
         $query = $this->db->get('products');
         return $query->num_rows();
     }
-    
-     //get paginated drafts
+
+    //get paginated drafts
     public function get_hkm_user_drafts($user_id, $per_page, $offset)
     {
         $user_id = clean_number($user_id);
@@ -808,8 +806,8 @@ class Product_model extends Core_Model
         $this->db->where('products.is_draft', 1);
         $this->db->where('products.is_deleted', 0);
         if ($this->general_settings->vendor_verification_system == 1) {
-			$this->db->where('users.role !=', 'member');
-		}
+            $this->db->where('users.role !=', 'member');
+        }
         $this->db->order_by('products.created_at', 'DESC');
         $this->db->limit($per_page, $offset);
         $query = $this->db->get('products');
@@ -828,8 +826,8 @@ class Product_model extends Core_Model
         $this->db->where('products.is_deleted', 0);
         $this->db->order_by('products.created_at', 'DESC');
         if ($this->general_settings->vendor_verification_system == 1) {
-			$this->db->where('users.role !=', 'member');
-		}
+            $this->db->where('users.role !=', 'member');
+        }
         $query = $this->db->get('products');
         return $query->num_rows();
     }
@@ -845,8 +843,8 @@ class Product_model extends Core_Model
         $this->db->where('products.is_draft', 0);
         $this->db->where('products.is_deleted', 0);
         if ($this->general_settings->vendor_verification_system == 1) {
-			$this->db->where('users.role !=', 'member');
-		}
+            $this->db->where('users.role !=', 'member');
+        }
         $this->db->order_by('products.created_at', 'DESC');
         $this->db->limit($per_page, $offset);
         $query = $this->db->get('products');
@@ -962,28 +960,28 @@ class Product_model extends Core_Model
         $this->db->where('products.is_deleted', 0);
         $this->db->where('products.id', $id);
         if ($this->general_settings->vendor_verification_system == 1) {
-			$this->db->where('users.role !=', 'member');
-		}
+            $this->db->where('users.role !=', 'member');
+        }
         $query = $this->db->get('products');
         return $query->row();
     }
 
-   //get product by slug
-	public function get_product_by_slug($slug)
-	{
-		$this->db->join('users', 'products.user_id = users.id');
-		$this->db->select('products.*, users.username as user_username, users.shop_name as shop_name, users.role as user_role, users.slug as user_slug');
-		$this->db->where('users.banned', 0);
-		$this->db->where('products.slug', $slug);
-		$this->db->where('products.is_draft', 0);
-		$this->db->where('products.is_deleted', 0);
-		if ($this->general_settings->vendor_verification_system == 1) {
-			$this->db->where('users.role !=', 'member');
-		}
-		$this->db->order_by('products.created_at', 'DESC');
-		$query = $this->db->get('products');
-		return $query->row();
-	}
+    //get product by slug
+    public function get_product_by_slug($slug)
+    {
+        $this->db->join('users', 'products.user_id = users.id');
+        $this->db->select('products.*, users.username as user_username, users.shop_name as shop_name, users.role as user_role, users.slug as user_slug');
+        $this->db->where('users.banned', 0);
+        $this->db->where('products.slug', $slug);
+        $this->db->where('products.is_draft', 0);
+        $this->db->where('products.is_deleted', 0);
+        if ($this->general_settings->vendor_verification_system == 1) {
+            $this->db->where('users.role !=', 'member');
+        }
+        $this->db->order_by('products.created_at', 'DESC');
+        $query = $this->db->get('products');
+        return $query->row();
+    }
 
     //is product favorited
     public function is_product_in_favorites($product_id)
@@ -1063,7 +1061,7 @@ class Product_model extends Core_Model
     //increase product hit
     public function increase_product_hit($product)
     {
-        if (!empty($product)):
+        if (!empty($product)) :
             if (!isset($_COOKIE['modesy_product_' . $product->id])) :
                 //increase hit
                 setcookie("modesy_product_" . $product->id, '1', time() + (86400 * 300), "/");
@@ -1091,8 +1089,8 @@ class Product_model extends Core_Model
         $this->db->where('products.is_draft', 0);
         $this->db->where('products.is_deleted', 0);
         if ($this->general_settings->vendor_verification_system == 1) {
-			$this->db->where('users.role !=', 'member');
-		}
+            $this->db->where('users.role !=', 'member');
+        }
         $this->db->order_by('products.created_at', 'DESC');
         $query = $this->db->get('products');
         return $query->result();
@@ -1112,8 +1110,8 @@ class Product_model extends Core_Model
         $this->db->where('products.is_deleted', 0);
         $this->db->order_by('products.created_at', 'DESC');
         if ($this->general_settings->vendor_verification_system == 1) {
-			$this->db->where('users.role !=', 'member');
-		}
+            $this->db->where('users.role !=', 'member');
+        }
         $query = $this->db->get('products');
         return $query->result();
     }
@@ -1158,106 +1156,105 @@ class Product_model extends Core_Model
     }
 
 
-	/*
+    /*
 	*------------------------------------------------------------------------------------------
 	* LICENSE KEYS
 	*------------------------------------------------------------------------------------------
 	*/
 
-	//add license keys
-	public function add_license_keys($product_id)
-	{
-		$license_keys = trim($this->input->post('license_keys', true));
-		$allow_duplicate = $this->input->post('allow_duplicate', true);
+    //add license keys
+    public function add_license_keys($product_id)
+    {
+        $license_keys = trim($this->input->post('license_keys', true));
+        $allow_duplicate = $this->input->post('allow_duplicate', true);
 
-		$license_keys_array = explode(",", $license_keys);
-		if (!empty($license_keys_array)) {
-			foreach ($license_keys_array as $license_key) {
-				$license_key = trim($license_key);
-				if (!empty($license_key)) {
+        $license_keys_array = explode(",", $license_keys);
+        if (!empty($license_keys_array)) {
+            foreach ($license_keys_array as $license_key) {
+                $license_key = trim($license_key);
+                if (!empty($license_key)) {
 
-					//check duplicate
-					$add_key = true;
-					if (empty($allow_duplicate)) {
-						$row = $this->check_license_key($product_id, $license_key);
-						if (!empty($row)) {
-							$add_key = false;
-						}
-					}
+                    //check duplicate
+                    $add_key = true;
+                    if (empty($allow_duplicate)) {
+                        $row = $this->check_license_key($product_id, $license_key);
+                        if (!empty($row)) {
+                            $add_key = false;
+                        }
+                    }
 
-					//add license key
-					if ($add_key == true) {
-						$data = array(
-							'product_id' => $product_id,
-							'license_key' => trim($license_key),
-							'is_used' => 0
-						);
-						$this->db->insert('product_license_keys', $data);
-					}
+                    //add license key
+                    if ($add_key == true) {
+                        $data = array(
+                            'product_id' => $product_id,
+                            'license_key' => trim($license_key),
+                            'is_used' => 0
+                        );
+                        $this->db->insert('product_license_keys', $data);
+                    }
+                }
+            }
+        }
+    }
 
-				}
-			}
-		}
-	}
+    //get license keys
+    public function get_license_keys($product_id)
+    {
+        $product_id = clean_number($product_id);
+        $this->db->where('product_id', $product_id);
+        $query = $this->db->get('product_license_keys');
+        return $query->result();
+    }
 
-	//get license keys
-	public function get_license_keys($product_id)
-	{
-		$product_id = clean_number($product_id);
-		$this->db->where('product_id', $product_id);
-		$query = $this->db->get('product_license_keys');
-		return $query->result();
-	}
+    //get license key
+    public function get_license_key($id)
+    {
+        $id = clean_number($id);
+        $this->db->where('id', $id);
+        $query = $this->db->get('product_license_keys');
+        return $query->row();
+    }
 
-	//get license key
-	public function get_license_key($id)
-	{
-		$id = clean_number($id);
-		$this->db->where('id', $id);
-		$query = $this->db->get('product_license_keys');
-		return $query->row();
-	}
+    //get unused license key
+    public function get_unused_license_key($product_id)
+    {
+        $product_id = clean_number($product_id);
+        $this->db->where('product_id', $product_id);
+        $this->db->where('is_used', 0);
+        $query = $this->db->get('product_license_keys');
+        return $query->row();
+    }
 
-	//get unused license key
-	public function get_unused_license_key($product_id)
-	{
-		$product_id = clean_number($product_id);
-		$this->db->where('product_id', $product_id);
-		$this->db->where('is_used', 0);
-		$query = $this->db->get('product_license_keys');
-		return $query->row();
-	}
+    //check license key
+    public function check_license_key($product_id, $license_key)
+    {
+        $product_id = clean_number($product_id);
+        $this->db->where('license_key', $license_key);
+        $this->db->where('product_id', $product_id);
+        $query = $this->db->get('product_license_keys');
+        return $query->row();
+    }
 
-	//check license key
-	public function check_license_key($product_id, $license_key)
-	{
-		$product_id = clean_number($product_id);
-		$this->db->where('license_key', $license_key);
-		$this->db->where('product_id', $product_id);
-		$query = $this->db->get('product_license_keys');
-		return $query->row();
-	}
+    //set license key used
+    public function set_license_key_used($id)
+    {
+        $id = clean_number($id);
+        $data = array(
+            'is_used' => 1
+        );
+        $this->db->where('id', $id);
+        $this->db->update('product_license_keys', $data);
+    }
 
-	//set license key used
-	public function set_license_key_used($id)
-	{
-		$id = clean_number($id);
-		$data = array(
-			'is_used' => 1
-		);
-		$this->db->where('id', $id);
-		$this->db->update('product_license_keys', $data);
-	}
-
-	//delete license key
-	public function delete_license_key($id)
-	{
-		$id = clean_number($id);
-		$license_key = $this->get_license_key($id);
-		if (!empty($license_key)) {
-			$this->db->where('id', $id);
-			return $this->db->delete('product_license_keys');
-		}
-		return false;
+    //delete license key
+    public function delete_license_key($id)
+    {
+        $id = clean_number($id);
+        $license_key = $this->get_license_key($id);
+        if (!empty($license_key)) {
+            $this->db->where('id', $id);
+            return $this->db->delete('product_license_keys');
+        }
+        return false;
     }
 }

@@ -658,6 +658,7 @@ class Product_controller extends Home_Core_Controller
         $link = lang_base_url() . 'products';
         $pagination = $this->paginate($link, $this->product_model->get_paginated_filtered_products_count(null, null, null), $this->product_per_page);
         $data['products'] = $this->product_model->get_paginated_filtered_products(null, $pagination['per_page'], $pagination['offset']);
+        $data['total_products_num'] = $this->product_model->get_paginated_filtered_products_count(null);
         $data["categories"] = $this->category_model->get_categories_all();
 
         if ($data["is_hkm_one_country"])
@@ -696,7 +697,7 @@ class Product_controller extends Home_Core_Controller
         $this->load->view('partials/_footer');
     }
 
-    public function get_product_json()
+    public function scroll_show_more()
     {
         $slug = $this->input->get('slug');
         $data = [];
@@ -705,27 +706,31 @@ class Product_controller extends Home_Core_Controller
             $rows = $this->product_model->get_scroll_filtered_products(null, $this->product_per_page, $_SESSION['page'] * $this->product_per_page);
         } else {
             $category = $this->category_model->get_category_by_slug($slug);
-            $slugs[] = $category->id;
-            $rows = $this->product_model->get_scroll_filtered_products($slugs, $this->product_per_page, $_SESSION['page'] * $this->product_per_page);
+            $data["parent_categories"] = $this->category_model->get_all_parent_categories($category->id);
+            $endcat = end($data["parent_categories"]);
+            $subcats = get_allsubcategories_by_parent_id($endcat->id);
+            $subcats[] = $endcat->id;
+            $rows = $this->product_model->get_scroll_filtered_products($subcats, $this->product_per_page, $_SESSION['page'] * $this->product_per_page);
         }
-        foreach ($rows as $row) {
-            // print_r($this->load->view('product/_product_item_th_list', ['product' => $row, 'promoted_badge' => true])); exit;
-            // $row->product_url =  generate_product_url($row);
-            // $row->product_favorited_count =  get_product_favorited_count($row->id);
-            // $row->product_comment_count =  get_product_comment_count($row->id);
-            // $row->shop_name_product =  get_shop_name_product($row);
-            // $row->product_image =  get_product_image($row->id, 'image_small');
-            // $row->lang_base_url =  lang_base_url();
-            // if ($row->is_promoted == 1 && $this->promoted_products_enabled == 1) $row->is_promoted = 1;
-            // else $row->is_promoted = 0;
-            // $row->price = $this->get_price($row->price);
-            // $row->currency = get_currency($row->currency);
-            // $row->currency_symbol_format = $this->payment_settings->currency_symbol_format;
-            // $data[] = $row;
+
+        if (sizeof($rows) > 0){
+            foreach ($rows as $key=>$row) {
+                if ($this->session->userdata('mds_product_view_method') == 1)
+                    echo $this->load->view('product/_product_item_th_list', ['product' => $row, 'promoted_badge' => true], TRUE, 'text/html');
+                elseif ($this->session->userdata('mds_product_view_method') == 2)
+                    echo $this->load->view('product/_product_item_solid', ['product' => $row, 'promoted_badge' => true], TRUE, 'text/html');
+                elseif ($this->session->userdata('mds_product_view_method') == 3)
+                    echo $this->load->view('product/_product_item', ['product' => $row, 'promoted_badge' => true], TRUE, 'text/html');
+                
+                if (!(($key + 1) % 8)) {
+                    echo '<div class="col-12">';
+                    echo $this->load->view("partials/_ad_spaces", ["ad_space" => "products", "class" => "m-b-20"], TRUE, 'text/html');
+                    echo '</div>';
+                }
+            }
+        }else{
+            echo "not found";
         }
-        // $ad_spaces = get_ad_data('products', 'ad_code_250');
-        // $ad_space = $ad_spaces[array_rand($ad_spaces)];
-        // echo json_encode(array($data, $ad_space));
     }
 
     public function get_price($price)
@@ -800,6 +805,7 @@ class Product_controller extends Home_Core_Controller
             $link = lang_base_url() . 'category/' . $data["category"]->slug;
             $pagination = $this->paginate($link, $this->product_model->get_paginated_filtered_products_count($subcats), $this->product_per_page);
             $data['products'] = $this->product_model->get_paginated_filtered_products($subcats, $pagination['per_page'], $pagination['offset']);
+            $data['total_products_num'] = $this->product_model->get_paginated_filtered_products_count($subcats);
             $data["site_settings"] = get_site_settings();
             $data['show_location_filter'] = false;
 
@@ -845,7 +851,7 @@ class Product_controller extends Home_Core_Controller
             } else {
                 $data['show_location_filter'] = true;
             }
-
+            $_SESSION['page'] = 0;
             $this->load->view('partials/_header', $data);
             $this->load->view('product/products', $data);
             $this->load->view('partials/_footer');
