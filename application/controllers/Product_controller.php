@@ -440,6 +440,7 @@ class Product_controller extends Home_Core_Controller
             if ($product->user_id != user()->id && user()->role != "admin") {
                 redirect($this->agent->referrer());
             }
+            // print_r($user_id); exit;
 
             if ($this->product_model->edit_product($product_id)) {
                 //edit slug

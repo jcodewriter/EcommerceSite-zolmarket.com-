@@ -184,15 +184,15 @@ class Product_model extends Core_Model
     //edit product
     public function edit_product($id)
     {
-        $custom_id = $this->input->post('custom_id', true);
+        // $custom_id = $this->input->post('custom_id', true);
         $id = clean_number($id);
         $data = array(
             'title' => $this->input->post('title', true),
             'product_type' => $this->input->post('product_type', true),
             'listing_type' => $this->input->post('listing_type', true),
-            'category_id' => $custom_id ? $custom_id : end($this->input->post('second_parent_id', true)),
-            'subcategory_id' => $custom_id ? $custom_id : end($this->input->post('second_parent_id', true)),
-            'third_category_id' => $custom_id ? $custom_id : end($this->input->post('second_parent_id', true)),
+            'category_id' => end($this->input->post('second_parent_id', true)),
+            'subcategory_id' => end($this->input->post('second_parent_id', true)),
+            'third_category_id' => end($this->input->post('second_parent_id', true)),
             'description' => $this->input->post('description', false),
         );
         $data["slug"] = str_slug("product");
