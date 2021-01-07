@@ -17,7 +17,7 @@ class Profile_controller extends Home_Core_Controller
     public function profile($slug)
     {
         if (!auth_check())
-            redirect(lang_base_url() . 'account/' . $slug);
+            redirect(lang_base_url());
         $slug = decode_slug($slug);
         $data["user"] = $this->auth_model->get_user_by_slug($slug);
 
