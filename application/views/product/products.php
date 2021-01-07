@@ -624,7 +624,7 @@ if ($page != 'product') {
                             </div>
                         </div>
                     <?php elseif ($Platform == 'Browser') : ?>
-                        <div class="float-right">
+                        <div class="d-flex justify-content-center" style="width: 100%;">
                             <?php echo $this->pagination->create_links(); ?>
                         </div>
                     <?php endif; ?>

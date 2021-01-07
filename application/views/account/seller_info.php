@@ -70,14 +70,16 @@ if (auth_check()) {
                             <span style="color: #888;"><?php echo html_escape($user->about_me); ?></span>
                         <?php endif; ?>
                     </div>
-                    <?php if (!empty($user->country_id)) : ?>
-                        <div class="widget-location mt-3">
-                            <h4 class="sidebar-title"><?php echo trans("location"); ?></h4>
-                            <div class="sidebar-map">
-                                <!--load map-->
-                                <iframe src="https://maps.google.com/maps?width=100%&height=600&hl=en&q=<?php echo get_location($user); ?>&ie=UTF8&t=&z=8&iwloc=B&output=embed&disableDefaultUI=true" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="width: 100%; height: 250px"></iframe>
+                    <?php if (!empty(get_location($user)) && $user->show_location == 1) : ?>
+                        <?php if (!empty($user->country_id)) : ?>
+                            <div class="widget-location mt-3">
+                                <h4 class="sidebar-title"><?php echo trans("location"); ?></h4>
+                                <div class="sidebar-map">
+                                    <!--load map-->
+                                    <iframe src="https://maps.google.com/maps?width=100%&height=600&hl=en&q=<?php echo get_location($user); ?>&ie=UTF8&t=&z=8&iwloc=B&output=embed&disableDefaultUI=true" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="width: 100%; height: 250px"></iframe>
+                                </div>
                             </div>
-                        </div>
+                        <?php endif; ?>
                     <?php endif; ?>
                 </div>
             </div>
