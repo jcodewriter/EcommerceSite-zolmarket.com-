@@ -44,14 +44,6 @@ if (auth_check()) {
                             </svg>
                             <span><?php echo trans("member_since"); ?>&nbsp;<?php echo helper_date_format($user->created_at); ?></span>
                         </div>
-                        <?php if (!empty($user->email)) : ?>
-                            <div class="seller-info__item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="14" viewBox="0 0 18 14">
-                                    <path id="email_2" data-name="email 2" d="M0,3V5.649l9,4.667,9-4.667V3ZM0,7.132V17H18V7.132L9,11.8Z" transform="translate(0 -3)" fill="#696969" />
-                                </svg>
-                                <span><?php echo html_escape($user->email); ?></span>
-                            </div>
-                        <?php endif; ?>
                         <?php if (!empty(get_location($user)) && $user->show_location == 1) : ?>
                             <div class="seller-info__item">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="21" viewBox="0 0 17 21">

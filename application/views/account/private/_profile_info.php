@@ -74,9 +74,6 @@
                     <a href="tel:<?php echo html_escape($user->phone_number); ?>" class="display-none phone_number"><?php echo html_escape($user->phone_number); ?></a>
                 </span>
             <?php endif; ?>
-            <?php if (!empty($user->email) && $user->show_email == 1) : ?>
-                <span class="info"><i class="icon-envelope"></i><?php echo html_escape($user->email); ?></span>
-            <?php endif; ?>
             <?php if (!empty(get_location($user)) && $user->show_location == 1) : ?>
                 <span class="info"><i class="icon-map-marker"></i><?php echo get_location($user); ?></span>
             <?php endif; ?>

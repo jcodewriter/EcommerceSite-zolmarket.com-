@@ -208,7 +208,7 @@
                                 <label class="control-label"><?php echo trans("phone_number"); ?></label>
                                 <input type="text" id="intl_phone_number" name="phone_number" class="form-control form-input" value="<?php echo $user->phone_number ? html_escape($user->phone_number) : "+249"; ?>" placeholder="<?php echo trans("phone_number"); ?>">
                             </div>
-                            <div class="form-group m-t-15">
+                            <div class="form-group m-t-15 d-none">
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" name="show_email" value="1" id="checkbox_show_email" class="custom-control-input" <?php echo ($user->show_email == 1) ? 'checked' : ''; ?>>
                                     <label for="checkbox_show_email" class="custom-control-label"><?php echo trans("show_my_email"); ?></label>
