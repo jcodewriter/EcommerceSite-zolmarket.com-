@@ -406,7 +406,11 @@ class Product_model extends Core_Model
         // check if custom filters selected
         $custom_filters = array();
         // $session_custom_filters = get_sess_product_filters();
-        $session_custom_filters = get_custom_product_conditions($categories_id[0]);
+        if (is_null($categories_id))
+            $session_custom_filters = get_custom_product_conditions(null);
+        else
+            $session_custom_filters = get_custom_product_conditions($categories_id[0]);
+
         $query_string_filters = get_filters_query_string_array();
         $array_queries = array();
         if (!empty($session_custom_filters)) {

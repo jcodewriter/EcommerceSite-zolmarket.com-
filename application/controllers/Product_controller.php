@@ -769,7 +769,8 @@ class Product_controller extends Home_Core_Controller
      */
     public function category()
     {
-        $slug = @end(func_get_args());
+        $page_url_args = func_get_args();
+        $slug = @end($page_url_args);
         $valide = true;
 
         $category = $this->category_model->get_category_by_slug($slug);
