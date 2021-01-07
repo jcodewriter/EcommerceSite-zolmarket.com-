@@ -6142,11 +6142,10 @@ img {
 	font-size: 14px;
 	font-weight: 600;
 }
-.product-list-pagination div .pagination{
+/* .product-list-pagination .pagination{
 	width: auto !important;
-}
+} */
 .pagination {
-	width: 100%;
 	display: block;
 	position: relative;
 	float: left;
