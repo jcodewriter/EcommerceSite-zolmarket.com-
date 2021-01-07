@@ -17,7 +17,7 @@ class Profile_controller extends Home_Core_Controller
     public function profile($slug)
     {
         if (!auth_check())
-            redirect(lang_base_url());
+            redirect(lang_base_url() . 'profile/' . $slug);
         $slug = decode_slug($slug);
         $data["user"] = $this->auth_model->get_user_by_slug($slug);
 
@@ -26,7 +26,7 @@ class Profile_controller extends Home_Core_Controller
         }
 
         if (auth_check() && $data["user"]->id != $this->auth_user->id)
-            redirect(lang_base_url() . 'account/' . $slug);
+            redirect(lang_base_url() . 'profile/' . $slug);
 
         $data['title'] = get_shop_name($data["user"]);
         $data['description'] = $data["user"]->username . " - " . $this->app_name;
