@@ -69,8 +69,8 @@ $route['connect-with-facebook'] = 'auth_controller/connect_with_facebook';
 $route['facebook-callback'] = 'auth_controller/facebook_callback';
 $route['connect-with-google'] = 'auth_controller/connect_with_google';
 //account routes
-$route['product/(:any)'] = 'profile_controller/product/$1';
 $route['account/(:any)'] = 'profile_controller/profile/$1';
+$route['products/(:any)'] = 'profile_controller/products/$1';
 $route['favorites/(:any)'] = 'profile_controller/favorites/$1';
 $route['favorites'] = 'home_controller/guest_favorites/$1';
 $route['followers/(:any)'] = 'profile_controller/followers/$1';
@@ -109,6 +109,7 @@ $route['sell-now/product-details/(:num)'] = 'product_controller/edit_product_det
 $route['sell-now/edit-product/(:num)'] = 'product_controller/edit_product/$1';
 $route['select_membership_plan'] = 'product_controller/select_membership_plan';
 $route['search'] = 'home_controller/search';
+$route['product/(:any)'] = 'home_controller/product/$1';
 $route['products'] = 'product_controller/products';
 // $route['filter'] = 'product_controller/products_filter/$';
 $route['filter/(:num)'] = 'product_controller/products_filter/$1';
@@ -361,7 +362,7 @@ foreach ($languages as $language) {
         $route[$key . '/confirm'] = 'auth_controller/confirm_email';
         //account routes
         $route[$key . '/account/(:any)'] = 'profile_controller/profile/$1';
-        $route[$key . '/product/(:any)'] = 'profile_controller/product/$1';
+        $route[$key . '/products/(:any)'] = 'profile_controller/products/$1';
         $route[$key . '/favorites/(:any)'] = 'profile_controller/favorites/$1';
         $route[$key . '/favorites'] = 'home_controller/guest_favorites/$1';
         $route[$key . '/followers/(:any)'] = 'profile_controller/followers/$1';
@@ -400,6 +401,7 @@ foreach ($languages as $language) {
         $route[$key . '/select_membership_plan'] = 'product_controller/select_membership_plan';
         $route[$key . '/search'] = 'home_controller/search';
 
+        $route[$key . '/product/(:any)'] = 'home_controller/product/$1';
         $route[$key . '/products'] = 'product_controller/products';
         $route[$key . '/filter/(:num)'] = 'product_controller/products_filter/$1';
         $route[$key . '/drafts'] = 'profile_controller/drafts';

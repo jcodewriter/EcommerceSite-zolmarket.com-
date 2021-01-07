@@ -24,7 +24,7 @@
                         <h1 class="title">
                             <?php echo $success; ?>
                         </h1>
-                        <a href="<?php echo lang_base_url() . $product->slug; ?>" class="btn btn-md btn-custom m-t-30"><?php echo trans("watch_ad"); ?></a>
+                        <a href="<?php echo lang_base_url() . 'product/' . $product->slug; ?>" class="btn btn-md btn-custom m-t-30"><?php echo trans("watch_ad"); ?></a>
                     <?php endif; ?>
                 </div>
             </div>

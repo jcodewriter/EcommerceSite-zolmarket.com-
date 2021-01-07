@@ -188,9 +188,18 @@ class Home_controller extends Home_Core_Controller
      */
     public function product($slug)
     {
+        $slug = decode_slug($slug);
+        if (empty($slug)) {
+            redirect(lang_base_url());
+        }
+
+        $data['page'] = $this->page_model->get_page($slug);
+        $data['site_settings'] = get_site_settings();
+
         $this->review_limit = 5;
         $this->comment_limit = 5;
         $data["product"] = $this->product_model->get_product_by_slug($slug);
+        
         if (empty($data['product'])) {
             $this->error_404();
         } else {

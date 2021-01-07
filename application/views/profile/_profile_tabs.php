@@ -48,7 +48,7 @@
         <?php if (is_multi_vendor_active()): ?>
             <?php if ($user->role == 'admin' || $user->role == 'vendor'): ?>
                 <li class="nav-item <?php echo ($active_tab == 'products') ? 'active' : ''; ?>">
-                    <a class="nav-link" id="hkmproducts" href="<?php echo lang_base_url() . "product/" . $user->slug; ?>">
+                    <a class="nav-link" id="hkmproducts" href="<?php echo lang_base_url() . "products/" . $user->slug; ?>">
                         <div class="profile-tab-item">
                             <div class="profile-tab-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34.84 34.84" style="width: 40px; height: 40px;"><defs><style>.cls-1{fill:#fe590d;}.cls-2{fill:#fff;}</style></defs><title>Asset 19</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="cls-1" width="34.84" height="34.84" rx="4.03"/><path class="cls-2" d="M23.42,25.28a1.5,1.5,0,1,0,1.5,1.5A1.5,1.5,0,0,0,23.42,25.28Zm-10,0a1.5,1.5,0,1,0,1.5,1.5A1.5,1.5,0,0,0,13.42,25.28Zm8.52-6a1.5,1.5,0,0,0,1.31-.77L26.85,12a.5.5,0,0,0,0-.5.52.52,0,0,0-.44-.25H11.33l-.83-2-2.58,0v1h1.9l3.53,8.45L12,20.87a1.58,1.58,0,0,0,1.34,2.41H24.92v-1H13.06l-.35-.63,1.48-2.37Zm-10.19-7H25.57l-3.34,6h-8Z"/></g></g></svg>

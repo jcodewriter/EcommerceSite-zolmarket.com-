@@ -5,7 +5,7 @@
         <?php if (is_multi_vendor_active()): ?>
             <?php if ($user->role == 'admin' || $user->role == 'vendor'): ?>
                 <li class="nav-item <?php echo ($active_tab == 'products') ? 'active' : ''; ?>">
-                    <a class="nav-link" id="hkmproducts" href="<?php echo lang_base_url() . "product/" . $user->slug; ?>">
+                    <a class="nav-link" id="hkmproducts" href="<?php echo lang_base_url() . "products/" . $user->slug; ?>">
                         <span><?php echo trans("products"); ?> (<?php echo get_user_products_count($user->slug); ?>)</span>
                         <span class="count"> <i class="fas fa-angle-right"></i> </span>
                     </a>

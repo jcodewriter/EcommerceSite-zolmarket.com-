@@ -57,7 +57,7 @@ class Product_model extends Core_Model
             'created_at' => date('Y-m-d H:i:s')
         );
 
-        $data["slug"] = str_slug("product");
+        $data["slug"] = str_slug($this->input->post('title', true));
         if (empty($data["subcategory_id"])) {
             $data["subcategory_id"] = 0;
         }
@@ -338,11 +338,11 @@ class Product_model extends Core_Model
         } else {
             if ($this->general_settings->product_link_structure == "id-slug") {
                 $data = array(
-                    'slug' => $product->id . "-" . $product->slug . "-" . $product->title,
+                    'slug' => $product->id . "-" . $product->slug,
                 );
             } else {
                 $data = array(
-                    'slug' => $product->title . "-" . $product->slug . "-" . $product->id,
+                    'slug' => $product->slug . "-" . $product->id,
                 );
             }
         }

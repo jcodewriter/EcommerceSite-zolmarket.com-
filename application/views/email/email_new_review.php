@@ -13,7 +13,7 @@
                                     <strong style="font-size: 18px; font-weight: 700;"><?php echo trans('email_new_product_review')?></strong>  
                                 </p>
                                 <div style="display: flex;text-align:left;">
-                                    <a href="<?php echo lang_base_url() . $product->slug; ?>" style="height: 60px; width: 80px;">
+                                    <a href="<?php echo lang_base_url() . 'product/' . $product->slug; ?>" style="height: 60px; width: 80px;">
                                         <?php if (!(empty($img_src))) : ?>
                                             <img src="<?php echo $img_src;?>" style="width:80px;height: 60px !important;border-radius: 5px;">    
                                         <?php else: ?>    
@@ -70,7 +70,7 @@
                                     </div>
                                 </div>
                                 <p style='text-align: center;margin-top: 40px;margin-bottom: 15px;'>
-                                    <a href="<?php echo lang_base_url() . $product->slug; ?>" style="display: block;padding: 14px 0;width: 100%; max-width: 375px;font-size: 14px;text-decoration: none;background-color: #09b1ba;color: #ffffff !important; border-radius: 3px;margin: 0 auto;" target="_blank" rel="noreferrer nofollow noopener"><?php echo trans("visit_review"); ?> </a>
+                                    <a href="<?php echo lang_base_url() . 'product/' . $product->slug; ?>" style="display: block;padding: 14px 0;width: 100%; max-width: 375px;font-size: 14px;text-decoration: none;background-color: #09b1ba;color: #ffffff !important; border-radius: 3px;margin: 0 auto;" target="_blank" rel="noreferrer nofollow noopener"><?php echo trans("visit_review"); ?> </a>
                                 </p>    
                             </div>
                         </td>

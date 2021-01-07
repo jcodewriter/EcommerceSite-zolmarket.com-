@@ -109,7 +109,7 @@
                                     <div class="col-12">
                                         <input type="hidden" name="product_id" value="<?php echo $product->id; ?>">
                                         <input type="hidden" name="plan_type" value="free">
-                                        <a href="<?php echo lang_base_url() . $product->slug; ?>" class="btn btn-lg btn-custom float-right m-r-10"><?php echo trans("submit"); ?></a>
+                                        <a href="<?php echo lang_base_url() . 'product/' . $product->slug; ?>" class="btn btn-lg btn-custom float-right m-r-10"><?php echo trans("submit"); ?></a>
                                     </div>
                                 </div>
                             </div>
@@ -228,7 +228,7 @@
     <script>
         $(document).ready(function () {
             var data = {
-                "product_link": '<?php echo lang_base_url() . $product->slug; ?>',
+                "product_link": '<?php echo lang_base_url() . 'product/' . $product->slug; ?>',
                 'lang_folder': lang_folder,
                 'form_lang_base_url': '<?php echo lang_base_url(); ?>'
             };

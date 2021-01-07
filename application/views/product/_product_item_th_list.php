@@ -4,7 +4,7 @@
 <div class="col-12 col-product pr-2 pl-2">
     <div class="product-item product-item-th-list" style="display: flex">
         <div class="row-custom product-item-th-list-image">
-            <a href="<?php echo lang_base_url() . $product->slug; ?>" name="ads_link">
+            <a href="<?php echo lang_base_url() . 'product/' . $product->slug; ?>" name="ads_link">
                 <div class="list-img-container">
                     <img src="<?php echo $img_bg_product_small; ?>" data-src="<?php echo get_product_image($product->id, 'image_small'); ?>" alt="<?php echo html_escape($product->title); ?>" class="lazyload img-fluid img-product mb-0" onerror="this.src='<?php echo $img_bg_product_small; ?>'">
                 </div>

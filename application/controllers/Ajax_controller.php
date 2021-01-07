@@ -861,7 +861,7 @@ class Ajax_controller extends Home_Core_Controller
                 $data = array(
                     'subject' => trans("email_text_new_product"),
                     'to' => $this->general_settings->mail_options_account,
-                    'product_url' => lang_base_url() . $product->slug,
+                    'product_url' => lang_base_url() . 'product/' . $product->slug,
                     'message_subject' => $product->title,
                     'img_src' => $img_path,
                     'avatar' => base_url() . $sender->avatar,

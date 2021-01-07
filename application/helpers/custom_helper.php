@@ -350,7 +350,7 @@ if (!function_exists('generate_product_url')) {
     function generate_product_url($product)
     {
         if (!empty($product)) {
-            return lang_base_url() . $product->slug;
+            return lang_base_url() . 'product/' . $product->slug;
         }
     }
 }

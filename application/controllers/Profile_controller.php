@@ -49,7 +49,7 @@ class Profile_controller extends Home_Core_Controller
     /**
      * Profile
      */
-    public function product($slug)
+    public function products($slug)
     {
         $slug = decode_slug($slug);
         $data["user"] = $this->auth_model->get_user_by_slug($slug);
