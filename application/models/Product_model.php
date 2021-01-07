@@ -88,7 +88,7 @@ class Product_model extends Core_Model
             'third_category_id' => $this->input->post('third_category_id', true),
             'description' => $this->input->post('description', false),
         );
-        $data["slug"] = $this->input->post('title', true);
+        $data["slug"] = str_slug($this->input->post('title', true));
         if (empty($data["subcategory_id"])) {
             $data["subcategory_id"] = 0;
         }
@@ -195,7 +195,7 @@ class Product_model extends Core_Model
             'third_category_id' => end($this->input->post('second_parent_id', true)),
             'description' => $this->input->post('description', false),
         );
-        $data["slug"] = $this->input->post('title', true);
+        $data["slug"] = str_slug($this->input->post('title', true));
         if (empty($data["subcategory_id"])) {
             $data["subcategory_id"] = 0;
         }
