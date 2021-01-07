@@ -26,7 +26,11 @@
                     <?php endif; ?>
                 </div>
             <?php endif; ?>
-                <a class="nav-link" id="hkmmembershipplan" href="<?php echo lang_base_url(); ?>settings/membership-plan">
+                <?php if($user->is_active_shop_request == 2):?>
+                    <a class="nav-link" id="hkmmembershipplan" href="<?php echo lang_base_url(); ?>start_selling">
+                <?php else:?>
+                    <a class="nav-link" id="hkmmembershipplan" href="<?php echo lang_base_url(); ?>settings/membership-plan">
+                <?php endif;?>
                     <div class="profile-tab-item">
                         <div style="display: inline-block; width: 40px; height: 40px; margin-right: 10px; border-radius: 5px; background-color: #683ab8; text-align: center">
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
