@@ -47,12 +47,12 @@ button,
 .navCatDownMobile .nav-link span,
 .navCatDownMobile .nav-link .link-icon {
     color: #343a40;
-    height: 20px;
+    height: 18px;
     width: calc(100% - 130px);
     display: table-cell;
     margin-left: -12px;
     vertical-align: middle;
-    /* font-weight: 600; */
+    font-weight: 600;
 }
 
 .navCatDownMobile .nav-link .link-icon {
