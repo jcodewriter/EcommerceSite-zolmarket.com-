@@ -46,7 +46,7 @@ button,
 .navCatDownMobile .nav-link img,
 .navCatDownMobile .nav-link span,
 .navCatDownMobile .nav-link .link-icon {
-    color: #343a40;
+    color: #212529;
     height: 18px;
     width: calc(100% - 130px);
     display: table-cell;

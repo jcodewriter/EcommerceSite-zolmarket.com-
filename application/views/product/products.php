@@ -295,49 +295,57 @@ if ($page != 'product') {
         </div>
 
         <div class="row hidden-md-up filtermenu">
-            <div class="col-4 p-1">
-                <!-- aaa -->
-                <a class="filter-btn text-truncate d-flex" href="<?php echo $this->general_settings->default_product_location ? lang_base_url() . "location?country=" . $this->general_settings->default_product_location . "&state=0&current_url=" . current_url() : "location?country=0&current_url=" . current_url(); ?>">
-                    <i class="fa fa-map-marker  fa-lg align-self-center mr-1 ml-1" aria-hidden="true"></i>
-                    <?php if (empty($filter_location)) : ?>
-                        <span class="titre m-0 flex-fill  text-truncate text-left h-100">
-                            <?= $is_hkm_one_country ? '' : ($capital_country ? $capital_country->name : (trans('country') . ' , ')) ?>
-                            <?= $capital_state ? $capital_state->name : trans('state') . ' ' ?>
-                        </span>
-                    <?php else : ?>
-                        <span class="titre m-0 flex-fill  text-truncate text-left h-100"><?= $filter_location ?></span>
-                    <?php endif; ?>
-                    <i class="fas fa-angle-down align-self-center"></i>
-                </a>
-                <!-- <button type="button" name="location-link" location-type="<?php echo $this->general_settings->default_product_location ? "state" : "country"; ?>" location-link="<?php echo current_url() . '?' . $_SERVER['QUERY_STRING']; ?>" show-product="0" class='filter-btn text-truncate d-flex'>
+            <div class="d-flex align-items-center justify-content-between p-1" style="width: 100%;">
+                <div style="width: 37%;">
+                    <a class="filter-btn text-truncate d-flex" href="<?php echo $this->general_settings->default_product_location ? lang_base_url() . "location?country=" . $this->general_settings->default_product_location . "&state=0&current_url=" . current_url() : "location?country=0&current_url=" . current_url(); ?>">
+                        <div class="d-flex justify-content-center align-items-center" style="flex: 1;">
+                            <i class="fa fa-map-marker  fa-lg mr-1 ml-1" aria-hidden="true"></i>
+                            <?php if (empty($filter_location)) : ?>
+                                <span class="titre m-0 flex-fill  text-truncate text-left h-100">
+                                    <?= $is_hkm_one_country ? '' : ($capital_country ? $capital_country->name : (trans('country') . ' , ')) ?>
+                                    <?= $capital_state ? $capital_state->name : trans('state') . ' ' ?>
+                                </span>
+                            <?php else : ?>
+                                <span class="titre m-0 flex-fill  text-truncate text-left h-100"><?= $filter_location ?></span>
+                            <?php endif; ?>
+                        </div>
+                        <i class="fas fa-angle-down align-self-center"></i>
+                    </a>
+                    <!-- <button type="button" name="location-link" location-type="<?php echo $this->general_settings->default_product_location ? "state" : "country"; ?>" location-link="<?php echo current_url() . '?' . $_SERVER['QUERY_STRING']; ?>" show-product="0" class='filter-btn text-truncate d-flex'>
                 </button> -->
-            </div>
-            <div class="col-4 p-1">
-                <!-- <a type="button" name="category-link" category-link="<?php echo lang_base_url(); ?>popup-category/all" show-product="0" action-type="button" class='filter-btn text-truncate d-flex'> -->
-                <a href="<?php echo lang_base_url(); ?>popup-category/all" class='filter-btn text-truncate d-flex'>
-                    <img src="https://image.flaticon.com/icons/svg/95/95090.svg" class="align-self-center mr-1 ml-1" alt="Menu" style="width: 15px; filter:invert(47%) sepia(1%) saturate(8%) hue-rotate(87deg) brightness(119%) contrast(119%);">
-                    <?php if (!isset($category)) : ?>
-                        <span class="titre  m-0 flex-fill  h-100 text-truncate  text-center"><?= trans('category') ?></span>
+                </div>
+                <div style="width: 37%;">
+                    <a href="<?php echo lang_base_url(); ?>popup-category/all" class='filter-btn text-truncate d-flex'>
+                        <div class="d-flex justify-content-center align-items-center" style="flex: 1;">
+                            <i class="fa fa-th-large  fa-lg mr-1 ml-1" aria-hidden="true" style="line-height: 15px !important;"></i>
+                            <?php if (!isset($category)) : ?>
+                                <span class="titre  m-0 flex-fill  h-100 text-truncate"><?= trans('category') ?></span>
+                            <?php else : ?>
+                                <span class="titre  m-0 flex-fill  h-100 text-truncate"><?= htmlspecialchars($category->name) ?></span>
+                            <?php endif; ?>
+                        </div>
+                        <i class="fas fa-angle-down align-self-center"></i>
+                    </a>
+                </div>
+                <div style="width: 25%;">
+                    <?php if ($category->id) : ?>
+                        <a href="<?php echo lang_base_url(); ?>filter/<?php echo $category->id; ?>" class='filter-btn text-truncate d-flex'>
+                            <div class="d-flex justify-content-center align-items-center" style="flex: 1;">
+                                <i class="fa fa-filter  fa-lg align-self-center mr-1 ml-1" aria-hidden="true"></i>
+                                <span class="titre  m-0 flex-fill h-100"><?= trans('filter') ?></span>
+                            </div>
+                            <i class="fas fa-angle-down align-self-center"></i>
+                        </a>
                     <?php else : ?>
-                        <span class="titre  m-0 flex-fill  h-100 text-truncate  text-center"><?= htmlspecialchars($category->name) ?></span>
+                        <a href="<?php echo lang_base_url(); ?>filter/0" class='filter-btn text-truncate d-flex'>
+                            <div class="d-flex justify-content-center align-items-center" style="flex: 1;">
+                                <i class="fa fa-filter  fa-lg align-self-center mr-1 ml-1" aria-hidden="true"></i>
+                                <span class="titre  m-0 flex-fill h-100"><?= trans('filter') ?></span>
+                            </div>
+                            <i class="fas fa-angle-down align-self-center"></i>
+                        </a>
                     <?php endif; ?>
-                    <i class="fas fa-angle-down align-self-center"></i>
-                </a>
-            </div>
-            <div class="col-4 p-1">
-                <?php if ($category->id) : ?>
-                    <a href="<?php echo lang_base_url(); ?>filter/<?php echo $category->id; ?>" class='filter-btn text-truncate d-flex'>
-                        <i class="fa fa-sliders  fa-lg align-self-center mr-1 ml-1" aria-hidden="true"></i>
-                        <span class="titre  m-0 flex-fill h-100 text-truncate  text-center"><?= trans('filter') ?></span>
-                        <i class="fas fa-angle-down align-self-center"></i>
-                    </a>
-                <?php else : ?>
-                    <a href="<?php echo lang_base_url(); ?>filter/0" class='filter-btn text-truncate d-flex'>
-                        <i class="fa fa-sliders  fa-lg align-self-center mr-1 ml-1" aria-hidden="true"></i>
-                        <span class="titre  m-0 flex-fill h-100 text-truncate  text-center"><?= trans('filter') ?></span>
-                        <i class="fas fa-angle-down align-self-center"></i>
-                    </a>
-                <?php endif; ?>
+                </div>
             </div>
         </div>
         <hr>
