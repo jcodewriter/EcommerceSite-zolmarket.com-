@@ -4736,7 +4736,7 @@ img {
 }
 .product-sort-by .sort-select .dropdown-toggle {
 	display: inline-block;
-	min-width: 200px;
+	min-width: 160px;
 	text-align: left;
 	border: 1px solid #ededed;
 	background-color: transparent;
@@ -4749,7 +4749,7 @@ img {
 	top: 16px
 }
 .product-sort-by .sort-select .dropdown-menu {
-	min-width: 200px;
+	min-width: 160px;
 	border-color: #ededed;
 	border-top: 0;
 	border-radius: 0 0 2px 2px;

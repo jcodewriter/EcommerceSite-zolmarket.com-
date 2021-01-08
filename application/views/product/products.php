@@ -321,7 +321,7 @@ if ($page != 'product') {
                             <?php if (!isset($category)) : ?>
                                 <span class="titre  m-0 flex-fill  h-100 text-truncate" style="text-overflow: clip !important;"><?= trans('category') ?></span>
                             <?php else : ?>
-                                <span class="titre  m-0 flex-fill  h-100 text-truncate" style="text-overflow: clip !important;"><?= htmlspecialchars($category->name) ?></span>
+                                <span class="titre  m-0 flex-fill  h-100 text-truncate" style="text-overflow: clip !important; <?= is_arabic($category->name) ? 'direction: ltr;' : 'direction: rtl;'; ?>"><?= htmlspecialchars($category->name) ?></span>
                             <?php endif; ?>
                         </div>
                         <i class="fas fa-angle-down align-self-center"></i>
