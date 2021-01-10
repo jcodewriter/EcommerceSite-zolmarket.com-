@@ -5033,21 +5033,22 @@ img {
 /* ============ 10. Auth ============ */
 
 .auth-container {
-	justify-content: center;
-	padding-top: 30px;
 	width: 100%;
-	min-height: 720px
+	height: calc(100vh - 60px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* min-height: 1000px; */
 }
 .auth-box {
-	background: #fff;
-	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+	background: #f7f9fc;
+	/* box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1); */
 	padding: 30px;
 	width: 420px;
 	max-width: 100%;
 	border-radius: 6px;
-	border: 1px solid #e6e6e6;
+	/* border: 1px solid #e6e6e6; */
 	margin: 0 auto;
-	margin-top: 30px
 }
 .auth-box .form-group {
 	margin-bottom: 10px
@@ -13311,4 +13312,13 @@ h4.col-md-12.title {
 
 .membership__box-body .form-group{
 	float: none !important;
+}
+.edit-product__button{
+	position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 3px 10px 3px 5px;
+    background: #e9ecef;
+	border-radius: 5px;
+	z-index: 1;
 }

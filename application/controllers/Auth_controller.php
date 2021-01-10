@@ -32,7 +32,7 @@ class Auth_controller extends Home_Core_Controller
 
         $this->load->view('partials/_header', $data);
         $this->load->view('auth/login');
-        $this->load->view('partials/_footer_category');
+        $this->load->view('partials/_footer');
     }
 
     /**

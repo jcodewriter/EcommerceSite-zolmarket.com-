@@ -14,7 +14,7 @@
 <!-- Wrapper -->
 <div id="wrapper" style="padding-top: 0 !important;">
     <div class="container">
-        <div class="auth-container">
+        <div class="auth-container" style="min-height: 700px;">
             <div class="auth-box">
                 <div class="row">
                     <div class="col-12">
