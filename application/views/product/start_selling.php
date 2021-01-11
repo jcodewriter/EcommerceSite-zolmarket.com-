@@ -138,15 +138,19 @@
 														</div>
 
 														<div class="form-group" style="text-align: center;">
-															<label class="control-label"><?php echo trans("upload_your_shop"); ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
-															<div class="upload-image-container">
-																<div class="private-image__wrapper profile-image__wrapper" style="<?php echo !$this->auth_user->avatar ? 'display: none;' : '' ?>">
-																	<img src="<?php echo get_user_avatar($this->auth_user); ?>" alt="<?php echo $this->auth_user->username; ?>" id="imgadshoww">
-																	<i class="fa fa-times delete-profile-image__btn"></i>
+															<label class="control-label"><?php echo trans("upload_your_shop"); ?></label>
+															<div class="row">
+																<div class="col-sm-12 col-profile">
+																	<img src="<?php echo html_escape(get_user_avatar($user)); ?>" alt="avatar" id="imgadshoww" class="thumbnail img-responsive img-update profile-image__wrapper <?= (!$this->auth_user->is_private || $this->auth_user->role == "admin") ? 'company-image__wrapper' : 'private-image__wrapper'; ?>" style="max-width: 400px; height: 200px;">
 																</div>
-																<span class='btn-file-upload far fa-image private-upload-image__btn update-profile-image__btn ' style="<?php echo $this->auth_user->avatar ? 'display: none;' : '' ?>background-color: #a9a9a9;">
-																	<input type="file" name="file" id="imgUploader" size="40" accept=".png, .jpg, .jpeg, .gif" onchange="$('#upload-file-info').html($(this).val().replace(/.*[\/\\]/, ''));" required>
-																</span>
+															</div>
+															<div class="row">
+																<div class="col-sm-12 col-profile mt-1">
+																	<a class="btn btn-success btn-sm btn-file-upload">
+																		<?php echo trans('select_image'); ?>
+																		<input id="imgUploader" name="file" size="40" accept=".png, .jpg, .jpeg" onchange="$('#upload-file-info').html($(this).val().replace(/.*[\/\\]/, ''));" type="file">
+																	</a>
+																</div>
 															</div>
 														</div>
 
@@ -425,6 +429,15 @@
 	.error-circle i {
 		font-size: 30px
 	}
+
+	.private-image__wrapper {
+		width: 200px;
+		border-radius: 50%;
+	}
+
+	.company-image__wrapper {
+		width: 100%;
+	}
 </style>
 <script>
 	$(document).ready(function() {
@@ -483,16 +496,12 @@
 			})
 			$(".profile-image__wrapper").addClass("private-image__wrapper")
 			$(".profile-image__wrapper").removeClass("company-image__wrapper")
-			$(".update-profile-image__btn").addClass("private-upload-image__btn")
-			$(".update-profile-image__btn").removeClass("company-upload-image__btn")
 		} else if (e.name == "company") {
 			$(".company_name_group").css({
 				display: "block"
 			})
 			$(".profile-image__wrapper").addClass("company-image__wrapper")
 			$(".profile-image__wrapper").removeClass("private-image__wrapper")
-			$(".update-profile-image__btn").addClass("company-upload-image__btn")
-			$(".update-profile-image__btn").removeClass("private-upload-image__btn")
 		}
 	}
 </script>

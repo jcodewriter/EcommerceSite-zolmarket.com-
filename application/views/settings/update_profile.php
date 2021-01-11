@@ -52,16 +52,22 @@
                                     <?php endif; ?>
                                 <?php endif; ?>
                             </div>
+
+
                             <div class="form-group" style="text-align: center;">
                                 <label class="control-label"><?php echo trans("upload_your_shop"); ?></label>
-                                <div class="upload-image-container">
-                                    <div class="<?php echo (!$this->auth_user->is_private || $this->auth_user->role == "admin") ? 'company-image__wrapper' : 'private-image__wrapper'; ?> profile-image__wrapper" style="<?php echo !$this->auth_user->avatar ? 'display: none;' : '' ?>">
-                                        <img src="<?php echo get_user_avatar($this->auth_user); ?>" alt="<?php echo $this->auth_user->username; ?>" id="imgadshoww">
-                                        <i class="fa fa-times delete-profile-image__btn"></i>
+                                <div class="row">
+                                    <div class="col-sm-12 col-profile">
+                                        <img src="<?php echo html_escape(get_user_avatar($user)); ?>" alt="avatar" id="imgadshoww" class="thumbnail img-responsive img-update" style="max-width: 400px; height: 200px; <?= (!$this->auth_user->is_private || $this->auth_user->role == "admin") ? 'width: 100%' : 'width: 200px; border-radius: 50%'; ?>">
                                     </div>
-                                    <span class='btn-file-upload far fa-image <?php echo (!$this->auth_user->is_private || $this->auth_user->role == "admin") ? 'company-upload-image__btn' : 'private-upload-image__btn'; ?> update-profile-image__btn ' style="<?php echo $this->auth_user->avatar ? 'display: none;' : '' ?>background-color: #a9a9a9;">
-                                        <input type="file" name="file" id="imgUploader" size="40" accept=".png, .jpg, .jpeg, .gif" onchange="$('#upload-file-info').html($(this).val().replace(/.*[\/\\]/, ''));">
-                                    </span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-profile mt-1">
+                                        <a class="btn btn-success btn-sm btn-file-upload">
+                                            <?php echo trans('select_image'); ?>
+                                            <input id="imgUploader" name="file" size="40" accept=".png, .jpg, .jpeg" onchange="$('#upload-file-info').html($(this).val().replace(/.*[\/\\]/, ''));" type="file">
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
 
