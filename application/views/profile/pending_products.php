@@ -30,7 +30,11 @@
             <div class="col-12">
                 <div class="profile-page-top">
                     <!-- load profile details -->
-                    <?php $this->load->view("profile/_profile_user_info"); ?>
+                    <?php if (!$user->is_private || $user->role == "admin") : ?>
+                        <?php $this->load->view("profile/company/_profile_user_info"); ?>
+                    <?php else : ?>
+                        <?php $this->load->view("profile/private/_profile_user_info"); ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

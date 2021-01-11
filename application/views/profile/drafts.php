@@ -1,16 +1,16 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
 <div class="hkm_messages_navCatDownMobile">
-	<div class="cat-header">
+    <div class="cat-header">
         <div class="mobile-header-back">
-            <a href="<?php echo lang_base_url().'account/'. $this->auth_user->slug;?>" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?>  </a>
+            <a href="<?php echo lang_base_url() . 'account/' . $this->auth_user->slug; ?>" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?> </a>
         </div>
         <div class="mobile-header-title">
-            <span  class="text-white textcat-header text-center"><?php echo $title;?></span>
+            <span class="text-white textcat-header text-center"><?php echo $title; ?></span>
         </div>
         <div class="mobilde-header-cart">
         </div>
-	</div>   
+    </div>
 </div>
 
 <!-- Wrapper -->
@@ -20,8 +20,7 @@
             <div class="col-12">
                 <nav class="nav-breadcrumb" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a
-                                    href="<?php echo lang_base_url(); ?>"><?php echo trans("home"); ?></a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo lang_base_url(); ?>"><?php echo trans("home"); ?></a></li>
                         <li class="breadcrumb-item active" aria-current="page"><?php echo trans("profile"); ?></li>
                     </ol>
                 </nav>
@@ -31,7 +30,11 @@
             <div class="col-12">
                 <div class="profile-page-top">
                     <!-- load profile details -->
-                    <?php $this->load->view("profile/_profile_user_info"); ?>
+                    <?php if (!$user->is_private || $user->role == "admin") : ?>
+                        <?php $this->load->view("profile/company/_profile_user_info"); ?>
+                    <?php else : ?>
+                        <?php $this->load->view("profile/private/_profile_user_info"); ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -45,7 +48,7 @@
 
             <div class="col-sm-12 col-md-9">
                 <div class="profile-tab-content">
-                    <?php foreach ($products as $product):
+                    <?php foreach ($products as $product) :
                         $this->load->view('product/_product_item_draft', ['product' => $product]);
                     endforeach; ?>
                 </div>
@@ -63,6 +66,3 @@
     </div>
 </div>
 <!-- Wrapper End-->
-
-
-

@@ -1,15 +1,15 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <div class="hkm_messages_navCatDownMobile">
-	<div class="cat-header">
+    <div class="cat-header">
         <div class="mobile-header-back">
-            <a href="<?php echo lang_base_url().'account/'. $this->auth_user->slug;?>" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?>  </a>
+            <a href="<?php echo lang_base_url() . 'account/' . $this->auth_user->slug; ?>" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?> </a>
         </div>
         <div class="mobile-header-title">
-            <span  class="text-white textcat-header text-center"><?php echo $title;?></span>
+            <span class="text-white textcat-header text-center"><?php echo $title; ?></span>
         </div>
         <div class="mobilde-header-cart">
         </div>
-	</div>   
+    </div>
 </div>
 <!-- Wrapper -->
 <div id="wrapper" style="padding-top: 80px;">
@@ -28,7 +28,11 @@
             <div class="col-12">
                 <div class="profile-page-top">
                     <!-- load profile details -->
-                    <?php $this->load->view("profile/_profile_user_info"); ?>
+                    <?php if (!$user->is_private || $user->role == "admin") : ?>
+                        <?php $this->load->view("profile/company/_profile_user_info"); ?>
+                    <?php else : ?>
+                        <?php $this->load->view("profile/private/_profile_user_info"); ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -41,7 +45,7 @@
             <div class="col-sm-12 col-md-9">
                 <div class="profile-tab-content">
                     <div class="row">
-                        <?php foreach ($following_users as $item): ?>
+                        <?php foreach ($following_users as $item) : ?>
                             <div class="col-4 col-sm-2">
                                 <div class="follower-item">
                                     <a href="<?php echo generate_profile_url($item); ?>">
@@ -68,4 +72,3 @@
 
 <!-- include send message modal -->
 <?php $this->load->view("partials/_modal_send_message", ["subject" => null]); ?>
-

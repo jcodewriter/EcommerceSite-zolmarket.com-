@@ -1,16 +1,16 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
 <div class="hkm_messages_navCatDownMobile">
-	<div class="cat-header">
+    <div class="cat-header">
         <div class="mobile-header-back">
-            <a href="<?php echo lang_base_url().'account/'. $this->auth_user->slug;?>" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?>  </a>
+            <a href="<?php echo lang_base_url() . 'account/' . $this->auth_user->slug; ?>" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?> </a>
         </div>
         <div class="mobile-header-title">
-            <span  class="text-white textcat-header text-center"><?php echo $title;?></span>
+            <span class="text-white textcat-header text-center"><?php echo $title; ?></span>
         </div>
         <div class="mobilde-header-cart">
         </div>
-	</div>   
+    </div>
 </div>
 
 <!-- Wrapper -->
@@ -26,12 +26,16 @@
                 </nav>
             </div>
         </div>
-        
+
         <div class="row page_title_hidden_on_mobile">
             <div class="col-12">
                 <div class="profile-page-top">
                     <!-- load profile details -->
-                    <?php $this->load->view("profile/_profile_user_info"); ?>
+                    <?php if (!$user->is_private || $user->role == "admin") : ?>
+                        <?php $this->load->view("profile/company/_profile_user_info"); ?>
+                    <?php else : ?>
+                        <?php $this->load->view("profile/private/_profile_user_info"); ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -60,4 +64,3 @@
 
 <!-- include send message modal -->
 <?php $this->load->view("partials/_modal_send_message", ["subject" => null]); ?>
-

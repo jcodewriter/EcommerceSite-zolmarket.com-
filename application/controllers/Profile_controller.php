@@ -65,7 +65,7 @@ class Profile_controller extends Home_Core_Controller
 
 
         //set pagination
-        $pagination = $this->paginate(lang_base_url() . "product/" . $data["user"]->slug, $this->product_model->get_user_products_count($data["user"]->slug), $this->pagination_per_page);
+        $pagination = $this->paginate(lang_base_url() . "products/" . $data["user"]->slug, $this->product_model->get_user_products_count($data["user"]->slug), $this->pagination_per_page);
         $data['products'] = $this->product_model->get_paginated_user_products($data["user"]->slug, $pagination['per_page'], $pagination['offset']);
 
         $this->load->view('partials/_header', $data);

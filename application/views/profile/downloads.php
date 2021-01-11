@@ -1,15 +1,15 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <div class="hkm_messages_navCatDownMobile">
 	<div class="cat-header">
-        <div class="mobile-header-back">
-            <a href="<?php echo lang_base_url().'account/'. $this->auth_user->slug;?>" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?>  </a>
-        </div>
-        <div class="mobile-header-title">
-            <span  class="text-white textcat-header text-center"><?php echo $title;?></span>
-        </div>
-        <div class="mobilde-header-cart">
-        </div>
-	</div>   
+		<div class="mobile-header-back">
+			<a href="<?php echo lang_base_url() . 'account/' . $this->auth_user->slug; ?>" class="btn-back-mobile-nav"> <i class="icon-arrow-left"></i> <?php echo trans("back"); ?> </a>
+		</div>
+		<div class="mobile-header-title">
+			<span class="text-white textcat-header text-center"><?php echo $title; ?></span>
+		</div>
+		<div class="mobilde-header-cart">
+		</div>
+	</div>
 </div>
 <!-- Wrapper -->
 <div id="wrapper" style="padding-top: 80px;">
@@ -28,24 +28,28 @@
 			<div class="col-12">
 				<div class="profile-page-top">
 					<!-- load profile details -->
-					<?php $this->load->view("profile/_profile_user_info"); ?>
+					<?php if (!$user->is_private || $user->role == "admin") : ?>
+						<?php $this->load->view("profile/company/_profile_user_info"); ?>
+					<?php else : ?>
+						<?php $this->load->view("profile/private/_profile_user_info"); ?>
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>
 
 		<div class="row">
-            <div class="col-sm-12 col-md-3 hkmnone_tabs hidden-sm-down">
-                <!-- load profile nav -->
-                <?php $this->load->view("profile/_profile_tabs"); ?>
-            </div>
+			<div class="col-sm-12 col-md-3 hkmnone_tabs hidden-sm-down">
+				<!-- load profile nav -->
+				<?php $this->load->view("profile/_profile_tabs"); ?>
+			</div>
 
-            <div class="col-sm-12 col-md-9">
+			<div class="col-sm-12 col-md-9">
 				<div class="profile-tab-content">
 					<?php
-					if (!empty($items)):
-						foreach ($items as $item):
+					if (!empty($items)) :
+						foreach ($items as $item) :
 							$product = get_available_product($item->product_id);
-							if (!empty($product)):?>
+							if (!empty($product)) : ?>
 								<div class="product-item product-item-horizontal">
 									<div class="row">
 										<div class="col-12 col-sm-4">
@@ -74,12 +78,12 @@
 													$this->load->view('partials/_review_stars', ['review' => $product->rating]);
 												} ?>
 												<div class="item-meta m-t-5">
-                                                    <span class="price"><?php echo print_price($product->price, $product->currency); ?>
-														<?php if ($product->is_sold == 1): ?>
+													<span class="price"><?php echo print_price($product->price, $product->currency); ?>
+														<?php if ($product->is_sold == 1) : ?>
 															<span>(<?php echo trans("sold"); ?>)</span>
 														<?php endif; ?>
-                                                    </span>
-													<?php if ($general_settings->product_reviews == 1): ?>
+													</span>
+													<?php if ($general_settings->product_reviews == 1) : ?>
 														<span class="item-comments"><i class="icon-comment"></i>&nbsp;<?php echo get_product_comment_count($product->id); ?></span>
 													<?php endif; ?>
 													<span class="item-favorites"><i class="icon-heart-o"></i>&nbsp;<?php echo get_product_favorited_count($product->id); ?></span>
@@ -103,7 +107,7 @@
 										</div>
 									</div>
 								</div>
-							<?php endif;
+					<?php endif;
 						endforeach;
 					endif; ?>
 				</div>
