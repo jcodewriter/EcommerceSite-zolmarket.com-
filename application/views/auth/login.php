@@ -27,14 +27,14 @@
                         </div>
                         <!-- include message block -->
                         <?php $this->load->view('partials/_messages'); ?>
-                        <div class="form-group">
+                        <div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
                             <label for="email" style="color: #777;"><?php echo trans("email_address"); ?></label>
-                            <input type="email" id="email" name="email" class="form-control auth-form-input" placeholder="<?php echo trans("email_address"); ?>" required>
+                            <input type="email" id="email" name="email" class="form-control auth-form-input" placeholder="<?php echo trans("email_address"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
                             <label for="password" style="color: #777;"><?php echo trans("password"); ?></label>
-                            <input type="password" id="password" name="password" class="form-control auth-form-input" placeholder="<?php echo trans("password"); ?>" minlength="4" required>
-                            <i class="far fa-eye" id="togglePassword" style="position: absolute; bottom: 15px; right: 10px;"></i>
+                            <input type="password" id="password" name="password" class="form-control auth-form-input" placeholder="<?php echo trans("password"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" minlength="4" required>
+                            <i class="far fa-eye" id="togglePassword" style="position: absolute; bottom: 15px; <?= $this->selected_lang->id == 2 ? 'left: 10px' : 'right: 10px;'; ?>"></i>
                         </div>
                         <div class="form-group" style="display: flex; justify-content: space-between;">
                             <div class="custom-control custom-checkbox custom-control-validate-input" style="display: flex; align-items: center;">

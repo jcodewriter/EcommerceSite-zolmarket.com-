@@ -37,31 +37,31 @@
                         </div>
                         <!-- include message block -->
                         <?php $this->load->view('partials/_messages'); ?>
-                        <div class="form-group">
+                        <div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
                             <div class="d-flex justify-content-between" style="width: 100%">
                                 <div style="width: 48%;">
                                     <label for="password" style="font-weight: 600"><?php echo trans("first_name"); ?></label>
-                                    <input autocomplete="off" type="text" name="firstname" class="form-control auth-form-input" placeholder="<?php echo trans("first_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" required>
+                                    <input autocomplete="off" type="text" name="firstname" class="form-control auth-form-input" placeholder="<?php echo trans("first_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
                                 </div>
                                 <div style="width: 48%;">
                                     <label for="password" style="font-weight: 600"><?php echo trans("last_name"); ?></label>
-                                    <input autocomplete="off" type="text" name="lastname" class="form-control auth-form-input" placeholder="<?php echo trans("last_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" required>
+                                    <input autocomplete="off" type="text" name="lastname" class="form-control auth-form-input" placeholder="<?php echo trans("last_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
                             <label for="password" style="font-weight: 600"><?php echo trans("email_address"); ?></label>
-                            <input autocomplete="off" type="email" name="email" class="form-control auth-form-input" placeholder="<?php echo trans("email_address"); ?>" required>
+                            <input autocomplete="off" type="email" name="email" class="form-control auth-form-input" placeholder="<?php echo trans("email_address"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
                             <label for="password" style="font-weight: 600"><?php echo trans("password"); ?></label>
-                            <input type="password" id="password" name="password" class="form-control auth-form-input" placeholder="<?php echo trans("password"); ?>" required>
-                            <i class="far fa-eye" id="registerTogglePassword" style="position: absolute; bottom: 15px; right: 10px;"></i>
+                            <input type="password" id="password" name="password" class="form-control auth-form-input" placeholder="<?php echo trans("password"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
+                            <i class="far fa-eye" id="registerTogglePassword" style="position: absolute; bottom: 15px; <?= $this->selected_lang->id == 2 ? 'left: 10px' : 'right: 10px;'; ?>"></i>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
                             <label for="password" style="font-weight: 600"><?php echo trans("password_confirm"); ?></label>
-                            <input type="password" id="confirm_password" name="confirm_password" class="form-control auth-form-input" placeholder="<?php echo trans("password_confirm"); ?>" required>
-                            <i class="far fa-eye" id="confirmTogglePassword" style="position: absolute; bottom: 15px; right: 10px;"></i>
+                            <input type="password" id="confirm_password" name="confirm_password" class="form-control auth-form-input" placeholder="<?php echo trans("password_confirm"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
+                            <i class="far fa-eye" id="confirmTogglePassword" style="position: absolute; bottom: 15px; <?= $this->selected_lang->id == 2 ? 'left: 10px' : 'right: 10px;'; ?>"></i>
                         </div>
                         <div class="form-group m-t-5 m-b-20">
                             <div class="custom-control custom-checkbox custom-control-validate-input">

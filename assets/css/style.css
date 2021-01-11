@@ -5064,7 +5064,13 @@ img {
 	padding: 10px 20px;
 	box-shadow: none;
 	border-radius: 0;
-	border: 1px solid #404041
+	border: 1px solid #404041;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+  transition: background-color 5000s;
 }
 .auth-box .title {
 	font-size: 24px;
