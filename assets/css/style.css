@@ -5034,10 +5034,11 @@ img {
 
 .auth-container {
 	width: 100%;
-	height: calc(100vh - 60px);
+	/* height: calc(100vh - 60px); */
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	/* align-items: center; */
+	margin-top: 70px;
 	/* min-height: 1000px; */
 }
 .auth-box {
@@ -5051,7 +5052,7 @@ img {
 	margin: 0 auto;
 }
 .auth-box .form-group {
-	margin-bottom: 10px
+	margin-bottom: 15px
 }
 .auth-form-input {
 	box-shadow: none !important;
@@ -6865,6 +6866,7 @@ form select.error {
 .ysfhkm_adv_srh #ysfhkm_slc_country select,
 .ysfhkm_adv_srh #ysfhkm_slc_city select,
 .ysfhkm_adv_srh #ysfhkm_slc_negh select,
+.filter-btn__wrapper,
 .filter-btn {
 	height: 40px;
 	line-height: 40px;
@@ -6878,8 +6880,11 @@ form select.error {
 	font-size: 14px;
 	outline: none;
 }
-.filter-btn {
+.filter-btn__wrapper{
 	border: 1px solid #e9ecef;
+}
+.filter-btn {
+	border: 1px solid #404041;
 }
 .ysfhkm_adv_srh #ysfhkm_slc_ctg {
 	margin-left: -10px;

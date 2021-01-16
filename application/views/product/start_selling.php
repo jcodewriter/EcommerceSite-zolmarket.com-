@@ -154,30 +154,30 @@
 															</div>
 														</div>
 
-														<div class="form-group">
+														<div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
 															<div class="d-flex justify-content-between" style="width: 100%;">
-																<div style="width: 49%;">
+																<div style="width: 49%;<?= $this->selected_lang->id == 2 ? 'order: 1' : ''; ?>">
 																	<label class="control-label"><?php echo trans("first_name"); ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
-																	<input type="text" name="firstname" class="form-control form-input" value="<?php echo $this->auth_user->firstname; ?>" placeholder="<?php echo trans("first_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" required>
+																	<input type="text" name="firstname" class="form-control form-input" value="<?php echo $this->auth_user->firstname; ?>" placeholder="<?php echo trans("first_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
 																</div>
 																<div style="width: 49%;">
 																	<label class="control-label"><?php echo trans("last_name"); ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
-																	<input type="text" name="lastname" class="form-control form-input" value="<?php echo $this->auth_user->lastname; ?>" placeholder="<?php echo trans("last_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" required>
+																	<input type="text" name="lastname" class="form-control form-input" value="<?php echo $this->auth_user->lastname; ?>" placeholder="<?php echo trans("last_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
 																</div>
 															</div>
 														</div>
 
-														<div class="form-group company_name_group" style="display: <?php echo $this->auth_user->is_private ? 'none' : ''; ?>">
+														<div class="form-group company_name_group" style="display: <?php echo $this->auth_user->is_private ? 'none' : ''; ?>;<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
 															<label class="control-label"><?php echo trans("company_name"); ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
-															<input type="text" name="shop_name" class="form-control form-input" value="<?php echo $this->auth_user->shop_name; ?>" placeholder="<?php echo trans("company_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" required>
+															<input type="text" name="shop_name" class="form-control form-input" value="<?php echo $this->auth_user->shop_name; ?>" placeholder="<?php echo trans("company_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
 														</div>
 
-														<div class="form-group">
+														<div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
 															<label class="control-label"><?php echo trans("shop_description"); ?></label>
-															<textarea name="about_me" class="form-control form-textarea" placeholder="<?php echo trans("shop_description"); ?>"><?php echo old('about_me'); ?></textarea>
+															<textarea name="about_me" class="form-control form-textarea" placeholder="<?php echo trans("shop_description"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>"><?php echo old('about_me'); ?></textarea>
 														</div>
 
-														<div class="form-group">
+														<div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
 															<div class="row hidden-row">
 																<div class="col-12 col-sm-4 m-b-15">
 																	<label class="control-label"><?php echo trans('country'); ?></label>
@@ -271,19 +271,19 @@
 															</div>
 														</div>
 
-														<div class="form-group">
+														<div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
 															<div class="row">
 																<div class="col-12 col-sm-4 m-b-15">
 																	<label class="control-label"><?php echo trans("phone_number"); ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
-																	<input type="text" id="intl_phone_number" name="phone_number" class="form-control form-input" value="<?php echo $this->auth_user->phone_number ? html_escape($this->auth_user->phone_number) : "+249"; ?>" placeholder="<?php echo trans("phone_number"); ?>" required>
+																	<input type="text" id="intl_phone_number" name="phone_number" class="form-control form-input" value="<?php echo $this->auth_user->phone_number ? html_escape($this->auth_user->phone_number) : "+249"; ?>" required>
 																</div>
 																<div class="col-12 col-sm-4 m-b-15">
 																	<label class="control-label"><?php echo trans("address") ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
-																	<input type="text" id="address" name="address" class="form-control form-input" value="<?php echo html_escape($this->auth_user->address); ?>" placeholder="<?php echo trans("address") ?>" required>
+																	<input type="text" id="address" name="address" class="form-control form-input" value="<?php echo html_escape($this->auth_user->address); ?>" placeholder="<?php echo trans("address") ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
 																</div>
 																<div class="col-12 col-sm-4">
 																	<label class="control-label"><?php echo trans("zip_code"); ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i> </label>
-																	<input type="text" id="zip_code" name="zip_code" class="form-control form-input" value="<?php echo html_escape($this->auth_user->zip_code); ?>" placeholder="<?php echo trans("zip_code"); ?>" required>
+																	<input type="text" id="zip_code" name="zip_code" class="form-control form-input" value="<?php echo html_escape($this->auth_user->zip_code); ?>" placeholder="<?php echo trans("zip_code"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
 																</div>
 															</div>
 														</div>

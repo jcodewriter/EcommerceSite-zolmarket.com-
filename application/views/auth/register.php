@@ -14,7 +14,7 @@
 <!-- Wrapper -->
 <div id="wrapper" style="padding-top: 0 !important;">
     <div class="container">
-        <div class="auth-container" style="min-height: 1000px;">
+        <div class="auth-container">
             <div class="auth-box">
                 <div class="row">
                     <div class="col-12">
@@ -39,7 +39,7 @@
                         <?php $this->load->view('partials/_messages'); ?>
                         <div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
                             <div class="d-flex justify-content-between" style="width: 100%">
-                                <div style="width: 48%;">
+                                <div style="width: 48%;<?= $this->selected_lang->id == 2 ? 'order: 1' : ''; ?>">
                                     <label for="password" style="font-weight: 600"><?php echo trans("first_name"); ?></label>
                                     <input autocomplete="off" type="text" name="firstname" class="form-control auth-form-input" placeholder="<?php echo trans("first_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
                                 </div>

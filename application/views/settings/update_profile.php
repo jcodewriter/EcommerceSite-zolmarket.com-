@@ -72,50 +72,54 @@
                             </div>
 
                             <div class="form-group" style="text-align: left">
-                                <div class="email-label__wrapper">
-                                    <?php if ($this->general_settings->email_verification == 1) : ?>
-                                        <?php if ($user->email_status == 1) : ?>
+                                <?php if ($this->general_settings->email_verification == 1) : ?>
+                                    <?php if ($user->email_status == 1) : ?>
+                                        <div class="email-label__wrapper" style="<?= $this->selected_lang->id == 2 ? 'justify-content:flex-end' : ''; ?>">
                                             <div class="label__wrapper">
                                                 <label class="control-label"><?php echo trans("email_address"); ?></label>
                                                 &nbsp;
                                                 <small class="text-success" style="font-size: 12px">(<?php echo trans("confirmed"); ?>)</small>
                                                 <img src="<?php echo base_url(); ?>assets/img/confirm.png" style="width:15px; margin: 3px 0 0 0" />
                                             </div>
-                                        <?php else : ?>
-                                            <div class="label__wrapper">
+                                        </div>
+                                    <?php else : ?>
+                                        <div class="email-label__wrapper">
+                                            <div class="label__wrapper" style="<?= $this->selected_lang->id == 2 ? 'order: 1' : ''; ?>">
                                                 <label class="control-label"><?php echo trans("email_address"); ?></label>
                                                 &nbsp;
                                                 <small class="text-danger">(<?php echo trans("unconfirmed"); ?>)</small>
                                             </div>
                                             <button type="submit" name="submit" value="resend_activation_email" class="btn float-right resend-email__btn hidden-sm-down"><?php echo trans("resend_activation_email"); ?></button>
-                                        <?php endif; ?>
-                                    <?php else : ?>
-                                        <label class="control-label"><?php echo trans("email_address"); ?></label>
+                                        </div>
                                     <?php endif; ?>
-                                </div>
-                                <input type="email" name="email" class="form-control form-input" value="<?php echo html_escape($user->email); ?>" placeholder="<?php echo trans("email_address"); ?>" required>
-                            </div>
-                            <div class="form-group" style="text-align: left">
-                                <div class="d-flex justify-content-between">
-                                    <div class="pr-1" style="width: 100%;">
-                                        <label class="control-label"><?php echo trans("first_name"); ?></label>
-                                        <input type="text" name="firstname" class="form-control form-input" value="<?php echo html_escape($user->firstname); ?>" placeholder="<?php echo trans("first_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" required>
+                                <?php else : ?>
+                                    <div class="email-label__wrapper" style="<?= $this->selected_lang->id == 2 ? 'justify-content:flex-end' : ''; ?>">
+                                        <label class="control-label"><?php echo trans("email_address"); ?></label>
                                     </div>
-                                    <div class="pl-1" style="width: 100%;">
+                                <?php endif; ?>
+                                <input type="email" name="email" class="form-control form-input" value="<?php echo html_escape($user->email); ?>" placeholder="<?php echo trans("email_address"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
+                            </div>
+                            <div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
+                                <div class="d-flex justify-content-between">
+                                    <div style="width: 49%;<?= $this->selected_lang->id == 2 ? 'order: 1' : ''; ?>">
+                                        <label class="control-label"><?php echo trans("first_name"); ?></label>
+                                        <input type="text" name="firstname" class="form-control form-input" value="<?php echo html_escape($user->firstname); ?>" placeholder="<?php echo trans("first_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
+                                    </div>
+                                    <div style="width: 49%;">
                                         <label class="control-label"><?php echo trans("last_name"); ?></label>
-                                        <input type="text" name="lastname" class="form-control form-input" value="<?php echo html_escape($user->lastname); ?>" placeholder="<?php echo trans("last_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" required>
+                                        <input type="text" name="lastname" class="form-control form-input" value="<?php echo html_escape($user->lastname); ?>" placeholder="<?php echo trans("last_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
                                     </div>
                                 </div>
                             </div>
                             <?php if (!$user->is_private || $user->role == "admin") : ?>
                                 <div class="form-group">
                                     <label class="control-label"><?php echo trans("company_name"); ?></label>
-                                    <input type="text" name="shop_name" class="form-control form-input" value="<?php echo $user->shop_name; ?>" placeholder="<?php echo trans("company_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>">
+                                    <input type="text" name="shop_name" class="form-control form-input" value="<?php echo $user->shop_name; ?>" placeholder="<?php echo trans("company_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
                                 </div>
                             <?php endif; ?>
                             <div class="form-group" style="display: none">
                                 <label class="control-label"><?php echo trans("slug"); ?></label>
-                                <input type="text" name="slug" class="form-control form-input" value="<?php echo html_escape($user->slug); ?>" placeholder="<?php echo trans("slug"); ?>" required>
+                                <input type="text" name="slug" class="form-control form-input" value="<?php echo html_escape($user->slug); ?>" placeholder="<?php echo trans("slug"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
                             </div>
                             <?php if ($this->auth_user->role == 'vendor' || $this->auth_user->role == 'admin') : ?>
                                 <div class="form-group" style="text-align: left">
@@ -123,7 +127,7 @@
                                     <textarea name="about_me" class="form-control form-textarea" placeholder="<?php echo trans("shop_description"); ?>"><?php echo html_escape($user->about_me); ?></textarea>
                                 </div>
                             <?php endif; ?>
-                            <div class="form-group">
+                            <div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
                                 <label class="control-label"><?php echo trans('location'); ?></label>
                                 <div class="row hidden-row">
                                     <div class="col-12 col-sm-4 m-b-15">
@@ -199,20 +203,21 @@
                                 <!-- HIHIHIHI -->
 
                                 <div class="row">
-                                    <div class="col-12 col-sm-6 m-b-15">
+                                    <div class="col-12 col-sm-4 m-b-15">
                                         <label class="control-label"><?php echo trans("address"); ?></label>
-                                        <input type="text" name="address" class="form-control form-input" value="<?php echo html_escape($user->address); ?>" placeholder="<?php echo trans("address") ?>">
+                                        <input type="text" name="address" class="form-control form-input" value="<?php echo html_escape($user->address); ?>" placeholder="<?php echo trans("address") ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
                                     </div>
 
-                                    <div class="col-12 col-sm-3">
+                                    <div class="col-12 col-sm-4 m-b-15">
                                         <label class="control-label"><?php echo trans("zip_code"); ?></label>
-                                        <input type="text" name="zip_code" class="form-control form-input" value="<?php echo html_escape($user->zip_code); ?>" placeholder="<?php echo trans("zip_code") ?>">
+                                        <input type="text" name="zip_code" class="form-control form-input" value="<?php echo html_escape($user->zip_code); ?>" placeholder="<?php echo trans("zip_code") ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
+                                    </div>
+
+                                    <div class="col-12 col-sm-4">
+                                        <label class="control-label"><?php echo trans("phone_number"); ?></label>
+                                        <input type="text" id="intl_phone_number" name="phone_number" class="form-control form-input" value="<?php echo $user->phone_number ? html_escape($user->phone_number) : "+249"; ?>" placeholder="<?php echo trans("phone_number"); ?>">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label"><?php echo trans("phone_number"); ?></label>
-                                <input type="text" id="intl_phone_number" name="phone_number" class="form-control form-input" value="<?php echo $user->phone_number ? html_escape($user->phone_number) : "+249"; ?>" placeholder="<?php echo trans("phone_number"); ?>">
                             </div>
                             <div class="form-group m-t-15 d-none">
                                 <div class="custom-control custom-checkbox">
