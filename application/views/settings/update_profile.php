@@ -112,7 +112,7 @@
                                 </div>
                             </div>
                             <?php if (!$user->is_private || $user->role == "admin") : ?>
-                                <div class="form-group">
+                                <div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
                                     <label class="control-label"><?php echo trans("company_name"); ?></label>
                                     <input type="text" name="shop_name" class="form-control form-input" value="<?php echo $user->shop_name; ?>" placeholder="<?php echo trans("company_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
                                 </div>
@@ -122,7 +122,7 @@
                                 <input type="text" name="slug" class="form-control form-input" value="<?php echo html_escape($user->slug); ?>" placeholder="<?php echo trans("slug"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
                             </div>
                             <?php if ($this->auth_user->role == 'vendor' || $this->auth_user->role == 'admin') : ?>
-                                <div class="form-group" style="text-align: left">
+                                <div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
                                     <label class="control-label"><?php echo trans("shop_description"); ?></label>
                                     <textarea name="about_me" class="form-control form-textarea" placeholder="<?php echo trans("shop_description"); ?>"><?php echo html_escape($user->about_me); ?></textarea>
                                 </div>

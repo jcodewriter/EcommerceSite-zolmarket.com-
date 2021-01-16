@@ -12,7 +12,7 @@
     </div>
 </div>
 <!-- Wrapper -->
-<div id="wrapper" style="padding-top: 0 !important;">
+<div id="wrapper" style="padding-top: 0 !important;height: 900px;">
     <div class="container">
         <div class="auth-container">
             <div class="auth-box">
@@ -86,4 +86,19 @@
         </div>
     </div>
 </div>
+<style>
+    .custom-control-label::before {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+
+    .custom-control-label::after {
+        top: .23rem;
+    }
+
+    .custom-control-label::after {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+</style>
 <!-- Wrapper End-->

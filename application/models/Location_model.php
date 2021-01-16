@@ -296,7 +296,12 @@ class Location_model extends CI_Model
 
     public function get_states_by_country1($country_id){
         $country_id = clean_number($country_id);
-        $select = 'select t0.*, count(*) as cnt
+        if ($this->session->userdata("modesy_selected_lang") == 1){
+            $field = "name";
+        }else{
+            $field = "ar_name";
+        }
+        $select = 'select t0.*, t0.'.$field.' as name, count(*) as cnt
                     from states as t0
                     left join cities as t1 on t0.id = t1.state_id
                     where t0.country_id = '.$country_id.'
@@ -555,27 +560,37 @@ class Location_model extends CI_Model
         return $str;
     }
     public function get_btn_string($data = array()){
+        if ($this->session->userdata("modesy_selected_lang") == 1){
+            $field = "name";
+        }else{
+            $field = "ar_name";
+        }
         $this->db->where('countries.id', $data->country_id);
         $query = $this->db->get('countries');
         $country = $query->row();
-        $str = $country->name;
+        $str = $country->$field;
         return $str;
     }
 
     public function get_state_button_string($data = array()){
+        if ($this->session->userdata("modesy_selected_lang") == 1){
+            $field = "name";
+        }else{
+            $field = "ar_name";
+        }
         $str = '';
         $this->db->where('states.id', $data->state_id);
         $query = $this->db->get('states');
         $state = $query->row();
         if ($state){
-            $str = $state->name;
+            $str = $state->$field;
         }else return $str;
 
         $this->db->where('cities.id', $data->city_id);
         $query = $this->db->get('cities');
         $city = $query->row();
         if ($city){
-            $str = $city->name;
+            $str = $city->$field;
             return $str;
         }else return $str;
     }

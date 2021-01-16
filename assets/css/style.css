@@ -5052,7 +5052,7 @@ img {
 	margin: 0 auto;
 }
 .auth-box .form-group {
-	margin-bottom: 15px
+	margin-bottom: 20px
 }
 .auth-form-input {
 	box-shadow: none !important;
@@ -6132,23 +6132,23 @@ input:-webkit-autofill:active  {
 ::placeholder {
 	/* Chrome, Firefox, Opera, Safari 10.1+ */
 	/* color: #999 !important; */
-	color: #777 !important;
+	/* color: #777 !important;
 	font-size: 14px;
-	font-weight: 600;
+	font-weight: 500; */
 }
 :-ms-input-placeholder {
 	/* Internet Explorer 10-11 */
 	/* color: #999 !important; */
-	color: #777 !important;
+	/* color: #777 !important;
 	font-size: 14px;
-	font-weight: 600;
+	font-weight: 500; */
 }
 ::-ms-input-placeholder {
 	/* Microsoft Edge */
 	/* color: #999 !important; */
-	color: #777 !important;
+	/* color: #777 !important;
 	font-size: 14px;
-	font-weight: 600;
+	font-weight: 500; */
 }
 /* .product-list-pagination .pagination{
 	width: auto !important;

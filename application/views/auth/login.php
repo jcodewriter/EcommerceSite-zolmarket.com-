@@ -28,11 +28,11 @@
                         <!-- include message block -->
                         <?php $this->load->view('partials/_messages'); ?>
                         <div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
-                            <label for="email" style="color: #777;"><?php echo trans("email_address"); ?></label>
+                            <label for="email" style="font-weight: 600"><?php echo trans("email_address"); ?></label>
                             <input type="email" id="email" name="email" class="form-control auth-form-input" placeholder="<?php echo trans("email_address"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
                         </div>
                         <div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
-                            <label for="password" style="color: #777;"><?php echo trans("password"); ?></label>
+                            <label for="password" style="font-weight: 600"><?php echo trans("password"); ?></label>
                             <input type="password" id="password" name="password" class="form-control auth-form-input" placeholder="<?php echo trans("password"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" minlength="4" required>
                             <i class="far fa-eye" id="togglePassword" style="position: absolute; bottom: 15px; <?= $this->selected_lang->id == 2 ? 'left: 10px' : 'right: 10px;'; ?>"></i>
                         </div>
@@ -54,4 +54,19 @@
         </div>
     </div>
 </div>
+<style>
+    .custom-control-label::before {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+
+    .custom-control-label::after {
+        top: .23rem;
+    }
+
+    .custom-control-label::after {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+</style>
 <!-- Wrapper End-->
