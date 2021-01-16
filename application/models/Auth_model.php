@@ -15,7 +15,7 @@ class Auth_model extends CI_Model
             'firstname' => $firstname,
             'lastname' => $lastname,
             'username' => $firstname . ' ' . $lastname,
-            'slug' =>  strtolower($firstname . '.' . $lastname),
+            'slug' =>  str_slug($firstname . '-' . $lastname),
             'email' => $this->input->post('email', true),
             'password' => $this->input->post('password', true)
         );

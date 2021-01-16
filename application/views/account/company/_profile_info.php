@@ -3,7 +3,7 @@
 <div class="row align-items-center">
     <div class="profile-details__company_left col-sm-3 col-md-3">
         <div class="profile__image" style="position: relative">
-            <img src="<?php echo get_user_avatar($user); ?>" alt="<?php echo get_shop_name($user); ?>" class="sys-border sys-shadow">
+            <img src="<?php echo get_user_avatar($user); ?>" alt="<?php echo get_shop_name($user); ?>">
             <div class="profile-company__info hidden-md-up">
                 <span class="last-seen <?php echo (is_user_online($user->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i> <?php echo trans("last_seen"); ?>&nbsp;<?php echo time_ago($user->last_seen); ?></span>
                 <div class="company__icon">
