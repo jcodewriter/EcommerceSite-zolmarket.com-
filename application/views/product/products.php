@@ -301,12 +301,12 @@ if ($page != 'product') {
                         <div class="d-flex justify-content-center align-items-center" style="flex: 1; max-width: 115px !important">
                             <i class="fa fa-map-marker  fa-lg mr-1 ml-1" aria-hidden="true" style="color: #fd7e14;"></i>
                             <?php if (empty($filter_location)) : ?>
-                                <span class="titre m-0 flex-fill  text-truncate text-left h-100">
+                                <span class="titre m-0 flex-fill  text-truncate text-left h-100" style="color: #343a40;font-weight: 600;">
                                     <?= $is_hkm_one_country ? '' : ($capital_country ? $capital_country->name : (trans('country') . ' , ')) ?>
                                     <?= $capital_state ? $capital_state->name : trans('state') . ' ' ?>
                                 </span>
                             <?php else : ?>
-                                <span class="titre m-0 flex-fill  text-truncate text-left h-100" style="text-overflow: clip !important;"><?= $filter_location ?></span>
+                                <span class="titre m-0 flex-fill  text-truncate text-left h-100" style="text-overflow: clip !important;color: #343a40;font-weight: 600;"><?= $filter_location ?></span>
                             <?php endif; ?>
                         </div>
                         <i class="fas fa-angle-down align-self-center"></i>
@@ -319,9 +319,9 @@ if ($page != 'product') {
                         <div class="d-flex justify-content-center align-items-center" style="flex: 1; max-width: 115px !important">
                             <i class="fa fa-th-large  fa-lg mr-1 ml-1" aria-hidden="true" style="line-height: 15px !important;color: #fd7e14;"></i>
                             <?php if (!isset($category)) : ?>
-                                <span class="titre  m-0 flex-fill  h-100 text-truncate" style="text-overflow: clip !important;"><?= trans('category') ?></span>
+                                <span class="titre  m-0 flex-fill  h-100 text-truncate" style="text-overflow: clip !important;color: #343a40;font-weight: 600;"><?= trans('category') ?></span>
                             <?php else : ?>
-                                <span class="titre  m-0 flex-fill  h-100 text-truncate" style="text-overflow: clip !important; <?= is_arabic($category->name) ? 'direction: ltr;' : 'direction: rtl;'; ?>"><?= htmlspecialchars($category->name) ?></span>
+                                <span class="titre  m-0 flex-fill  h-100 text-truncate" style="text-overflow: clip !important;color: #343a40;font-weight: 600; <?= is_arabic($category->name) ? 'direction: ltr;' : 'direction: rtl;'; ?>"><?= htmlspecialchars($category->name) ?></span>
                             <?php endif; ?>
                         </div>
                         <i class="fas fa-angle-down align-self-center"></i>
@@ -332,7 +332,7 @@ if ($page != 'product') {
                         <a href="<?php echo lang_base_url(); ?>filter/<?php echo $category->id; ?>" class='filter-btn__wrapper text-truncate d-flex'>
                             <div class="d-flex justify-content-center align-items-center" style="flex: 1;">
                                 <i class="fa fa-filter  fa-lg align-self-center mr-1 ml-1" aria-hidden="true" style="color: #fd7e14;"></i>
-                                <span class="titre  m-0 flex-fill h-100"><?= trans('filter') ?></span>
+                                <span class="titre  m-0 flex-fill h-100" style="color: #343a40;font-weight: 600;"><?= trans('filter') ?></span>
                             </div>
                             <i class="fas fa-angle-down align-self-center"></i>
                         </a>
@@ -340,7 +340,7 @@ if ($page != 'product') {
                         <a href="<?php echo lang_base_url(); ?>filter/0" class='filter-btn__wrapper text-truncate d-flex'>
                             <div class="d-flex justify-content-center align-items-center" style="flex: 1;">
                                 <i class="fa fa-filter  fa-lg align-self-center mr-1 ml-1" aria-hidden="true" style="color: #fd7e14;"></i>
-                                <span class="titre  m-0 flex-fill h-100"><?= trans('filter') ?></span>
+                                <span class="titre  m-0 flex-fill h-100" style="color: #343a40;font-weight: 600;"><?= trans('filter') ?></span>
                             </div>
                             <i class="fas fa-angle-down align-self-center"></i>
                         </a>
