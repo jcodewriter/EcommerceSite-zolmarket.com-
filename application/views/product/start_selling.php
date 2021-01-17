@@ -254,7 +254,7 @@
 																		<i class="icon-arrow-right"></i>
 																	<?php endif; ?>
 																	</button>
-																	<label class="control-label"><?php echo trans('all_states') . " / " . trans('city'); ?> : <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
+																	<label class="control-label"><?php echo trans('all_states') . " / " . trans('city'); ?> <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
 																	<?php if ($general_settings->default_product_location == 0) : ?>
 																		<button class="filter-btn text-truncate has-menu d-flex mobile-popup__button state__city-btn" type="button" name="state" data-ajax="0" data-type="state_id" data-url="custom_location">
 																		<?php else : ?>
