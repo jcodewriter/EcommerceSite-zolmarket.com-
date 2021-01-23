@@ -47,7 +47,7 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-12 m-b-30">
+								<div class="col-12 m-b-30" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : '' ?>;">
 									<label class="control-label font-600"><?php echo trans("images"); ?></label>
 									<?php $this->load->view("product/_image_upload_box"); ?>
 								</div>
@@ -64,25 +64,25 @@
 									<?php else : ?>
 										<div class="form-box">
 											<div class="form-box-head">
-												<h4 class="title"><?php echo trans('product_type'); ?></h4>
+												<h4 class="title" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : '' ?>;"><?php echo trans('product_type'); ?></h4>
 											</div>
-											<div class="form-box-body">
+											<div class="form-box-body" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : '' ?>;">
 												<div class="form-group">
 													<div class="row">
 														<?php if ($general_settings->physical_products_system == 1) : ?>
 															<div class="col-12 col-sm-6 col-option">
-																<div class="custom-control custom-radio">
+																<div class="custom-control custom-radio" style="<?= $this->selected_lang->id == 2 ? 'padding-right: 1.5rem;padding-left: 0;' : ''; ?>">
 																	<input type="radio" name="product_type" value="physical" id="product_type_1" class="custom-control-input" checked required>
-																	<label for="product_type_1" class="custom-control-label"><?php echo trans('physical'); ?></label>
+																	<label for="product_type_1" class="<?= $this->selected_lang->id == 2 ? 'custom-control-label-ar' : ''; ?> custom-control-label"><?php echo trans('physical'); ?></label>
 																	<p class="form-element-exp"><?php echo trans('physical_exp'); ?></p>
 																</div>
 															</div>
 														<?php endif; ?>
 														<?php if ($general_settings->digital_products_system == 1) : ?>
 															<div class="col-12 col-sm-6 col-option">
-																<div class="custom-control custom-radio">
+																<div class="custom-control custom-radio" style="<?= $this->selected_lang->id == 2 ? 'padding-right: 1.5rem;padding-left: 0;' : ''; ?>">
 																	<input type="radio" name="product_type" value="digital" id="product_type_2" class="custom-control-input" <?php echo ($general_settings->physical_products_system != 1) ? 'checked' : ''; ?> required>
-																	<label for="product_type_2" class="custom-control-label"><?php echo trans('digital'); ?></label>
+																	<label for="product_type_2" class="<?= $this->selected_lang->id == 2 ? 'custom-control-label-ar' : ''; ?> custom-control-label"><?php echo trans('digital'); ?></label>
 																	<p class="form-element-exp"><?php echo trans('digital_exp'); ?></p>
 																</div>
 															</div>
@@ -96,34 +96,34 @@
 									<?php if ($active_product_system_array['active_system_count'] > 1) : ?>
 										<div class="form-box">
 											<div class="form-box-head">
-												<h4 class="title"><?php echo trans('listing_type'); ?></h4>
+												<h4 class="title" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : '' ?>;"><?php echo trans('listing_type'); ?></h4>
 											</div>
-											<div class="form-box-body">
+											<div class="form-box-body" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : '' ?>;">
 												<div class="form-group">
 													<div class="row">
 														<?php if ($general_settings->marketplace_system == 1) : ?>
 															<div class="col-12 col-sm-6 col-option listing_sell_on_site">
-																<div class="custom-control custom-radio">
+																<div class="custom-control custom-radio" style="<?= $this->selected_lang->id == 2 ? 'padding-right: 1.5rem;padding-left: 0;' : ''; ?>">
 																	<input type="radio" name="listing_type" value="sell_on_site" id="listing_type_1" class="custom-control-input" checked required>
-																	<label for="listing_type_1" class="custom-control-label"><?php echo trans('add_product_for_sale'); ?></label>
+																	<label for="listing_type_1" class="<?= $this->selected_lang->id == 2 ? 'custom-control-label-ar' : ''; ?> custom-control-label"><?php echo trans('add_product_for_sale'); ?></label>
 																	<p class="form-element-exp"><?php echo trans('add_product_for_sale_exp'); ?></p>
 																</div>
 															</div>
 														<?php endif; ?>
 														<?php if ($general_settings->classified_ads_system == 1) : ?>
 															<div class="col-12 col-sm-6 col-option listing_ordinary_listing">
-																<div class="custom-control custom-radio">
+																<div class="custom-control custom-radio" style="<?= $this->selected_lang->id == 2 ? 'padding-right: 1.5rem;padding-left: 0;' : ''; ?>">
 																	<input type="radio" name="listing_type" value="ordinary_listing" id="listing_type_2" class="custom-control-input" <?php echo ($general_settings->marketplace_system != 1) ? 'checked' : ''; ?> required>
-																	<label for="listing_type_2" class="custom-control-label"><?php echo trans('add_product_services_listing'); ?></label>
+																	<label for="listing_type_2" class="<?= $this->selected_lang->id == 2 ? 'custom-control-label-ar' : ''; ?> custom-control-label"><?php echo trans('add_product_services_listing'); ?></label>
 																	<p class="form-element-exp"><?php echo trans('add_product_services_listing_exp'); ?></p>
 																</div>
 															</div>
 														<?php endif; ?>
 														<?php if ($general_settings->bidding_system == 1) : ?>
 															<div class="col-12 col-sm-6 col-option listing_bidding">
-																<div class="custom-control custom-radio">
+																<div class="custom-control custom-radio" style="<?= $this->selected_lang->id == 2 ? 'padding-right: 1.5rem;padding-left: 0;' : ''; ?>">
 																	<input type="radio" name="listing_type" value="bidding" id="listing_type_3" class="custom-control-input" required>
-																	<label for="listing_type_3" class="custom-control-label"><?php echo trans('add_product_get_price_requests'); ?></label>
+																	<label for="listing_type_3" class="<?= $this->selected_lang->id == 2 ? 'custom-control-label-ar' : ''; ?> custom-control-label"><?php echo trans('add_product_get_price_requests'); ?></label>
 																	<p class="form-element-exp"><?php echo trans('add_product_get_price_requests_exp'); ?></p>
 																</div>
 															</div>
@@ -138,15 +138,15 @@
 
 									<div class="form-box">
 										<div class="form-box-head">
-											<h4 class="title"><?php echo trans('details'); ?></h4>
+											<h4 class="title" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : '' ?>;"><?php echo trans('details'); ?></h4>
 										</div>
 										<div class="form-box-body">
-											<div class="form-group">
+											<div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : '' ?>;">
 												<label class="control-label"><?php echo trans("title"); ?></label>
-												<input type="text" style="height:50px" name="title" class="form-control form-input" placeholder="<?php echo trans("title"); ?>" required>
+												<input type="text" style="height:50px;<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''?>;" name="title" class="form-control form-input" placeholder="<?php echo trans("title"); ?>" required>
 											</div>
 
-											<div class="form-group">
+											<div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : '' ?>;">
 												<label class="control-label"><?php echo trans("category"); ?></label>
 												<div class="hidden-row">
 													<div id="listcategories" class="selectdiv">
@@ -174,7 +174,7 @@
 												<input type="hidden" name="custom_id" class="form-control form-input" id="category_id" value="" />
 											</div>
 
-											<div class="form-group">
+											<div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : '' ?>;">
 												<label class="control-label"><?php echo trans("description"); ?></label>
 												<!-- <div class="row">
 													<div class="col-sm-12 m-b-5">
@@ -183,7 +183,7 @@
 														<button type="button" class="btn btn-sm btn-warning color-white btn_ck_add_iframe m-b-5"><i class="icon-image"></i><?php echo trans("add_iframe"); ?></button>
 													</div>
 												</div> -->
-												<textarea name="description" placeholder="<?php echo trans("description"); ?>" id="form-textarea" class="text-editor" style="border: 1px solid #d1d1d1; height:200px; width:100%; max-height:200px;min-height:200px;padding:20px;color:#494949;"></textarea>
+												<textarea style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : '';?>" name="description" placeholder="<?php echo trans("description"); ?>" id="form-textarea" class="text-editor" style="border: 1px solid #d1d1d1; height:200px; width:100%; max-height:200px;min-height:200px;padding:20px;color:#494949;"></textarea>
 											</div>
 
 										</div>
@@ -228,6 +228,7 @@
 
 <!-- Ckeditor -->
 <script>
+	console.log('<?php echo $this->selected_lang->ckeditor_lang; ?>');
 	var ckEditor = document.getElementById('ckEditor');
 	if (ckEditor != undefined && ckEditor != null) {
 		CKEDITOR.replace('ckEditor', {

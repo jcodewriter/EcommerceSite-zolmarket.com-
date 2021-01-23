@@ -6765,6 +6765,11 @@ form select.error {
 	outline: none !important;
 	box-shadow: none !important
 }
+.custom-control-label-ar::before,
+.custom-control-label-ar::after {
+	right: -1.5rem !important;
+	left: unset !important;
+}
 .custom-checkbox .custom-control-label::before {
 	background-color: #fff;
 	border-width: 2px;
