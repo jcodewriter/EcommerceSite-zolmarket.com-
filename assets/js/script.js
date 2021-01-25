@@ -3269,14 +3269,13 @@ $(document).on('click', 'body', function () {
     $('.groupemodileuplaodimagtz .form-group button.btn_imogi').removeClass('active');
 });
 
-
 //delete message
 function delete_message_confirm(event, message_id, message) {
     event.preventDefault();
     swal({
         text: message,
         icon: "warning",
-        buttons: true,
+        buttons: [sweetalert_cancel, sweetalert_ok],
         dangerMode: true,
     }).then(function (willDelete) {
         if (willDelete) {

@@ -56,9 +56,9 @@ endif; ?>
 </div>
 
 <?php if (is_arabic($product->title)) : ?>
-	<h2 style="white-space: nowrap;text-overflow: ellipsis;width: 100% !important;display: block;overflow: hidden;font-weight: 600;font-size: 16px;margin-top: 10px;"> <?php echo html_escape($product->title); ?> </h2>
+	<h2  style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : '' ?>; white-space: nowrap;text-overflow: ellipsis;width: 100% !important;display: block;overflow: hidden;font-weight: 600;font-size: 16px;margin-top: 10px;"> <?php echo html_escape($product->title); ?> </h2>
 <?php else : ?>
-	<h2 style="white-space: nowrap;text-overflow: ellipsis;width: 100% !important;display: block;overflow: hidden;font-weight: 600;font-size: 16px;margin-top: 10px;direction: rtl"> <?php echo html_escape($product->title); ?> </h2>
+	<h2 style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : '' ?>; white-space: nowrap;text-overflow: ellipsis;width: 100% !important;display: block;overflow: hidden;font-weight: 600;font-size: 16px;margin-top: 10px;direction: rtl"> <?php echo html_escape($product->title); ?> </h2>
 <?php endif; ?>
 <div class="row-custom price" style="margin-bottom: 0px;">
 	<?php if ($product->listing_type != 'bidding') : ?>
@@ -79,7 +79,7 @@ endif; ?>
 <?php endif; ?>
 <?php $user = get_user($product->user_id); ?>
 <div class="row-custom meta" style="margin-bottom: 15px;    margin-top: -15px;">
-	<div class="product-details-left" style="white-space: nowrap; text-overflow: clip; width: 90% !important; display: flex; overflow: hidden;">
+	<div  class="<?= $this->selected_lang->id == 2 ? 'product-details-right': 'product-details-left' ?> " style="white-space: nowrap; text-overflow: clip; width: 90% !important; display: flex; overflow: hidden;">
 		<?php if (is_arabic(get_shop_name_product($product))) : ?>
 			<a href="<?php echo lang_base_url() . 'profile' . '/' . $product->user_slug; ?>" style="display: block" name="profile_link">
 				<img src="<?php echo base_url() . $user->avatar; ?>" style="width:50px; height:50px; border-radius: 50%;" />
@@ -108,7 +108,7 @@ endif; ?>
 		<span><i class="icon-heart"></i><?php echo get_product_favorited_count($product->id); ?></span>
 		<span><i class="icon-eye"></i><?php echo html_escape($product->hit); ?></span>
 	</div>
-	<div class="product-details-right" style="flex: 1;margin-top: -15px;">
+	<div  class="<?= $this->selected_lang->id == 2 ? 'product-details-left': 'product-details-right' ?> " style="flex: 1;margin-top: -15px;">
 		<?php if (auth_check()) : ?>
 			<button class="btn btn-contact-seller" data-toggle="modal" data-target="#messageModal"><i class="icon-envelope"></i> <?php echo trans("ask_question") ?></button>
 		<?php else : ?>
@@ -118,30 +118,30 @@ endif; ?>
 </div>
 <!--<div class="row" style="border: 1px solid red; width: 100%"></div>-->
 <div class="row-custom details">
-	<div class="item-details" style="border-top: 1px solid #e9ecef;">
-		<div class="product-details-left">
+	<div class="item-details" style="border-top: 1px solid #e9ecef;<?= $this->selected_lang->id == 2 ? 'direction:rtl;text-align:right': ''?>" > 
+		<div class="<?= $this->selected_lang->id == 2 ? 'product-details-right': 'product-details-left' ?> ">
 			<label><?php echo trans("uploaded"); ?></label>
 		</div>
-		<div class="product-details-right">
+		<div  class="<?= $this->selected_lang->id == 2 ? 'product-details-left': 'product-details-right' ?> ">
 			<span><?php echo time_ago($product->created_at); ?></span>
 		</div>
 	</div>
 	<?php if (!empty($product->quantity)) : ?>
-		<div class="item-details">
-			<div class="product-details-left">
+		<div class="item-details" style="<?= $this->selected_lang->id == 2 ? 'direction:rtl;text-align:right': ''?>">
+			<div  class="<?= $this->selected_lang->id == 2 ? 'product-details-right': 'product-details-left' ?> ">
 				<label><?php echo trans("quantity"); ?></label>
 			</div>
-			<div class="product-details-right">
+			<div  class="<?= $this->selected_lang->id == 2 ? 'product-details-left': 'product-details-right' ?> ">
 				<span><?php echo html_escape($product->quantity); ?></span>
 			</div>
 		</div>
 	<?php endif; ?>
 	<?php if (!empty($product->quantity)) : ?>
-		<div class="item-details">
-			<div class="product-details-left">
+		<div class="item-details" style="<?= $this->selected_lang->id == 2 ? 'direction:rtl;text-align:right': ''?>">
+			<div  class="<?= $this->selected_lang->id == 2 ? 'product-details-right': 'product-details-left' ?> ">
 				<label><?php echo trans("category"); ?></label>
 			</div>
-			<div class="product-details-right">
+			<div  class="<?= $this->selected_lang->id == 2 ? 'product-details-left': 'product-details-right' ?> ">
 				<?php $category = get_category_joined($product->third_category_id);
 				if (!empty($category)) : ?>
 					<span><?php echo html_escape($category->name); ?></span>
@@ -150,11 +150,11 @@ endif; ?>
 		</div>
 	<?php endif; ?>
 	<?php if (!empty($product->product_condition)) : ?>
-		<div class="item-details">
-			<div class="product-details-left">
+		<div class="item-details" style="<?= $this->selected_lang->id == 2 ? 'direction:rtl;text-align:right': ''?>">
+			<div  class="<?= $this->selected_lang->id == 2 ? 'product-details-right': 'product-details-left' ?> ">
 				<label><?php echo trans("condition"); ?></label>
 			</div>
-			<div class="product-details-right">
+			<div  class="<?= $this->selected_lang->id == 2 ? 'product-details-left': 'product-details-right' ?> ">
 				<?php $product_condition = get_product_condition_by_key($product->product_condition, $selected_lang->id);
 				if (!empty($product_condition)) : ?>
 					<span><?php echo html_escape($product_condition->option_label); ?></span>
@@ -163,21 +163,21 @@ endif; ?>
 		</div>
 	<?php endif; ?>
 	<?php if ($product->product_type == 'digital') : ?>
-		<div class="item-details">
-			<div class="product-details-left">
+		<div class="item-details" style="<?= $this->selected_lang->id == 2 ? 'direction:rtl;text-align:right': ''?>">
+			<div  class="<?= $this->selected_lang->id == 2 ? 'product-details-right': 'product-details-left' ?> ">
 				<label><?php echo trans("files_included"); ?></label>
 			</div>
-			<div class="product-details-right">
+			<div  class="<?= $this->selected_lang->id == 2 ? 'product-details-left': 'product-details-right' ?> ">
 				<span><?php echo html_escape($product->files_included); ?></span>
 			</div>
 		</div>
 	<?php endif; ?>
 	<?php if ($product->product_type == 'physical' && $product->country_id != 0) : ?>
-		<div class="item-details">
-			<div class="product-details-left">
+		<div class="item-details" style="<?= $this->selected_lang->id == 2 ? 'direction:rtl;text-align:right': ''?>">
+			<div  class="<?= $this->selected_lang->id == 2 ? 'product-details-right': 'product-details-left' ?> ">
 				<label><?php echo trans("location"); ?></label>
 			</div>
-			<div class="product-details-right">
+			<div  class="<?= $this->selected_lang->id == 2 ? 'product-details-left': 'product-details-right' ?> ">
 				<span><?php echo get_location_input($product->country_id, $product->state_id, $product->city_id); ?></span>
 			</div>
 		</div>
@@ -185,11 +185,11 @@ endif; ?>
 	<?php if (!empty($custom_fields)) : ?>
 		<?php foreach ($custom_fields as $custom_field) :
 			if (!empty($custom_field->field_value) || !empty($custom_field->field_common_ids)) : ?>
-				<div class="item-details">
-					<div class="product-details-left">
+				<div class="item-details" style="<?= $this->selected_lang->id == 2 ? 'direction:rtl;text-align:right': ''?>">
+					<div  class="<?= $this->selected_lang->id == 2 ? 'product-details-right': 'product-details-left' ?> ">
 						<strong><?php echo html_escape($custom_field->name); ?></strong>
 					</div>
-					<div class="product-details-right">
+					<div  class="<?= $this->selected_lang->id == 2 ? 'product-details-left': 'product-details-right' ?> ">
 						<span><?php echo get_custom_field_value($custom_field); ?></span>
 					</div>
 				</div>
@@ -197,19 +197,19 @@ endif; ?>
 		<?php endforeach; ?>
 	<?php endif; ?>
 	<?php if (!empty($product->shipping_cost_type)) : ?>
-		<div class="item-details">
-			<div class="product-details-left">
+		<div class="item-details" style="<?= $this->selected_lang->id == 2 ? 'direction:rtl;text-align:right': '' ?> " >
+			<div  class="<?= $this->selected_lang->id == 2 ? 'product-details-right': 'product-details-left' ?> ">
 				<strong><?php echo trans("shipping"); ?></strong>
 			</div>
-			<div class="product-details-right">
+			<div  class="<?= $this->selected_lang->id == 2 ? 'product-details-left': 'product-details-right' ?> ">
 				<span><?php echo trans($product->shipping_time); ?></span>
 			</div>
 		</div>
-		<div class="item-details">
-			<div class="product-details-left">
+		<div class="item-details" style="<?= $this->selected_lang->id == 2 ? 'direction:rtl;text-align:right': ''?>">
+			<div  class="<?= $this->selected_lang->id == 2 ? 'product-details-right': 'product-details-left' ?> ">
 				<strong><?php echo trans("shipping_cost"); ?></strong>
 			</div>
-			<div class="product-details-right">
+			<div  class="<?= $this->selected_lang->id == 2 ? 'product-details-left': 'product-details-right' ?> ">
 				<?php $shipping_cost_type = get_shipping_option_by_key($product->shipping_cost_type, $selected_lang->id);
 				if (!empty($shipping_cost_type)) :
 					if ($shipping_cost_type->shipping_cost != 1) : ?>

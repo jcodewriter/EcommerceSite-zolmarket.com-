@@ -225,16 +225,16 @@
                                     <label for="checkbox_show_email" class="custom-control-label"><?php echo trans("show_my_email"); ?></label>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
+                            <div class="form-group"  style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
+                                <div class="custom-control custom-checkbox" style="<?= $this->selected_lang->id == 2 ? 'text-align: right;direction:rtl;padding-right:25px' :''?>" >
                                     <input type="checkbox" name="show_phone" value="1" id="checkbox_show_phone" class="custom-control-input" <?php echo ($user->show_phone == 1) ? 'checked' : ''; ?>>
-                                    <label for="checkbox_show_phone" class="custom-control-label"><?php echo trans("show_my_phone"); ?></label>
+                                    <label for="checkbox_show_phone" class="<?= $this->selected_lang->id == 2 ? 'custom-control-label-ar' : '' ?> custom-control-label"><?php echo trans("show_my_phone"); ?></label>
                                 </div>
                             </div>
                             <div class="form-group m-b-30">
-                                <div class="custom-control custom-checkbox">
+                                <div class="custom-control custom-checkbox" style="<?= $this->selected_lang->id == 2 ? 'text-align: right;direction:rtl;padding-right:25px' : ''; ?>">
                                     <input type="checkbox" name="show_location" value="1" id="checkbox_show_location" class="custom-control-input" <?php echo ($user->show_location == 1) ? 'checked' : ''; ?>>
-                                    <label for="checkbox_show_location" class="custom-control-label"><?php echo trans("show_my_location"); ?></label>
+                                    <label for="checkbox_show_location" class="<?= $this->selected_lang->id == 2 ? 'custom-control-label-ar' : '' ?>  custom-control-label"><?php echo trans("show_my_location"); ?></label>
                                 </div>
                             </div>
                             <div class="form-group m-t-10" style="text-align: center">

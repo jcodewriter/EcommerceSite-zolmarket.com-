@@ -2,8 +2,8 @@
 <div class="row">
 	<div class="col-12">
 		<div class="product-description" style="margin-bottom: 10px;">
-			<h4 class="section-title"><?php echo trans("description"); ?></h4>
-			<div class="description" style="font-weight: bold;">
+			<h4  style="<?= $this->selected_lang->id == 2 ? 'float: right;margin-right:30px' : '' ?>" class="section-title"><?php echo trans("description"); ?></h4>
+			<div style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : '' ?>font-weight: bold;" class="description">
 				<?php echo $product->description; ?>
 			</div>
 		</div>

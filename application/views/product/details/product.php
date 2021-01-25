@@ -20,22 +20,49 @@ $prevcat = prev($categories);
 		width: 100%;
 		text-indent: -60px;
 	}
-
+	.cat-header .left_back{
+		text-align: left;
+		padding-left:5px;
+		padding-top: 4px;
+	}
 	.cat-header {
 		height: 58px;
-		color: white !important;
+		position:fixed !important;
+		padding:5px 0px;
+		/* color: white !important; */
 		background: #f5f5f5;
 		/* margin-bottom: 86px; */
 		float: none;
 	}
-
-
-	.ads_preview_btn {
-		font-size: 16px;
-		color: #222 !important;
-		font-weight: bold
+	.product-clearable-content div{
+		display: flex !important;
 	}
-
+	.cat-header .right{
+		padding-right: 5px;
+		padding-top: 4px;
+	}
+	.cat-header .right button i{
+		color: #b0b3b6 !important;
+		font-size:14px;
+	}
+	.cat-header .right input{
+		border-radius:5px !important;
+		border: 1px solid #b1b1b1!important;
+		padding: 10px 31px 10px 0px;
+		font-size:inherit;
+		height:40px
+	}
+	.ads_preview_btn {
+		display:flex;
+		font-size: 18px;
+		color: #222 !important;
+		font-weight: bold;
+		margin-right:5px;
+	}
+	.ads_preview_btn i
+	{
+		margin-right: 5px;
+	}
 	.top-search-bar .left {
 		vertical-align: middle;
 	}
@@ -63,13 +90,13 @@ $prevcat = prev($categories);
 	<?php echo form_close(); ?>
 </div>
 
-<div class="top-search-bar mobile-search-form cat-header" style="padding: 5px !important;">
+<div class="top-search-bar mobile-search-form cat-header">
 	<?php
 	$placeholder = trans("search");
 	if ($this->agent->referrer() ==  base_url()) {
 		if (isset($categories) && !empty($categories) && $page != "product") :
 	?>
-			<div class="left" style="text-align: left">
+			<div class="left_back">
 				<?php $placeholder = trans("search");
 				if ($firstcat->id != $endcat->id) : $placeholder = $product->title; ?>
 					<a href="javascript:void(0)" class="ads_preview_btn"><i class="icon-arrow-left"></i> <?php echo trans("back"); ?>
@@ -82,7 +109,7 @@ $prevcat = prev($categories);
 			</div>
 		<?php
 		else : ?>
-			<div class="left" style="text-align: left">
+			<div class="left_back">
 				<a href="javascript:void(0)" class="ads_preview_btn"><i class="icon-arrow-left"></i> <?php echo trans("back"); ?>
 				</a>
 
@@ -90,17 +117,19 @@ $prevcat = prev($categories);
 		<?php
 		endif;
 	} else { ?>
-		<div class="left" style="text-align: left">
+		<div class="left_back">
 			<a href="javascript:void(0)" class="ads_preview_btn"><i class="icon-arrow-left"></i> <?php echo trans("back"); ?>
 			</a>
 		</div>
 	<?php
 	}
 	?>
-	<div class="right " style="padding-right: 20px;">
-		<input type="text" oninput="this.form.search.value = this.value" form="formsearchzolmarket" autocomplete="off" maxlength="300" data-url="menu_search" data-query="" pattern=".*\S+.*" data-window="SearchWindowFilter" class="form-control input-search w-100 has-search-product" value="<?php echo (!empty($filter_search)) ? $filter_search : ''; ?>" placeholder="<?php echo html_escape($placeholder); ?>" style="padding-top:10px">
-		<button type="submit" form="form-product-filters" class="btn btn-default btn-search" style="right: 15px"><i class="icon-search"></i></button>
+	<div class="right ">
+		<input type="text" oninput="this.form.search.value = this.value" form="formsearchzolmarket" autocomplete="off" maxlength="300" data-url="menu_search" data-query="" pattern=".*\S+.*" data-window="SearchWindowFilter" class="form-control input-search w-100 has-search-product home-search-location"" value="<?php echo (!empty($filter_search)) ? $filter_search : ''; ?>" placeholder="<?php echo html_escape($placeholder); ?>">
+		<button type="submit" form="formsearchzolmarket" class="btn btn-default btn-search" style="padding-right: 5px"><i class="icon-search" ></i></button>
 	</div>
+    <div class="clearable-content product-clearable-content" style="display:none">
+    </div>
 </div>
 
 <!-- Wrapper -->
@@ -154,7 +183,7 @@ $prevcat = prev($categories);
 							<div class="row hidden-row">
 								<div class="col-12">
 									<div style="display: flex;">
-										<div class="" style="flex: 1">
+										<div  style="flex: 1">
 											<?php if ($general_settings->product_reviews == 1) : ?>
 												<div class="row-custom review-link" style="display: flex">
 													<label class="label-review" style="margin-right: 5px;"><?php echo trans("reviews"); ?></label>
@@ -168,7 +197,7 @@ $prevcat = prev($categories);
 												</div>
 											<?php endif; ?>
 										</div>
-										<div class="" style="flex-direction: row; align-items: flex-end">
+										<div  style="flex-direction: row; align-items: flex-end">
 											<?php if ($general_settings->product_comments == 1) : ?>
 												<div class="row-custom comment-link">
 													<?php if ($comment_count > 0) : ?>
@@ -192,7 +221,7 @@ $prevcat = prev($categories);
 									<?php if ($general_settings->product_reviews == 1 || $general_settings->product_comments == 1 || $general_settings->facebook_comment_status == 1) : ?>
 										<div class="product-reviews">
 											<!-- Nav tabs -->
-											<ul class="nav nav-tabs" id="review-comment">
+											<ul class="nav nav-tabs" id="review-comment" style="<?= $this->selected_lang->id == 2 ? 'direction: rtl;padding:unset' : '' ?>;">
 												<?php if ($general_settings->product_reviews == 1) : ?>
 													<li class="nav-item">
 														<a class="nav-link review-nav-link active" data-toggle="tab" href="#reviews"><?php echo trans("reviews"); ?></a>
@@ -265,7 +294,7 @@ $prevcat = prev($categories);
 								<div class="col-12">
 									<?php if (!empty($product->country_id)) : ?>
 										<div class="widget-location">
-											<h4 class="sidebar-title"><?php echo trans("location"); ?></h4>
+											<h4 class="sidebar-title" style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : '' ?>;"><?php echo trans("location"); ?></h4>
 											<div class="sidebar-map">
 												<!--load map-->
 												<iframe src="https://maps.google.com/maps?width=100%&height=600&hl=en&q=<?php echo get_location($product); ?>&ie=UTF8&t=&z=8&iwloc=B&output=embed&disableDefaultUI=true" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>

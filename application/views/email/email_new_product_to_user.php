@@ -41,7 +41,7 @@
                                     </div>
                                 </div>
                                 <div style='text-align: center;margin-top: 40px;margin-bottom: 15px;'>
-                                    <a href="<?php echo lang_base_url() . 'product/' . $product->slug; ?>" style="display: block;padding: 14px 0;width: 100%; max-width: 375px;font-size: 14px;text-decoration: none;background-color: #09b1ba;color: #ffffff !important; border-radius: 3px;margin: 0 auto;" target="_blank" rel="noreferrer nofollow noopener"><?php echo trans("visit_comment"); ?> </a>
+                                    <a href="<?php echo lang_base_url() . 'product/' . $product->slug; ?>" style="display: block;padding: 14px 0;width: 100%; max-width: 375px;font-size: 14px;text-decoration: none;background-color: #09b1ba;color: #ffffff !important; border-radius: 3px;margin: 0 auto;" target="_blank" rel="noreferrer nofollow noopener"><?php echo trans("watch_ad"); ?> </a>
                                 </div>   
                             </div>
                         </td>

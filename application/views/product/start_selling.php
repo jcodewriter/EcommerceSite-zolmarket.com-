@@ -141,14 +141,14 @@
 															<label class="control-label"><?php echo trans("upload_your_shop"); ?></label>
 															<div class="row">
 																<div class="col-sm-12 col-profile">
-																	<img src="<?php echo html_escape(get_user_avatar($user)); ?>" alt="avatar" id="imgadshoww" class="thumbnail img-responsive img-update profile-image__wrapper <?= (!$this->auth_user->is_private || $this->auth_user->role == "admin") ? 'company-image__wrapper' : 'private-image__wrapper'; ?>" style="max-width: 400px; height: 200px;">
+																	<img src="<?php echo html_escape(get_user_avatar($user)); ?>" alt="avatar" id="imgadshoww" class="thumbnail img-responsive img-update profile-image__wrapper <?= (!$this->auth_user->is_private || $this->auth_user->role == "admin") ? 'company-image__wrapper' : 'private-image__wrapper'; ?>" style="max-width: 400px; height: 200px;margin:auto">
 																</div>
 															</div>
 															<div class="row">
 																<div class="col-sm-12 col-profile mt-1">
 																	<a class="btn btn-success btn-sm btn-file-upload">
 																		<?php echo trans('select_image'); ?>
-																		<input id="imgUploader" name="file" size="40" accept=".png, .jpg, .jpeg" onchange="$('#upload-file-info').html($(this).val().replace(/.*[\/\\]/, ''));" type="file">
+																		<input id="imgUploader" name="file" size="40" accept=".png, .jpg, .jpeg" onchange="$('#upload-file-info').html($(this).val().replace(/.*[\/\\]/, ''));$('#imgadshoww').css({'border':'none'})" type="file">
 																	</a>
 																</div>
 															</div>
@@ -456,12 +456,12 @@
 							'border-width': '1px',
 							'border-color': 'rgba(220, 53, 69, 0.40)'
 						})
-					// if ($('#imgadshoww').attr('class') != 'valid') {
-					// 	$('.upload-image-container').css('border-color', '#dc354566');
-					$("html, body").animate({
-						scrollTop: 250
-					}, 700);
-					// }
+					if ($('#imgadshoww').attr('class') != 'valid') {
+						$('#imgadshoww').css({'border':'2px solid #dc354566'});
+						$("html, body").animate({
+							scrollTop: 250
+						}, 700);
+					}
 					e.preventDefault();
 				}
 			})

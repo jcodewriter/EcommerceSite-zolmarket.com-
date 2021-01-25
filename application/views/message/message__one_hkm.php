@@ -137,7 +137,7 @@
                         </div>
                     <?php endif; ?>
                     <div class="row-custom messages-content">
-                        <div class="messages-list message-custom-scrollbar">
+                        <div class="messages-list message-custom-scrollbar" style="min-height:400px;">
                                     <?php foreach ($messages as $item):
                                         if ($item->deleted_user_id != $this->auth_user->id): ?>
                                             <?php if ($this->auth_user->id == $item->receiver_id && $item->dlt_by_recived != 1): ?>
@@ -679,7 +679,7 @@
                                 </div>
                             <?php endif; ?>
                             <div class="row-custom messages-content messages_content_ondesktopaed">
-                                <div class="messages-list message-custom-scrollbar">
+                                <div class="messages-list message-custom-scrollbar" style="min-height:400px;">
                                     <?php foreach ($messages as $item):
                                         if ($item->deleted_user_id != $this->auth_user->id ): ?>
                                             <?php if ($this->auth_user->id == $item->receiver_id && $item->dlt_by_recived != 1): ?>
@@ -840,6 +840,9 @@ endif; ?>
         $("a[name=chat_profile]").click(function(){
             let url = decodeURIComponent($(location).attr("href"));
             localStorage.setItem('chat_profile_url', url)
-        })
+        });
+        $("html, body").animate({
+            scrollTop: 1000
+        }, 700);
     })
 </script>
