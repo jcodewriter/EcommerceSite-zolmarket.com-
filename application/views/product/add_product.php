@@ -228,7 +228,6 @@
 
 <!-- Ckeditor -->
 <script>
-	console.log('<?php echo $this->selected_lang->ckeditor_lang; ?>');
 	var ckEditor = document.getElementById('ckEditor');
 	if (ckEditor != undefined && ckEditor != null) {
 		CKEDITOR.replace('ckEditor', {

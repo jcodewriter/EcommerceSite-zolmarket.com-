@@ -38,8 +38,12 @@ $prevcat = prev($categories);
 		display: flex !important;
 	}
 	.cat-header .right{
-		padding-right: 5px;
+		padding-right: 17px;
 		padding-top: 4px;
+	}
+	.cat-header .right button{
+		padding-right:20px !important;
+		padding-left:0px !important;
 	}
 	.cat-header .right button i{
 		color: #b0b3b6 !important;
@@ -125,8 +129,8 @@ $prevcat = prev($categories);
 	}
 	?>
 	<div class="right ">
-		<input type="text" oninput="this.form.search.value = this.value" form="formsearchzolmarket" autocomplete="off" maxlength="300" data-url="menu_search" data-query="" pattern=".*\S+.*" data-window="SearchWindowFilter" class="form-control input-search w-100 has-search-product home-search-location"" value="<?php echo (!empty($filter_search)) ? $filter_search : ''; ?>" placeholder="<?php echo html_escape($placeholder); ?>">
-		<button type="submit" form="formsearchzolmarket" class="btn btn-default btn-search" style="padding-right: 5px"><i class="icon-search" ></i></button>
+		<input type="text" oninput="this.form.search.value = this.value" form="formsearchzolmarket" autocomplete="off" maxlength="300" data-url="menu_search" data-query="" pattern=".*\S+.*" data-window="SearchWindowFilter" class="form-control input-search w-100 has-search-product home-search-location"" value="<?php echo (!empty($filter_search)) ? $filter_search : ''; ?>" placeholder="search">
+		<button type="submit" form="formsearchzolmarket" class="btn btn-default btn-search" ><i class="icon-search" ></i></button>
 	</div>
     <div class="clearable-content product-clearable-content" style="display:none">
     </div>

@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <div class="widget-seller">
-    <h4 class="sidebar-title"><?php echo trans("seller"); ?></h4>
+    <h4 class="sidebar-title"  style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : '' ?>;"><?php echo trans("seller"); ?></h4>
 
     <div class="widget-content">
         <div class="left">

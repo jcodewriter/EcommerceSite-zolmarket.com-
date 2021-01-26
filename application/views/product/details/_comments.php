@@ -5,14 +5,14 @@
         <div class="row-custom error-own-product">
             <p><?php echo trans("review_own_error"); ?></p>
         </div>
-        <div class="comments">
+        <div class="comments" style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : '' ?>;">
             <?php if ($comment_count > 0): ?>
                 <div class="row-custom comment-total">
-                    <label class="label-comment"><?php echo trans("comments"); ?></label>
+                    <label class="label-comment" style="<?= $this->selected_lang->id == 2 ? 'margin-left: 70%;' : '' ?>;"><?php echo trans("comments"); ?></label>
                     <span>(<?php echo $comment_count; ?>)</span>
                 </div>
             <?php endif; ?>
-            <ul class="comment-list">
+            <ul class="comment-list"  style="<?= $this->selected_lang->id == 2 ? 'direction: rtl;' : '' ?>;">
                 <?php foreach ($comments as $comment): ?>
                     <li>
                         <div class="left" style="width: 50px !important;">

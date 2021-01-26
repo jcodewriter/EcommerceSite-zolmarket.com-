@@ -137,7 +137,7 @@
                         </div>
                     <?php endif; ?>
                     <div class="row-custom messages-content">
-                        <div class="messages-list message-custom-scrollbar" style="min-height:400px;">
+                        <div class="messages-list message-custom-scrollbar" style="min-height:400px;background:white;">
                                     <?php foreach ($messages as $item):
                                         if ($item->deleted_user_id != $this->auth_user->id): ?>
                                             <?php if ($this->auth_user->id == $item->receiver_id && $item->dlt_by_recived != 1): ?>
@@ -146,7 +146,9 @@
                                                         <div class="message-list-item-row-received">
                                                             <div class="user-avatar">
                                                                 <div class="message-user">
-                                                                    <img src="<?php echo get_user_avatar_by_id($item->sender_id); ?>" alt="" class="img-profile"> 
+                                                                <a  href="<?php echo lang_base_url();?>profile/<?php echo html_escape($profile->slug);?>">
+                                                                    <img src="<?php echo get_user_avatar_by_id($item->sender_id); ?>" alt="" class="img-profile">
+                                                                </a>
                                                                 </div>
                                                             </div>
                                                             <div class="user-message">
@@ -162,6 +164,9 @@
                                                                 <span class="time" style="min-width: 55.8px;text-align: center;">
                                                                     <?php echo time_ago($item->created_at); ?>
                                                                 </span>
+                                                                <?php if($this->auth_user->role == 'admin') : ?>
+                                                                    <button onclick="return delete_message_confirm(event,<?php echo $item->id ?>,'<?php echo trans("confirm_delete_msggs"); ?>')" class="btn_remove_imgghkkm" style="height:15px; width: 15px;" ><i class="fa fa-trash-o"></i></button>
+                                                                <?php endif; ?>
                                                         </div>
                                                         </div>
                                                     </div>
@@ -170,7 +175,9 @@
                                                         <div class="message-list-item-row-received">
                                                             <div class="user-avatar">
                                                                 <div class="message-user">
+                                                                <a  href="<?php echo lang_base_url();?>profile/<?php echo html_escape($profile->slug);?>">
                                                                     <img src="<?php echo get_user_avatar_by_id($item->sender_id); ?>" alt="" class="img-profile">
+                                                                </a>
                                                                 </div>
                                                             </div>
                                                             <div class="user-message">
@@ -178,6 +185,9 @@
                                                                     <?php echo html_escape($item->message); ?>
                                                                 </div>
                                                                 <span class="time" style="min-width: 55.8px;text-align: center;"><?php echo time_ago($item->created_at); ?></span>
+                                                                <?php if($this->auth_user->role == 'admin') : ?>
+                                                                    <button onclick="return delete_message_confirm(event,<?php echo $item->id ?>,'<?php echo trans("confirm_delete_msggs"); ?>')" class="btn_remove_imgghkkm" style="height:15px; width: 15px;" ><i class="fa fa-trash-o"></i></button>
+                                                                <?php endif; ?>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -688,7 +698,9 @@
                                                         <div class="message-list-item-row-received">
                                                             <div class="user-avatar">
                                                                 <div class="message-user">
-                                                                    <img src="<?php echo get_user_avatar_by_id($item->sender_id); ?>" alt="" class="img-profile"> 
+                                                                <a  href="<?php echo lang_base_url();?>profile/<?php echo html_escape($profile->slug);?>">
+                                                                    <img src="<?php echo get_user_avatar_by_id($item->sender_id); ?>" alt="" class="img-profile">
+                                                                </a>
                                                                 </div>
                                                             </div>
                                                             <div class="user-message">
@@ -704,6 +716,9 @@
                                                                 <span class="time" style="min-width: 55.8px;text-align: center;">
                                                                 <?php echo time_ago($item->created_at); ?>
                                                                 </span>
+                                                                <?php if($this->auth_user->role == 'admin') : ?>
+                                                                    <button onclick="return delete_message_confirm(event,<?php echo $item->id ?>,'<?php echo trans("confirm_delete_msggs"); ?>')" class="btn_remove_imgghkkm" style="height:15px; width: 15px;" ><i class="fa fa-trash-o"></i></button>
+                                                                <?php endif; ?>
                                                         </div>
                                                         </div>
                                                     </div>
@@ -712,7 +727,9 @@
                                                         <div class="message-list-item-row-received">
                                                             <div class="user-avatar">
                                                                 <div class="message-user">
+                                                                <a  href="<?php echo lang_base_url();?>profile/<?php echo html_escape($profile->slug);?>">
                                                                     <img src="<?php echo get_user_avatar_by_id($item->sender_id); ?>" alt="" class="img-profile">
+                                                                </a>
                                                                 </div>
                                                             </div>
                                                             <div class="user-message">
@@ -720,6 +737,9 @@
                                                                     <?php echo html_escape($item->message); ?>
                                                                 </div>
                                                                 <span class="time" style="min-width: 55.8px;text-align: center;"><?php echo time_ago($item->created_at); ?></span>
+                                                                <?php if($this->auth_user->role == 'admin') : ?>
+                                                                    <button onclick="return delete_message_confirm(event,<?php echo $item->id ?>,'<?php echo trans("confirm_delete_msggs"); ?>')" class="btn_remove_imgghkkm" style="height:15px; width: 15px;" ><i class="fa fa-trash-o"></i></button>
+                                                                <?php endif; ?>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -745,6 +765,7 @@
                                                         <div class="user-avatar">
                                                             <div class="message-user">
                                                                 <img src="<?php echo get_user_avatar_by_id($item->sender_id); ?>" alt="" class="img-profile">
+                    </a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -762,6 +783,7 @@
                                                         <div class="user-avatar">
                                                             <div class="message-user">
                                                                 <img src="<?php echo get_user_avatar_by_id($item->sender_id); ?>" alt="" class="img-profile">
+                    </a>
                                                             </div>
                                                         </div>
                                                     </div>

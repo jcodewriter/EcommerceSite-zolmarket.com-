@@ -9,9 +9,11 @@
                 <input type="hidden" name="name" id="comment_name" value="">
                 <input type="hidden" name="email" id="comment_email" value="">
                 <div class="form-group">
-                    <textarea name="comment" id="comment_text" class="form-control form-input form-textarea" placeholder="<?php echo trans("comment"); ?>"></textarea>
+                    <textarea style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : '' ?>;" name="comment" id="comment_text" class="form-control form-input form-textarea" placeholder="<?php echo trans("comment"); ?>"></textarea>
                 </div>
-                <button type="submit" class="btn btn-md btn-custom"><?php echo trans("submit"); ?></button>
+                <div style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : '' ?>;">
+                    <button type="submit" class="btn btn-md btn-custom"><?php echo trans("submit"); ?></button>
+                </div>
             </form>
         </div>
     </div>

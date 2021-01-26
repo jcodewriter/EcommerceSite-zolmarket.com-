@@ -24,6 +24,7 @@ if ($page != 'product') {
         border-bottom: 1px solid #9e9e9e63;
         position: fixed !important;
         top: 0;
+        padding-right: 13px;
         z-index: 5;
     }
 
@@ -58,7 +59,7 @@ if ($page != 'product') {
             </div>
         <?php
         endif; ?>
-        <div class="search-container">
+        <div class="search-container" style="width:0">
             <div class="mobile-search-input">
                 <input type="text" oninput="this.form.search.value = this.value" form="form-product-filters" autocomplete="off" maxlength="300" data-url="menu_search" data-query="<?= htmlspecialchars($query_string) ?>" pattern=".*\S+.*" data-window="SearchWindowFilter" class="has-search-product" value="<?php echo (!empty($filter_search)) ? $filter_search : ''; ?>" placeholder="<?php echo html_escape($placeholder); ?>" style="padding-top:10px">
             </div>

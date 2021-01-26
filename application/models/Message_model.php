@@ -414,7 +414,7 @@ class Message_model extends CI_Model
         $user_id = clean_number($user_id);
         $sql = "SELECT t1.*, t0.m_created_at, t0.unread_num FROM 
                 (SELECT *, SUM(IF(receiver_id = $user_id AND is_read = 0, 1, 0)) AS unread_num, MAX(created_at) AS m_created_at 
-                    FROM conversation_messages WHERE (sender_id = $user_id OR receiver_id = $user_id) AND deleted_user_id != $user_id GROUP BY conversation_id ORDER BY m_created_at DESC) AS t0
+                    FROM conversation_messages WHERE (sender_id = $user_id OR receiver_id = $user_id) GROUP BY conversation_id ORDER BY m_created_at DESC) AS t0
                 JOIN conversations AS t1 ON t0.conversation_id = t1.id ORDER BY t0.m_created_at DESC";
         $query = $this->db->query($sql);
         return $query->result();
