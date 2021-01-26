@@ -11,8 +11,9 @@
                 <div class="form-group">
                     <textarea style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : '' ?>;" name="comment" id="comment_text" class="form-control form-input form-textarea" placeholder="<?php echo trans("comment"); ?>"></textarea>
                 </div>
-                <div style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : '' ?>;">
-                    <button type="submit" class="btn btn-md btn-custom"><?php echo trans("submit"); ?></button>
+                <div style='text-align: right;'>
+                    <span style=";color: red;font-size: 13px;">* <?php echo trans("please_adhere_to_the_comments") ?></span>
+                    <button type="submit" class="btn btn-md btn-custom" style="margin-left:60px"><?php echo trans("submit"); ?></button>
                 </div>
             </form>
         </div>

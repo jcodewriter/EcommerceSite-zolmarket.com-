@@ -76,6 +76,18 @@ $prevcat = prev($categories);
 			padding-top: 0;
 		}
 	}
+		
+	.ava-section-title {
+		border-bottom:2px solid #dee2e6;
+		font-size: 15px;
+		line-height: 24px;
+		font-weight: 600;
+		margin-bottom: 25px;
+		text-align: left;
+		text-transform: uppercase;
+		position: relative;
+		padding-bottom: 10px
+	}
 </style>
 
 
@@ -129,7 +141,7 @@ $prevcat = prev($categories);
 	}
 	?>
 	<div class="right ">
-		<input type="text" oninput="this.form.search.value = this.value" form="formsearchzolmarket" autocomplete="off" maxlength="300" data-url="menu_search" data-query="" pattern=".*\S+.*" data-window="SearchWindowFilter" class="form-control input-search w-100 has-search-product home-search-location"" value="<?php echo (!empty($filter_search)) ? $filter_search : ''; ?>" placeholder="search">
+		<input type="text" oninput="this.form.search.value = this.value" form="formsearchzolmarket" autocomplete="off" maxlength="300" data-url="menu_search" data-query="" pattern=".*\S+.*" data-window="SearchWindowFilter" class="form-control input-search w-100 has-search-product home-search-location"" value="<?php echo (!empty($filter_search)) ? $filter_search : ''; ?>" placeholder="<?php echo trans('search'); ?>">
 		<button type="submit" form="formsearchzolmarket" class="btn btn-default btn-search" ><i class="icon-search" ></i></button>
 	</div>
     <div class="clearable-content product-clearable-content" style="display:none">
@@ -326,7 +338,7 @@ $prevcat = prev($categories);
 
 			<div class="col-12">
 				<div class="related-products">
-					<h4 class="section-title"><?php echo trans("related_products"); ?></h4>
+					<h4 class="ava-section-title" style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : '' ?>;"><?php echo trans("related_products"); ?></h4>
 					<div class="row row-product">
 						<!--print related posts-->
 						<?php

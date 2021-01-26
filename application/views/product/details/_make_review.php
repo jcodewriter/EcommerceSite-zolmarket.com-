@@ -20,8 +20,9 @@
             <div class="form-group">
                 <textarea style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : '' ?>;" name="review" id="user_review" class="form-control form-input form-textarea" placeholder="<?php echo trans("write_review"); ?>" required></textarea>
             </div>
-            <div style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : '' ?>;">
-                <button style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : '' ?>;" type="submit" id="submit_review" class="btn btn-md btn-custom"><?php echo trans("submit"); ?></button>
+            <div style='text-align: right;'>
+                <span style="color: red;font-size: 13px;">* <?php echo trans("please_adhere_to_the_comments") ?></span>
+                <button style="margin-left:60px" type="submit" id="submit_review" class="btn btn-md btn-custom"><?php echo trans("submit"); ?></button>
             </div>
         </div>
     </div>

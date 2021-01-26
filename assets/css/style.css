@@ -2067,15 +2067,6 @@ img {
 	position: relative;
 	padding-bottom: 10px
 }
-.section-title::after {
-	background: #222;
-	bottom: 0;
-	content: "";
-	height: .1rem;
-	left: 0;
-	position: absolute;
-	width: 80px
-}
 .sidebar-title {
 	font-size: 15px;
 	line-height: 24px;
