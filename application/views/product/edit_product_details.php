@@ -105,7 +105,7 @@ if ($product->is_draft == 1) {
                                                                     <?php $product_conditions = get_grouped_product_conditions();
                                                                     if (!empty($product_conditions)) : ?>
                                                                         <div class="selectdiv">
-                                                                            <select style = "<?= $this->selected_lang->id == 2 ? 'direction: rtl' : '' ?>" name="product_condition" class="form-control" <?php echo ($form_settings->product_conditions_required == 1) ? 'required' : ''; ?>>
+                                                                            <select style = "<?= $this->selected_lang->id == 2 ? 'direction: rtl' : '' ?>" name="product_condition" class="form-control required" message="<?php echo trans('please_select_condition')?>" <?php echo ($form_settings->product_conditions_required == 1) ? 'required' : ''; ?>>
                                                                                 <option value=""><?php echo trans('select_option'); ?></option>
                                                                                 <?php foreach ($product_conditions as $option) :
                                                                                     $product_condition = get_product_condition_by_lang($option->common_id, $selected_lang->id); ?>
@@ -120,7 +120,7 @@ if ($product->is_draft == 1) {
                                                             <?php if ($form_settings->quantity == 1) : ?>
                                                                 <div class="col-12 col-sm-6" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;">
                                                                     <label class="control-label"><?php echo trans('quantity'); ?></label>
-                                                                    <input type="number" name="quantity"  style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;" class="form-control form-input" min="1" max="999999" value="<?php echo ($product->quantity > 0) ? html_escape($product->quantity) : ''; ?>" placeholder="<?php echo trans("quantity"); ?>" <?php echo ($form_settings->quantity_required == 1) ? 'required' : ''; ?>>
+                                                                    <input type="number" name="quantity"  style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;" class="form-control form-input required" message="<?php echo trans('please_input_quantity')?>" min="1" max="999999" value="<?php echo ($product->quantity > 0) ? html_escape($product->quantity) : ''; ?>" placeholder="<?php echo trans("quantity"); ?>" <?php echo ($form_settings->quantity_required == 1) ? 'required' : ''; ?>>
                                                                 </div>
                                                             <?php endif; ?>
                                                         </div>
@@ -151,7 +151,7 @@ if ($product->is_draft == 1) {
                                                                     <span class="input-group-text input-group-text-currency" id="basic-addon1"><?php echo get_currency($payment_settings->default_product_currency); ?></span>
                                                                     <input type="hidden" name="currency" value="<?php echo $payment_settings->default_product_currency; ?>">
                                                                 </div>
-                                                                <input type="text" name="price" id="product_price_input" aria-describedby="basic-addon1" class="form-control form-input price-input validate-price-input" value="<?php echo ($product->price != 0) ? price_format_input($product->price) : ''; ?>" placeholder="<?php echo $this->input_initial_price; ?>" onpaste="return false;" maxlength="32" required>
+                                                                <input type="text" name="price" id="product_price_input" aria-describedby="basic-addon1" class="form-control form-input price-input validate-price-input required"  message="<?php echo trans('')?>" value="<?php echo ($product->price != 0) ? price_format_input($product->price) : ''; ?>" placeholder="<?php echo $this->input_initial_price; ?>" onpaste="return false;" maxlength="32" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-12 col-sm-6">
@@ -336,7 +336,7 @@ if ($product->is_draft == 1) {
                                                             <div class="col-12 col-sm-6 m-b-sm-15" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;">
                                                                 <label class="control-label"><?php echo trans('shipping_cost'); ?></label>
                                                                 <div class="selectdiv">
-                                                                    <select style = "<?= $this->selected_lang->id == 2 ? 'direction: rtl' : '' ?>" name="shipping_cost_type" class="form-control" onchange="if($(this).find(':selected').attr('data-shipping-cost')==1){$('.shipping-cost-container').show();}else{$('.shipping-cost-container').hide();}" <?php echo ($form_settings->shipping_required == 1) ? 'required' : ''; ?>>
+                                                                    <select style = "<?= $this->selected_lang->id == 2 ? 'direction: rtl' : '' ?>" name="shipping_cost_type" class="form-control" message="<?php echo trans('')?>" onchange="if($(this).find(':selected').attr('data-shipping-cost')==1){$('.shipping-cost-container').show();}else{$('.shipping-cost-container').hide();}" <?php echo ($form_settings->shipping_required == 1) ? 'required' : ''; ?>>
                                                                         <option value=""><?php echo trans("select_option"); ?></option>
                                                                         <?php foreach ($shipping_options as $option) :
                                                                             $shipping_option = get_shipping_option_by_lang($option->common_id, $selected_lang->id) ?>
@@ -349,7 +349,7 @@ if ($product->is_draft == 1) {
                                                         <div class="col-12 col-sm-6" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;">
                                                             <label class="control-label"><?php echo trans('shipping_time'); ?></label>
                                                             <div class="selectdiv">
-                                                                <select style = "<?= $this->selected_lang->id == 2 ? 'direction: rtl' : '' ?>" name="shipping_time" class="form-control" <?php echo ($form_settings->shipping_required == 1) ? 'required' : ''; ?>>
+                                                                <select style = "<?= $this->selected_lang->id == 2 ? 'direction: rtl' : '' ?>" name="shipping_time" class="form-control" message="<?php echo trans('')?>" <?php echo ($form_settings->shipping_required == 1) ? 'required' : ''; ?>>
                                                                     <option value=""><?php echo trans("select_option"); ?></option>
                                                                     <option value="1_business_day" <?php echo ($product->shipping_time == "1_business_day") ? 'selected' : ''; ?>><?php echo trans("1_business_day"); ?></option>
                                                                     <option value="2_3_business_days" <?php echo ($product->shipping_time == "2_3_business_days") ? 'selected' : ''; ?>><?php echo trans("2_3_business_days"); ?></option>
@@ -652,9 +652,25 @@ if ($product->is_draft == 1) {
     });
 
     $(document).ready(function() {
-        if ($(this).width() < 500) {
-            $("form").submit(function(e) {
-                console.log("sssss")
+		function formValidationRule(){
+			$(".zolmarket_required").remove();
+			var required_fields = $("form").find(".required");
+			for(var index = 0; index < required_fields.length; index++){
+				if(required_fields.eq(index).val() == ""){
+					$("<label class='zolmarket_required' style='color: #e91e63;font-size: 17px;padding:5px 10px 0px 10px;margin:0'>"+required_fields.eq(index).attr("message")+"</label>").insertAfter(required_fields.eq(index));
+				}
+			}
+			if($(this).width() > 500)
+			{
+				if($("form").find("select").length != 1 && $("form").find("select:last").val() != "")
+				{
+					console.log($("form").find("select:last").parent().parent().parent().find("input").next().remove());
+				}
+			}
+		}
+		$("form").submit(function(e) {
+			formValidationRule();
+			if ($(this).width() < 500) {
                 if (!$('#countries').val() || !$('#states').val()) {
                     if (!$('#countries').val())
                         $('button[name=country]').css({
@@ -668,7 +684,11 @@ if ($product->is_draft == 1) {
                         })
                     e.preventDefault();
                 }
-            })
-        }
+            }
+        })
+        
+		$(".required").keyup(function(){
+			formValidationRule();
+		})
     })
 </script>

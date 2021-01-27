@@ -2500,8 +2500,10 @@ function get_subcategories(element, index = 0) {
 
                 $("#cat_" + val).append($(element).children().first().clone())
                     .append(response);
-
-
+                    
+                }
+            else{
+                $("#listcategories").parent().parent().find(".zolmarket_required").remove();
             }
 
         }

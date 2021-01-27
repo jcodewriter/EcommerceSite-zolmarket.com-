@@ -260,15 +260,18 @@ class Message_model extends CI_Model
             if (!empty($messages)) {
                 foreach ($messages as $message) {
                     if ($message->sender_id == $this->auth_user->id || $message->receiver_id == $this->auth_user->id) {
-                        if ($message->deleted_user_id == 0) {
+                        if ($message->sender_id == $this->auth_user->id) {
                             $data = array(
-                                'deleted_user_id' => $this->auth_user->id
+                                'dlt_by_sender' => 1
                             );
                             $this->db->where('id', $message->id);
                             $this->db->update('conversation_messages', $data);
-                        } else {
+                        } else if($message->receiver_id == $this->auth_user->id) {
+                            $data = array(
+                                'dlt_by_recived' => 1
+                            );
                             $this->db->where('id', $message->id);
-                            $this->db->delete('conversation_messages');
+                            $this->db->update('conversation_messages', $data);
                         }
                     }
                 }
