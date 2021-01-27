@@ -337,7 +337,7 @@
         <div id="hkm_block_users_content" class="row row-col-messages">
             <?php if (empty($block_users)): ?>
                 <div class="col-12 d-md-none d-lg-none d-sm-block d-xs-block ">
-                   <p class="text-center"> <?php echo trans("no_found_block"); ?> </p>
+                   <p class="text-center" style="margin-top:15px"> <?php echo trans("no_found_block"); ?> </p>
                 </div>
             <?php else: ?>
 
