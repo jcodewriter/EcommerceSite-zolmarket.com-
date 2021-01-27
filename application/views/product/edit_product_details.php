@@ -349,7 +349,7 @@ if ($product->is_draft == 1) {
                                                         <div class="col-12 col-sm-6" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;">
                                                             <label class="control-label"><?php echo trans('shipping_time'); ?></label>
                                                             <div class="selectdiv">
-                                                                <select style = "<?= $this->selected_lang->id == 2 ? 'direction: rtl' : '' ?>" name="shipping_time" class="form-control" message="<?php echo trans('')?>" <?php echo ($form_settings->shipping_required == 1) ? 'required' : ''; ?>>
+                                                                <select style = "<?= $this->selected_lang->id == 2 ? 'direction: rtl' : '' ?>" name="shipping_time" class="form-control <?php echo ($form_settings->shipping_required == 1) ? 'required' : ''; ?>" message="<?php echo trans('')?>" <?php echo ($form_settings->shipping_required == 1) ? 'required' : ''; ?>>
                                                                     <option value=""><?php echo trans("select_option"); ?></option>
                                                                     <option value="1_business_day" <?php echo ($product->shipping_time == "1_business_day") ? 'selected' : ''; ?>><?php echo trans("1_business_day"); ?></option>
                                                                     <option value="2_3_business_days" <?php echo ($product->shipping_time == "2_3_business_days") ? 'selected' : ''; ?>><?php echo trans("2_3_business_days"); ?></option>
