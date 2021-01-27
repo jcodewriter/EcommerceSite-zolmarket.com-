@@ -117,7 +117,7 @@
         <div class="row row-col-messages">
             <?php if (empty($all_conversations)): ?>
                 <div class="col-12">
-                    <p class="text-center"><?php echo trans("no_messages_found"); ?></p>
+                    <p class="text-center" style="margin-top:15px"><?php echo trans("no_messages_found"); ?></p>
                 </div>
             <?php else: ?>
 
@@ -388,7 +388,7 @@
         <div id="hkm_msg_all_content" class="row row-col-messages">
             <?php if (empty($all_conversations)): ?>
                 <div class="col-12">
-                    <p class="text-center"><?php echo trans("no_messages_found"); ?></p>
+                    <p class="text-center" style="margin-top:15px"><?php echo trans("no_messages_found"); ?></p>
                 </div>
             <?php else: ?>
 
@@ -457,7 +457,7 @@
                     <div id="oop_descto_unread">
                         <?php if (empty($unread_conversations)): ?>
                             <div class="col-12">
-                                <p class="text-center"><?php echo trans("no_messages_found"); ?></p>
+                                <p class="text-center" style="margin-top:15px"><?php echo trans("no_messages_found"); ?></p>
                             </div>
                         <?php else: ?>
             
@@ -530,7 +530,7 @@
                     <div id="oop_descto_myads">
                         <?php if (empty($myads_conversations)): ?>
                             <div class="col-12">
-                                <p class="text-center"><?php echo trans("no_messages_found"); ?>eee</p>
+                                <p class="text-center" style="margin-top:15px"><?php echo trans("no_messages_found"); ?></p>
                             </div>
                         <?php else: ?>
             
@@ -668,7 +668,7 @@
                     <div class="row row-col-messages">
                         <?php if (empty($all_conversations)): ?>
                             <div class="col-12">
-                                <p class="text-center"><?php echo trans("no_messages_found"); ?></p>
+                                <p class="text-center" style="margin-top:15px"><?php echo trans("no_messages_found"); ?></p>
                             </div>
                         <?php else: ?>
                             <div class="col-sm-12 col-md-12 col-lg-12 col-message-content">

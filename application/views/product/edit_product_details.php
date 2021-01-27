@@ -690,5 +690,8 @@ if ($product->is_draft == 1) {
 		$(".required").keyup(function(){
 			formValidationRule();
 		})
+		$(".required").change(function(){
+			formValidationRule();
+		})
     })
 </script>
