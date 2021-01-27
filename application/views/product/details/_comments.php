@@ -5,7 +5,7 @@
         <div class="row-custom error-own-product">
             <p><?php echo trans("review_own_error"); ?></p>
         </div>
-        <div class="comments" style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : '' ?>;">
+        <div class="comments" style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : '' ?>;min-height:105px">
             <?php if ($comment_count > 0): ?>
                 <div class="row-custom comment-total">
                     <label class="label-comment" style="<?= $this->selected_lang->id == 2 ? 'margin-left: 70%;' : '' ?>;"><?php echo trans("comments"); ?></label>

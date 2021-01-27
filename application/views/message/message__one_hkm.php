@@ -137,7 +137,7 @@
                         </div>
                     <?php endif; ?>
                     <div class="row-custom messages-content">
-                        <div class="messages-list message-custom-scrollbar" style="min-height:400px;background:white;">
+                        <div class="messages-list message-custom-scrollbar" style="min-height:400px;background:white;margin-top:50px">
                                     <?php foreach ($messages as $item):
                                         if ($item->deleted_user_id != $this->auth_user->id): ?>
                                             <?php if ($this->auth_user->id == $item->receiver_id && $item->dlt_by_recived != 1): ?>
@@ -164,9 +164,7 @@
                                                                 <span class="time" style="min-width: 55.8px;text-align: center;">
                                                                     <?php echo time_ago($item->created_at); ?>
                                                                 </span>
-                                                                <?php if($this->auth_user->role == 'admin') : ?>
                                                                     <button onclick="return delete_message_confirm(event,<?php echo $item->id ?>,'<?php echo trans("confirm_delete_msggs"); ?>')" class="btn_remove_imgghkkm" style="height:15px; width: 15px;" ><i class="fa fa-trash-o"></i></button>
-                                                                <?php endif; ?>
                                                         </div>
                                                         </div>
                                                     </div>
@@ -185,9 +183,7 @@
                                                                     <?php echo html_escape($item->message); ?>
                                                                 </div>
                                                                 <span class="time" style="min-width: 55.8px;text-align: center;"><?php echo time_ago($item->created_at); ?></span>
-                                                                <?php if($this->auth_user->role == 'admin') : ?>
-                                                                    <button onclick="return delete_message_confirm(event,<?php echo $item->id ?>,'<?php echo trans("confirm_delete_msggs"); ?>')" class="btn_remove_imgghkkm" style="height:15px; width: 15px;" ><i class="fa fa-trash-o"></i></button>
-                                                                <?php endif; ?>
+                                                                <button onclick="return delete_message_confirm(event,<?php echo $item->id ?>,'<?php echo trans("confirm_delete_msggs"); ?>')" class="btn_remove_imgghkkm" style="height:15px; width: 15px;" ><i class="fa fa-trash-o"></i></button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -689,7 +685,7 @@
                                 </div>
                             <?php endif; ?>
                             <div class="row-custom messages-content messages_content_ondesktopaed">
-                                <div class="messages-list message-custom-scrollbar" style="min-height:400px;">
+                                <div class="messages-list message-custom-scrollbar" style="min-height:400px;;margin-top:50px">
                                     <?php foreach ($messages as $item):
                                         if ($item->deleted_user_id != $this->auth_user->id ): ?>
                                             <?php if ($this->auth_user->id == $item->receiver_id && $item->dlt_by_recived != 1): ?>
@@ -716,10 +712,8 @@
                                                                 <span class="time" style="min-width: 55.8px;text-align: center;">
                                                                 <?php echo time_ago($item->created_at); ?>
                                                                 </span>
-                                                                <?php if($this->auth_user->role == 'admin') : ?>
-                                                                    <button onclick="return delete_message_confirm(event,<?php echo $item->id ?>,'<?php echo trans("confirm_delete_msggs"); ?>')" class="btn_remove_imgghkkm" style="height:15px; width: 15px;" ><i class="fa fa-trash-o"></i></button>
-                                                                <?php endif; ?>
-                                                        </div>
+                                                                <button onclick="return delete_message_confirm(event,<?php echo $item->id ?>,'<?php echo trans("confirm_delete_msggs"); ?>')" class="btn_remove_imgghkkm" style="height:15px; width: 15px;" ><i class="fa fa-trash-o"></i></button>
+                                                                </div>
                                                         </div>
                                                     </div>
                                                 <?php else: ?>
@@ -737,9 +731,7 @@
                                                                     <?php echo html_escape($item->message); ?>
                                                                 </div>
                                                                 <span class="time" style="min-width: 55.8px;text-align: center;"><?php echo time_ago($item->created_at); ?></span>
-                                                                <?php if($this->auth_user->role == 'admin') : ?>
-                                                                    <button onclick="return delete_message_confirm(event,<?php echo $item->id ?>,'<?php echo trans("confirm_delete_msggs"); ?>')" class="btn_remove_imgghkkm" style="height:15px; width: 15px;" ><i class="fa fa-trash-o"></i></button>
-                                                                <?php endif; ?>
+                                                                <button onclick="return delete_message_confirm(event,<?php echo $item->id ?>,'<?php echo trans("confirm_delete_msggs"); ?>')" class="btn_remove_imgghkkm" style="height:15px; width: 15px;" ><i class="fa fa-trash-o"></i></button>
                                                             </div>
                                                         </div>
                                                     </div>

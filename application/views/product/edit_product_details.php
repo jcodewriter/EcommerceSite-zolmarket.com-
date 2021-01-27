@@ -654,6 +654,7 @@ if ($product->is_draft == 1) {
     $(document).ready(function() {
         if ($(this).width() < 500) {
             $("form").submit(function(e) {
+                console.log("sssss")
                 if (!$('#countries').val() || !$('#states').val()) {
                     if (!$('#countries').val())
                         $('button[name=country]').css({

@@ -1076,7 +1076,8 @@ $(document).ready(function () {
             'border-width': '1px',
             'border-color': '#404041'
         })
-        $('#category_id').val(category_id)
+        $('#category_id').val(category_id);
+        $('#category_id').parent().find(".zolmarket_required").remove();
     })
 
     var windowsearchOpen = undefined;

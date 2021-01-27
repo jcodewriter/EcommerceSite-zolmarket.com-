@@ -47,7 +47,8 @@
                             <?php if (!empty($user->password)) : ?>
                                 <div class="form-group">
                                     <label class="control-label"><?php echo trans("old_password"); ?></label>
-                                    <input type="password" name="old_password" class="form-control form-input" value="<?php echo old("old_password"); ?>" placeholder="<?php echo trans("old_password"); ?>" required>
+                                    <input type="password" name="old_password" class="form-control form-input" placeholder="<?php echo trans("old_password"); ?>" required>
+                                    <!-- <input type="password" name="old_password" class="form-control form-input" value="<?php echo old("old_password"); ?>" placeholder="<?php echo trans("old_password"); ?>" required> -->
                                 </div>
                                 <input type="hidden" name="old_password_exists" value="1">
                             <?php else : ?>
@@ -55,11 +56,11 @@
                             <?php endif; ?>
                             <div class="form-group">
                                 <label class="control-label"><?php echo trans("password"); ?></label>
-                                <input type="password" name="password" class="form-control form-input" value="<?php echo old("password"); ?>" placeholder="<?php echo trans("password"); ?>" required>
+                                <input type="password" name="password" class="form-control form-input"  placeholder="<?php echo trans("password"); ?>" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label"><?php echo trans("password_confirm"); ?></label>
-                                <input type="password" name="password_confirm" class="form-control form-input" value="<?php echo old("password_confirm"); ?>" placeholder="<?php echo trans("password_confirm"); ?>" required>
+                                <input type="password" name="password_confirm" class="form-control form-input" placeholder="<?php echo trans("password_confirm"); ?>" required>
                             </div>
                             <div class="form-group" style="text-align: center">
                                 <button type="submit" class="btn btn-md btn-custom"><?php echo trans("change_password") ?></button>

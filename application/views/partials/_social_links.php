@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<ul>
+<ul style="<?= $this->selected_lang->id == 2 ? 'margin-left:90%;' : '' ?>;">
     <?php if (!empty($settings->facebook_url)): ?>
         <li><a href="<?php echo html_escape($settings->facebook_url); ?>"><i class="icon-facebook"></i></a></li>
     <?php endif; ?>

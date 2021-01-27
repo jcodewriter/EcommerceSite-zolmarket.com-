@@ -143,7 +143,7 @@
 										<div class="form-box-body">
 											<div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : '' ?>;">
 												<label class="control-label"><?php echo trans("title"); ?></label>
-												<input type="text" style="height:50px;<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''?>;" name="title" class="form-control form-input" placeholder="<?php echo trans("title"); ?>" required>
+												<input type="text" style="height:50px;<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''?>;" name="title" class="form-control form-input required" message="<?php echo trans('please_enter_title')?>" placeholder="<?php echo trans("title"); ?>" required>
 											</div>
 
 											<div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : '' ?>;">
@@ -171,7 +171,7 @@
 														<i class="icon-arrow-right"></i>
 													</button>
 												</div>
-												<input type="hidden" name="custom_id" class="form-control form-input" id="category_id" value="" />
+												<input type="hidden" name="custom_id" class="form-control form-input required" id="category_id" value=""  message="<?php echo trans('please_select_category');?>"/>
 											</div>
 
 											<div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : '' ?>;">
@@ -285,8 +285,20 @@
 		});
 	});
 	$(document).ready(function() {
-		if ($(this).width() < 500) {
-			$("form").submit(function(e) {
+		function formValidationRule(){
+			$(".zolmarket_required").remove();
+			var required_fields = $("form").find(".required");
+			for(var index = 0; index < required_fields.length; index++){
+				if(required_fields.eq(index).val() == ""){
+					$("<label class='zolmarket_required' style='color: #e91e63;font-size: 20px;padding:10px 10px 0px 10px;margin:0'>"+required_fields.eq(index).attr("message")+"</label>").insertAfter(required_fields.eq(index));
+				}
+			}
+			// if($(this).width() > 500)
+		}
+		$("form").submit(function(e) {
+			console.log(e);
+			formValidationRule();
+			if ($(this).width() < 500) {
 				if (!$('#category_id').val()) {
 					$('.filter-btn').css({
 						'border-width': '1px',
@@ -299,7 +311,10 @@
 						'border-color': '#404041'
 					})
 				}
-			})
-		}
+			}
+		})
+		$(".required").keyup(function(){
+			formValidationRule();
+		})
 	})
 </script>

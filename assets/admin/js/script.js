@@ -63,7 +63,8 @@ return	$.ajax({
 					'onchange="get_subcategories(this,' + (index+1) + ');"></select>');
 
 				$("#cat_" + val).append($(element).children().first().clone())
-					.append(response);
+                    .append(response);
+                    // $("#mobile_listcategories").parent().find(".zolmarket_required").remove();
 
 				
 			}

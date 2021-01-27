@@ -31,7 +31,7 @@
                             </div>
 
                         </div>
-                        <div class="col-12 col-md-3 footer-widget">
+                        <div class="col-12 col-md-3 footer-widget" style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : '' ?>;">
                             <div class="nav-footer">
                                 <div class="row-custom">
                                     <h4 class="footer-title"><?php echo trans("footer_quick_links"); ?></h4>
@@ -44,7 +44,7 @@
                                             <a href="<?php echo lang_base_url(); ?>blog"><?php echo trans("blog"); ?></a>
                                         </li>
                                         <li class="nav-item">
-                                            <a id="hkmcontactus" class="nav-link" href="<?php echo lang_base_url(); ?>contact"><?php echo trans("contact"); ?></a>
+                                            <a  style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : '' ?>;" id="hkmcontactus" class="nav-link" href="<?php echo lang_base_url(); ?>contact"><?php echo trans("contact"); ?></a>
                                         </li>
                                         <?php foreach ($footer_quick_links as $item) : ?>
                                             <li>
@@ -55,7 +55,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-3 footer-widget">
+                        <div class="col-12 col-md-3 footer-widget" style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : '' ?>;">
                             <div class="nav-footer">
                                 <div class="row-custom">
                                     <h4 class="footer-title"><?php echo trans("footer_information"); ?></h4>
@@ -80,7 +80,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-3 footer-widget">
+                        <div class="col-12 col-md-3 footer-widget" style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : '' ?>;">
                             <div class="row">
                                 <div class="col-12">
                                     <h4 class="footer-title"><?php echo trans("follow_us"); ?></h4>
@@ -99,7 +99,7 @@
                                             <div class="col-12">
                                                 <div class="newsletter-inner">
                                                     <div class="d-table-cell">
-                                                        <input type="email" class="form-control" name="email" placeholder="<?php echo trans("enter_email"); ?>" required>
+                                                        <input style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : '' ?>;" type="email" class="form-control" name="email" placeholder="<?php echo trans("enter_email"); ?>" required>
                                                     </div>
                                                     <div class="d-table-cell align-middle">
                                                         <button class="btn btn-default"><?php echo trans("subscribe"); ?></button>

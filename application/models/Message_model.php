@@ -141,11 +141,19 @@ class Message_model extends CI_Model
     //get messages
     public function get_messages($conversation_id)
     {
+        $user_id = $this->auth_user->id;
         $conversation_id = clean_number($conversation_id);
         $this->db->where('conversation_id', $conversation_id);
-        $this->db->where('dlt_by_recived', 0);
+        $this->db->group_start();
+        $this->db->group_start();
+        $this->db->where('sender_id', $user_id);
         $this->db->where('dlt_by_sender', 0);
-        // $this->db->where('deleted_user_id', 0);
+        $this->db->group_end();
+        $this->db->or_group_start();
+        $this->db->where('receiver_id', $user_id);
+        $this->db->where('dlt_by_recived', 0);
+        $this->db->group_end();
+        $this->db->group_end();
         $query = $this->db->get('conversation_messages');
         return $query->result();
     }
@@ -378,26 +386,30 @@ class Message_model extends CI_Model
     public function delete_message_in_chat($message_id)
     {
         $message_id = clean_number($message_id);
-        $this->db->where('conversation_messages.id', $message_id);
-        $query = $this->db->get('conversation_messages');
-        $message = $query->row();
-
-        if (!empty($message) && $message->receiver_id == $this->auth_user->id) {
-            $data = array(
-                'dlt_by_recived' => 1
-            );
-            $this->db->where('id', $message->id);
-            $this->db->update('conversation_messages', $data);
+        if($this->auth_user->role == 'admin'){
+            $this->db->where('id', $message_id);
+            $this->db->delete('conversation_messages');
         }
-        elseif(!empty($message) && $message->sender_id == $this->auth_user->id) {
-             $data = array(
-                'dlt_by_sender' => 1
-            );
-            $this->db->where('id', $message->id);
-            $this->db->update('conversation_messages', $data);
+        else{
+            $this->db->where('conversation_messages.id', $message_id);
+            $query = $this->db->get('conversation_messages');
+            $message = $query->row();
+            
+            if (!empty($message) && $message->receiver_id == $this->auth_user->id) {
+                $data = array(
+                    'dlt_by_recived' => 1
+                );
+                $this->db->where('id', $message->id);
+                $this->db->update('conversation_messages', $data);
+            }
+            elseif(!empty($message) && $message->sender_id == $this->auth_user->id) {
+                $data = array(
+                    'dlt_by_sender' => 1
+                );
+                $this->db->where('id', $message->id);
+                $this->db->update('conversation_messages', $data);
+            }
         }
-
-        
     }
     
     public function get_image_path ($conversation_id) {
