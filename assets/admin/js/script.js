@@ -64,8 +64,6 @@ return	$.ajax({
 
 				$("#cat_" + val).append($(element).children().first().clone())
                     .append(response);
-                    // $("#mobile_listcategories").parent().find(".zolmarket_required").remove();
-
 				
 			}
 

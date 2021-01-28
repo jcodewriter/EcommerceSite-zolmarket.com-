@@ -49,11 +49,11 @@
                                 <div class="row">
                                     <div class="col-12 col-md-6 m-b-sm-15">
                                         <label class="control-label"><?php echo trans("first_name"); ?>*</label>
-                                        <input type="text" name="shipping_first_name" class="form-control form-input" value="<?php echo $user->shipping_first_name; ?>" required>
+                                        <input type="text" name="shipping_first_name" class="form-control form-input required" message="<?php echo trans('please_enter_firstname') ?>" value="<?php echo $user->shipping_first_name; ?>" required>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label class="control-label"><?php echo trans("last_name"); ?>*</label>
-                                        <input type="text" name="shipping_last_name" class="form-control form-input" value="<?php echo $user->shipping_last_name; ?>" required>
+                                        <input type="text" name="shipping_last_name" class="form-control form-input required" message="<?php echo trans('please_enter_lastname') ?>" value="<?php echo $user->shipping_last_name; ?>" required>
                                     </div>
                                 </div>
                             </div>
@@ -61,17 +61,17 @@
                                 <div class="row">
                                     <div class="col-12 col-md-6 m-b-sm-15">
                                         <label class="control-label"><?php echo trans("email"); ?>*</label>
-                                        <input type="email" name="shipping_email" class="form-control form-input" value="<?php echo $user->shipping_email; ?>" required>
+                                        <input type="email" name="shipping_email" class="form-control form-input required" message="<?php echo trans('please_enter_shipping_email') ?>" value="<?php echo $user->shipping_email; ?>" required>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label class="control-label"><?php echo trans("phone_number"); ?>*</label>
-                                        <input type="text" name="shipping_phone_number" class="form-control form-input" value="<?php echo $user->shipping_phone_number; ?>" required>
+                                        <input type="text" name="shipping_phone_number" class="form-control form-input required" message="<?php echo trans('please_enter_phone_number') ?>" value="<?php echo $user->shipping_phone_number; ?>" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label"><?php echo trans("address"); ?> 1*</label>
-                                <input type="text" name="shipping_address_1" class="form-control form-input" value="<?php echo $user->shipping_address_1; ?>" required>
+                                <input type="text" name="shipping_address_1" class="form-control form-input required" message="<?php echo trans('please_enter_address') ?>" value="<?php echo $user->shipping_address_1; ?>" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label"><?php echo trans("address"); ?> 2 (<?php echo trans("optional"); ?>)</label>
@@ -82,7 +82,7 @@
                                     <div class="col-12 col-md-6 m-b-sm-15">
                                         <label class="control-label"><?php echo trans("country"); ?>*</label>
                                         <div class="selectdiv">
-                                            <select id="countries" name="shipping_country_id" class="form-control" required>
+                                            <select id="countries" name="shipping_country_id" class="form-control required" message="<?php echo trans('please_select_country') ?>" required>
                                                 <option value="" selected><?php echo trans("select_country"); ?></option>
                                                 <?php foreach ($countries as $item) : ?>
                                                     <option value="<?php echo $item->id; ?>" <?php echo ($user->shipping_country_id == $item->id) ? 'selected' : ''; ?>><?php echo html_escape($item->name); ?></option>
@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label class="control-label"><?php echo trans("state"); ?>*</label>
-                                        <input type="text" name="shipping_state" class="form-control form-input" value="<?php echo $user->shipping_state; ?>" required>
+                                        <input type="text" name="shipping_state" class="form-control form-input required" message="<?php echo trans('please_enter_state') ?>" value="<?php echo $user->shipping_state; ?>" required>
                                     </div>
                                 </div>
                             </div>
@@ -100,11 +100,11 @@
                                 <div class="row">
                                     <div class="col-12 col-md-6 m-b-sm-15">
                                         <label class="control-label"><?php echo trans("city"); ?>*</label>
-                                        <input type="text" name="shipping_city" class="form-control form-input" value="<?php echo $user->shipping_city; ?>" required>
+                                        <input type="text" name="shipping_city" class="form-control form-input required" message="<?php echo trans('please_enter_city') ?>" value="<?php echo $user->shipping_city; ?>" required>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label class="control-label"><?php echo trans("zip_code"); ?>*</label>
-                                        <input type="text" name="shipping_zip_code" class="form-control form-input" value="<?php echo $user->shipping_zip_code; ?>" required>
+                                        <input type="text" name="shipping_zip_code" class="form-control form-input required" message="<?php echo trans('please_enter_zip_code') ?>" value="<?php echo $user->shipping_zip_code; ?>" required>
                                     </div>
                                 </div>
                             </div>

@@ -832,7 +832,6 @@
                 'form_lang_base_url': '<?php echo lang_base_url(); ?>'
             };
             data[csfr_token_name] = $.cookie(csfr_cookie_name);
-            console.log(data);
             $.ajax({
                 type: "POST",
                 url: base_url + "ajax_controller/send_email_new_message",

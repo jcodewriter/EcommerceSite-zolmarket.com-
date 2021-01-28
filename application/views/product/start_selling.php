@@ -77,10 +77,10 @@
 												<!-- form start -->
 												<?php echo form_open('home_controller/contact_post', ['id' => 'form_validate', 'class' => 'validate_terms']); ?>
 												<div class="form-group">
-													<input type="text" class="form-control form-input" name="name" placeholder="<?php echo trans("name"); ?>" maxlength="199" minlength="1" pattern=".*\S+.*" value="<?php echo old('name'); ?>" <?php echo ($rtl == true) ? 'dir="rtl"' : ''; ?> required>
+													<input type="text" class="form-control form- required" message="<?php echo trans('please_enter_name')?>" name="name" placeholder="<?php echo trans("name"); ?>" maxlength="199" minlength="1" pattern=".*\S+.*" value="<?php echo old('name'); ?>" <?php echo ($rtl == true) ? 'dir="rtl"' : ''; ?> required>
 												</div>
 												<div class="form-group">
-													<input type="email" class="form-control form-input" name="email" maxlength="199" placeholder="<?php echo trans("email_address"); ?>" value="<?php echo old('email'); ?>" <?php echo ($rtl == true) ? 'dir="rtl"' : ''; ?> required>
+													<input type="email" class="form-control form-input required" message="<?php echo trans('please_enter_email')?>" name="email" maxlength="199" placeholder="<?php echo trans("email_address"); ?>" value="<?php echo old('email'); ?>" <?php echo ($rtl == true) ? 'dir="rtl"' : ''; ?> required>
 												</div>
 												<div class="form-group">
 													<textarea class="form-control form-input form-textarea" name="message" placeholder="<?php echo trans("message"); ?>" maxlength="4970" minlength="5" <?php echo ($rtl == true) ? 'dir="rtl"' : ''; ?> required><?php echo old('message'); ?></textarea>
@@ -142,13 +142,14 @@
 															<div class="row">
 																<div class="col-sm-12 col-profile">
 																	<img src="<?php echo html_escape(get_user_avatar($user)); ?>" alt="avatar" id="imgadshoww" class="thumbnail img-responsive img-update profile-image__wrapper <?= (!$this->auth_user->is_private || $this->auth_user->role == "admin") ? 'company-image__wrapper' : 'private-image__wrapper'; ?>" style="max-width: 400px; height: 200px;margin:auto">
+																	
 																</div>
 															</div>
 															<div class="row">
 																<div class="col-sm-12 col-profile mt-1">
 																	<a class="btn btn-success btn-sm btn-file-upload">
 																		<?php echo trans('select_image'); ?>
-																		<input id="imgUploader" name="file" size="40" accept=".png, .jpg, .jpeg" onchange="$('#upload-file-info').html($(this).val().replace(/.*[\/\\]/, ''));$('#imgadshoww').css({'border':'none'})" type="file">
+																		<input id="imgUploader" name="file" size="40" accept=".png, .jpg, .jpeg" onchange="$('#upload-file-info').html($(this).val().replace(/.*[\/\\]/, ''));$('#imgadshoww').css({'border':'none'});$('#imgadshoww').parent().find('p').remove()" type="file">
 																	</a>
 																</div>
 															</div>
@@ -158,18 +159,18 @@
 															<div class="d-flex justify-content-between" style="width: 100%;">
 																<div style="width: 49%;<?= $this->selected_lang->id == 2 ? 'order: 1' : ''; ?>">
 																	<label class="control-label"><?php echo trans("first_name"); ?> <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
-																	<input type="text" name="firstname" class="form-control form-input" value="<?php echo $this->auth_user->firstname; ?>" placeholder="<?php echo trans("first_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
+																	<input type="text" name="firstname" class="form-control form-input required" message="<?php echo trans('please_enter_firstname')?>" value="<?php echo $this->auth_user->firstname; ?>" placeholder="<?php echo trans("first_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
 																</div>
 																<div style="width: 49%;">
 																	<label class="control-label"><?php echo trans("last_name"); ?> <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
-																	<input type="text" name="lastname" class="form-control form-input" value="<?php echo $this->auth_user->lastname; ?>" placeholder="<?php echo trans("last_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
+																	<input type="text" name="lastname" class="form-control form-input required" message="<?php echo trans('please_enter_lastname')?>" value="<?php echo $this->auth_user->lastname; ?>" placeholder="<?php echo trans("last_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
 																</div>
 															</div>
 														</div>
 
 														<div class="form-group company_name_group" style="display: <?php echo $this->auth_user->is_private ? 'none' : ''; ?>;<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
 															<label class="control-label"><?php echo trans("company_name"); ?> <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
-															<input type="text" name="shop_name" class="form-control form-input" value="<?php echo $this->auth_user->shop_name; ?>" placeholder="<?php echo trans("company_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
+															<input type="text" name="shop_name" class="form-control form-input required" message="<?php echo trans('please_enter_shop_name')?>" value="<?php echo $this->auth_user->shop_name; ?>" placeholder="<?php echo trans("company_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
 														</div>
 
 														<div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
@@ -183,7 +184,7 @@
 																	<label class="control-label"><?php echo trans('country'); ?></label>
 																	<?php if ($this->general_settings->default_product_location == 0) : ?>
 																		<div class="selectdiv">
-																			<select id="countries" name="country_id" class="form-control" onchange="get_states(this.value);" required>
+																			<select id="countries" name="country_id" class="form-control required" message="<?php echo trans('please_select_country') ?>" onchange="get_states(this.value);" required>
 																				<option value=""><?php echo trans('select'); ?></option>
 																				<?php foreach ($countries as $item) : ?>
 																					<option value="<?php echo $item->id; ?>" <?php echo ($item->id == $this->auth_user->country_id) ? 'selected' : ''; ?>><?php echo html_escape($item->name); ?></option>
@@ -192,7 +193,7 @@
 																		</div>
 																	<?php else : ?>
 																		<div class="selectdiv">
-																			<select id="countries" name="country_id" class="form-control" onchange="get_states(this.value);" required>
+																			<select id="countries" name="country_id" class="form-control required" message="<?php echo trans('please_select_country') ?>" onchange="get_states(this.value);" required>
 																				<?php foreach ($countries as $item) : ?>
 																					<?php if ($item->id == $this->general_settings->default_product_location) : ?>
 																						<option value="<?php echo $item->id; ?>" selected><?php echo html_escape($item->name); ?></option>
@@ -206,7 +207,7 @@
 																<div class="col-12 col-sm-4 m-b-15">
 																	<label class="control-label"><?php echo trans('state'); ?></label>
 																	<div class="selectdiv">
-																		<select id="states" name="state_id" class="form-control" onchange="get_cities(this.value);" required>
+																		<select id="states" name="state_id" class="form-control required" message="<?php echo trans('please_select_state') ?>" onchange="get_cities(this.value);" required>
 																			<option value=""><?php echo trans('select'); ?></option>
 																			<?php
 																			if (!empty($this->auth_user->country_id)) {
@@ -223,7 +224,7 @@
 																<div class="col-12 col-sm-4 m-b-15">
 																	<label class="control-label"><?php echo trans('city'); ?></label>
 																	<div class="selectdiv">
-																		<select id="cities" name="city_id" class="form-control">
+																		<select id="cities" name="city_id" class="form-control required" message="<?php echo trans('please_select_city') ?>">
 																			<option value=""><?php echo trans('city'); ?></option>
 																			<?php
 																			if (!empty($cities)) :
@@ -275,15 +276,15 @@
 															<div class="row">
 																<div class="col-12 col-sm-4 m-b-15">
 																	<label class="control-label"><?php echo trans("phone_number"); ?> <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
-																	<input type="text" id="intl_phone_number" name="phone_number" class="form-control form-input" value="<?php echo $this->auth_user->phone_number ? html_escape($this->auth_user->phone_number) : "+249"; ?>" required>
+																	<input type="text" id="intl_phone_number" name="phone_number" class="form-control form-input required" message="<?php echo trans('please_enter_phone_number')?>" value="<?php echo $this->auth_user->phone_number ? html_escape($this->auth_user->phone_number) : "+249"; ?>" required>
 																</div>
 																<div class="col-12 col-sm-4 m-b-15">
 																	<label class="control-label"><?php echo trans("address") ?> <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i></label>
-																	<input type="text" id="address" name="address" class="form-control form-input" value="<?php echo html_escape($this->auth_user->address); ?>" placeholder="<?php echo trans("address") ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
+																	<input type="text" id="address" name="address" class="form-control form-input required" message="<?php echo trans('please_enter_address')?>" value="<?php echo html_escape($this->auth_user->address); ?>" placeholder="<?php echo trans("address") ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
 																</div>
 																<div class="col-12 col-sm-4">
 																	<label class="control-label"><?php echo trans("zip_code"); ?> <i class="fas fa-star-of-life" style="font-size: 5px; color: red; position: absolute; top: 8px; right: -7px;"></i> </label>
-																	<input type="text" id="zip_code" name="zip_code" class="form-control form-input" value="<?php echo html_escape($this->auth_user->zip_code); ?>" placeholder="<?php echo trans("zip_code"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
+																	<input type="text" id="zip_code" name="zip_code" class="form-control form-input required" message="<?php echo trans('please_enter_zip_code')?>" value="<?php echo html_escape($this->auth_user->zip_code); ?>" placeholder="<?php echo trans("zip_code"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
 																</div>
 															</div>
 														</div>
@@ -441,51 +442,84 @@
 </style>
 <script>
 	$(document).ready(function() {
+		function formValidationRule(){
+			$(".zolmarket_required").remove();
+			var required_fields = $("form").find(".required");
+			for(var index = 0; index < required_fields.length; index++){
+				if(required_fields.eq(index).val() == ""){
+					$("<label class='zolmarket_required'>"+required_fields.eq(index).attr("message")+"</label>").insertAfter(required_fields.eq(index));
+				}
+			}
+			if($(this).width() > 500)
+			{
+				if($("form").find("select").length != 1 && $("form").find("select:last").val() != "")
+				{
+					$("form").find("select:last").parent().parent().parent().find("input").next().remove();
+				}
+			}
+		}
 		$('.circle-loader').toggleClass('load-complete');
 		$('.checkmark').toggle();
-		if ($(this).width() < 500) {
-			$("form[name=start_selling]").submit(function(e) {
+		$("form[name=start_selling]").submit(function(e) {
+			formValidationRule();
+			if ($(this).width() < 500) {
 				if (!$('#countries').val() || !$('#states').val()) {
 					if (!$('#countries').val())
 						$('button[name=country]').css({
 							'border-width': '1px',
 							'border-color': 'rgba(220, 53, 69, 0.40)'
 						})
-					if (!$('#states').val())
-						$('button[name=state]').css({
-							'border-width': '1px',
-							'border-color': 'rgba(220, 53, 69, 0.40)'
-						})
+						
+					if (!$('#states').val()){
+                        $('button[name=state]').css({
+                            'border-width': '1px',
+                            'border-color': 'rgba(220, 53, 69, 0.40)'
+                        })
+                        $("<label class='zolmarket_required'>"+'<?php echo trans('please_select_location'); ?>'+"</label>").insertAfter($('button[name=state]'));
+                    }
 					if ($('#imgadshoww').attr('class') != 'valid') {
-						$('#imgadshoww').css({'border':'2px solid #dc354566'});
+						// $('#imgadshoww').css({'border':'2px solid #dc354566'});
 						$("html, body").animate({
 							scrollTop: 250
 						}, 700);
+						$('<p style="margin:0;color:rgb(237, 170, 179);"><?php echo trans('please_select_photo') ?></p>').insertAfter($("#imgadshoww"));
 					}
 					e.preventDefault();
 				}
-			})
-		}
-		$('.form-input').on('keypress', function() {
-			var el = this;
-			setTimeout(function() {
-				if (!$(el).val()) el.style.setProperty('border-color', '#dc354566', 'important');
-				else el.style.setProperty('border-color', '#404041', 'important');
-			}, 50);
-		});
-		$('.form-input').on('keydown', function(e) {
-			var el = this;
-			setTimeout(function() {
-				if (!$(el).val()) el.style.setProperty('border-color', '#dc354566', 'important');
-			}, 50);
-		});
-		$('.form-input').focus(function() {
-			if (!$(this).val()) {
-				this.style.setProperty('border-color', '#dc354566', 'important');
 			}
 		})
-		$('.form-input').blur(function() {
-			$(this).css('border-color', '#404041');
+		// $('.form-input').on('keypress', function() {
+		// 	var el = this;
+		// 	setTimeout(function() {
+		// 		if (!$(el).val()) el.style.setProperty('border-color', '#dc354566', 'important');
+		// 		else el.style.setProperty('border-color', '#404041', 'important');
+		// 	}, 50);
+		// });
+		// $('.form-input').on('keydown', function(e) {
+		// 	var el = this;
+		// 	setTimeout(function() {
+		// 		if (!$(el).val()) el.style.setProperty('border-color', '#dc354566', 'important');
+		// 	}, 50);
+		// });
+		// $('.form-input').focus(function() {
+		// 	if (!$(this).val()) {
+		// 		this.style.setProperty('border-color', '#dc354566', 'important');
+		// 	}
+		// })
+		// $('.form-input').blur(function() {
+		// 	$(this).css('border-color', '#404041');
+		// })
+		$(".required").keyup(function(){
+			$(this).parent().find(".zolmarket_required").remove();
+			if($(this).val() == ""){
+				$("<label class='zolmarket_required'>"+$(this).attr("message")+"</label>").insertAfter($(this));
+			}
+		})
+		$(".required").change(function(){
+            $(this).parent().find(".zolmarket_required").remove();
+            if($(this).val() == ""){
+                $("<label class='zolmarket_required'>"+$(this).attr("message")+"</label>").insertAfter($(this));
+            }
 		})
 	});
 

@@ -97,17 +97,17 @@
                                         <label class="control-label"><?php echo trans("email_address"); ?></label>
                                     </div>
                                 <?php endif; ?>
-                                <input type="email" name="email" class="form-control form-input" value="<?php echo html_escape($user->email); ?>" placeholder="<?php echo trans("email_address"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
+                                <input type="email" name="email" class="form-control form-input required" message="<?php echo trans('please_enter_email') ?>" value="<?php echo html_escape($user->email); ?>" placeholder="<?php echo trans("email_address"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
                             </div>
                             <div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
                                 <div class="d-flex justify-content-between">
                                     <div style="width: 49%;<?= $this->selected_lang->id == 2 ? 'order: 1' : ''; ?>">
                                         <label class="control-label"><?php echo trans("first_name"); ?></label>
-                                        <input type="text" name="firstname" class="form-control form-input" value="<?php echo html_escape($user->firstname); ?>" placeholder="<?php echo trans("first_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
+                                        <input type="text" name="firstname" class="form-control form-input required" message="<?php echo trans('please_enter_firstname') ?>" value="<?php echo html_escape($user->firstname); ?>" placeholder="<?php echo trans("first_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
                                     </div>
                                     <div style="width: 49%;">
                                         <label class="control-label"><?php echo trans("last_name"); ?></label>
-                                        <input type="text" name="lastname" class="form-control form-input" value="<?php echo html_escape($user->lastname); ?>" placeholder="<?php echo trans("last_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
+                                        <input type="text" name="lastname" class="form-control form-input required" message="<?php echo trans('please_enter_lastname') ?>" value="<?php echo html_escape($user->lastname); ?>" placeholder="<?php echo trans("last_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
                                     </div>
                                 </div>
                             </div>

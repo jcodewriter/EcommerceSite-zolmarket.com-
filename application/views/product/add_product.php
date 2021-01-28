@@ -290,14 +290,14 @@
 			var required_fields = $("form").find(".required");
 			for(var index = 0; index < required_fields.length; index++){
 				if(required_fields.eq(index).val() == ""){
-					$("<label class='zolmarket_required' style='color: #e91e63;font-size: 17px;padding:5px 10px 0px 10px;margin:0'>"+required_fields.eq(index).attr("message")+"</label>").insertAfter(required_fields.eq(index));
+					$("<label class='zolmarket_required'>"+required_fields.eq(index).attr("message")+"</label>").insertAfter(required_fields.eq(index));
 				}
 			}
 			if($(this).width() > 500)
 			{
 				if($("form").find("select").length != 1 && $("form").find("select:last").val() != "")
 				{
-					console.log($("form").find("select:last").parent().parent().parent().find("input").next().remove());
+					$("form").find("select:last").parent().parent().parent().find("input").next().remove();
 				}
 			}
 		}
@@ -319,7 +319,10 @@
 			}
 		})
 		$(".required").keyup(function(){
-			formValidationRule();
+			$(this).parent().find(".zolmarket_required").remove();
+			if($(this).val() == ""){
+				$("<label class='zolmarket_required'>"+$(this).attr("message")+"</label>").insertAfter($(this));
+			}
 		})
 	})
 </script>

@@ -13329,3 +13329,12 @@ h4.col-md-12.title {
 	border-radius: 5px;
 	z-index: 1;
 }
+.zolmarket_required{
+	width:100%;
+	color: #e91e63;
+	font-size: 12px;
+	font-weight: bold;
+	padding:5px 10px 0px 10px;
+	margin:0;
+
+}

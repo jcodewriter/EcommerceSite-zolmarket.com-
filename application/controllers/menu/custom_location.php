@@ -59,6 +59,8 @@ foreach ($items as $item) :
 							'border-width': '1px',
 							'border-color': '#404041'
 						});
+                		$('#listcategories').parent().parent().find('.zolmarket_required').remove();
+                		$('#mobile_listcategories').find('.zolmarket_required').remove();
 					<?php endif; ?>
 					<?php if ($currenttype == 'state_id') : ?>
 						$('#city_button').text(`<?php echo html_escape($item->name); ?>`)

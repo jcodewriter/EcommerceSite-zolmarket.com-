@@ -2721,7 +2721,27 @@ $(document).on('click', '.btn-delete-product-img', function () {
     });
 });
 
+
+
+function formValidationRule(){
+    $(".zolmarket_required").remove();
+    var required_fields = $("form").find(".required");
+    for(var index = 0; index < required_fields.length; index++){
+        console.log(required_fields.eq(index).val())
+        if(required_fields.eq(index).val() == ""){
+            $("<label class='zolmarket_required'>"+required_fields.eq(index).attr("message")+"</label>").insertAfter(required_fields.eq(index));
+        }
+    }
+    if($(this).width() > 500)
+    {
+        if($("#form_validate").find("select").length != 1 && $("form").find("select:last").val() != "")
+        {
+            console.log($("form").find("select:last").parent().parent().parent().find("input").next().remove());
+        }
+    }
+}
 $("#form_validate").submit(function (e) {
+    formValidationRule();
     $('.custom-control-validate-input').removeClass('custom-control-validate-error');
     setTimeout(function () {
         $('.custom-control-validate-input .error').each(function () {
@@ -2733,6 +2753,20 @@ $("#form_validate").submit(function (e) {
         });
     }, 100);
 });
+$(".required").keyup(function(){
+    $(this).parent().find(".zolmarket_required").remove();
+    if($(this).val() == ""){
+        $("<label class='zolmarket_required'>"+$(this).attr("message")+"</label>").insertAfter($(this));
+    }
+})
+$(".required").change(function(){
+    $(this).parent().find(".zolmarket_required").remove();
+    if($(this).val() == ""){
+        $("<label class='zolmarket_required'>"+$(this).attr("message")+"</label>").insertAfter($(this));
+    }
+})
+
+
 
 $('.custom-control-validate-input input').click(function () {
     var name = $(this).attr('name');
