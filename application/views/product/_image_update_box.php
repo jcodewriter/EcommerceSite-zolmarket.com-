@@ -65,8 +65,8 @@
         $("form").submit(function(e) {
             if (!$(".dm-uploaded-files li").length) {
                 $(".dm-uploader").css("border-color", "#edaab3")
-                $(".images-exp").text("Please add at least one photo.");
-                $(".images-exp").css("color", "#edaab3");
+                $(".images-exp").text('<?php echo trans('please_add_at_least_one_photo') ?>');
+                $(".images-exp").css("color", "#e91e63");
                 $("html, body").animate({
                     scrollTop: 0
                 }, 700);

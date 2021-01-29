@@ -2727,7 +2727,6 @@ function formValidationRule(){
     $(".zolmarket_required").remove();
     var required_fields = $("form").find(".required");
     for(var index = 0; index < required_fields.length; index++){
-        console.log(required_fields.eq(index).val())
         if(required_fields.eq(index).val() == ""){
             $("<label class='zolmarket_required'>"+required_fields.eq(index).attr("message")+"</label>").insertAfter(required_fields.eq(index));
         }

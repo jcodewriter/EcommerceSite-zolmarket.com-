@@ -215,7 +215,7 @@
 
                                     <div class="col-12 col-sm-4">
                                         <label class="control-label"><?php echo trans("phone_number"); ?></label>
-                                        <input type="text" id="intl_phone_number" name="phone_number" class="form-control form-input" value="<?php echo $user->phone_number ? html_escape($user->phone_number) : "+249"; ?>" placeholder="<?php echo trans("phone_number"); ?>">
+                                        <input type="text" id="intl_phone_number" name="phone_number" class="form-control form-input required" message="<?php echo trans('please_enter_phone_number') ?>" value="<?php echo $user->phone_number ? html_escape($user->phone_number) : "+249"; ?>" placeholder="<?php echo trans("phone_number"); ?>" required>
                                     </div>
                                 </div>
                             </div>

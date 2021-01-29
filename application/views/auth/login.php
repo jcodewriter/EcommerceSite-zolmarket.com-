@@ -29,7 +29,7 @@
                         <?php $this->load->view('partials/_messages'); ?>
                         <div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
                             <label for="email" style="font-weight: 600"><?php echo trans("email_address"); ?></label>
-                            <input type="email" id="email" name="email" class="form-control auth-form-input required" message="<?php echo trans('please_enter_email'); ?>" placeholder="<?php echo trans("email_address"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
+                            <input type="email" id="email" name="email" class="form-control auth-form-input required" message="<?php echo trans('please_enter_email'); ?>" placeholder="<?php echo trans("email_address"); ?>" style="font-size:16px;font-weight:bold;<?= $this->selected_lang->id == 2 ? 'text-align: right;' : ''; ?>" required>
                         </div>
                         <div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
                             <label for="password" style="font-weight: 600"><?php echo trans("password"); ?></label>
