@@ -51,7 +51,7 @@
                         </div>
                         <div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
                             <label for="password" style="font-weight: 600"><?php echo trans("email_address"); ?></label>
-                            <input autocomplete="off" type="email" name="email" class="form-control auth-form-input required" message="<?php echo trans('please_enter_email'); ?>" placeholder="<?php echo trans("email_address"); ?>" style="font-size:16px;font-weight:bold;<?= $this->selected_lang->id == 2 ? 'text-align: right;' : ''; ?>" required>
+                            <input autocomplete="off" type="email" name="email" class="form-control auth-form-input required" message="<?php echo trans('please_enter_email'); ?>" placeholder="<?php echo trans("email_address"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : ''; ?>" required>
                         </div>
                         <div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
                             <label for="password" style="font-weight: 600"><?php echo trans("password"); ?></label>
@@ -86,6 +86,18 @@
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function(){
+    $("#email").keyup(function(){
+        if($(this).val() != ""){
+            $(this).css({'font-size':'16px','font-weight':'bold'});
+        }
+        else{
+            $(this).css({'font-size':'13px','font-weight':'normal'});
+        }
+    })
+})
+</script>
 <style>
     .custom-control-label::before {
         width: 1.2rem;

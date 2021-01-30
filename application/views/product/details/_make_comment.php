@@ -19,11 +19,11 @@
         </div>
     </div>
 <?php else : ?>
-    <div class="row">
+    <div class="row" style='text-align: right;'>
         <div class="col-12">
             <!--<form id="make_comment_registered">-->
             <div class="form-group">
-                <textarea name="comment" id="comment_text" class="form-control form-input form-textarea" placeholder="<?php echo trans("comment"); ?>"></textarea>
+                <textarea name="comment" id="comment_text" style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : '' ?>;" class="form-control form-input form-textarea" placeholder="<?php echo trans("comment"); ?>"></textarea>
             </div>
             <a href="<?php echo lang_base_url() . 'login'; ?>" class="btn btn-md btn-custom"><?php echo trans("submit"); ?></a>
             <!--</form>-->

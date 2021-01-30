@@ -1877,7 +1877,7 @@ img {
 	text-overflow: clip;
 	white-space: nowrap;
 	color: #333;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: 600;
 }
 .product-item-horizontal .item-details .product-title a {
@@ -2085,7 +2085,7 @@ img {
 	display: table;
 	float: left;
 	table-layout: fixed;
-	margin-bottom: 10px
+	margin-bottom: 10px;
 }
 .product-slider-container .left {
 	width: 76px;
@@ -8139,7 +8139,8 @@ form select.error {
 		position: relative;
 		height: 300px;
 		display: block !important;
-		margin-bottom: 10px
+		margin-bottom: 10px;
+		background-color: rgb(249, 247, 246);
 	}
 	.product-slider-container .left {
 		position: absolute;

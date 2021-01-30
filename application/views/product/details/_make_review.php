@@ -27,12 +27,12 @@
         </div>
     </div>
 <?php else : ?>
-    <div class="row">
+    <div class="row" style='text-align: right;'>
         <div class="col-12">
             <div class="row-custom">
                 <div class="rating-bar">
-                    <span><?php echo trans("your_rating"); ?></span>
-                    <div class="rating-stars">
+                    <span  style="<?= $this->selected_lang->id == 2 ? 'float: right;' : '' ?>;"><?php echo trans("your_rating"); ?></span>
+                    <div class="rating-stars" style="<?= $this->selected_lang->id == 2 ? 'float: right;' : '' ?>;">
                         <input type="radio" id="star5" name="rating-star" value="5" /><label class="label-star" data-star="5" for="star5"></label>
                         <input type="radio" id="star4" name="rating-star" value="4" /><label class="label-star" data-star="4" for="star4"></label>
                         <input type="radio" id="star3" name="rating-star" value="3" /><label class="label-star" data-star="3" for="star3"></label>
@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <textarea name="comment" class="form-control form-input form-textarea" placeholder="<?php echo trans("write_review"); ?>" required></textarea>
+                <textarea style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : '' ?>;" name="comment" class="form-control form-input form-textarea" placeholder="<?php echo trans("write_review"); ?>" required></textarea>
             </div>
             <a href="<?php echo lang_base_url() . 'login'; ?>" class="btn btn-md btn-custom"><?php echo trans("submit"); ?></a>
         </div>

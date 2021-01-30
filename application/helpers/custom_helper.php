@@ -660,9 +660,26 @@ if (!function_exists('get_product_image_url')) {
     {
         if ($image->storage == "aws_s3") {
             $ci = &get_instance();
-            return $ci->aws_base_url . "uploads/images/" . $image->$size_name;
+            if(file_exists($ci->aws_base_url . "uploads/images/" . $image->$size_name)){
+                return $ci->aws_base_url . "uploads/images/" . $image->$size_name;
+            }
+            else{
+                if($ci->selected_lang->id != 2)
+                    return  base_url()."assets/img/no-image.png";
+                else
+                    return  base_url()."assets/img/no-image-ar.png";
+            }
         } else {
-            return base_url() . "images/" . $size_name . "/uploads/images/" . $image->$size_name;
+            $ci = &get_instance();
+            if(file_exists(base_url() . "images/" . $size_name . "/uploads/images/" . $image->$size_name)){
+                return base_url() . "images/" . $size_name . "/uploads/images/" . $image->$size_name;
+            }
+            else{
+                if($ci->selected_lang->id != 2)
+                    return  base_url()."assets/img/no-image.png";
+                else
+                    return  base_url()."assets/img/no-image-ar.png";
+            }
         }
     }
 }
