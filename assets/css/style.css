@@ -9601,6 +9601,7 @@ span.notification {
 .notification-icon svg {
 	height: 14px;
 	color: #fff;
+	margin-top: 6px;
 }
 .notification-icon.comment {
 	background: #49cb67;

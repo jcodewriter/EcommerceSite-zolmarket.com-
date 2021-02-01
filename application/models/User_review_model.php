@@ -14,9 +14,10 @@ class User_review_model extends CI_Model
             'review' => $this->input->post('review', true),
             'created_at' => date("Y-m-d H:i:s")
         );
-
         if (!empty($data['seller_id']) && !empty($data['user_id']) && !empty($data['rating'])) {
             $this->db->insert('user_reviews', $data);
+            $this->load->model('notification_model');
+            $this->notification_model->profile_review($data);
         }
     }
 

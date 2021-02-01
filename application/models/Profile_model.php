@@ -222,15 +222,19 @@ class Profile_model extends CI_Model
             'following_id' => $this->input->post('following_id', true),
             'follower_id' => $this->input->post('follower_id', true)
         );
-
+        $this->load->model('notification_model');
         $follow = $this->get_follow($data["following_id"], $data["follower_id"]);
         if (empty($follow)) {
             //add follower
             $this->db->insert('followers', $data);
+            $temp_path = $this->notification_model->follow_unfollow($data["following_id"], $data["follower_id"],'follow');
         } else {
             $this->db->where('id', $follow->id);
             $this->db->delete('followers');
+            $temp_path = $this->notification_model->follow_unfollow($data["following_id"], $data["follower_id"],'unfollow');
         }
+        
+        // print_r($data);exit;
     }
 
     //get user shipping address

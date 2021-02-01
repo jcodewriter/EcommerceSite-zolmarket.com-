@@ -30,7 +30,7 @@
                         <?php $this->load->view('partials/_messages'); ?>
 
                         <div class="form-group m-b-30">
-                            <input type="email" name="email" class="form-control auth-form-input" placeholder="<?php echo trans("email_address"); ?>" value="<?php echo old("email"); ?>" required>
+                            <input type="email" id="email" name="email" class="form-control auth-form-input" placeholder="<?php echo trans("email_address"); ?>" value="<?php echo old("email"); ?>" required>
                         </div>
 
                         <div class="form-group">
@@ -45,4 +45,16 @@
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function(){
+    $("#email").keyup(function(){
+        if($(this).val() != ""){
+            $(this).css({'font-size':'16px','font-weight':'bold'});
+        }
+        else{
+            $(this).css({'font-size':'13px','font-weight':'normal'});
+        }
+    })
+})
+</script>
 <!-- Wrapper End-->

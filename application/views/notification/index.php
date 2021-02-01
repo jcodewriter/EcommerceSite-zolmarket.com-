@@ -28,7 +28,7 @@
             <?php if (!empty($notifications)) : ?>
                 <?php foreach ($notifications as $key => $data) : ?>
                     <div class="notification-item <?php echo $data->is_see ? '' : 'is-see'; ?>" key="<?php echo $data->id; ?>">
-                        <a href="<?php echo lang_base_url() . 'notifications/' . $data->id; ?>" name="ads_link" view_link="<?php echo $data->notification_type; ?>">
+                        <a href="<?php echo ($data->notification_type == "add_profile_review"||$data->notification_type == "someone_follow")?lang_base_url() . 'profile/'.$this->auth_user->username : lang_base_url() . 'notifications/' . $data->id; ?>" name="ads_link" view_link="<?php echo $data->notification_type; ?>">
                             <div class="avatar-item" url="<?php echo lang_base_url() . $data->slug; ?>">
                                 <?php if ($data->avatar) : ?>
                                     <img src="<?php echo base_url() . $data->avatar; ?>" alt="User">
@@ -75,11 +75,16 @@
                                         <span class="n-user span-warp-text" style="direction: rtl"><?php echo $data->username; ?></span>
                                     <?php endif; ?>
                                 </div>
-                                <div class="content-subject" style="display: flex">
+                                <div class="content-subject" style="<?php echo ($data->notification_type == "add_review"||$data->notification_type == "add_profile_review")?'':'display: flex' ?>">
                                     <?php if ($data->notification_type == "add_comment") : ?>
                                         <span class="" style="direction: rtl"><?php echo trans("add_a_new_comment"); ?></span>
                                     <?php elseif ($data->notification_type == "add_review") : ?>
                                         <span class="" style="direction: rtl"><?php echo trans("add_a_new_review"); ?></span>
+                                        <?php $this->load->view('partials/_review_stars', ['review' => $data->rating]); ?>
+                                    <?php elseif ($data->notification_type == "someone_follow") : ?>
+                                        <span class="" style="direction: rtl"><?php echo trans("followed_user"); ?></span>
+                                    <?php elseif ($data->notification_type == "add_profile_review") : ?>
+                                        <span class="" style="direction: rtl"><?php echo trans("add_a_new_profile_review"); ?></span>
                                         <?php $this->load->view('partials/_review_stars', ['review' => $data->rating]); ?>
                                     <?php endif; ?>
                                 </div>
@@ -103,7 +108,6 @@
                                 </div>
                             </div>
                         </a>
-                        <?php if ($data->notification_type == "add_ads") : ?>
                             <div class="detail-item">
                                 <div class="follow">
                                     <?php echo form_open('profile_controller/follow_unfollow_user', ['class' => 'form-inline']); ?>
@@ -117,12 +121,12 @@
                                     <?php echo form_close(); ?>
                                     
                                 </div>
-
-                                <div class="ads-img">
-                                    <img src="<?php echo get_product_image($data->ads_id, 'image_small'); ?>" style="width: 50px; height: 30px !important; border-radius: 3px; object-fit: cover">
-                                </div>
+                                <?php if($data->notification_type != "someone_follow"&&$data->notification_type != "add_profile_review"): ?>
+                                    <div class="ads-img">
+                                        <img src="<?php echo get_product_image($data->ads_id, 'image_small'); ?>" style="width: 50px; height: 30px !important; border-radius: 3px; object-fit: cover">
+                                    </div>
+                                <?php endif; ?>
                             </div>
-                        <?php endif; ?>
                         <div class="action-item" onclick="delete_notification(<?php echo $data->id; ?>)">
                             <i class="fa fa-trash-o"></i>
                         </div>

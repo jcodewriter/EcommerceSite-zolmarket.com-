@@ -83,6 +83,48 @@ class Notification_model extends CI_Model{
         return true;
     }
     /**
+     * add profile review
+     * */
+    public function profile_review($data = array()) {
+        try {
+            $seller_id = $data['seller_id'];
+            $user_id = $data["user_id"];
+            $content = $data["review"];
+            $rating = $data["rating"];
+            $sql = "INSERT INTO notifications (`user_id`, `relation_user_id`, `notification_type`, `ads_id`, `content`, `rating`, `action_time`) 
+                        SELECT $seller_id, $user_id AS relation_user_id, 7 AS notification_type, $user_id AS ads_id, '$content' AS content, '$rating' AS rating, '".date('Y-m-d H:i:s')."' AS action_time";
+            $this->db->query($sql);
+        } catch (Exception $e) {
+            return false;
+        }
+        return true;
+    }
+    /**
+     * follow or unfollow
+     * */
+    public function follow_unfollow($user_id, $follower_id,$flag) {
+        try {
+            if($flag == 'follow'){
+                $sql = "INSERT INTO notifications (`user_id`, `relation_user_id`, `notification_type`, `ads_id`, `content`, `action_time`) 
+                            SELECT t0.id, $follower_id AS relation_user_id, 6 AS notification_type, $user_id AS ads_id, '' AS content, '".date('Y-m-d H:i:s')."' AS action_time FROM users AS t0
+                                JOIN followers AS t1 ON t1.following_id = $follower_id AND t0.id = t1.follower_id";
+                // echo $sql; exit;                
+                $this->db->query($sql);
+            }
+            else{
+                $this->db->where('relation_user_id', $follower_id);
+                $this->db->where('notification_type', 6);
+                $this->db->delete('notifications');
+            }
+            // $sql = "insert into notifications (`user_id`,`relation_user_id`,`notification_type`,ads_id,`content`,`action_time`)
+            //         select t0.id, $user_id as relation_user_id, 6 as notification_type,$follower_id as `ads_id`,content,'".date('Y-m-d H:i:s')."' as `action_time` from users as t0
+            //         join followers as t1 on t1.following_id = $user_id and t0.id = t1.follower_id" ;
+        }catch  (Exception $e) {
+            return false;
+        }
+        return true;
+    }
+    /**
      * get notifications
      */
     public function get_notifications() {
