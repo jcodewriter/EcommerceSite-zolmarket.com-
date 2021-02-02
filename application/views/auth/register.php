@@ -41,7 +41,7 @@
                                 <label class="control-label"><?php echo trans("upload_your_shop"); ?></label>
                                 <div class="row">
                                     <div class="col-sm-12 col-profile">
-                                        <img src="<?php echo lang_base_url()."assets/img/user.png" ?>" alt="avatar" id="imgadshoww" class="thumbnail img-responsive img-update" style="max-width: 400px; height: 200px; width: 200px; border-radius: 50%;margin:auto">
+                                        <img src="<?php echo "https://zolmarket.com/assets/img/user.png" ?>" alt="avatar" id="imgadshoww" class="thumbnail img-responsive img-update" style="max-width: 400px; height: 200px; width: 200px; border-radius: 50%;margin:auto">
                                     </div>
                                 </div>
                                 <div class="row">
