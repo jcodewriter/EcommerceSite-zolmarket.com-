@@ -36,7 +36,14 @@ class Notification_controller extends Home_Core_Controller
      **/
     public function show($notification_id) {
         $data = $this->notification_model->is_look($notification_id);
-        if ($data->ads_id) {
+        // print_r($data);exit;
+        if($data->notification_type == 'someone_follow'){
+            redirect(lang_base_url()."profile/followers/".$this->auth_user->slug);
+        }
+        else if($data->notification_type == 'add_profile_review'){
+            redirect(lang_base_url()."profile/reviews/".$this->auth_user->slug);
+        }
+        else if ($data->ads_id) {
             $product = $this->product_model->get_product_by_id($data->ads_id);
             redirect(lang_base_url().$product->slug);
         }else {

@@ -200,15 +200,21 @@ class Auth_model extends CI_Model
         $data['created_at'] = date('Y-m-d H:i:s');
         $data['token'] = generate_token();
 
+        $this->load->model('upload_model');
+        $temp_path = $this->upload_model->upload_temp_image('file');
+        delete_file_from_server(user()->avatar);
+        $data["avatar"] = $this->upload_model->avatar_upload($temp_path);
+        $this->upload_model->delete_temp_image($temp_path);
         if ($this->db->insert('users', $data)) {
             $last_id = $this->db->insert_id();
             if ($this->general_settings->email_verification == 1) {
-                $data['email_status'] = 0;
                 $this->load->model("email_model");
+                $data['email_status'] = 0;
                 $this->email_model->send_email_activation($last_id);
             } else {
                 $data['email_status'] = 1;
             }
+            
             return $this->get_user($last_id);
         } else {
             return false;

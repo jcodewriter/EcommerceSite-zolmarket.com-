@@ -22,12 +22,12 @@
                         <!-- form start -->
                         <?php
                         if ($recaptcha_status) {
-                            echo form_open('auth_controller/register_post', [
+                            echo form_opform_open_multiparten('auth_controller/register_post', [
                                 'id' => 'form_validate', 'class' => 'validate_terms',
                                 'onsubmit' => "var serializedData = $(this).serializeArray();var recaptcha = ''; $.each(serializedData, function (i, field) { if (field.name == 'g-recaptcha-response') {recaptcha = field.value;}});if (recaptcha.length < 5) { $('.g-recaptcha>div').addClass('is-invalid');return false;} else { $('.g-recaptcha>div').removeClass('is-invalid');}"
                             ]);
                         } else {
-                            echo form_open('auth_controller/register_post', ['id' => 'form_validate', 'class' => 'validate_terms']);
+                            echo form_open_multipart('auth_controller/register_post', ['id' => 'form_validate', 'class' => 'validate_terms']);
                         }
                         ?>
                         <p class="p-social-media m-0 m-b-10"><?php echo trans("have_account"); ?>&nbsp;<a href="<?php echo lang_base_url() . 'login'; ?>" class="link"><?php echo trans("login"); ?></a></p>
@@ -37,6 +37,22 @@
                         </div>
                         <!-- include message block -->
                         <?php $this->load->view('partials/_messages'); ?>
+                            <div class="form-group" style="text-align: center;">
+                                <label class="control-label"><?php echo trans("upload_your_shop"); ?></label>
+                                <div class="row">
+                                    <div class="col-sm-12 col-profile">
+                                        <img alt="avatar" id="imgadshoww" class="thumbnail img-responsive img-update" style="max-width: 400px; height: 200px;display:none; width: 200px; border-radius: 50%;margin:auto">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-profile mt-1">
+                                        <a class="btn btn-success btn-sm btn-file-upload">
+                                            <?php echo trans('select_image'); ?>
+                                            <input id="imgUploader" name="file" size="40" accept=".png, .jpg, .jpeg" onchange="$('#upload-file-info').html($(this).val().replace(/.*[\/\\]/, ''));$('#imgadshoww').css('display','block')" type="file">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         <div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
                             <div class="d-flex justify-content-between" style="width: 100%">
                                 <div style="width: 48%;<?= $this->selected_lang->id == 2 ? 'order: 1' : ''; ?>">
