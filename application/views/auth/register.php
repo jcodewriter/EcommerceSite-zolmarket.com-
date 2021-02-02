@@ -41,14 +41,14 @@
                                 <label class="control-label"><?php echo trans("upload_your_shop"); ?></label>
                                 <div class="row">
                                     <div class="col-sm-12 col-profile">
-                                        <img alt="avatar" id="imgadshoww" class="thumbnail img-responsive img-update" style="max-width: 400px; height: 200px;display:none; width: 200px; border-radius: 50%;margin:auto">
+                                        <img src="<?php echo lang_base_url()."assets/img/user.png" ?>" alt="avatar" id="imgadshoww" class="thumbnail img-responsive img-update" style="max-width: 400px; height: 200px; width: 200px; border-radius: 50%;margin:auto">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12 col-profile mt-1">
                                         <a class="btn btn-success btn-sm btn-file-upload">
                                             <?php echo trans('select_image'); ?>
-                                            <input id="imgUploader" name="file" size="40" accept=".png, .jpg, .jpeg" onchange="$('#upload-file-info').html($(this).val().replace(/.*[\/\\]/, ''));$('#imgadshoww').css('display','block')" type="file">
+                                            <input id="imgUploader" name="file" size="40" accept=".png, .jpg, .jpeg" onchange="$('#upload-file-info').html($(this).val().replace(/.*[\/\\]/, ''));$('#imgadshoww').parent().find('p').remove();" type="file">
                                         </a>
                                     </div>
                                 </div>
@@ -91,7 +91,7 @@
                             </div>
                         <?php endif; ?>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-md btn-custom btn-block"><?php echo trans("register"); ?></button>
+                            <button type="submit" class="btn btn-md btn-custom btn-block" style="margin-bottom:60px;"><?php echo trans("register"); ?></button>
                         </div>
 
                         <?php echo form_close(); ?>
@@ -104,6 +104,15 @@
 </div>
 <script>
 $(document).ready(function(){
+    $("button").click(function(){
+        if($("#imgUploader").val() == ''){
+            // $('#imgadshoww').css({'border':'2px solid #dc354566'});
+            $("html, body").animate({
+                scrollTop: 250
+            }, 700);
+            $('<p style="width: 100%;color: #e91e63;font-size: 12px;font-weight: bold;padding: 5px 10px 0px 10px;margin: 0;"  ><?php echo trans('please_select_photo') ?></p>').insertAfter($("#imgadshoww"));
+        }
+    })
     $("#email").keyup(function(){
         if($(this).val() != ""){
             $(this).css({'font-size':'16px','font-weight':'bold'});
