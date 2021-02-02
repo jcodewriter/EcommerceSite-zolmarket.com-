@@ -105,7 +105,7 @@
 <script>
 $(document).ready(function(){
     $("button").click(function(){
-        $("@imgUploader").parent().find("p").remove();
+        $("#imgUploader").parent().find("p").remove();
         if($("#imgUploader").val() == ''){
             // $('#imgadshoww').css({'border':'2px solid #dc354566'});
             $("html, body").animate({
