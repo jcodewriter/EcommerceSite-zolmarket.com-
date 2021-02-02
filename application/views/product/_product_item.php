@@ -3,9 +3,11 @@
 ?>
 <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-product pr-1 pl-1">
     <div class="product-item">
-        <div style="border: 1px solid #e4e4e4; border-radius: 6px;">
+        <div style=" border-radius: 6px;">
             <div class="product-image__wrapper">
-                <a class="item-favorite-button item-favorite-enable <?php echo (is_product_in_favorites($product->id) == true) ? 'item-favorited' : ''; ?>" data-product-id="<?php echo $product->id; ?>"></a>
+                <div class="zolmarket-favorite">
+                    <a class="item-favorite-button item-favorite-enable <?php echo (is_product_in_favorites($product->id) == true) ? 'item-favorited' : ''; ?>" data-product-id="<?php echo $product->id; ?>"></a>
+                </div>
                 <a href="<?php echo lang_base_url() . 'product/' . $product->slug; ?>" name="ads_link">
                     <div class="img-product-container">
                         <img src="<?php echo $img_bg_product_small; ?>" data-src="<?php echo get_product_image($product->id, 'image_small'); ?>" alt="<?php echo html_escape($product->title); ?>" class="lazyload img-fluid img-product mb-0" onerror="this.src='<?php echo $img_bg_product_small; ?>'">
