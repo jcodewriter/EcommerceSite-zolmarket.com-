@@ -11,11 +11,8 @@
             </a>
             
             <div class="zolmarket-favorite">
-                <a class="item-favorite-button item-favorite-enable <?php echo (is_product_in_favorites($product->id) == true) ? 'item-favorited' : ''; ?>" data-product-id="<?php echo $product->id; ?>"></a>
+                <a data-toggle="tooltip"data-placement="left"  title="<?php echo trans("wishlist"); ?>"  class="item-favorite-button item-favorite-enable <?php echo (is_product_in_favorites($product->id) == true) ? 'item-favorited' : ''; ?>" data-product-id="<?php echo $product->id; ?>"></a>
             </div>
-            <?php if ($product->is_promoted && $promoted_products_enabled == 1 && isset($promoted_badge) && $promoted_badge == true) : ?>
-                <span class="badge badge-dark badge-promoted"><?php echo trans("promoted"); ?></span>
-            <?php endif; ?>
         </div>
         <div class="row-custom item-details product-item-th-list-text" style="">
             <?php $user = get_user($product->user_id); ?>
@@ -29,8 +26,14 @@
                     <span class="location-text">
                         <?php echo get_location($product); ?>
                     </span>
+                    
                 </a>
-            <?php endif; ?>
+                <?php endif; ?>
+                <div>
+                    <?php if ($product->is_promoted && $promoted_products_enabled == 1 && isset($promoted_badge) && $promoted_badge == true) : ?>
+                        <span class="badge badge-dark badge-promoted" style="position:unset"><?php echo trans("promoted"); ?></span>
+                    <?php endif; ?>
+                </div>
             <div class="product-title">
                 <?php if (is_arabic($product->title)) : ?>
                     <a href="<?php echo generate_product_url($product); ?>" name="ads_link"><?php echo html_escape($product->title); ?> </a>

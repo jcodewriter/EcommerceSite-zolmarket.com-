@@ -3445,3 +3445,6 @@ jQuery('.mobile-footer .col > a').each(function () {
     }
 });
 
+$(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});

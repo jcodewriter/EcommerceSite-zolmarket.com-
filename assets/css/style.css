@@ -13357,3 +13357,19 @@ h4.col-md-12.title {
 	margin:0;
 
 }
+
+.tooltip-inner {
+	max-width: 200px;
+	padding: 3px 8px;
+	color: #fff;
+	text-align: center;
+	background-color: #fff;
+	border:#fff;
+	color: #222;
+	border-radius: 4px;
+  }
+  .bs-tooltip-auto[x-placement^=left] .arrow::before, .bs-tooltip-left .arrow::before {
+    left: 0;
+    border-width: .4rem 0 .4rem .4rem;
+	border-left-color: #fff;
+	}

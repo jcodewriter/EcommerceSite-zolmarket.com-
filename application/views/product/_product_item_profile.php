@@ -6,7 +6,7 @@
         <!-- <div class="col-12 col-sm-4"> -->
             <div class="item-image">
                 <div class="zolmarket-favorite">
-                    <a class="item-favorite-button item-favorite-enable <?php echo (is_product_in_favorites($product->id) == true) ? 'item-favorited' : ''; ?>" data-product-id="<?php echo $product->id; ?>"></a>
+                    <a data-toggle="tooltip"data-placement="left"  title="<?php echo trans("wishlist"); ?>"  class="item-favorite-button item-favorite-enable <?php echo (is_product_in_favorites($product->id) == true) ? 'item-favorited' : ''; ?>" data-product-id="<?php echo $product->id; ?>"></a>
                 </div>
                 <a href="<?php echo generate_product_url($product); ?>">
                     <div class="img-product-container">
@@ -28,7 +28,7 @@
                 <?php endif;?>
                 
                 <?php if ($product->is_promoted && $promoted_products_enabled == 1 && isset($promoted_badge) && $promoted_badge == true): ?>
-                    <span class="badge badge-dark badge-promoted"><?php echo trans("promoted"); ?>&nbsp;&nbsp;&nbsp;(<?php echo date_difference($product->promote_end_date, date('Y-m-d H:i:s')) . " " . trans("days_left"); ?>)</span>
+                    <span class="badge badge-dark badge-promoted" style="position:unset"><?php echo trans("promoted"); ?>&nbsp;&nbsp;&nbsp;(<?php echo date_difference($product->promote_end_date, date('Y-m-d H:i:s')) . " " . trans("days_left"); ?>)</span>
                 <?php endif; ?>
                 <?php if(is_arabic(get_shop_name_product($product))):?>
                     <p class="product-user text-truncate" style="text-align:left;text-overflow: clip !important;">
