@@ -41,14 +41,14 @@
                                 <label class="control-label"><?php echo trans("upload_your_shop"); ?></label>
                                 <div class="row">
                                     <div class="col-sm-12 col-profile">
-                                        <img src="<?php echo "https://zolmarket.com/assets/img/user.png" ?>" alt="avatar" id="imgadshoww" class="thumbnail img-responsive img-update" style="max-width: 400px; height: 200px; width: 200px; border-radius: 50%;margin:auto">
+                                        <img onclick="$('#imgUploader').click()" src="<?php echo "https://zolmarket.com/assets/img/user.png" ?>" class="btn-file-upload" alt="avatar" id="imgadshoww" class="thumbnail img-responsive img-update" style="max-width: 400px; height: 150px; width: 150px; border-radius: 50%;margin:auto">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12 col-profile mt-1">
                                         <a class="btn btn-success btn-sm btn-file-upload">
                                             <?php echo trans('select_image'); ?>
-                                            <input id="imgUploader" name="file" size="40" accept=".png, .jpg, .jpeg" onchange="$('#upload-file-info').html($(this).val().replace(/.*[\/\\]/, ''));$('#imgadshoww').parent().find('p').remove();" type="file">
+                                            <input id="imgUploader" name="file" size="40" accept=".png, .jpg, .jpeg" onchange="$('#upload-file-info').html($(this).val().replace(/.*[\/\\]/, ''));$('#imgadshoww').parent().find('p').remove();" type="file" required>
                                         </a>
                                     </div>
                                 </div>
