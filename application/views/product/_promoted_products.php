@@ -11,10 +11,10 @@
             <?php if ($count <= $promoted_products_limit) : ?>
                 <?php if ($this->is_mobile) : ?>
                     <!-- <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-product pr-1 pl-1"> -->
-                    <?php $this->load->view('product/_product_item_th_list', ['product' => $product, 'promoted_badge' => false]); ?>
+                    <?php $this->load->view('product/_product_item_th_list', ['product' => $product, 'promoted_badge' => true]); ?>
                     <!-- </div> -->
                 <?php else : ?>
-                    <?php $this->load->view('product/_product_item', ['product' => $product, 'promoted_badge' => false]); ?>
+                    <?php $this->load->view('product/_product_item', ['product' => $product, 'promoted_badge' => true]); ?>
                 <?php endif; ?>
             <?php endif; ?>
         <?php $count++;

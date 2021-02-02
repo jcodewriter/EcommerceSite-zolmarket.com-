@@ -26,10 +26,11 @@
                         <a href="<?php echo generate_product_url($product); ?>"><?php echo html_escape($product->title); ?></a>
                     </p>
                 <?php endif;?>
-                
-                <?php if ($product->is_promoted && $promoted_products_enabled == 1 && isset($promoted_badge) && $promoted_badge == true): ?>
-                    <span class="badge badge-dark badge-promoted" style="position:unset"><?php echo trans("promoted"); ?>&nbsp;&nbsp;&nbsp;(<?php echo date_difference($product->promote_end_date, date('Y-m-d H:i:s')) . " " . trans("days_left"); ?>)</span>
-                <?php endif; ?>
+                <div>
+                    <?php if ($product->is_promoted && $promoted_products_enabled == 1 && isset($promoted_badge) && $promoted_badge == true): ?>
+                        🌎<span class="badge badge-dark badge-promoted" style="position:unset"><?php echo trans("promoted"); ?>&nbsp;&nbsp;&nbsp;(<?php echo date_difference($product->promote_end_date, date('Y-m-d H:i:s')) . " " . trans("days_left"); ?>)</span>
+                    <?php endif; ?>
+                </div>
                 <?php if(is_arabic(get_shop_name_product($product))):?>
                     <p class="product-user text-truncate" style="text-align:left;text-overflow: clip !important;">
                         <a href="<?php echo lang_base_url() . "profile" . '/' . html_escape($product->user_slug); ?>">

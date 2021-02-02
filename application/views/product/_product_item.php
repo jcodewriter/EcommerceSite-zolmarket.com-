@@ -41,7 +41,7 @@
                     <?php endif; ?>
                     <div>
                         <?php if ($product->is_promoted && $promoted_products_enabled == 1 && isset($promoted_badge) && $promoted_badge == true) : ?>
-                            <span class="badge badge-dark badge-promoted" style="position:unset"><?php echo trans("promoted"); ?></span>
+                            🌎<span class="badge badge-dark badge-promoted" style="position:unset"><?php echo trans("promoted"); ?></span>
                         <?php endif; ?>
                     </div>
                 <!--stars-->
