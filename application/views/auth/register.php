@@ -22,7 +22,7 @@
                         <!-- form start -->
                         <?php
                         if ($recaptcha_status) {
-                            echo form_opform_open_multiparten('auth_controller/register_post', [
+                            echoform_open_multipart('auth_controller/register_post', [
                                 'id' => 'form_validate', 'class' => 'validate_terms',
                                 'onsubmit' => "var serializedData = $(this).serializeArray();var recaptcha = ''; $.each(serializedData, function (i, field) { if (field.name == 'g-recaptcha-response') {recaptcha = field.value;}});if (recaptcha.length < 5) { $('.g-recaptcha>div').addClass('is-invalid');return false;} else { $('.g-recaptcha>div').removeClass('is-invalid');}"
                             ]);
