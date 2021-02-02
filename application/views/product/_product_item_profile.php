@@ -28,7 +28,7 @@
                 <?php endif;?>
                 <div>
                     <?php if ($product->is_promoted && $promoted_products_enabled == 1 && isset($promoted_badge) && $promoted_badge == true): ?>
-                        🌎<span class="badge badge-dark badge-promoted" style="position:unset"><?php echo trans("promoted"); ?>&nbsp;&nbsp;&nbsp;(<?php echo date_difference($product->promote_end_date, date('Y-m-d H:i:s')) . " " . trans("days_left"); ?>)</span>
+                        <img src="<?php echo base_url()."/assets/img/earth.svg"  ?>" width="17px"><span class="badge badge-dark badge-promoted" style="position:unset"><?php echo trans("promoted"); ?>&nbsp;&nbsp;&nbsp;(<?php echo date_difference($product->promote_end_date, date('Y-m-d H:i:s')) . " " . trans("days_left"); ?>)</span>
                     <?php endif; ?>
                 </div>
                 <?php if(is_arabic(get_shop_name_product($product))):?>
