@@ -10,11 +10,6 @@
             </div>
             <div class="modal-body" style="padding: 0">
                 <div class="swiper-container">
-					<?php if(auth_check()&&($general_settings->favorite_icon_status == "1")): ?>
-						<div class="zolmarket-favorite">
-							<a data-toggle="tooltip"data-placement="left"  title="<?php echo trans("wishlist"); ?>"  class="item-favorite-button item-favorite-enable <?php echo (is_product_in_favorites($product->id) == true) ? 'item-favorited' : ''; ?>" data-product-id="<?php echo $product->id; ?>"></a>
-						</div>
-					<?php endif; ?>
                     <div class="swiper-wrapper">
                     <?php if (!empty($images)):
                         foreach ($images as $image): ?>

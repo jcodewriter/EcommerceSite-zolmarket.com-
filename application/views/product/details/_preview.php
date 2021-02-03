@@ -38,12 +38,6 @@ if (!empty($product_images)) {
 			<?php foreach ($product_images as $image) : ?>
 				<div class="product-slider-container">
 					<div class="swiper-container">
-						
-						<?php if(auth_check()&&($general_settings->favorite_icon_status == "1")): ?>
-							<div class="zolmarket-favorite">
-								<a data-toggle="tooltip"data-placement="left"  title="<?php echo trans("wishlist"); ?>"  class="item-favorite-button item-favorite-enable <?php echo (is_product_in_favorites($product->id) == true) ? 'item-favorited' : ''; ?>" data-product-id="<?php echo $product->id; ?>"></a>
-							</div>
-						<?php endif; ?>
 						<div class="swiper-slide" style="background-image:url(<?php echo get_product_image_url($image, 'image_default'); ?>"></div>
 					</div>
 					<?php if (auth_check()) : ?>
@@ -64,11 +58,6 @@ if (!empty($product_images)) {
 
 	<div class="product-slider-container">
 		<div class="swiper-container">
-					<?php if(auth_check()&&($general_settings->favorite_icon_status == "1")): ?>
-						<div class="zolmarket-favorite">
-							<a data-toggle="tooltip"data-placement="left"  title="<?php echo trans("wishlist"); ?>"  class="item-favorite-button item-favorite-enable <?php echo (is_product_in_favorites($product->id) == true) ? 'item-favorited' : ''; ?>" data-product-id="<?php echo $product->id; ?>"></a>
-						</div>
-					<?php endif; ?>
 			<div class="swiper-wrapper">
 				<?php if (!empty($product_images)) :
 					foreach ($product_images as $image) : ?>
