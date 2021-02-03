@@ -13,4 +13,9 @@ if (auth_check())
             <?= mb_substr(ucfirst(get_shop_name($user)), 0, 20, 'utf-8') ?>
         <?php endif; ?>
     </span>
+    
+    <a href="https://api.whatsapp.com/send?text=<?php echo html_escape($profile->shop_name); ?> - <?php echo lang_base_url() . "profile/" . $profile->slug; ?>" target="_blank" class="profile-mobile-header-watsapp"
+        class="btn btn-md btn-share whatsapp">
+        <img src="<?php echo lang_base_url() ?>assets/img/watsapp.WEBP" width="25px">
+    </a>
 </div>

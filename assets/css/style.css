@@ -1921,6 +1921,10 @@ img {
 	font-size: 13px;
 	line-height: 24px;
 }
+.swiper-container .zolmarket-favorite{
+	top:unset !important;
+	bottom: 30px;
+}
 .zolmarket-favorite{    
 	position: absolute;
     top: 10px;
@@ -8268,6 +8272,10 @@ form select.error {
 		width: 30px;
 		cursor: pointer;
 	}
+	.profile-mobile-header-watsapp{
+		position:absolute;
+		right: 10px;
+	}
 	.profile-mobile__header {
 		display: flex !important;
 		width: 100%;
@@ -13087,7 +13095,7 @@ h4.col-md-12.title {
 	display: flex;
     box-sizing: content-box;
     width: 35px;
-    background: red;
+    background: rgb(154, 153, 153);
     color: #fff;
 	font-size: 12px;
     font-weight: 600;
@@ -13368,8 +13376,16 @@ h4.col-md-12.title {
 	color: #222;
 	border-radius: 4px;
   }
+  .tooltip{
+	z-index: 1;	
+  }
   .bs-tooltip-auto[x-placement^=left] .arrow::before, .bs-tooltip-left .arrow::before {
     left: 0;
-    border-width: .4rem 0 .4rem .4rem;
+	border-width: .4rem 0 .4rem .4rem;
+	z-index: 1;
 	border-left-color: #fff;
+	}
+	.zolmarket-earth-icon{
+		width: 17px;
+		opacity: 0.8;
 	}

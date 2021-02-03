@@ -740,6 +740,7 @@ if ($page != 'product') {
 
         $(window).scroll(function() {
             console.log("here")
+            $('[data-toggle="tooltip"]').tooltip();
             let scrollHeight = $(document).height();
             let scrollPosition = $(this).scrollTop() + $(this).height();
             let scrollTop = $(this).scrollTop();

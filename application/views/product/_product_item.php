@@ -5,9 +5,11 @@
     <div class="product-item">
         <div style=" border-radius: 6px;">
             <div class="product-image__wrapper">
-                <div class="zolmarket-favorite">
-                    <a   data-toggle="tooltip"data-placement="left"  title="<?php echo trans("wishlist"); ?>" data-toggle="tooltip"data-placement="left"  title="<?php echo trans("wishlist"); ?>" class="item-favorite-button item-favorite-enable <?php echo (is_product_in_favorites($product->id) == true) ? 'item-favorited' : ''; ?>" data-product-id="<?php echo $product->id; ?>" ></a>
-                </div>
+                <?php if(auth_check()): ?>
+                    <div class="zolmarket-favorite">
+                        <a   data-toggle="tooltip"data-placement="left"  title="<?php echo trans("wishlist"); ?>" data-toggle="tooltip"data-placement="left"  title="<?php echo trans("wishlist"); ?>" class="item-favorite-button item-favorite-enable <?php echo (is_product_in_favorites($product->id) == true) ? 'item-favorited' : ''; ?>" data-product-id="<?php echo $product->id; ?>" ></a>
+                    </div>
+                <?php endif; ?>
                 <a href="<?php echo lang_base_url() . 'product/' . $product->slug; ?>" name="ads_link">
                     <div class="img-product-container">
                         <img src="<?php echo $img_bg_product_small; ?>" data-src="<?php echo get_product_image($product->id, 'image_small'); ?>" alt="<?php echo html_escape($product->title); ?>" class="lazyload img-fluid img-product mb-0" onerror="this.src='<?php echo $img_bg_product_small; ?>'">
@@ -41,7 +43,7 @@
                     <?php endif; ?>
                     <div>
                         <?php if ($product->is_promoted && $promoted_products_enabled == 1 && isset($promoted_badge) && $promoted_badge == true) : ?>
-                            <img src="<?php echo base_url()."/assets/img/earth.svg"  ?>" width="17px"><span class="badge badge-dark badge-promoted" style="position:unset"><?php echo trans("promoted"); ?></span>
+                            <img src="<?php echo base_url()."/assets/img/earth.svg"  ?>"  class="zolmarket-earth-icon"><span class="badge badge-dark badge-promoted" style="position:unset"><?php echo trans("promoted"); ?></span>
                         <?php endif; ?>
                     </div>
                 <!--stars-->
