@@ -278,6 +278,22 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-sm-12 col-xs-12">
+									<label><?php echo trans('favorite_icon'); ?></label>
+								</div>
+								<div class="col-md-3 col-sm-4 col-xs-12 col-option">
+									<input type="radio" name="favorite_icon_status" value="1" id="favorite_icon_status_1" class="square-purple" <?php echo ($general_settings->favorite_icon_status == "1") ? 'checked' : ''; ?>>
+									<label for="favorite_icon_status_1" class="option-label"><?php echo trans('show'); ?></label>
+								</div>
+								<div class="col-md-3 col-sm-4 col-xs-12 col-option">
+									<input type="radio" name="favorite_icon_status" value="0" id="favorite_icon_status_2" class="square-purple" <?php echo ($general_settings->favorite_icon_status != 1) ? 'checked' : ''; ?>>
+									<label for="favorite_icon_status_2" class="option-label"><?php echo trans('hide'); ?></label>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="row">
+								<div class="col-sm-12 col-xs-12">
 									<label class="control-label"><?php echo trans('index_promoted_products_count'); ?></label>
 								</div>
 								<div class="col-md-4 col-sm-4 col-xs-12">

@@ -5,7 +5,7 @@
     <div class="product-item">
         <div style=" border-radius: 6px;">
             <div class="product-image__wrapper">
-                <?php if(auth_check()): ?>
+                <?php if(auth_check()&&($general_settings->favorite_icon_status == "1")): ?>
                     <div class="zolmarket-favorite">
                         <a   data-toggle="tooltip"data-placement="left"  title="<?php echo trans("wishlist"); ?>" data-toggle="tooltip"data-placement="left"  title="<?php echo trans("wishlist"); ?>" class="item-favorite-button item-favorite-enable <?php echo (is_product_in_favorites($product->id) == true) ? 'item-favorited' : ''; ?>" data-product-id="<?php echo $product->id; ?>" ></a>
                     </div>

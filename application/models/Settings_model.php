@@ -68,7 +68,6 @@ class Settings_model extends CI_Model
             'maintenance_mode_description' => $this->input->post('maintenance_mode_description', true),
             'maintenance_mode_status' => $this->input->post('maintenance_mode_status', true),
         );
-
         if (empty($data["maintenance_mode_status"])) {
             $data["maintenance_mode_status"] = 0;
         }
@@ -282,6 +281,8 @@ class Settings_model extends CI_Model
     //update preferences
     public function update_preferences($form)
     {
+        // print_r($this->input->post());
+        // exit();
         if ($form == 'homepage') {
             $data = array(
                 'slider_status' => $this->input->post('slider_status', true),
@@ -290,7 +291,8 @@ class Settings_model extends CI_Model
                 'index_latest_products' => $this->input->post('index_latest_products', true),
                 'index_blog_slider' => $this->input->post('index_blog_slider', true),
                 'index_promoted_products_count' => $this->input->post('index_promoted_products_count', true),
-                'index_latest_products_count' => $this->input->post('index_latest_products_count', true)
+                'index_latest_products_count' => $this->input->post('index_latest_products_count', true),
+                'favorite_icon_status' => $this->input->post('favorite_icon_status', true),
             );
         } elseif ($form == 'general') {
             $data = array(

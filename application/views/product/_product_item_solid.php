@@ -4,7 +4,7 @@
 <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-product pr-2 pl-2" style="border-bottom: 1px solid #0000001a">
     <div class="product-item product-item-th-list">
         <div class="row-custom product-item-solid-image">
-                <?php if(auth_check()): ?>
+                <?php if(auth_check()&&($general_settings->favorite_icon_status == "1")): ?>
                     <div class="zolmarket-favorite">
                         <a  data-toggle="tooltip"data-placement="left"  title="<?php echo trans("wishlist"); ?>" class="item-favorite-button item-favorite-enable <?php echo (is_product_in_favorites($product->id) == true) ? 'item-favorited' : ''; ?>" data-product-id="<?php echo $product->id; ?>"></a>
                     </div>
