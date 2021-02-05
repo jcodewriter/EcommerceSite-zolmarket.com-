@@ -579,9 +579,22 @@ $(document).ready(function () {
     // for chat
     $('.btn-back-mobile-nav').click(function (e) {
         if (localStorage.getItem('chat_profile_url') != "yes" && localStorage.getItem('chat_profile_url') != null) {
+            var temp = localStorage.getItem('chat_profile_url');
+            var urls = temp.split("&&");
+            if(urls.length == 1){
+                location.href = localStorage.getItem('chat_profile_url');
+                localStorage.setItem('chat_profile_url', "yes");
+            }
+            else{
+                location.href = urls[urls.length - 1];
+                var urlString = urls[0];
+                for(var i=1;i<urls.length-1;i++){
+                    urlString += "&&" + urls[i];
+                }
+                localStorage.setItem('chat_profile_url',urlString);
+            }
+            // alert(localStorage.getItem('chat_profile_url'));
             e.preventDefault()
-            window.location.href = localStorage.getItem('chat_profile_url');
-            localStorage.setItem('chat_profile_url', "yes");
         }
     })
 
@@ -3450,7 +3463,14 @@ $(document).ready(function () {
 });
 $(document).ready(function() {
     $("a[name=profile_link]").click(function() {
-        let url = decodeURIComponent($(location).attr("href"));
-        localStorage.setItem('chat_profile_url', url)
+        let url = location.href;
+        if(localStorage.getItem('chat_profile_url') == "yes"||localStorage.getItem('chat_profile_url') == null){
+            localStorage.setItem('chat_profile_url', url);
+        }
+        else{
+            var urlTmp = localStorage.getItem('chat_profile_url') + "&&" + url;
+            localStorage.setItem('chat_profile_url', urlTmp);
+        }
+        // alert(localStorage.getItem('chat_profile_url'));
     })
 })

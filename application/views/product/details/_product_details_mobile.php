@@ -231,12 +231,3 @@ endif; ?>
 
 <!--Include social share-->
 <?php $this->load->view("product/details/_product_share"); ?>
-
-<script>
-	$(document).ready(function() {
-		$("a[name=profile_link]").click(function() {
-			let url = decodeURIComponent($(location).attr("href"));
-			localStorage.setItem('chat_profile_url', url)
-		})
-	})
-</script>

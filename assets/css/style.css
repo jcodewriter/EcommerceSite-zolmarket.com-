@@ -13391,3 +13391,13 @@ h4.col-md-12.title {
 		width: 17px;
 		opacity: 0.8;
 	}
+	a[name^=f-btn-account] img{
+		width: 25px !important;
+		border-radius: 50% !important;
+		height: 23px !important;
+		margin-top: -3px !important;
+		/* border:1px solid #555; */
+	}
+	/* .f-btn-selected img{
+		border: 1px solid #007bff !important;
+	} */

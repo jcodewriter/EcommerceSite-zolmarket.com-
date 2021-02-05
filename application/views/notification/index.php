@@ -145,12 +145,6 @@
 </div>
 
 <script>
-    $(document).ready(function(){
-        $(".profile_link").click(function() {
-            let url = decodeURIComponent($(location).attr("href"));
-            localStorage.setItem('chat_profile_url', url)
-        })
-    })
     function unfollow(relation_user_id) {
         var data = {
             "item_id": relation_user_id

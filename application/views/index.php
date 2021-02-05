@@ -245,10 +245,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    $('.product-user.text-truncate a').click(function() {
-        let url = window.location.href;
-        localStorage.setItem('chat_profile_url', url)
-    })
-</script>

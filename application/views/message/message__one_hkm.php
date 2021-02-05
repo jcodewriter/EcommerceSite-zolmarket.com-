@@ -846,16 +846,3 @@
     $this->session->unset_userdata('mds_send_email_new_message_send_to');
     $this->session->unset_userdata('mds_send_email_new_message_text');
 endif; ?>
-
-
-<script>
-    $(document).ready(function(){
-        $("a[name=chat_profile]").click(function(){
-            let url = decodeURIComponent($(location).attr("href"));
-            localStorage.setItem('chat_profile_url', url)
-        });
-        $("html, body").animate({
-            scrollTop: 1000
-        }, 700);
-    })
-</script>

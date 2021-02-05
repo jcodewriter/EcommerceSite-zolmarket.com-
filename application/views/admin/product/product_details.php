@@ -165,7 +165,7 @@
                     <div class="col-md-9 col-sm-12 right">
                         <?php $user = get_user($product->user_id);
                         if (!empty($user)): ?>
-                            <a href="<?php echo base_url(); ?>profile/<?php echo $user->slug; ?>" target="_blank">
+                            <a name="profile_link"  href="<?php echo base_url(); ?>profile/<?php echo $user->slug; ?>" target="_blank">
                                 <img src="<?php echo get_user_avatar($user); ?>" alt="" style="width: 50px; height: 50px; float: left;margin-right: 10px;">
                                 <strong><?php echo $user->username; ?></strong>
                             </a>

@@ -70,12 +70,3 @@
         </div>
     </div>
 </div>
-<script>
-    
-	$(document).ready(function() {
-		$("div[name=profile_link]").click(function() {
-			let url = decodeURIComponent($(location).attr("href"));
-			localStorage.setItem('chat_profile_url', url)
-		})
-	})
-</script>

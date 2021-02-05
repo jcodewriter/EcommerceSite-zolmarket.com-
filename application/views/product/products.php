@@ -729,11 +729,6 @@ if ($page != 'product') {
 </script>
 <?php if ($Platform == 'Mobile') : ?>
     <script>
-        $('.product-user.text-truncate a').click(function() {
-            let url = decodeURIComponent($(location).attr("href"));
-            localStorage.setItem('chat_profile_url', url)
-        })
-
         let loading = false;
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
