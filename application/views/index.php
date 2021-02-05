@@ -245,3 +245,6 @@
         </div>
     </div>
 </div>
+<script>
+    localStorage.setItem('chat_profile_url','yes');
+</script>

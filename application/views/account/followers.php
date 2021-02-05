@@ -33,7 +33,7 @@
                         <div class="row">
                             <?php foreach ($followers as $key => $item) : ?>
                                 <div class="col-sm-12 col-md-12">
-                                    <a href="<?php echo generate_profile_url($item); ?>" class="follower-item" style="<?php echo sizeof($followers) > ($key + 1) ? 'border-bottom: 1px solid #dee2e6;' : ''; ?>">
+                                    <a href="<?php echo generate_profile_url($item); ?>" class="follower-item" name="profile_link" style="<?php echo sizeof($followers) > ($key + 1) ? 'border-bottom: 1px solid #dee2e6;' : ''; ?>">
                                         <div class="d-flex align-items-center">
                                             <img src="<?php echo get_user_avatar($item); ?>" alt="<?php echo get_shop_name($item); ?>" class="img-fluid img-profile lazyload">
                                             <span class="ml-2"><?php echo get_shop_name($item); ?></span>
