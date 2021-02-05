@@ -81,7 +81,7 @@
 
         <div class="profile-mobile-tabs">
             <?php if (is_multi_vendor_active()) : ?>
-                    <a class="btn-outline-gray <?php echo ($active_tab == 'products') ? 'active' : ''; ?>" href="<?php echo lang_base_url() . "profile/" . $user->slug; ?>">
+                    <a name="profile_link" class="btn-outline-gray <?php echo ($active_tab == 'products') ? 'active' : ''; ?>" href="<?php echo lang_base_url() . "profile/" . $user->slug; ?>">
                         <div class="count">&nbsp;(<?php echo get_user_products_count($user->slug); ?>)</div>
                         <span><?php echo trans("products"); ?></span>
                     </a>

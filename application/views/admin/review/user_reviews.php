@@ -44,7 +44,7 @@
                                 </td>
                                 <td>
                                     <?php $seller = get_user($item->seller_id); ?>
-                                    <a href="<?php echo lang_base_url(); ?>profile/<?php echo html_escape($seller->slug); ?>" target="_blank">
+                                    <a name="profile_link"  href="<?php echo lang_base_url(); ?>profile/<?php echo html_escape($seller->slug); ?>" target="_blank">
                                         <?php echo html_escape($seller->username); ?>
                                     </a>
                                 </td>

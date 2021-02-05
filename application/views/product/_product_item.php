@@ -56,11 +56,11 @@
                     <?php if (!@$profile_avatar) : ?>
                         <div class="d-flex align-items-center">
                             <?php if (!$user->is_private || $user->role == 'admin') : ?>
-                                <a href="<?php echo lang_base_url() . 'profile/' . $user->slug; ?>">
+                                <a name="profile_link"  href="<?php echo lang_base_url() . 'profile/' . $user->slug; ?>">
                                     <span class="store-mark"><?php echo trans("store"); ?></span>
                                 </a>
                             <?php endif; ?>
-                            <a href="<?php echo lang_base_url() . 'profile/' . $user->slug; ?>" class="userinfo__wrapper">
+                            <a name="profile_link"  href="<?php echo lang_base_url() . 'profile/' . $user->slug; ?>" class="userinfo__wrapper">
                                 <img src="<?php echo get_user_avatar($user); ?>" alt="User" style="width: 30px; height: 30px; border-radius: 50%" />
                                 <span class="last-seen <?php echo (is_user_online($user->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i></span>
                             </a>

@@ -58,10 +58,10 @@ if (auth_check() && ($user->id == user()->id)) {
                                     <?php if ($review->user_id == user()->id) : ?>
                                         <a class="review-list__content" href="<?php echo lang_base_url(); ?>account/<?php echo html_escape($review->user_slug); ?>">
                                         <?php else : ?>
-                                            <a class="review-list__content" href="<?php echo lang_base_url(); ?>profile/<?php echo html_escape($review->user_slug); ?>">
+                                            <a name="profile_link" class="review-list__content" href="<?php echo lang_base_url(); ?>profile/<?php echo html_escape($review->user_slug); ?>">
                                             <?php endif; ?>
                                         <?php else : ?>
-                                            <a class="review-list__content" href="<?php echo lang_base_url(); ?>profile/<?php echo html_escape($review->user_slug); ?>">
+                                            <a name="profile_link" class="review-list__content" href="<?php echo lang_base_url(); ?>profile/<?php echo html_escape($review->user_slug); ?>">
                                             <?php endif; ?>
                                             <img src="<?php echo get_user_avatar_by_id($review->user_id); ?>" alt="<?php echo get_shop_name_by_user_id($review->user_id); ?>">
                                             <div class="review-content__wrapper">

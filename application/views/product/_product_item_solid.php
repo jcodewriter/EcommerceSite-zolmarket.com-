@@ -4,11 +4,9 @@
 <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-product pr-2 pl-2" style="border-bottom: 1px solid #0000001a">
     <div class="product-item product-item-th-list">
         <div class="row-custom product-item-solid-image">
-                <?php if(auth_check()&&($general_settings->favorite_icon_status == "1")): ?>
-                    <div class="zolmarket-favorite">
-                        <a  data-toggle="tooltip"data-placement="left"  title="<?php echo trans("wishlist"); ?>" class="item-favorite-button item-favorite-enable <?php echo (is_product_in_favorites($product->id) == true) ? 'item-favorited' : ''; ?>" data-product-id="<?php echo $product->id; ?>"></a>
-                    </div>
-                <?php endif; ?>
+            <div class="zolmarket-favorite">
+                <a  data-toggle="tooltip"data-placement="left"  title="<?php echo trans("wishlist"); ?>" class="item-favorite-button item-favorite-enable <?php echo (is_product_in_favorites($product->id) == true) ? 'item-favorited' : ''; ?>" data-product-id="<?php echo $product->id; ?>"></a>
+            </div>
             <a href="<?php echo lang_base_url() . 'product/' . $product->slug; ?>" name="ads_link">
                 <div class="solid-img-container">
                     <img src="<?php echo $img_bg_product_small; ?>" data-src="<?php echo get_product_image($product->id, 'image_small'); ?>" alt="<?php echo html_escape($product->title); ?>" class="lazyload img-fluid img-product mb-0" onerror="this.src='<?php echo $img_bg_product_small; ?>'">
@@ -56,11 +54,11 @@
                 </a>
                 <div class="d-flex align-items-center">
                     <?php if (!$user->is_private || $user->role == 'admin') : ?>
-                        <a href="<?php echo lang_base_url() . 'profile/' . $user->slug; ?>">
+                        <a name="profile_link"  href="<?php echo lang_base_url() . 'profile/' . $user->slug; ?>">
                             <span class="store-mark"><?php echo trans("store"); ?></span>
                         </a>
                     <?php endif; ?>
-                    <a href="<?php echo lang_base_url() . 'profile/' . $user->slug; ?>" class="userinfo__wrapper">
+                    <a name="profile_link"  href="<?php echo lang_base_url() . 'profile/' . $user->slug; ?>" class="userinfo__wrapper">
                         <img src="<?php echo get_user_avatar($user); ?>" alt="User" style="width: 30px; height: 30px; border-radius: 50%" />
                         <span class="last-seen <?php echo (is_user_online($user->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i></span>
                     </a>

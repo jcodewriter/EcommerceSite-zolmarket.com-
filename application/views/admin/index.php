@@ -502,10 +502,10 @@
 
                         <?php foreach ($latest_members as $item) : ?>
                             <li>
-                                <a href="<?php echo base_url(); ?>profile/<?php echo $item->slug; ?>">
+                                <a name="profile_link" href="<?php echo base_url(); ?>profile/<?php echo $item->slug; ?>">
                                     <img src="<?php echo get_user_avatar($item); ?>" alt="user" class="img-responsive">
                                 </a>
-                                <a href="<?php echo base_url(); ?>profile/<?php echo $item->slug; ?>" class="users-list-name"><?php echo html_escape($item->username); ?></a>
+                                <a name="profile_link" href="<?php echo base_url(); ?>profile/<?php echo $item->slug; ?>" class="users-list-name"><?php echo html_escape($item->username); ?></a>
                                 <span class="users-list-date"><?php echo time_ago($item->created_at); ?></span>
                             </li>
 

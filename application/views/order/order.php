@@ -325,7 +325,7 @@
                                                                 <span><?php echo trans("seller"); ?>:</span>
                                                                 <?php $seller = get_user($item->seller_id); ?>
                                                                 <?php if (!empty($seller)): ?>
-                                                                    <a href="<?php echo base_url(); ?>profile/<?php echo $seller->slug; ?>" target="_blank" class="table-product-title">
+                                                                    <a name="profile_link"  href="<?php echo base_url(); ?>profile/<?php echo $seller->slug; ?>" target="_blank" class="table-product-title">
                                                                         <strong class="font-600"><?php echo get_shop_name($seller); ?></strong>
                                                                     </a>
                                                                 <?php endif; ?>

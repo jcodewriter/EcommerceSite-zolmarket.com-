@@ -366,7 +366,7 @@
                     <a href="<?php echo lang_base_url(); ?>account/<?php echo $this->auth_user->slug; ?>" class="f-btn <?php echo $this->selected_btn == "f-btn-account" ? "f-btn-selected" : ""; ?>" name="f-btn-account">
                         <div style="height: 22px;">
                             <?php $profile = get_user($this->auth_user->id); ?>
-                            <img src="<?php echo get_user_avatar($profile); ?>" alt="User" style="border: 1px solid #80808075;width: 25px;border-radius: 50%;height: 23px;margin-top: -3px;">
+                            <img src="<?php echo get_user_avatar($profile); ?>" alt="User" style="border: 1px solid #555;width: 26px;border-radius: 50%;height: 26px;margin-top: -3px;">
                         </div>
                         <span class="f-btn-text"><?php echo trans("profile"); ?></span>
                     </a>

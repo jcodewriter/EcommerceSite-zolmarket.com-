@@ -60,7 +60,7 @@
                                         $user = get_user($item->user_id);
                                         if (!empty($user)):?>
                                             <div class="table-orders-user">
-                                                <a href="<?php echo base_url(); ?>profile/<?php echo $user->slug; ?>" target="_blank">
+                                                <a name="profile_link" href="<?php echo base_url(); ?>profile/<?php echo $user->slug; ?>" target="_blank">
                                                     <?php echo html_escape($user->username); ?>
                                                 </a>
                                             </div>

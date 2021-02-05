@@ -28,7 +28,7 @@
             <?php if (!empty($notifications)) : ?>
                 <?php foreach ($notifications as $key => $data) : ?>
                     <div class="notification-item <?php echo $data->is_see ? '' : 'is-see'; ?>" key="<?php echo $data->id; ?>">
-                        <a href="<?php echo lang_base_url() . 'notifications/' . $data->id; ?>" name="ads_link" view_link="<?php echo $data->notification_type; ?>">
+                        <a href="<?php echo lang_base_url() . 'notifications/' . $data->id; ?>" name="ads_link" view_link="<?php echo $data->notification_type; ?>" class="<?php echo $data->notification_type == "someone_follow" || $data->notification_type == "add_profile_review"?'profile_link':'' ?>">
                             <div class="avatar-item" url="<?php echo lang_base_url() . $data->slug; ?>">
                                 <?php if ($data->avatar) : ?>
                                     <img src="<?php echo base_url() . $data->avatar; ?>" alt="User">
@@ -145,6 +145,12 @@
 </div>
 
 <script>
+    $(document).ready(function(){
+        $(".profile_link").click(function() {
+            let url = decodeURIComponent($(location).attr("href"));
+            localStorage.setItem('chat_profile_url', url)
+        })
+    })
     function unfollow(relation_user_id) {
         var data = {
             "item_id": relation_user_id

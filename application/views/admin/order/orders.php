@@ -53,7 +53,7 @@
                                         $buyer = get_user($item->buyer_id);
                                         if (!empty($buyer)):?>
                                             <div class="table-orders-user">
-                                                <a href="<?php echo base_url(); ?>profile/<?php echo $buyer->slug; ?>" target="_blank">
+                                                <a name="profile_link" href="<?php echo base_url(); ?>profile/<?php echo $buyer->slug; ?>" target="_blank">
                                                     <img src="<?php echo get_user_avatar($buyer); ?>" alt="buyer" class="img-responsive" style="height: 50px;">
                                                     <?php echo html_escape($buyer->username); ?>
                                                 </a>

@@ -34,7 +34,7 @@
                                 <td>
                                     <?php if (!empty($item)): ?>
                                         <div class="table-orders-user">
-                                            <a href="<?php echo base_url(); ?>profile/<?php echo $item->slug; ?>" target="_blank">
+                                            <a name="profile_link" href="<?php echo base_url(); ?>profile/<?php echo $item->slug; ?>" target="_blank">
                                                 <div style="width: 50px; height: 50px; overflow: hidden; float: left; margin-right: 10px;">
                                                     <img src="<?php echo get_user_avatar($item); ?>" alt="" class="img-responsive" style="height: 50px;">
                                                 </div>

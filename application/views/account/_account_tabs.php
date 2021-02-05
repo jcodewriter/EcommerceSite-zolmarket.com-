@@ -5,7 +5,7 @@
         <?php if (is_multi_vendor_active()) : ?>
             <?php if ($user->role == 'admin' || $user->role == 'vendor') : ?>
                 <li class="nav-item <?php echo ($active_tab == 'products') ? 'active' : ''; ?>">
-                    <a class="nav-link" href="<?php echo lang_base_url() . "profile/" . $user->slug; ?>">
+                    <a name="profile_link" class="nav-link" href="<?php echo lang_base_url() . "profile/" . $user->slug; ?>">
                         <span><?php echo trans("products"); ?></span>
                         <span class="count">(<?php echo get_user_products_count($user->slug); ?>)</span>
                     </a>
@@ -78,7 +78,7 @@
 <div class="profile-mobile-tabs  hidden-md-up">
     <?php if (is_multi_vendor_active()) : ?>
         <?php if ($user->role == 'admin' || $user->role == 'vendor') : ?>
-            <a class="btn-outline-gray <?php echo ($active_tab == 'products') ? 'active' : ''; ?>" href="<?php echo lang_base_url() . "profile/" . $user->slug; ?>">
+            <a name="profile_link" class="btn-outline-gray <?php echo ($active_tab == 'products') ? 'active' : ''; ?>" href="<?php echo lang_base_url() . "profile/" . $user->slug; ?>">
                 <div class="count">&nbsp;(<?php echo get_user_products_count($user->slug); ?>)</div>
                 <span><?php echo trans("products"); ?></span>
             </a>

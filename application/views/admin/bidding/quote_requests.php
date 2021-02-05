@@ -53,7 +53,7 @@
 									<?php $user = get_user($item->seller_id);
 									if (!empty($user)):?>
 										<div class="table-orders-user">
-											<a href="<?php echo base_url(); ?>profile/<?php echo $user->slug; ?>" target="_blank">
+											<a name="profile_link" href="<?php echo base_url(); ?>profile/<?php echo $user->slug; ?>" target="_blank">
 												<img src="<?php echo get_user_avatar($user); ?>" alt="buyer" class="img-responsive" style="height: 50px;">
 												<?php echo html_escape($user->username); ?>
 											</a>
@@ -64,7 +64,7 @@
 									<?php $user = get_user($item->buyer_id);
 									if (!empty($user)):?>
 										<div class="table-orders-user">
-											<a href="<?php echo base_url(); ?>profile/<?php echo $user->slug; ?>" target="_blank">
+											<a name="profile_link" href="<?php echo base_url(); ?>profile/<?php echo $user->slug; ?>" target="_blank">
 												<img src="<?php echo get_user_avatar($user); ?>" alt="buyer" class="img-responsive" style="height: 50px;">
 												<?php echo html_escape($user->username); ?>
 											</a>

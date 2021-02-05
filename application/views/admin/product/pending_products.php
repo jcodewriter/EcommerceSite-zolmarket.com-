@@ -72,7 +72,7 @@
                                 <td>
                                     <?php $user = get_user($item->user_id);
                                     if (!empty($user)): ?>
-                                        <a href="<?php echo base_url(); ?>profile/<?php echo html_escape($user->slug); ?>" target="_blank" class="table-username">
+                                        <a name="profile_link" href="<?php echo base_url(); ?>profile/<?php echo html_escape($user->slug); ?>" target="_blank" class="table-username">
                                             <?php echo html_escape($user->username); ?>
                                         </a>
                                     <?php endif; ?>

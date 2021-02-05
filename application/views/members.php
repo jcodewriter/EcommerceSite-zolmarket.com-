@@ -21,12 +21,12 @@
                             <div class="col-md-3 col-sm-6 col-12">
                                 <div class="member-list-item">
                                     <div class="left">
-                                        <a href="<?php echo lang_base_url(); ?>profile/<?php echo $member->slug; ?>">
+                                        <a name="profile_link" href="<?php echo lang_base_url(); ?>profile/<?php echo $member->slug; ?>">
                                             <img src="<?php echo get_user_avatar($member); ?>" alt="<?php echo get_shop_name($member); ?>" class="img-fluid img-profile lazyload">
                                         </a>
                                     </div>
                                     <div class="right">
-                                        <a href="<?php echo lang_base_url(); ?>profile/<?php echo $member->slug; ?>">
+                                        <a name="profile_link" href="<?php echo lang_base_url(); ?>profile/<?php echo $member->slug; ?>">
                                             <p class="username"><?php echo get_shop_name($member); ?></p>
                                         </a>
                                         <p><?php echo trans("products") . ": " . get_user_products_count($member->slug); ?></p>

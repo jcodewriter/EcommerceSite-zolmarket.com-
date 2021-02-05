@@ -18,7 +18,7 @@
                 <span class="online-state last_seen_hkm signle_msgsd last-seen <?php echo (is_user_online($profile->last_seen)) ? 'last-seen-online' : ''; ?>" style="bottom: -1px;left: 30px"><i class="icon-circle"></i></span>
             </a>
             <div class="chat-profile-detail" style="text-align: left;padding-left:5px;">
-                <a href="<?php echo lang_base_url();?>profile/<?php echo html_escape($profile->slug);?>" name="chat_profile">
+                <a name="profile_link"  href="<?php echo lang_base_url();?>profile/<?php echo html_escape($profile->slug);?>" name="chat_profile">
                     <?php if (is_arabic($profile->username)): ?>
                         <p style="font-weight: 600;margin-bottom: 0px;white-space: nowrap;text-overflow: ellipsis;width: 190px !important;display: block;overflow: hidden;"> <?php echo html_escape($profile->username); ?> </p>
                     <?php else:?>
@@ -146,7 +146,7 @@
                                                         <div class="message-list-item-row-received">
                                                             <div class="user-avatar">
                                                                 <div class="message-user">
-                                                                <a  href="<?php echo lang_base_url();?>profile/<?php echo html_escape($profile->slug);?>">
+                                                                <a  name="profile_link"  href="<?php echo lang_base_url();?>profile/<?php echo html_escape($profile->slug);?>">
                                                                     <img src="<?php echo get_user_avatar_by_id($item->sender_id); ?>" alt="" class="img-profile">
                                                                 </a>
                                                                 </div>
@@ -173,7 +173,7 @@
                                                         <div class="message-list-item-row-received">
                                                             <div class="user-avatar">
                                                                 <div class="message-user">
-                                                                <a  href="<?php echo lang_base_url();?>profile/<?php echo html_escape($profile->slug);?>">
+                                                                <a  name="profile_link"  href="<?php echo lang_base_url();?>profile/<?php echo html_escape($profile->slug);?>">
                                                                     <img src="<?php echo get_user_avatar_by_id($item->sender_id); ?>" alt="" class="img-profile">
                                                                 </a>
                                                                 </div>
@@ -363,7 +363,7 @@
             </div>
              <div class="col-md-8 d-none d-md-block d-lg-block partright_header_chat_disktop" style="">
                 <div class="hkmaftainyaufdaead" style="display: flex">
-                    <a href="<?php echo lang_base_url();?>profile/<?php echo html_escape($profile->slug); ?>" style="display:flex;vertical-align: top;">
+                    <a name="profile_link"  href="<?php echo lang_base_url();?>profile/<?php echo html_escape($profile->slug); ?>" style="display:flex;vertical-align: top;">
                         <img src="<?php echo get_user_avatar($profile); ?>" style="width:30px; height:30px;border-radius: 50%;position:relative">
                         <?php if (is_arabic($profile->username)): ?>
                             &nbsp;<span style="font-weight: 600;margin-bottom: 0px;white-space: nowrap;text-overflow: ellipsis;width: 300px !important;display: block;overflow: hidden;"> <?php echo html_escape($profile->username); ?> </span>
@@ -694,7 +694,7 @@
                                                         <div class="message-list-item-row-received">
                                                             <div class="user-avatar">
                                                                 <div class="message-user">
-                                                                <a  href="<?php echo lang_base_url();?>profile/<?php echo html_escape($profile->slug);?>">
+                                                                <a  name="profile_link"  href="<?php echo lang_base_url();?>profile/<?php echo html_escape($profile->slug);?>">
                                                                     <img src="<?php echo get_user_avatar_by_id($item->sender_id); ?>" alt="" class="img-profile">
                                                                 </a>
                                                                 </div>
@@ -721,7 +721,7 @@
                                                         <div class="message-list-item-row-received">
                                                             <div class="user-avatar">
                                                                 <div class="message-user">
-                                                                <a  href="<?php echo lang_base_url();?>profile/<?php echo html_escape($profile->slug);?>">
+                                                                <a  name="profile_link"  href="<?php echo lang_base_url();?>profile/<?php echo html_escape($profile->slug);?>">
                                                                     <img src="<?php echo get_user_avatar_by_id($item->sender_id); ?>" alt="" class="img-profile">
                                                                 </a>
                                                                 </div>

@@ -3448,3 +3448,9 @@ jQuery('.mobile-footer .col > a').each(function () {
 $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
 });
+$(document).ready(function() {
+    $("a[name=profile_link]").click(function() {
+        let url = decodeURIComponent($(location).attr("href"));
+        localStorage.setItem('chat_profile_url', url)
+    })
+})

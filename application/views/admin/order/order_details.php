@@ -135,7 +135,7 @@
                                 <div class="row row-details">
                                     <div class="col-xs-12">
                                         <div class="table-orders-user">
-                                            <a href="<?php echo base_url(); ?>profile/<?php echo $buyer->slug; ?>" target="_blank">
+                                            <a name="profile_link" href="<?php echo base_url(); ?>profile/<?php echo $buyer->slug; ?>" target="_blank">
                                                 <img src="<?php echo get_user_avatar($buyer); ?>" alt="" class="img-responsive" style="height: 120px;">
                                             </a>
                                         </div>
@@ -147,7 +147,7 @@
                                     </div>
                                     <div class="col-sm-8">
                                         <strong class="font-right">
-                                            <a href="<?php echo base_url(); ?>profile/<?php echo $buyer->slug; ?>" target="_blank">
+                                            <a name="profile_link" href="<?php echo base_url(); ?>profile/<?php echo $buyer->slug; ?>" target="_blank">
                                                 <?php echo html_escape($buyer->username); ?>
                                             </a>
                                         </strong>
@@ -412,7 +412,7 @@
                                                 <span><?php echo trans("by"); ?></span>
                                                 <?php $seller = get_user($item->seller_id); ?>
                                                 <?php if (!empty($seller)): ?>
-                                                    <a href="<?php echo base_url(); ?>profile/<?php echo $seller->slug; ?>" target="_blank" class="table-product-title">
+                                                    <a name="profile_link" href="<?php echo base_url(); ?>profile/<?php echo $seller->slug; ?>" target="_blank" class="table-product-title">
                                                         <strong><?php echo html_escape($seller->username); ?></strong>
                                                     </a>
                                                 <?php endif; ?>

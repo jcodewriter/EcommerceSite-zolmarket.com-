@@ -59,13 +59,13 @@ if (auth_check() && ($user->id == user()->id)) {
                     <?php foreach ($mreviews as $review) : ?>
                         <li>
                             <div class="left">
-                                <a href="<?php echo lang_base_url(); ?>profile/<?php echo html_escape($review->user_slug); ?>">
+                                <a name="profile_link"  href="<?php echo lang_base_url(); ?>profile/<?php echo html_escape($review->user_slug); ?>">
                                     <img src="<?php echo get_user_avatar_by_id($review->user_id); ?>" alt="<?php echo get_shop_name_by_user_id($review->user_id); ?>">
                                 </a>
                             </div>
                             <div class="right">
                                 <div class="row-custom">
-                                    <a href="<?php echo lang_base_url(); ?>profile/<?php echo html_escape($review->user_slug); ?>">
+                                    <a name="profile_link"  href="<?php echo lang_base_url(); ?>profile/<?php echo html_escape($review->user_slug); ?>">
                                         <span class="username"><?php echo get_shop_name_by_user_id($review->user_id); ?></span>
                                     </a>
                                     <!--stars-->
