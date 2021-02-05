@@ -9437,6 +9437,7 @@ form select.error {
 	width: 65px;
 	height: 65px;
 	border-radius: 50%;
+	border: 1px solid #80808075;
 }
 .content-item {
 	position: relative;
@@ -9993,6 +9994,7 @@ h4.col-md-12.title {
 	width: 180px;
 	height: 180px;
 	border-radius: 50%;
+	border: 1px solid #80808075;
 }
 .profile-name__wrapper .profile-name {
 	display: flex;

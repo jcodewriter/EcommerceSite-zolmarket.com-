@@ -81,24 +81,20 @@
 
         <div class="profile-mobile-tabs">
             <?php if (is_multi_vendor_active()) : ?>
-                <?php if ($user->role == 'admin' || $user->role == 'vendor') : ?>
                     <a class="btn-outline-gray <?php echo ($active_tab == 'products') ? 'active' : ''; ?>" href="<?php echo lang_base_url() . "profile/" . $user->slug; ?>">
                         <div class="count">&nbsp;(<?php echo get_user_products_count($user->slug); ?>)</div>
                         <span><?php echo trans("products"); ?></span>
                     </a>
-                <?php endif; ?>
             <?php endif; ?>
             <a class="btn-outline-gray <?php echo ($active_tab == 'followers') ? 'active' : ''; ?>" href="<?php echo lang_base_url() . "profile/followers/" . $user->slug; ?>">
                 <div class="count">&nbsp;(<?php echo get_followers_count($user->id); ?>)</div>
                 <span><?php echo trans("followers"); ?></span>
             </a>
             <?php if (is_multi_vendor_active()) : ?>
-                <?php if ($user->role == 'admin' || $user->role == 'vendor') : ?>
                     <a class="btn-outline-gray <?php echo ($active_tab == 'reviews') ? 'active' : ''; ?>" href="<?php echo lang_base_url() . "profile/reviews/" . $user->slug; ?>">
                         <div class="count">&nbsp;(<?php echo get_user_review_count($user->id); ?>)</div>
                         <span><?php echo trans("reviews"); ?></span>
                     </a>
-                <?php endif; ?>
             <?php endif; ?>
             <a class="btn-outline-gray <?php echo ($active_tab == 'seller_info') ? 'active' : ''; ?>" href="<?php echo lang_base_url() . "profile/seller_info/" . $user->slug; ?>">
                 <div>

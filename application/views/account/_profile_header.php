@@ -16,6 +16,6 @@ if (auth_check())
             
             <a href="https://api.whatsapp.com/send?text=<?php echo html_escape(get_shop_name($user)); ?> - <?php echo lang_base_url() . "profile/" . $user->slug; ?>" target="_blank" class="profile-mobile-header-watsapp"
             class="btn btn-md btn-share whatsapp">
-            <img src="<?php echo lang_base_url() ?>assets/img/watsapp.WEBP" width="25px">
+            <img src="<?php echo base_url() ?>assets/img/watsapp.WEBP" width="25px">
         </a>
     </div>
