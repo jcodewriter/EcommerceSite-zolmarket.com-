@@ -846,3 +846,12 @@
     $this->session->unset_userdata('mds_send_email_new_message_send_to');
     $this->session->unset_userdata('mds_send_email_new_message_text');
 endif; ?>
+
+
+<script>
+    $(document).ready(function(){
+        $("html, body").animate({
+            scrollTop: 1000
+        }, 700);
+    })
+</script>
