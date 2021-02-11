@@ -3474,7 +3474,7 @@ $(document).ready(function() {
         // alert(localStorage.getItem('chat_profile_url'));
     })
     $(".ava_profile_link").click(function() {
-        console.log("dfsdfsdfsd");
+        console.log("sdfsdfs");
         let url = location.href;
         if(localStorage.getItem('chat_profile_url') == "yes"||localStorage.getItem('chat_profile_url') == null){
             localStorage.setItem('chat_profile_url', url);
