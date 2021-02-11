@@ -41,8 +41,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="price-box-container">
-                                                <?php foreach ($membership_plans as $plan) :
-                                                    if ($plan->is_free == 0 && ($plan->is_unlimited_number_of_ads == 1 || $user_ads_count <= $plan->number_of_ads)) : ?>
+                                                <?php foreach ($membership_plans as $plan) :?>
                                                         <div class="price-box">
                                                             <?php if ($plan->is_popular == 1) : ?>
                                                                 <div class="ribbon ribbon-top-right"><span><?= trans("popular"); ?></span></div>
@@ -81,8 +80,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                <?php endif;
-                                                endforeach; ?>
+                                                <?php endforeach; ?>
                                             </div>
                                         </div>
                                     </div>
@@ -90,8 +88,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="price-box-container">
-                                                <?php foreach ($membership_plans as $plan) :
-                                                    if ($plan->is_unlimited_number_of_ads == 1 || $user_ads_count <= $plan->number_of_ads) : ?>
+                                                <?php foreach ($membership_plans as $plan) :?>
                                                         <div class="price-box">
                                                             <?php if ($plan->is_popular == 1) : ?>
                                                                 <div class="ribbon ribbon-top-right"><span><?= trans("popular"); ?></span></div>
@@ -130,8 +127,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                <?php endif;
-                                                endforeach; ?>
+                                                <?php endforeach; ?>
                                             </div>
                                         </div>
                                     </div>

@@ -224,12 +224,18 @@ class Membership_model extends CI_Model
 		return $this->db->where('products.is_deleted', 0)->where('products.is_draft', 0)->where('products.user_id', clean_number($user_id))->count_all_results('products');
 	}
 
+	//get user ads count
+	public function get_user_ads_count_by_plan($user_id,$start_date)
+	{
+		return $this->db->where('products.is_deleted', 0)->where('products.is_draft', 0)->where('products.user_id', clean_number($user_id))->where('products.created_at >',$start_date)->count_all_results('products');
+	}
+
 	//get user plan ads remaining
 	public function get_user_plan_remaining_ads_count($plan)
 	{
 		$ads_left = 0;
 		if (!empty($plan)) {
-			$products_count = $this->get_user_ads_count($plan->user_id);
+			$products_count = $this->get_user_ads_count_by_plan($plan->user_id,$plan->plan_start_date);
 			$ads_left = @($plan->number_of_ads - $products_count);
 			if (empty($ads_left) || $ads_left < 0) {
 				$ads_left = 0;
@@ -241,6 +247,7 @@ class Membership_model extends CI_Model
 	//is allowed adding product
 	public function is_allowed_adding_product()
 	{
+		$this->check_membership_plans_expired();
 		if ($this->general_settings->membership_plans_system == 1) {
 			if ($this->auth_user->is_membership_plan_expired == 1) {
 				return false;
@@ -273,6 +280,7 @@ class Membership_model extends CI_Model
 						//update user plan status
 						$this->db->where('id', $plan->user_id);
 						$this->db->update('users', ['is_membership_plan_expired' => 1]);
+						$this->auth_user->is_membership_plan_expired = 1;
 					}
 				}
 			}

@@ -28,7 +28,7 @@
             <?php if (!empty($notifications)) : ?>
                 <?php foreach ($notifications as $key => $data) : ?>
                     <div class="notification-item <?php echo $data->is_see ? '' : 'is-see'; ?>" key="<?php echo $data->id; ?>">
-                        <a href="<?php echo lang_base_url() . 'notifications/' . $data->id; ?>" name="ads_link" view_link="<?php echo $data->notification_type; ?>" class="<?php echo $data->notification_type == "someone_follow" || $data->notification_type == "add_profile_review"?'profile_link':'' ?>">
+                        <a href="<?php echo lang_base_url() . 'notifications/' . $data->id; ?>" name="ads_link" view_link="<?php echo $data->notification_type; ?>" class="<?php echo $data->notification_type == "someone_follow" || $data->notification_type == "add_profile_review"?'ava_profile_link':'' ?>">
                             <div class="avatar-item" url="<?php echo lang_base_url() . $data->slug; ?>">
                                 <?php if ($data->avatar) : ?>
                                     <img src="<?php echo base_url() . $data->avatar; ?>" alt="User">

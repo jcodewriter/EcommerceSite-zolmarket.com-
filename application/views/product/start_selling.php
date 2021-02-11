@@ -141,7 +141,7 @@
 															<label class="control-label"><?php echo trans("upload_your_shop"); ?></label>
 															<div class="row">
 																<div class="col-sm-12 col-profile">
-																	<img src="<?php echo html_escape(get_user_avatar($user)); ?>" alt="avatar" id="imgadshoww" class="thumbnail img-responsive img-update profile-image__wrapper <?= (!$this->auth_user->is_private || $this->auth_user->role == "admin") ? 'company-image__wrapper' : 'private-image__wrapper'; ?>" style="max-width: 400px; height: 200px;margin:auto">
+																	<img src="<?php echo html_escape(get_user_avatar($user)); ?>" alt="avatar" id="imgadshoww" class="thumbnail img-responsive img-update profile-image__wrapper <?= (!$this->auth_user->is_private || $this->auth_user->role == "admin") ? 'company-image__wrapper' : 'private-image__wrapper'; ?>" onclick="$('#imgUploader').click()" style="max-width: 400px; height: 200px;margin:auto">
 																	
 																</div>
 															</div>
@@ -477,7 +477,7 @@
                         })
                         $("<label class='zolmarket_required'>"+'<?php echo trans('please_select_location'); ?>'+"</label>").insertAfter($('button[name=state]'));
                     }
-					if ($('#imgadshoww').attr('class') != 'valid') {
+					if ($('#imgadshoww').val() != '') {
 						// $('#imgadshoww').css({'border':'2px solid #dc354566'});
 						$("html, body").animate({
 							scrollTop: 250

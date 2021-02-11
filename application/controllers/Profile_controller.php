@@ -949,6 +949,7 @@ class Profile_controller extends Home_Core_Controller
             $this->session->set_flashdata('error', trans("msg_confirmed_required"));
             redirect(lang_base_url() . "settings/update-profile");
         }
+        $this->membership_model->check_membership_plans_expired();
         $data['title'] = trans("select_your_plan");
         $data['description'] = trans("select_your_plan") . " - " . $this->app_name;
         $data['keywords'] = trans("select_your_plan") . "," . $this->app_name;
