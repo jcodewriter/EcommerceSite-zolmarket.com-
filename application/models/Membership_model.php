@@ -462,6 +462,13 @@ class Membership_model extends CI_Model
 	public function approve_transaction_payment($id)
 	{
 		$transaction = $this->get_membership_transaction($id);
+		$update_user_data = array(
+			'role' => 'vendor',
+			'is_approval' => 1,
+			'is_active_shop_request' => 0,
+		);
+		$this->db->where('id',$transaction->user_id);
+		$this->db->update('users',$update_user_data);
 		if (!empty($transaction)) {
 			$data = array(
 				'payment_status' => 'payment_received'

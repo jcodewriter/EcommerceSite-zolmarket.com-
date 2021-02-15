@@ -78,7 +78,7 @@ class Product_controller extends Home_Core_Controller
         $data["site_settings"] = get_site_settings();
         
         if ($this->general_settings->membership_plans_system == 1) {
-            if ($this->auth_user->is_active_shop_request = 0) {
+            if ($this->auth_user->is_active_shop_request == 0) {
                 $plan_id = clean_number(input_get('plan'));
                 if (empty($plan_id)) {
                     redirect(lang_base_url("select_membership_plan"));

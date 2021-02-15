@@ -187,7 +187,6 @@ class Auth_model extends CI_Model
         $this->load->library('bcrypt');
 
         $data = $this->auth_model->input_values();
-        // print_r($data); exit;
         $data['firstname'] = $data['firstname'];
         $data['lastname'] = $data['lastname'];
         $data['username'] = $data['username'];
@@ -380,6 +379,28 @@ class Auth_model extends CI_Model
                     $this->email_model->send_email($email_data);
                 }
             }
+            
+			$data = array(
+				'payment_status' => 'payment_received'
+			);
+			$this->db->where('user_id', $user_id);
+			$this->db->update('membership_transactions', $data);
+			$user_plan = $this->db->where('user_id', $user_id)->get('users_membership_plans')->row();
+			if (!empty($user_plan)) {
+				$data = array(
+					'payment_status' => 'payment_received',
+					'plan_status' => 1,
+					'plan_start_date' => date('Y-m-d H:i:s')
+				);
+				if ($user_plan->is_unlimited_time == 1) {
+					$data['plan_end_date'] = "";
+				} else {
+					$data['plan_end_date'] = strtotime($data['plan_start_date'] . "+ " . $user_plan->number_of_days . " days");
+					$data['plan_end_date'] = date('Y-m-d H:i:s', $data['plan_end_date']);
+				}
+				$this->db->where('id', $user_plan->id);
+				$this->db->update('users_membership_plans', $data);
+			}
             return $result;
         }
     }
