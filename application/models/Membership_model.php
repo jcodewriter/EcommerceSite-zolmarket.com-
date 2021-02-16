@@ -24,13 +24,13 @@ class Membership_model extends CI_Model
 		}
 		if ($this->db->insert('membership_transactions', $data)) {
 			$this->session->set_userdata('mds_membership_transaction_insert_id', $this->db->insert_id());
-			if (!is_user_vendor()) {
-				$data_user = array(
-					'is_active_shop_request' => 1
-				);
-				$this->db->where('id', $this->auth_user->id);
-				$this->db->update('users', $data_user);
-			}
+			// if (!is_user_vendor()) {
+			// 	$data_user = array(
+			// 		'is_active_shop_request' => 1
+			// 	);
+				// $this->db->where('id', $this->auth_user->id);
+				// $this->db->update('users', $data_user);
+			// }
 			//send email
 			$this->send_shop_opening_email();
 		}
@@ -57,13 +57,13 @@ class Membership_model extends CI_Model
 		}
 		if ($this->db->insert('membership_transactions', $data)) {
 			$this->session->set_userdata('mds_membership_transaction_insert_id', $this->db->insert_id());
-			if (!is_user_vendor()) {
-				$data_user = array(
-					'is_active_shop_request' => 1
-				);
-				$this->db->where('id', $this->auth_user->id);
-				$this->db->update('users', $data_user);
-			}
+			// if (!is_user_vendor()) {
+			// 	$data_user = array(
+			// 		'is_active_shop_request' => 1
+			// 	);
+				// $this->db->where('id', $this->auth_user->id);
+				// $this->db->update('users', $data_user);
+			// }
 			//send email
 			$this->send_shop_opening_email();
 		}

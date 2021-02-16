@@ -176,6 +176,7 @@ class Membership_controller extends Admin_Core_Controller
 
         $data['num_rows'] = $this->membership_model->get_membership_transactions_count(null);
         $pagination = $this->paginate(admin_url() . "membership-transactions", $data['num_rows']);
+        $this->order_admin_model->show_notifications(".010.001");
         $data['transactions'] = $this->membership_model->get_paginated_membership_transactions(null, $pagination['per_page'], $pagination['offset']);
         
         $this->load->view('admin/includes/_header', $data);

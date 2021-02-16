@@ -894,7 +894,7 @@ class Admin_controller extends Admin_Core_Controller
     public function shop_opening_requests()
     {
         $data['title'] = trans("shop_opening_requests");
-        $this->order_admin_model->show_notifications(".008.001");
+        $this->order_admin_model->show_notifications(".009.001");
         $data['requests'] = $this->auth_model->get_shop_opening_requests();
 
         $this->load->view('admin/includes/_header', $data);

@@ -448,20 +448,42 @@
                     </li>
                     <li class="header"><?php echo trans("membership"); ?></li>
                     <li class="treeview<?php is_admin_nav_active(['membership-plans', 'transactions-membership']); ?>">
-                        <a href="#">
+                        <a href="#" style="display:flex">
                             <i class="fa fa-adjust"></i>
                             <span><?php echo trans("membership"); ?></span>
+                            <?php $total = admin_total_notifcations(".010");
+                            if ($total) : ?>
+                                <div class="admin_notification">
+                                    <span><?= $total ?></span>
+                                </div>
+                            <?php endif; ?>
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
                             <li class="nav-membership-plans"><a href="<?php echo admin_url(); ?>membership-plans"> <?php echo trans("membership_plans"); ?></a></li>
-                            <li class="nav-transactions-membership"><a href="<?php echo admin_url(); ?>transactions-membership"> <?php echo trans("transactions"); ?></a></li>
+                            <li class="nav-transactions-membership">
+                            <a href="<?php echo admin_url(); ?>transactions-membership"> <?php echo trans("transactions"); ?>
+                            
+                            <?php $result = admin_notifcations(".010.001");
+                                    if ($result) : ?>
+                                        <div class="admin_notification">
+                                            <span><?= $result ?></span>
+                                        </div>
+                                    <?php endif; ?>
+                            </a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-shop-opening-requests">
-                        <a href="<?php echo admin_url(); ?>shop-opening-requests">
+                        <a href="<?php echo admin_url(); ?>shop-opening-requests" style="display:flex">
                             <i class="fa fa-question-circle" aria-hidden="true"></i>
                             <span><?php echo trans("shop_opening_requests"); ?></span>
+                            <?php $result = admin_notifcations(".009.001");
+                                    if ($result) : ?>
+                                        <div class="admin_notification">
+                                            <span><?= $result ?></span>
+                                        </div>
+                                    <?php endif; ?>
                         </a>
                     </li>
                     <li class="treeview<?php is_admin_nav_active(['add-administrator', 'administrators', 'companies', 'vendors', 'members', 'edit-user']); ?>">
