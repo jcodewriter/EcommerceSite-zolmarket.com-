@@ -9440,6 +9440,8 @@ form select.error {
 	border: 1px solid #80808075;
 }
 .content-item {
+	color: black !important;
+    font-weight: bold;
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -9469,7 +9471,7 @@ span.n-user.span-warp-text {
 .content-body {
 	position: relative;
 	width: 100%;
-	color: #495057;
+	color: black;
 }
 .span-warp-text {
 	width: 100%;

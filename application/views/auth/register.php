@@ -37,8 +37,6 @@
                             <?php $this->load->view("partials/_social_login", ['or_text' => trans("register_with_email")]); ?>
                         </div>
                         <!-- include message block -->
-                        <div id="errors" style = 'color:red'></div>
-                        <?php $this->load->view('partials/_messages'); ?>
                             <div class="form-group" style="text-align: center;">
                                 <label class="control-label"><?php echo trans("upload_your_shop"); ?></label>
                                 <div class="row">
@@ -71,6 +69,7 @@
                             <label for="password" style="font-weight: 600"><?php echo trans("email_address"); ?></label>
                             <input autocomplete="off" type="email" id="email" name="email" value="<?php echo $formdata?$formdata['email']:'' ?>" class="form-control auth-form-input required" message="<?php echo trans('please_enter_email'); ?>" placeholder="<?php echo trans("email_address"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : ''; ?>" required>
                         </div>
+                        <div id="error" style = 'color:red'></div>
                         <div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
                             <label for="password" style="font-weight: 600"><?php echo trans("password"); ?></label>
                             <input type="password" id="password" name="password" class="form-control auth-form-input required" value="<?php echo $formdata?$formdata['password']:'' ?>" message="<?php echo trans('please_enter_password'); ?>" placeholder="<?php echo trans("password"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
@@ -81,8 +80,9 @@
                             <input type="password" id="confirm_password" name="confirm_password" class="form-control auth-form-input required" message="<?php echo trans('please_confirm'); ?>" placeholder="<?php echo trans("password_confirm"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
                             <i class="far fa-eye" id="confirmTogglePassword" style="position: absolute; top: 45px; <?= $this->selected_lang->id == 2 ? 'left: 10px' : 'right: 10px;'; ?>"></i>
                         </div>
+                        <div id="errors" style = 'color:red'></div>
                         <div class="form-group m-t-5 m-b-20">
-                            <div class="custom-control custom-checkbox custom-control-validate-input">
+                            <div class="custom-control custom-checkbox custom-control-validate-input checkbox_terms">
                                 <input type="checkbox" class="custom-control-input" name="terms" id="checkbox_terms" required>
                                 <label for="checkbox_terms" class="custom-control-label"><?php echo trans("terms_conditions_exp"); ?>&nbsp;<a href="<?php echo lang_base_url(); ?>terms-conditions" class="link-terms" target="_blank"><strong><?php echo trans("terms_conditions"); ?></strong></a></label>
                             </div>
@@ -112,11 +112,13 @@ $(document).ready(function(){
         $("input[name=email]").val(localStorage.getItem('email'));
         $("input[name=password]").val(localStorage.getItem('password'));
         $("#errors").append(localStorage.getItem('errors'));
+        $("#error").append(localStorage.getItem('error'));
         localStorage.removeItem('firstname');
         localStorage.removeItem('lastname');
         localStorage.removeItem('email');
         localStorage.removeItem('password');
         localStorage.removeItem('errors');
+        localStorage.removeItem('error');
     }
     <?php if($formdata) : ?>
         $("#checkbox_terms").click();
@@ -126,6 +128,18 @@ $(document).ready(function(){
         localStorage.setItem('password','<?php echo $formdata['password'] ?>')
         localStorage.setItem('errors',"<?php echo trim(preg_replace('/\s\s+/', ' ', $this->session->flashdata('errors'))); ?>");
         history.go(-1);
+    <?php endif; ?>
+    
+    <?php if ($this->session->flashdata('error')): ?>
+        <?php if($this->session->flashdata('form_data')) : ?>
+                $("#checkbox_terms").click();
+                localStorage.setItem('firstname','<?php echo $this->session->flashdata('form_data')['firstname'] ?>')
+                localStorage.setItem('lastname','<?php echo $this->session->flashdata('form_data')['lastname'] ?>')
+                localStorage.setItem('email','<?php echo $this->session->flashdata('form_data')['email'] ?>')
+                localStorage.setItem('password','<?php echo $this->session->flashdata('form_data')['password'] ?>')
+                localStorage.setItem('error',"<?php echo trim(preg_replace('/\s\s+/', ' ', $this->session->flashdata('error'))); ?>");
+                history.go(-1);
+        <?php endif; ?>
     <?php endif; ?>
     // $('input[type=file]').change(function() {
     //     console.log($("#imgadshoww").attr('src'));
@@ -141,6 +155,9 @@ $(document).ready(function(){
             }, 700);
             $('<p style="width: 100%;color: #e91e63;font-size: 12px;font-weight: bold;padding: 5px 10px 0px 10px;margin: 0;"  ><?php echo trans('please_select_photo') ?></p>').insertAfter($("#imgadshoww"));
         }
+        $(".checkbox_terms").parent().find("p").remove();
+        if(!$('#checkbox_terms').is(':checked'))
+        $('<p style="width: 100%;color: #e91e63;font-size: 12px;font-weight: bold;padding: 5px 10px 0px 10px;margin: 0;"  ><?php echo trans('required_field') ?></p>').insertAfter($(".checkbox_terms"));
     })
     $("#email").keyup(function(){
         if($(this).val() != ""){
