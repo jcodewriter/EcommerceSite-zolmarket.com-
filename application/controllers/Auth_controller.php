@@ -278,7 +278,15 @@ class Auth_controller extends Home_Core_Controller
         if ($this->form_validation->run() === false) {
             $this->session->set_flashdata('errors', validation_errors());
             $this->session->set_flashdata('form_data', $this->auth_model->input_values());
-            redirect($this->agent->referrer());
+            // redirect($this->agent->referrer());
+            $data['formdata'] = $this->auth_model->input_values();
+            $data['title'] = trans("register");
+            $data['description'] = trans("register") . " - " . $this->app_name;
+            $data['keywords'] = trans("register") . "," . $this->app_name;
+            $data['user_session'] = get_user_session();
+            $this->load->view('partials/_header',$data);
+            $this->load->view('auth/register',$data);
+            $this->load->view('partials/_footer_category');
         } else {
             $email = $this->input->post('email', true);
             // $firstname = $this->input->post('firstname', true);

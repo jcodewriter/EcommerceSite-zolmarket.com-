@@ -13,6 +13,7 @@
 </div>
 <!-- Wrapper -->
 <div id="wrapper" style="padding-top: 0 !important;height: 900px;">
+<!-- <?php print_r($formdata) ?> -->
     <div class="container">
         <div class="auth-container">
             <div class="auth-box">
@@ -36,6 +37,7 @@
                             <?php $this->load->view("partials/_social_login", ['or_text' => trans("register_with_email")]); ?>
                         </div>
                         <!-- include message block -->
+                        <div id="errors" style = 'color:red'></div>
                         <?php $this->load->view('partials/_messages'); ?>
                             <div class="form-group" style="text-align: center;">
                                 <label class="control-label"><?php echo trans("upload_your_shop"); ?></label>
@@ -57,21 +59,21 @@
                             <div class="d-flex justify-content-between" style="width: 100%">
                                 <div style="width: 48%;<?= $this->selected_lang->id == 2 ? 'order: 1' : ''; ?>">
                                     <label for="password" style="font-weight: 600"><?php echo trans("first_name"); ?></label>
-                                    <input autocomplete="off" type="text" name="firstname" class="form-control auth-form-input required" message="<?php echo trans('please_enter_firstname'); ?>" placeholder="<?php echo trans("first_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
+                                    <input autocomplete="off" type="text" name="firstname" value="<?php echo $formdata?$formdata['firstname']:'' ?>" class="form-control auth-form-input required" message="<?php echo trans('please_enter_firstname'); ?>" placeholder="<?php echo trans("first_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
                                 </div>
                                 <div style="width: 48%;">
                                     <label for="password" style="font-weight: 600"><?php echo trans("last_name"); ?></label>
-                                    <input autocomplete="off" type="text" name="lastname" class="form-control auth-form-input required" message="<?php echo trans('please_enter_lastname'); ?>" placeholder="<?php echo trans("last_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
+                                    <input autocomplete="off" type="text" name="lastname" value="<?php echo $formdata?$formdata['lastname']:'' ?>" class="form-control auth-form-input required" message="<?php echo trans('please_enter_lastname'); ?>" placeholder="<?php echo trans("last_name"); ?>" maxlength="<?php echo $this->username_maxlength; ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
                             <label for="password" style="font-weight: 600"><?php echo trans("email_address"); ?></label>
-                            <input autocomplete="off" type="email" id="email" name="email" class="form-control auth-form-input required" message="<?php echo trans('please_enter_email'); ?>" placeholder="<?php echo trans("email_address"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : ''; ?>" required>
+                            <input autocomplete="off" type="email" id="email" name="email" value="<?php echo $formdata?$formdata['email']:'' ?>" class="form-control auth-form-input required" message="<?php echo trans('please_enter_email'); ?>" placeholder="<?php echo trans("email_address"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right;' : ''; ?>" required>
                         </div>
                         <div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
                             <label for="password" style="font-weight: 600"><?php echo trans("password"); ?></label>
-                            <input type="password" id="password" name="password" class="form-control auth-form-input required" message="<?php echo trans('please_enter_password'); ?>" placeholder="<?php echo trans("password"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
+                            <input type="password" id="password" name="password" class="form-control auth-form-input required" value="<?php echo $formdata?$formdata['password']:'' ?>" message="<?php echo trans('please_enter_password'); ?>" placeholder="<?php echo trans("password"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" required>
                             <i class="far fa-eye" id="registerTogglePassword" style="position: absolute; top: 45px; <?= $this->selected_lang->id == 2 ? 'left: 10px' : 'right: 10px;'; ?>"></i>
                         </div>
                         <div class="form-group" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>">
@@ -104,6 +106,32 @@
 </div>
 <script>
 $(document).ready(function(){
+    if(localStorage.getItem('email')){
+        $("input[name=firstname]").val(localStorage.getItem('firstname'));
+        $("input[name=lastname]").val(localStorage.getItem('lastname'));
+        $("input[name=email]").val(localStorage.getItem('email'));
+        $("input[name=password]").val(localStorage.getItem('password'));
+        $("#errors").append(localStorage.getItem('errors'));
+        localStorage.removeItem('firstname');
+        localStorage.removeItem('lastname');
+        localStorage.removeItem('email');
+        localStorage.removeItem('password');
+        localStorage.removeItem('errors');
+    }
+    <?php if($formdata) : ?>
+        $("#checkbox_terms").click();
+        localStorage.setItem('firstname','<?php echo $formdata['firstname'] ?>')
+        localStorage.setItem('lastname','<?php echo $formdata['lastname'] ?>')
+        localStorage.setItem('email','<?php echo $formdata['email'] ?>')
+        localStorage.setItem('password','<?php echo $formdata['password'] ?>')
+        localStorage.setItem('errors',"<?php echo trim(preg_replace('/\s\s+/', ' ', $this->session->flashdata('errors'))); ?>");
+        history.go(-1);
+    <?php endif; ?>
+    // $('input[type=file]').change(function() {
+    //     console.log($("#imgadshoww").attr('src'));
+    //     localStorage.setItem('profile_upload_img',$("#imgadshoww").attr('src'));
+    // });
+
     $("button").click(function(){
         $("#imgadshoww").parent().find("p").remove();
         if($("#imgUploader").val() == ''){
