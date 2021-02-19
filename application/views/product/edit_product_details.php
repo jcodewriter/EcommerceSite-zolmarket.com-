@@ -212,10 +212,14 @@ if ($product->is_draft == 1) {
                                                                             <?php $currencies = get_currencies();
                                                                             if (!empty($currencies)) :
                                                                                 foreach ($currencies as $key => $value) :
-                                                                                    if ($key == $product->currency) : ?>
+                                                                                    if(!$product->currency && $key == $this->payment_settings->default_product_currency) :?>
                                                                                         <option value="<?php echo $key; ?>" selected><?php echo $value["name"] . " (" . $value["hex"] . ")"; ?></option>
-                                                                                    <?php else : ?>
-                                                                                        <option value="<?php echo $key; ?>"><?php echo $value["name"] . " (" . $value["hex"] . ")"; ?></option>
+                                                                                    <?php else: ?>
+                                                                                        <?php if ($key == $product->currency) : ?>
+                                                                                            <option value="<?php echo $key; ?>" selected><?php echo $value["name"] . " (" . $value["hex"] . ")"; ?></option>
+                                                                                        <?php else : ?>
+                                                                                            <option value="<?php echo $key; ?>"><?php echo $value["name"] . " (" . $value["hex"] . ")"; ?></option>
+                                                                                        <?php endif; ?>
                                                                                     <?php endif; ?>
                                                                                 <?php endforeach; ?>
                                                                             <?php endif; ?>
@@ -223,7 +227,7 @@ if ($product->is_draft == 1) {
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-sm-4 m-b-sm-15">
-                                                                    <input type="text" name="price" class="form-control form-input price-input validate-price-input" value="<?php echo ($product->price != 0) ? price_format_input($product->price) : ''; ?>" placeholder="<?php echo $this->input_initial_price; ?>" onpaste="return false;" maxlength="32" <?php echo ($form_settings->price_required == 1) ? 'required' : ''; ?>>
+                                                                    <input type="text" name="price" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;" class="form-control form-input price-input validate-price-input" value="<?php echo ($product->price != 0) ? price_format_input($product->price) : ''; ?>" placeholder="<?php echo $this->input_initial_price; ?>" onpaste="return false;" maxlength="32" <?php echo ($form_settings->price_required == 1) ? 'required' : ''; ?>>
                                                                 </div>
                                                             <?php else : ?>
                                                                 <div class="col-12 col-sm-6 m-b-sm-15">
