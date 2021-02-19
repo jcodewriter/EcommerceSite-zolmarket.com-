@@ -7,7 +7,7 @@ if (!empty($product_images)) {
 
 <?php if ($image_count == 0) :
 
-	if (!empty($video)) : ?>
+if (!empty($video)) : ?>
 		<div class="product-video-preview">
 			<video id="player" playsinline controls>
 				<source src="<?php echo get_product_video_url($video); ?>" type="video/mp4">
@@ -15,9 +15,14 @@ if (!empty($product_images)) {
 		</div>
 	<?php endif;
 
-	if (!empty($audio)) :
-		$this->load->view('product/details/_audio_player');
-	endif; ?>
+if (!empty($audio)) :
+	$this->load->view('product/details/_audio_player');
+endif; ?>
+<div class="product-slider-container">
+	<div class="swiper-container">
+		<div class="swiper-slide" style="background-image:url(<?php echo base_url() . 'assets/img/no-image'.($this->selected_lang->id == 2 ?'-ar':'').'.png' ?> "></div>
+	</div>
+</div>
 
 <?php elseif ($image_count == 1) : ?>
 
@@ -38,7 +43,15 @@ if (!empty($product_images)) {
 			<?php foreach ($product_images as $image) : ?>
 				<div class="product-slider-container">
 					<div class="swiper-container">
-						<div class="swiper-slide" style="background-image:url(<?php echo get_product_image_url($image, 'image_default'); ?>"></div>
+						<?php
+							$size_name = 'image_default';
+							$filename = FCPATH. "/uploads/images/" . $image->$size_name;
+							$flag = false;
+							if (file_exists($filename)) {
+								$flag = true;
+							}
+						?>
+						<div class="swiper-slide" style="background-image:url('<?php echo $flag?get_product_image_url($image, 'image_default'):base_url() . 'assets/img/no-image'.($this->selected_lang->id == 2 ?'-ar':'').'.png'; ?>')"></div>
 					</div>
 					<?php if (auth_check()) : ?>
 						<?php if (user()->id == $product->user_id) : ?>
@@ -61,7 +74,15 @@ if (!empty($product_images)) {
 			<div class="swiper-wrapper">
 				<?php if (!empty($product_images)) :
 					foreach ($product_images as $image) : ?>
-						<div class="swiper-slide" style="background-image:url(<?php echo get_product_image_url($image, 'image_default'); ?>)"></div>
+						<?php
+							$size_name = 'image_default';
+							$filename = FCPATH. "/uploads/images/" . $image->$size_name;
+							$flag = false;
+							if (file_exists($filename)) {
+								$flag = true;
+							}
+						?>
+						<div class="swiper-slide" style="background-image:url('<?php echo $flag?get_product_image_url($image, 'image_default'):base_url() . 'assets/img/no-image'.($this->selected_lang->id == 2 ?'-ar':'').'.png'; ?>')"></div>
 				<?php endforeach;
 				endif; ?>
 			</div>
