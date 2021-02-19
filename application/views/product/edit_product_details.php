@@ -62,7 +62,7 @@ if ($product->is_draft == 1) {
                                     <?php if ($product->product_type == 'digital') : ?>
                                         <div class="row-custom m-b-30">
                                             <div class="row">
-                                                <div class="col-12" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;">
+                                                <div class="col-12" >
                                                     <label class="control-label font-600"><?php echo trans("digital_files"); ?></label>
                                                     <small>(<?php echo trans("digital_files_exp"); ?>)</small>
                                                     <?php $this->load->view("product/_digital_files_upload_box"); ?>
@@ -78,7 +78,7 @@ if ($product->is_draft == 1) {
                                     <?php if ($product->product_type == 'digital') : ?>
                                         <?php $this->load->view("product/license/_license_keys", ['product' => $product, 'license_keys' => $license_keys]); ?>
                                         <div class="form-box">
-                                            <div class="form-box-head" style ="<?= $this->selected_lang->id == 2 ? 'text-align: right' : '' ?>;">
+                                            <div class="form-box-head">
                                                 <h4 class="title" ><?php echo trans('files_included'); ?></h4>
                                                 <small><?php echo trans("files_included_ext"); ?></small>
                                             </div>
@@ -93,19 +93,19 @@ if ($product->is_draft == 1) {
                                     <?php if (!empty($custom_field_array) || ($form_settings->product_conditions == 1 && $product->product_type == 'physical') || ($form_settings->quantity == 1) && $product->product_type == 'physical') : ?>
                                         <div class="form-box">
                                             <div class="form-box-head">
-                                                <h4 class="title" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;"><?php echo trans("details"); ?></h4>
+                                                <h4 class="title" ><?php echo trans("details"); ?></h4>
                                             </div>
                                             <div class="form-box-body">
                                                 <?php if ($product->product_type == 'physical') : ?>
                                                     <div class="form-group">
                                                         <div class="row">
                                                             <?php if ($form_settings->product_conditions == 1) : ?>
-                                                                <div class="col-12 col-sm-6 m-b-sm-15" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;">
+                                                                <div class="col-12 col-sm-6 m-b-sm-15" >
                                                                     <label class="control-label"><?php echo trans('condition'); ?></label>
                                                                     <?php $product_conditions = get_grouped_product_conditions();
                                                                     if (!empty($product_conditions)) : ?>
                                                                         <div class="selectdiv">
-                                                                            <select style = "<?= $this->selected_lang->id == 2 ? 'direction: rtl' : '' ?>" name="product_condition" class="form-control required" message="<?php echo trans('please_select_condition')?>" <?php echo ($form_settings->product_conditions_required == 1) ? 'required' : ''; ?>>
+                                                                            <select name="product_condition" class="form-control required" message="<?php echo trans('please_select_condition')?>" <?php echo ($form_settings->product_conditions_required == 1) ? 'required' : ''; ?>>
                                                                                 <option value=""><?php echo trans('select_option'); ?></option>
                                                                                 <?php foreach ($product_conditions as $option) :
                                                                                     $product_condition = get_product_condition_by_lang($option->common_id, $selected_lang->id); ?>
@@ -118,9 +118,9 @@ if ($product->is_draft == 1) {
                                                             <?php endif; ?>
 
                                                             <?php if ($form_settings->quantity == 1) : ?>
-                                                                <div class="col-12 col-sm-6" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;">
+                                                                <div class="col-12 col-sm-6" >
                                                                     <label class="control-label"><?php echo trans('quantity'); ?></label>
-                                                                    <input type="number" name="quantity"  style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;" class="form-control form-input required" message="<?php echo trans('please_input_quantity')?>" min="1" max="999999" value="<?php echo ($product->quantity > 0) ? html_escape($product->quantity) : ''; ?>" placeholder="<?php echo trans("quantity"); ?>" <?php echo ($form_settings->quantity_required == 1) ? 'required' : ''; ?>>
+                                                                    <input type="number" name="quantity"   class="form-control form-input required" message="<?php echo trans('please_input_quantity')?>" min="1" max="999999" value="<?php echo ($product->quantity > 0) ? html_escape($product->quantity) : ''; ?>" placeholder="<?php echo trans("quantity"); ?>" <?php echo ($form_settings->quantity_required == 1) ? 'required' : ''; ?>>
                                                                 </div>
                                                             <?php endif; ?>
                                                         </div>
@@ -140,7 +140,7 @@ if ($product->is_draft == 1) {
                                     <?php if ($product->listing_type == 'sell_on_site' && $form_settings->price == 1) : ?>
                                         <div class="form-box">
                                             <div class="form-box-head">
-                                                <h4 class="title" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;"><?php echo trans('price'); ?></h4>
+                                                <h4 class="title" ><?php echo trans('price'); ?></h4>
                                             </div>
                                             <div class="form-box-body">
                                                 <div id="price_input_container" class="form-group">
@@ -170,7 +170,7 @@ if ($product->is_draft == 1) {
                                                 </div>
                                                 <?php if ($product->product_type == 'digital') : ?>
                                                     <div class="form-group">
-                                                        <div class="custom-control custom-checkbox" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;">
+                                                        <div class="custom-control custom-checkbox" >
                                                             <input type="checkbox" class="custom-control-input" name="is_free_product" id="checkbox_free_product" <?php echo ($product->is_free_product == 1) ? 'checked' : ''; ?>>
                                                             <label for="checkbox_free_product" class="custom-control-label"><?php echo trans("free_product"); ?></label>
                                                         </div>
@@ -200,7 +200,7 @@ if ($product->is_draft == 1) {
                                         if ($form_settings->price == 1) : ?>
                                             <div class="form-box">
                                                 <div class="form-box-head">
-                                                    <h4 class="title" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;"><?php echo trans('price'); ?></h4>
+                                                    <h4 class="title" ><?php echo trans('price'); ?></h4>
                                                 </div>
                                                 <div class="form-box-body">
                                                     <div class="form-group">
@@ -208,7 +208,7 @@ if ($product->is_draft == 1) {
                                                             <?php if ($this->payment_settings->allow_all_currencies_for_classied == 1) : ?>
                                                                 <div class="col-12 col-sm-4 m-b-sm-15">
                                                                     <div class="selectdiv">
-                                                                        <select style = "<?= $this->selected_lang->id == 2 ? 'direction: rtl' : '' ?>" name="currency" class="form-control" required>
+                                                                        <select name="currency" class="form-control" required>
                                                                             <?php $currencies = get_currencies();
                                                                             if (!empty($currencies)) :
                                                                                 foreach ($currencies as $key => $value) :
@@ -227,7 +227,7 @@ if ($product->is_draft == 1) {
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-sm-4 m-b-sm-15">
-                                                                    <input type="text" name="price" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;" class="form-control form-input price-input validate-price-input" value="<?php echo ($product->price != 0) ? price_format_input($product->price) : ''; ?>" placeholder="<?php echo $this->input_initial_price; ?>" onpaste="return false;" maxlength="32" <?php echo ($form_settings->price_required == 1) ? 'required' : ''; ?>>
+                                                                    <input type="text" name="price"  class="form-control form-input price-input validate-price-input" value="<?php echo ($product->price != 0) ? price_format_input($product->price) : ''; ?>" placeholder="<?php echo $this->input_initial_price; ?>" onpaste="return false;" maxlength="32" <?php echo ($form_settings->price_required == 1) ? 'required' : ''; ?>>
                                                                 </div>
                                                             <?php else : ?>
                                                                 <div class="col-12 col-sm-6 m-b-sm-15">
@@ -252,8 +252,8 @@ if ($product->is_draft == 1) {
                                     <?php if (($product->product_type == 'physical' && $form_settings->physical_demo_url == 1) || ($product->product_type == 'digital' && $form_settings->digital_demo_url == 1)) : ?>
                                         <div class="form-box">
                                             <div class="form-box-head">
-                                                <h4 class="title" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;"><?php echo trans('demo_url'); ?></h4>
-                                                <small style ="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''?>;"><?php echo trans("demo_url_exp"); ?></small>
+                                                <h4 class="title" ><?php echo trans('demo_url'); ?></h4>
+                                                <small ><?php echo trans("demo_url_exp"); ?></small>
                                             </div>
                                             <div class="form-box-body">
                                                 <div class="form-group">
@@ -266,14 +266,14 @@ if ($product->is_draft == 1) {
                                     <div class="row-custom">
                                         <div class="row">
                                             <?php if (($product->product_type == 'physical' && $form_settings->physical_video_preview == 1) || ($product->product_type == 'digital' && $form_settings->digital_video_preview == 1)) : ?>
-                                                <div class="col-12 col-sm-6 m-b-30" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;">
+                                                <div class="col-12 col-sm-6 m-b-30" >
                                                     <label class="control-label font-600"><?php echo trans("video_preview"); ?></label>
                                                     <small>(<?php echo trans("video_preview_exp"); ?>)</small>
                                                     <?php $this->load->view("product/_video_upload_box"); ?>
                                                 </div>
                                             <?php endif; ?>
                                             <?php if (($product->product_type == 'physical' && $form_settings->physical_audio_preview == 1) || ($product->product_type == 'digital' && $form_settings->digital_audio_preview == 1)) : ?>
-                                                <div class="col-12 col-sm-6 m-b-30" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;">
+                                                <div class="col-12 col-sm-6 m-b-30" >
                                                     <label class="control-label font-600"><?php echo trans("audio_preview"); ?></label>
                                                     <small>(<?php echo trans("audio_preview_exp"); ?>)</small>
                                                     <?php
@@ -288,8 +288,8 @@ if ($product->is_draft == 1) {
                                         <?php if ($form_settings->external_link == 1) : ?>
                                             <div class="form-box">
                                                 <div class="form-box-head">
-                                                    <h4 class="title" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;"><?php echo trans('external_link'); ?></h4>
-                                                    <small style ="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''?>;"><?php echo trans("external_link_exp"); ?></small>
+                                                    <h4 class="title" ><?php echo trans('external_link'); ?></h4>
+                                                    <small ><?php echo trans("external_link_exp"); ?></small>
                                                 </div>
                                                 <div class="form-box-body">
                                                     <div class="form-group">
@@ -302,7 +302,7 @@ if ($product->is_draft == 1) {
 
                                     <?php if ($form_settings->variations == 1 && $product->product_type != 'digital') : ?>
                                         <div class="form-box">
-                                            <div class="form-box-head" style ="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''?>;">
+                                            <div class="form-box-head" >
                                                 <h4 class="title"><?php echo trans('variations'); ?></h4>
                                                 <small><?php echo trans('variations_exp'); ?></small>
                                             </div>
@@ -330,17 +330,17 @@ if ($product->is_draft == 1) {
                                     <?php if ($form_settings->shipping == 1 && $product->product_type == 'physical') : ?>
                                         <div class="form-box">
                                             <div class="form-box-head">
-                                                <h4 class="title" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;"><?php echo trans('shipping'); ?></h4>
+                                                <h4 class="title" ><?php echo trans('shipping'); ?></h4>
                                             </div>
                                             <div class="form-box-body">
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <?php $shipping_options = get_grouped_shipping_options();
                                                         if (!empty($shipping_options)) : ?>
-                                                            <div class="col-12 col-sm-6 m-b-sm-15" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;">
+                                                            <div class="col-12 col-sm-6 m-b-sm-15" >
                                                                 <label class="control-label"><?php echo trans('shipping_cost'); ?></label>
                                                                 <div class="selectdiv">
-                                                                    <select style = "<?= $this->selected_lang->id == 2 ? 'direction: rtl' : '' ?>" name="shipping_cost_type" class="form-control required" message="<?php echo trans('please_enter_shipping_cost')?>" onchange="if($(this).find(':selected').attr('data-shipping-cost')==1){$('.shipping-cost-container').show();}else{$('.shipping-cost-container').hide();}" <?php echo ($form_settings->shipping_required == 1) ? 'required' : ''; ?>>
+                                                                    <select name="shipping_cost_type" class="form-control required" message="<?php echo trans('please_enter_shipping_cost')?>" onchange="if($(this).find(':selected').attr('data-shipping-cost')==1){$('.shipping-cost-container').show();}else{$('.shipping-cost-container').hide();}" <?php echo ($form_settings->shipping_required == 1) ? 'required' : ''; ?>>
                                                                         <option value=""><?php echo trans("select_option"); ?></option>
                                                                         <?php foreach ($shipping_options as $option) :
                                                                             $shipping_option = get_shipping_option_by_lang($option->common_id, $selected_lang->id) ?>
@@ -350,10 +350,10 @@ if ($product->is_draft == 1) {
                                                                 </div>
                                                             </div>
                                                         <?php endif; ?>
-                                                        <div class="col-12 col-sm-6" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;">
+                                                        <div class="col-12 col-sm-6" >
                                                             <label class="control-label"><?php echo trans('shipping_time'); ?></label>
                                                             <div class="selectdiv">
-                                                                <select style = "<?= $this->selected_lang->id == 2 ? 'direction: rtl' : '' ?>" name="shipping_time" class="form-control <?php echo ($form_settings->shipping_required == 1) ? 'required' : ''; ?>" message="<?php echo trans('please_enter_shipping_time')?>" <?php echo ($form_settings->shipping_required == 1) ? 'required' : ''; ?>>
+                                                                <select name="shipping_time" class="form-control <?php echo ($form_settings->shipping_required == 1) ? 'required' : ''; ?>" message="<?php echo trans('please_enter_shipping_time')?>" <?php echo ($form_settings->shipping_required == 1) ? 'required' : ''; ?>>
                                                                     <option value=""><?php echo trans("select_option"); ?></option>
                                                                     <option value="1_business_day" <?php echo ($product->shipping_time == "1_business_day") ? 'selected' : ''; ?>><?php echo trans("1_business_day"); ?></option>
                                                                     <option value="2_3_business_days" <?php echo ($product->shipping_time == "2_3_business_days") ? 'selected' : ''; ?>><?php echo trans("2_3_business_days"); ?></option>
@@ -362,7 +362,7 @@ if ($product->is_draft == 1) {
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <div class="col-12 col-sm-6 m-t-15 shipping-cost-container" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;<?php echo ($this->settings_model->is_shipping_option_require_cost($product->shipping_cost_type) == 1) ? 'display:block;' : ''; ?>">
+                                                        <div class="col-12 col-sm-6 m-t-15 shipping-cost-container" style="<?php echo ($this->settings_model->is_shipping_option_require_cost($product->shipping_cost_type) == 1) ? 'display:block;' : ''; ?>">
                                                             <label class="control-label"><?php echo trans('shipping_cost'); ?></label>
                                                             <div class="input-group">
                                                                 <?php if ($this->payment_settings->default_product_currency != "all") : ?>
@@ -401,15 +401,15 @@ if ($product->is_draft == 1) {
                                     ?>
                                         <div class="form-box">
                                             <div class="form-box-head">
-                                                <h4 class="title" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;"><?php echo trans('location'); ?></h4>
+                                                <h4 class="title" ><?php echo trans('location'); ?></h4>
                                             </div>
                                             <div class="form-box-body">
                                                 <div class="form-group">
-                                                    <div class="row hidden-row" style ="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''?>;">
+                                                    <div class="row hidden-row" >
                                                         <div class="col-12 col-sm-4 m-b-15">
                                                             <?php if ($general_settings->default_product_location == 0) : ?>
                                                                 <div class="selectdiv" class="d-none">
-                                                                    <select style = "<?= $this->selected_lang->id == 2 ? 'direction: rtl' : '' ?>" id="countries" name="country_id" class="form-control required" message="<?php echo trans('please_select_country')?>" onchange="get_states(this.value);" <?php echo ($form_settings->product_location_required == 1) ? 'required' : ''; ?>>
+                                                                    <select id="countries" name="country_id" class="form-control required" message="<?php echo trans('please_select_country')?>" onchange="get_states(this.value);" <?php echo ($form_settings->product_location_required == 1) ? 'required' : ''; ?>>
                                                                         <option value=""><?php echo trans('country'); ?></option>
                                                                         <?php foreach ($countries as $item) : ?>
                                                                             <option value="<?php echo $item->id; ?>" <?php echo ($item->id == $country_id) ? 'selected' : ''; ?>><?php echo html_escape($item->name); ?></option>
@@ -418,7 +418,7 @@ if ($product->is_draft == 1) {
                                                                 </div>
                                                             <?php else : ?>
                                                                 <div class="selectdiv">
-                                                                    <select style = "<?= $this->selected_lang->id == 2 ? 'direction: rtl' : '' ?>" id="countries" name="country_id" class="form-control required" message="<?php echo trans('please_select_country')?>" required>
+                                                                    <select id="countries" name="country_id" class="form-control required" message="<?php echo trans('please_select_country')?>" required>
                                                                         <?php foreach ($countries as $item) : ?>
                                                                             <?php if ($item->id == $general_settings->default_product_location) : ?>
                                                                                 <option value="<?php echo $item->id; ?>" selected><?php echo html_escape($item->name); ?></option>
@@ -430,7 +430,7 @@ if ($product->is_draft == 1) {
                                                         </div>
                                                         <div class="col-12 col-sm-4 m-b-15">
                                                             <div class="selectdiv">
-                                                                <select style = "<?= $this->selected_lang->id == 2 ? 'direction: rtl' : '' ?>" id="states" name="state_id" class="form-control required" message="<?php echo trans('please_select_state')?>" onchange="get_cities(this.value);" <?php echo ($form_settings->product_location_required == 1) ? 'required' : ''; ?>>
+                                                                <select id="states" name="state_id" class="form-control required" message="<?php echo trans('please_select_state')?>" onchange="get_cities(this.value);" <?php echo ($form_settings->product_location_required == 1) ? 'required' : ''; ?>>
                                                                     <option value=""><?php echo trans('state'); ?></option>
                                                                     <?php
                                                                     if (!empty($states)) :
@@ -443,7 +443,7 @@ if ($product->is_draft == 1) {
                                                         </div>
                                                         <div class="col-12 col-sm-4 m-b-15">
                                                             <div class="selectdiv">
-                                                                <select style = "<?= $this->selected_lang->id == 2 ? 'direction: rtl' : '' ?>" id="cities" name="city_id" class="form-control required" message="<?php echo trans('please_select_city')?>" onchange="update_product_map();">
+                                                                <select id="cities" name="city_id" class="form-control required" message="<?php echo trans('please_select_city')?>" onchange="update_product_map();">
                                                                     <option value=""><?php echo trans('city'); ?></option>
                                                                     <?php
                                                                     if (!empty($cities)) :
@@ -455,7 +455,7 @@ if ($product->is_draft == 1) {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div id="mobile_listcategories" class="mobile_selectdiv" style="margin-bottom:15px;<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>;">
+                                                    <div id="mobile_listcategories" class="mobile_selectdiv" style="margin-bottom:15px;">
                                                         <?php if ($general_settings->default_product_location == 0) : ?>
                                                             <label class="control-label"><?php echo trans('country'); ?></label>
                                                             <label class="control-label"><?php echo trans('country'); ?></label>
@@ -493,14 +493,14 @@ if ($product->is_draft == 1) {
                                                     <input type="hidden" name="custom_id" class="form-control form-input" id="category_id" value="<?php echo $product->category_id; ?>"/>
                                                     <input type="hidden" name="custom_id" class="form-control form-input" id="category_id" value="<?php echo $product->category_id; ?>"/> -->
 
-                                                    <div class="row" style ="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''?>;">
-                                                        <div class="col-12 col-sm-6 m-b-sm-15" style ="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''?>;">
+                                                    <div class="row" >
+                                                        <div class="col-12 col-sm-6 m-b-sm-15" >
                                                             <label class="control-label"><?php echo trans('address'); ?></label>
-                                                            <input type="text" name="address" id="address_input" class="form-control form-input" style ="<?= $this->selected_lang->id == 2 ? 'text-align: right' : '' ?>;" value="<?php echo html_escape($address); ?>" placeholder="<?php echo trans("address") ?>">
+                                                            <input type="text" name="address" id="address_input" class="form-control form-input" value="<?php echo html_escape($address); ?>" placeholder="<?php echo trans("address") ?>">
                                                         </div>
-                                                        <div class="col-12 col-sm-3" style ="<?= $this->selected_lang->id == 2 ? 'text-align: right' : '' ?>;">
+                                                        <div class="col-12 col-sm-3">
                                                             <label class="control-label"><?php echo trans('zip_code'); ?></label>
-                                                            <input type="text" name="zip_code" id="zip_code_input" class="form-control form-input" style ="<?= $this->selected_lang->id == 2 ? 'text-align: right' : '' ?>;" value="<?php echo html_escape($zip_code); ?>" placeholder="<?php echo trans("zip_code") ?>">
+                                                            <input type="text" name="zip_code" id="zip_code_input" class="form-control form-input" value="<?php echo html_escape($zip_code); ?>" placeholder="<?php echo trans("zip_code") ?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -521,7 +521,7 @@ if ($product->is_draft == 1) {
                                     <?php endif; ?>
 
                                     <div class="form-group m-t-15" style="text-align: center">
-                                        <div class="custom-control custom-checkbox custom-control-validate-input" style ="<?= $this->selected_lang->id == 2 ? 'text-align: right' : '' ?>;">
+                                        <div class="custom-control custom-checkbox custom-control-validate-input">
                                             <?php if ($product->is_draft == 1) : ?>
                                                 <input type="checkbox" class="custom-control-input" name="terms_conditions" id="terms_conditions" value="1" required>
                                             <?php else : ?>
