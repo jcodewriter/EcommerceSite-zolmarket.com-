@@ -21,16 +21,7 @@
                     <div class="col-12">
                         <h1 class="title"><?php echo trans("register"); ?></h1>
                         <!-- form start -->
-                        <?php
-                        if ($recaptcha_status) {
-                            echo form_open_multipart('auth_controller/register_post', [
-                                'id' => 'form_validate', 'class' => 'validate_terms',
-                                'onsubmit' => "var serializedData = $(this).serializeArray();var recaptcha = ''; $.each(serializedData, function (i, field) { if (field.name == 'g-recaptcha-response') {recaptcha = field.value;}});if (recaptcha.length < 5) { $('.g-recaptcha>div').addClass('is-invalid');return false;} else { $('.g-recaptcha>div').removeClass('is-invalid');}"
-                            ]);
-                        } else {
-                            echo form_open_multipart('auth_controller/register_post', ['id' => 'form_validate', 'class' => 'validate_terms']);
-                        }
-                        ?>
+                        <?php echo form_open_multipart('auth_controller/register_post', ['id' => 'form_validate', 'class' => 'validate_terms']);?>
                         <p class="p-social-media m-0 m-b-10"><?php echo trans("have_account"); ?>&nbsp;<a href="<?php echo lang_base_url() . 'login'; ?>" class="link"><?php echo trans("login"); ?></a></p>
 
                         <div class="social-login-cnt">
@@ -87,11 +78,6 @@
                                 <label for="checkbox_terms" class="custom-control-label"><?php echo trans("terms_conditions_exp"); ?>&nbsp;<a href="<?php echo lang_base_url(); ?>terms-conditions" class="link-terms" target="_blank"><strong><?php echo trans("terms_conditions"); ?></strong></a></label>
                             </div>
                         </div>
-                        <?php if ($recaptcha_status) : ?>
-                            <div class="recaptcha-cnt">
-                                <?php generate_recaptcha(); ?>
-                            </div>
-                        <?php endif; ?>
                         <div class="form-group">
                             <button type="submit" class="btn btn-md btn-custom btn-block" style="margin-bottom:60px;"><?php echo trans("register"); ?></button>
                         </div>
