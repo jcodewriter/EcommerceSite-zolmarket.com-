@@ -930,6 +930,7 @@ $(document).ready(function () {
         document.getElementById("navMobile").style.width = "0";
     });
     $(document).on('click', '.has-menu', function () {
+        get_subcategories($(this),$(this).index(),$(this).data('ajax'));
         var id = $(this).data('ajax');
         var customCountryId = $(this).attr('data-ajax');
         var url = $(this).data('url');
@@ -1074,6 +1075,7 @@ $(document).ready(function () {
 
     $(document).on('click', '.remove-menu', function () {
         var category_id = $(this).attr('category_id')
+        get_subcategories($(this),$(this).index(),category_id);
         var category_name = $(this).attr('category_name')
 
         $('html').removeClass('disable-body-scroll');
@@ -2488,13 +2490,22 @@ function send_message_ads_email(message_sender_id, message_receiver_id, message_
 
 
 //get subcategories
-function get_subcategories(element, index = 0) {
-    let val = element.value;
+function get_subcategories(element, index = 0,id = -1) {
+    let val;
+    if(id != -1 && id != 0){
+        val = id;
+        var tmpElement  = $("#listcategories").find('option[value='+id+']').eq(0); 
+        tmpElement.attr('selected',true);
+        tmpElement.parent().nextAll().remove();
+    }
+    else{
+        val = element.value;
+        $(element).nextAll().remove();
+    }
     var data = {
         "parent_id": val,
         lang_base_url: lang_base_url
     };
-    $(element).nextAll().remove();
     data[csfr_token_name] = $.cookie(csfr_cookie_name);
     $.ajax({
         type: "POST",

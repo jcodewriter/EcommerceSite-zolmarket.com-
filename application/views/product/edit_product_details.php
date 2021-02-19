@@ -668,7 +668,7 @@ if ($product->is_draft == 1) {
 			{
 				if($("form").find("select").length != 1 && $("form").find("select:last").val() != "")
 				{
-					console.log($("form").find("select:last").parent().parent().parent().find("input").next().remove());
+					$("form").find("select:last").parent().parent().parent().find("input").next().remove();
 				}
             }
 		}
