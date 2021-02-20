@@ -72,7 +72,7 @@
                             <i class="far fa-eye" id="confirmTogglePassword" style="position: absolute; top: 45px; <?= $this->selected_lang->id == 2 ? 'left: 10px' : 'right: 10px;'; ?>"></i>
                         </div>
                         <div id="errors" style = 'color:red'></div>
-                        <div class="form-group m-t-5 m-b-20">
+                        <div class="form-group m-t-15 m-b-20">
                             <div class="custom-control custom-checkbox custom-control-validate-input checkbox_terms">
                                 <input type="checkbox" class="custom-control-input" name="terms" id="checkbox_terms" required>
                                 <label for="checkbox_terms" class="custom-control-label"><?php echo trans("terms_conditions_exp"); ?>&nbsp;<a href="<?php echo lang_base_url(); ?>terms-conditions" class="link-terms" target="_blank"><strong><?php echo trans("terms_conditions"); ?></strong></a></label>

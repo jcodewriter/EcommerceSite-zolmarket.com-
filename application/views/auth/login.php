@@ -36,7 +36,7 @@
                             <input type="password" id="password" name="password" class="form-control auth-form-input required" message="<?php echo trans('please_enter_password'); ?>" placeholder="<?php echo trans("password"); ?>" style="<?= $this->selected_lang->id == 2 ? 'text-align: right' : ''; ?>" minlength="4" required>
                             <i class="far fa-eye" id="togglePassword" style="position: absolute; top: 45px; <?= $this->selected_lang->id == 2 ? 'left: 10px' : 'right: 10px;'; ?>"></i>
                         </div>
-                        <div class="form-group" style="display: flex; justify-content: space-between;">
+                        <div class="form-group" style="display: flex; justify-content: space-between;margin:1.1rem 0rem 2.1rem 0rem !important;">
                             <div class="custom-control custom-checkbox custom-control-validate-input" style="display: flex; align-items: center;">
                                 <input type="checkbox" name="remember_me" value="" id="remember-me" class="custom-control-input" checked>
                                 <label for="remember-me" class="custom-control-label"><?php echo trans("remember_me"); ?></label>
