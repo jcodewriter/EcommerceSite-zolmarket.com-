@@ -258,14 +258,6 @@ class Auth_controller extends Home_Core_Controller
             redirect(lang_base_url());
         }
         
-        if ($this->recaptcha_status == true) {
-            if (!$this->recaptcha_verify_request()) {
-                $this->session->set_flashdata('form_data', $this->auth_model->input_values());
-                $this->session->set_flashdata('error', trans("msg_recaptcha"));
-                redirect($this->agent->referrer());
-                exit();
-            }
-        }
         
         //validate inputs
         // $this->form_validation->set_rules('username', trans("username"), 'required|xss_clean|min_length[4]|max_length[100]');
