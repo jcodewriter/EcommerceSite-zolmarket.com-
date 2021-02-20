@@ -326,14 +326,14 @@ class Auth_controller extends Home_Core_Controller
                 }
 
                 if ($idiom == 2) {
-                    if ($this->general_settings->email_verification == 1)
-                        redirect(lang_base_url() . "settings/update-profile");
-                    else
+                    // if ($this->general_settings->email_verification == 1)
+                    //     redirect(lang_base_url() . "settings/update-profile");
+                    // else
                         redirect(lang_base_url() . "account/" . user()->slug);
                 } else {
-                    if ($this->general_settings->email_verification == 1)
-                        redirect(lang_base_url() . "settings/update-profile");
-                    else
+                    // if ($this->general_settings->email_verification == 1)
+                    //     redirect(lang_base_url() . "settings/update-profile");
+                    // else
                         redirect(lang_base_url() . "account/" . user()->slug);
                 }
             } else {
