@@ -39,7 +39,7 @@
                                     <div class="col-sm-12 col-profile mt-1">
                                         <a class="btn btn-success btn-sm btn-file-upload">
                                             <?php echo trans('select_image'); ?>
-                                            <input id="imgUploader" name="file" size="40" accept=".png, .jpg, .jpeg" onchange="$('#upload-file-info').html($(this).val().replace(/.*[\/\\]/, ''));$('#imgadshoww').parent().find('p').remove();" type="file" required>
+                                            <input id="imgUploader" name="file" size="40" accept=".png, .jpg, .jpeg" onchange="$('#upload-file-info').html($(this).val().replace(/.*[\/\\]/, ''));$('#imgadshoww').parent().find('p').remove();" type="file">
                                         </a>
                                     </div>
                                 </div>
@@ -133,14 +133,6 @@ $(document).ready(function(){
     // });
 
     $("button").click(function(){
-        $("#imgadshoww").parent().find("p").remove();
-        if($("#imgUploader").val() == ''){
-            // $('#imgadshoww').css({'border':'2px solid #dc354566'});
-            $("html, body").animate({
-                scrollTop: 250
-            }, 700);
-            $('<p style="width: 100%;color: #e91e63;font-size: 12px;font-weight: bold;padding: 5px 10px 0px 10px;margin: 0;"  ><?php echo trans('please_select_photo') ?></p>').insertAfter($("#imgadshoww"));
-        }
         $(".checkbox_terms").parent().find("p").remove();
         if(!$('#checkbox_terms').is(':checked'))
         $('<p style="width: 100%;color: #e91e63;font-size: 12px;font-weight: bold;padding: 5px 10px 0px 10px;margin: 0;"  ><?php echo trans('required_field') ?></p>').insertAfter($(".checkbox_terms"));
